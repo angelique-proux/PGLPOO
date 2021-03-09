@@ -5,7 +5,7 @@
 *
 * Date          : 03/01/2021
 *
-* Copyright     : Manelle & Angélique
+* Copyright     : Angélique & Gaël & Steve
 */
 
 
@@ -16,7 +16,7 @@ import java.util.*;
 import java.util.UUID;
 
 
-public abstract class Media implements InterfaceTitle, InterfaceString, InterfaceDuration {
+public abstract class Media implements InterfaceTitle, InterfaceDuration {
 	protected String title;    // Title of songs and audiobooks
 	protected int duration;    // Total duration of songs and audiobooks
 	protected UUID id;	   // Songs and audiobooks identify key

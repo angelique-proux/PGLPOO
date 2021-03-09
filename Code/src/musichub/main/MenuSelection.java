@@ -5,7 +5,7 @@
 *
 * Date          : 03/01/2021
 *
-* Copyright     : Manelle & Angélique
+* Copyright     : Angélique & Gaël & Steve
 */
 
 package main;

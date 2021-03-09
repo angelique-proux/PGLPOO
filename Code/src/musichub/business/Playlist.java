@@ -5,7 +5,7 @@
  *
  * Date          : 03/01/2021
  *
- * Copyright     : Manelle & Angélique
+ * Copyright     : Angélique & Gaël & Steve
  */
 
 
@@ -18,7 +18,7 @@ import java.util.*;
 import java.time.Duration;
 
 
-public class Playlist implements InterfaceString {
+public class Playlist {
 	private String name;															// Name of the playlist
 	private UUID id;																	// Identify key of the playlist
 	private LinkedList<AudioBook> audiobooksList;			// AudioBooks list of the playlist

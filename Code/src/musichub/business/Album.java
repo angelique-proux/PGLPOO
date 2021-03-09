@@ -5,7 +5,7 @@
 *
 * Date          : 03/01/2021
 *
-* Copyright     : Manelle & Angélique
+* Copyright     : Angélique & Gaël & Steve
 */
 
 
@@ -19,7 +19,7 @@ import java.util.LinkedList;
 
 
 
-public class Album implements InterfaceTitle, InterfaceString, InterfaceDuration {
+public class Album implements InterfaceTitle, InterfaceDuration {
 
   private String title;                    // Title of the album
   private String artist;                   // Artist of the album
