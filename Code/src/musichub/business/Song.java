@@ -18,7 +18,7 @@ import java.util.UUID;
 import java.lang.String;
 
 
-public class Song extends Media implements InterfaceGenre {
+public class Song extends Media {
 
 	private String artist;  // Artist of the song
 	private Genres genre;  	// Genre of the song

@@ -10,7 +10,7 @@
 
 package business;
 
-public enum Genres implements InterfaceGenre {
+public enum Genres {
 
 	/**
 	*	Possible genre for songs
