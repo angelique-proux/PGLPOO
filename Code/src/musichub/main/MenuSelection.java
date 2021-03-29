@@ -5,7 +5,7 @@
 *
 * Date          : 03/01/2021
 *
-* Copyright     : Angélique & Gaël & Steve
+* Copyright     : Angélique & Gaël & Steve & Antonin
 */
 
 package main;

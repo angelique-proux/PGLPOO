@@ -5,7 +5,7 @@
 *
 * Date          : 03/01/2021
 *
-* Copyright     : Angélique & Gaël & Steve
+* Copyright     : Angélique & Gaël & Steve & Antonin
 */
 
 
@@ -18,7 +18,7 @@ import java.util.UUID;
 import java.lang.String;
 
 
-public class Song extends Media {
+public class Song extends Media implements Serializable	{	//must implement Serializable in order to be sent over a Socket
 
 	private String artist;  // Artist of the song
 	private Genres genre;  	// Genre of the song
