@@ -1,196 +1,148 @@
-/*
-* Name of class : Album
-*
-* Description   : Class which manages the albums
-*
-* Date          : 03/01/2021
-*
-* Copyright     : Angélique & Gaël & Steve & Antonin
-*/
-
-
-
 package business;
 
-// Packages from java
-import java.io.*;
-import java.util.UUID;
 import java.util.LinkedList;
+import java.util.UUID;
 
 
+/** Album class representing an audio album
+ *
+ * Version : 1.6
+ *
+ * Date : 30/02/2001
+ *
+ * @author       Gaël Lejeune
+ */
+public class Album implements AudioList {
 
-public class Album implements InterfaceTitle, InterfaceDuration {
+    /**
+     * Title of the album
+     */
+    private String title;
 
-  private String title;                    // Title of the album
-  private String artist;                   // Artist of the album
-  private int duration;                    // Duration of the album
-  private int date;                        // Date of the album
-  private LinkedList<Song> songList;       // Songs list of the album
-  UUID idAlbum;                            // Identify key of the album
+    /**
+     * Artist of the album
+     */
+    private String artist;
 
+    /**
+     * Duration of the album
+     */
+    private int duration;
 
-  /**
-  * Builder 1 (existing album)
-  * @see getDuration
-  */
-  public Album(String title, int date, int duration, LinkedList<Song> songs, String artist, String id) {
-    this.title = title;
-    this.artist = artist;
-    this.duration = duration;
-    this.date = date;
-    this.songList = new LinkedList<Song>();
-    for(Song s : songs)
-    {
-      this.songList.add(s);
+    /**
+     * Release date of the album
+     */
+    private String releaseDate;
+
+    /**
+     * Unique ID identifying the album
+     */
+    private UUID id;
+
+    /**
+     * Song list of the album
+     * @see Song
+     */
+    private LinkedList<Song> songs;
+
+    /**
+     * Album constructor
+     *
+     * @param       title Title of the album
+     * @param       artist Artist of the album
+     * @param       duration Duration of the album
+     * @param       releaseDate Release date of the album
+     * @param       id Unique id of the album
+     * @param       songs List of the album songs
+     *
+     * @author      Gaël Lejeune
+     */
+    public Album(String title, String artist, int duration, String releaseDate, UUID id, LinkedList<Song> songs) {
+        this.title = title;
+        this.artist = artist;
+        this.duration = duration;
+        this.releaseDate = releaseDate;
+        this.id = id;
+        this.songs = songs;
     }
-    this.duration = getDuration();
-    this.idAlbum = UUID.fromString(id);
-  }
 
-  /**
-  * Builder 2 (new album)
-  */
-  public Album(String title, int date, LinkedList<Song> songs, String artist) {
-    this.title = title;
-    this.artist = artist;
-    this.date = date;
-    this.songList = new LinkedList<Song>();
-    for(Song s : songs)
-    {
-      this.songList.add(s);
+    /**
+     * Accessor of the title
+     * @return      String containing the album's title
+     * @author      Gaël Lejeune
+     */
+    public String getTitle() {
+        return this.title;
     }
-    this.duration = getDuration();
-    this.idAlbum = UUID.randomUUID();
-  }
 
-
-
-  /**
-  * Method that gets the title of the album
-  * @return The title of the album
-  */
-  public String getTitle () {
-    return title;
-  }
-
-
-  /**
-  * Method that gets the artist of the album
-  * @return The artist of the album
-  */
-  public String getArtist() {
-    return artist;
-  }
-
-
-  /**
-  * Method that gets the duration of the album
-  * @return The duration of the album
-  * @see setDuration
-  */
-  public int getDuration() {
-    this.setDuration();
-    return this.duration;
-  }
-
-  /**
-  * Method that changes the duration of the album
-  * By adding the songs duration
-  */
-  public void setDuration() {
-    int val = 0;
-    for (Song s : this.songList) {
-      val = val + s.getDuration();
+    /**
+     * Accessor of the artist
+     * @return      String containing the album's artist
+     * @author      Gaël Lejeune
+     */
+    public String getArtist() {
+        return this.artist;
     }
-    this.duration = val;
-  }
 
-  /**
-  * Method that gets the date of the album
-  * @return The date of the album
-  */
-  public int getDate() {
-    return date;
-  }
-
-  /**
-  * Method that gets the identify key of the album
-  * @return The identify key of the album
-  */
-    public String getId() {
-  		return this.idAlbum.toString();
-  	}
-
-  /**
-  * Method that adds a song to the album
-  * @param song
-  *              The new song to add
-  */
-  public void addSong(Song song) {
-    this.songList.add(song);
-  }
-
-
-
-  /**
-  * Method that shows the informations and the songs of the album
-  * The duration is setting before that
-  * @see setDuration
-  */
-  public void showAlbum() {
-    setDuration();
-    System.out.println(toString());
-  }
-
-  /**
-  * Method that shows the informations of the album
-  * @see getDuration
-  */
-  public void showAlbumInformations() {
-    System.out.println("\nTitle : " + this.title + "\tArtist : " + this.artist
-    + "\nDuration : " + this.getDuration() + "\tDate : " + this.date + "\nId : "
-    + this.idAlbum.toString());
-  }
-
-  /**
-  * Method that shows the songs of the album
-  */
-  public void showSongList() {
-    String string = "";
-    int numSong = 1;
-    for(Song s : songList) {
-      string = string + "\n\tSong " + numSong + " :" + s.toString() ;
-      numSong++;
+    /**
+     * Accessor of the release date
+     * @return      String containing the album's release date
+     * @author      Gaël Lejeune
+     */
+    public String getReleaseDate() {
+        return this.releaseDate;
     }
-    if (songList.size()==0) {
-      string = "\n\tThere is no songs in this album.";
-    }
-    System.out.println(string);
-  }
 
-  /**
-  * Method that returns the informations of the album
-  * @return The album
-  */
-  public String toString() {
-		String infos = "\nTitle : " + this.title + "\tArtist : " + this.artist
-    + "\tDuration : " + this.duration + "\nDate : " + this.date + "\tId : "
-    + this.idAlbum.toString() + "\nSongs :";
-		for (Song s : songList) {
-			infos += "\t" + s.toString();
-		}
-    if (songList.size()==0) {
-      infos += "There is no songs in this album";
+    /**
+     * Accessor of the song list
+     * @return      LinkedList containing the album's song list
+     * @author      Gaël Lejeune
+     */
+    public LinkedList<Song> getSongs() {
+        return this.songs;
     }
-		return infos;
-	}
 
-  /**
-  * Method that returns the list of the songs of the album
-  * @return The songs list of the album
-  */
-  public LinkedList<Song> getSongsList() {
-    return songList;
-  }
+    /**
+     * Accessor of the duration
+     * @return      int containing the album's duration
+     * @author      Gaël Lejeune
+     */
+    public int getDuration() {
+        return this.duration;
+    }
+
+    /**
+     * Accessor of the unique id
+     * @return      UUID containing the album's unique id
+     * @author      Gaël Lejeune
+     */
+    public UUID getID() {
+        return this.id;
+    }
+
+    /**
+     * Override of the toString java method
+     * @return      String containing the album's informations
+     * @author      Gaël Lejeune
+     */
+    public String toString() {
+        String str;
+        str = "Album " + this.title + "\nBy " + this.artist + "\nDuration " + this.duration + "\nReleased " + this.releaseDate + "\nSongs : ";
+        for (int i = 0; i < this.songs.size(); i++) {
+            str += "\n" + this.songs.get(i);
+        }
+        return str;
+    }
+
+    /**
+     * Allow the user to add a given song to the album
+     * @param       audio Audio to add
+     * @see         Audio
+     * @author      Gaël Lejeune
+     */
+    @Override
+    public void addAudio(Audio audio) {
+        this.songs.add((Song)audio);
+    }
 
 }

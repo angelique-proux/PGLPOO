@@ -1,135 +1,98 @@
-/*
- * Name of class : Playlist
- *
- * Description   : Class which manages playlists
- *
- * Date          : 03/01/2021
- *
- * Copyright     : Angélique & Gaël & Steve & Antonin
- */
-
-
 package business;
 
-
-// Packages from java
 import java.util.LinkedList;
-import java.util.*;
-import java.time.Duration;
+import java.util.UUID;
 
-
-public class Playlist {
-	private String name;															// Name of the playlist
-	private UUID id;																	// Identify key of the playlist
-	private LinkedList<AudioBook> audiobooksList;			// AudioBooks list of the playlist
-  private LinkedList<Song> songsList;								// Songs list of the playlist
+/** Playlist class representing a playlist containing audios
+ *
+ * Version : 1.0
+ *
+ * Date : 30/02/2001
+ *
+ * @author Gaël Lejeune
+ */
+public class Playlist implements AudioList {
 
 	/**
-  *  Builder 1 (existing playlist)
-  */
-	public Playlist(String name, UUID id, LinkedList<Song> songsList, LinkedList<AudioBook> audiobooksList) {
-        this.name = name;
-        this.id = id;
-        this.songsList = songsList;
-				this.audiobooksList = audiobooksList;
+     * Name of the playlist
+     */
+	private String name;
+
+	/**
+     * Unique ID identifying the playlist
+     */
+	private UUID id;
+
+	/**
+     * Audio list of the playlist
+     * @see Audio
+     */
+	private LinkedList<Audio> audios = new LinkedList<Audio>();
+
+	/**
+     * Playlist constructor
+     *
+     * @param       name Name of the album
+     * @param       id Unique id of the album
+     * @param       audios List of the album audios
+     *
+     * @author      Gaël Lejeune
+     */
+	public Playlist(String name, UUID id, LinkedList<Audio> audios) {
+		this.name = name;
+		this.id = id;
+		this.audios = audios;
 	}
 
 	/**
-  *  Builder 2 (new playlist)
-  */
-	public Playlist(String name, LinkedList<Song> songsList, LinkedList<AudioBook> audiobooksList) {
-				this.name = name;
-				this.id = UUID.randomUUID();
-				this.songsList = songsList;
-				this.audiobooksList = audiobooksList;
-	}
-
-
-	/**
-	*  Method that returns the informations of the playlist
-	*  @return The playlist
-	*/
-	public String toString() {
-		String infos = "\nName : " + this.name + "\tId : " + this.id + "\nSongs :";
-		for (Song s : songsList) {
-			infos += "\t" + s.toString();
-		}
-		if (songsList.size()==0) {
-			infos += "\n\tThere is no song in this playlist.";
-		}
-		infos += "\nAudioBooks :";
-		for (AudioBook a : audiobooksList) {
-			infos += "\t" + a.toString();
-		}
-		if (audiobooksList.size()==0) {
-			infos += "\n\tThere is no audiobook in this playlist.";
-		}
-		return infos;
-	}
-
-	/**
-  *  Method that gets the name of the playlist
-  *  @return The name of the playlist
-  */
+     * Accessor of the name
+     * @return      String containing the playlist's name
+     * @author      Gaël Lejeune
+     */
 	public String getName() {
-	    return this.name;
+		return this.name;
 	}
 
 	/**
-  *  Method that gets the identify key of the playlist
-  *  @return The identify key of the playlist
-  */
-	public String getId() {
-		return this.id.toString();
+     * Accessor of the audio list
+     * @return      LinkedList containing the playlist's audio list
+     * @author      Gaël Lejeune
+     */
+	public LinkedList<Audio> getAudios() {
+		return this.audios;
 	}
 
 	/**
-  *  Method that gets the songs list of the playlist
-  *  @return The songs list of the playlist
-  */
-	public LinkedList<Song> getSongsList() {
-		return songsList;
+     * Accessor of the unique id
+     * @return      UUID containing the playlist's unique id
+     * @author      Gaël Lejeune
+     */
+	public UUID getID() {
+    	return this.id;
+    }
+
+	/**
+     * Override of the toString java method
+     * @return      String containing the playlist's informations
+     * @author      Gaël Lejeune
+     */
+	public String toString() {
+		String str;
+		str = "Playlist " + this.name;
+		for (int i = 0; i < this.audios.size(); i++) {
+			str += "\n" + this.audios.get(i);
+		}
+		return str;
 	}
 
 	/**
-  *  Method that gets the audiobooks list of the playlist
-  *  @return The audiobooks list of the playlist
-  */
-	public LinkedList<AudioBook> getAudioBooksList() {
-		return audiobooksList;
-	}
-
-
-	/**
-	*  Method that shows the songs of the playlist
-	*/
-  public void showSongList() {
-    String string = "";
-    int numSong = 1;
-    for(Song s : songsList) {
-      string = string + "\n\tSong " + numSong + " :" + s.toString() ;
-      numSong++;
+	 * Allow the user to add a given audio file to the playlist
+	 * @param       audio Audio to add
+	 * @see         Audio
+	 * @author      Gaël Lejeune
+	 */
+	@Override
+	public void addAudio(Audio audio) {
+        this.audios.add(audio);
     }
-    if (songsList.size()==0) {
-      string = "\n\tThere is no songs in this playlist.";
-    }
-    System.out.println(string);
-  }
-
-	/**
-	*  Method that shows the audiobooks of the playlist
-	*/
-  public void showAudioBookList() {
-    String string = "";
-    int numBook = 1;
-    for(AudioBook a : audiobooksList) {
-      string = string + "\n\tAudioBook " + numBook + " :" + a.toString() ;
-      numBook++;
-    }
-    if (audiobooksList.size()==0) {
-      string = "\n\tThere is no audiobook in this playlist.";
-    }
-    System.out.println(string);
-  }
-
 }

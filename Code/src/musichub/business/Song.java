@@ -1,94 +1,74 @@
-/*
-* Name of class : Song
-*
-* Description   : Class which manages the songs
-*
-* Date          : 03/01/2021
-*
-* Copyright     : Angélique & Gaël & Steve & Antonin
-*/
-
-
 package business;
 
-// Packages from java
-import java.io.*;
-import javax.sound.sampled.*;
 import java.util.UUID;
-import java.lang.String;
 
+/** Song Class representing a song and it's caracteristics
+ *
+ * @version 1.0
+ *
+ * @see Audio
+ * @author Gaël Lejeune
+ */
+public class Song extends Audio {
+    /**
+     * Genre of the song
+     * @see Genre
+     */
+    private Genre genre;
 
-public class Song extends Media implements Serializable	{	//must implement Serializable in order to be sent over a Socket
+    /**
+     * Artist of the song
+     */
+    private String artist;
 
-	private String artist;  // Artist of the song
-	private Genres genre;  	// Genre of the song
+    /**
+     * Song constructor
+     *
+     * @param       title Title of the book
+     * @param       artist Artist of the song
+     * @param       duration Duration of the song
+	 * @param       id Unique id of the song
+	 * @param       content Path of the song's file
+	 * @param       genre Genre of the song
+     *
+     * @author      Gaël Lejeune
+     */
+    public Song(String title, String artist, int duration, UUID id, String content, Genre genre) {
+    	this.title = title;
+    	this.artist = artist;
+    	this.duration = duration;
+    	this.id = id;
+    	this.content = content;
+    	this.genre = genre;
+    }
 
+    /**
+     * Accessor of the genre
+     * @return      Genre of the song
+     * @see         Genre
+     * @author      Gaël Lejeune
+     */
+    public Genre getGenre() {
+    	return this.genre;
+    }
 
-	/**
-	*  Builder 1 (existing song)
-	*/
-	public Song(String title, String artist, int duration, String contents, Genres genre, String id) {
+    /**
+     * Accessor of the artist
+     * @return      String containing the song's artist
+     * @author      Gaël Lejeune
+     */
+    public String getArtist() {
+    	return this.artist;
+    }
 
-		this.title = title;
-		this.artist = artist;
-		this.duration = duration;
-		this.id = UUID.fromString(id);
-		this.contents = contents;
-		this.genre = genre;
-	}
-
-	/**
-	* Builder 2 (new song)
-	*/
-	public Song(String title, String artist, int duration, String contents, Genres genre) {
-		this.title = title;
-		this.artist = artist;
-		this.duration = duration;
-		this.id = UUID.randomUUID();
-		this.contents = contents;
-		this.genre = genre;
-	}
-
-
-	/**
-	* Method that returns the genre of the song
-  *  @return The genre of the song
-	*/
-	public String getGenre() {
-		return this.genre.getGenre();
-	}
-
-	/**
-	* Method that returns the genre of the song for xml files
-  *  @return The genre of the song writen for xml files
-	*/
-	public String getGenreForXML() {
-		switch (this.genre.getGenre()) {
-			case "Hip-Hop":
-			return "HIPHOP";
-			case "K-pop":
-			return "KPOP";
-			default:
-			return this.genre.getGenre().toUpperCase();
-		}
-	}
-
-	/**
-	* Method that returns the artist of the song
-  *  @return The artist of the song
-	*/
-	public String getArtist() {
-		return this.artist;
-	}
-
-	/**
-	* Method that returns the song informations
-  *  @return The informations of the song
-	*/
-	public String toString() {
-		String show = "\n\t-> Title : " + this.title + "\t Artist : " + this.artist + "\n\tDuration : " + this.duration + "s" + "\t\t ID : " + this.id.hashCode() + "\n\tContents : " + this.contents + "\t Genre : " + this.genre.getGenre();
-
-		return show;
-	}
-
+    /**
+     * Override of the toString java method
+     * @return      String containing the songs's informations
+     * @author      Gaël Lejeune
+     */
+    public String toString() {
+        return this.title + " by " + this.artist
+        + "\nDuration : " + this.duration
+        + "\nGenre : " + this.genre;
+    }
 }

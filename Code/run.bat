@@ -1,1 +1,1 @@
-java -classpath bin main.MenuSelection
+java -classpath bin main.JMusicHub
