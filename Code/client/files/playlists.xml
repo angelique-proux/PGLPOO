@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<playlists>
+    <playlist>
+        <name>MaPlaylist</name>
+        <UUID>4ec145c3-4163-47a3-b4fb-b424e97dbde0</UUID>
+        <audios>
+            <audioBook>
+                <title>L'assomoir</title>
+                <author>Emile Zola</author>
+                <duration>225569</duration>
+                <UUID>98181f77-2601-48ab-a4c5-2e70253df0ce</UUID>
+                <content>files/music/L'assomoir.txt</content>
+                <language>ITALIEN</language>
+                <category>DOCUMENTAIRE</category>
+            </audioBook>
+            <song>
+                <title>Unperson</title>
+                <artist>Five Finger Death Punch</artist>
+                <duration>268</duration>
+                <UUID>096102c9-34bf-454a-ac15-a4ea13d17aa8</UUID>
+                <content>files/music/Moral Panic/Unperson.txt</content>
+                <genre>ROCK</genre>
+            </song>
+            <song>
+                <title>American Capitalist</title>
+                <artist>Five Finger Death Punch</artist>
+                <duration>273</duration>
+                <UUID>bf931afd-52c5-480d-9150-95b4f608473d</UUID>
+                <content>files/music/American Capitalist/American Capitalist.txt</content>
+                <genre>METAL</genre>
+            </song>
+        </audios>
+    </playlist>
+    <playlist>
+        <name>Test</name>
+        <UUID>c850bd3f-9e24-45e3-ba53-ecbe11d4a6c8</UUID>
+        <audios>
+            <song>
+                <title>Phobia</title>
+                <artist>Five Finger Death Punch</artist>
+                <duration>862</duration>
+                <UUID>57d4922f-9c50-46f8-9949-bfe1dc07abd6</UUID>
+                <content>files/music/Moral Panic/Phobia.txt</content>
+                <genre>ROCK</genre>
+            </song>
+            <song>
+                <title>Loose Yourself</title>
+                <artist>Eminem</artist>
+                <duration>164</duration>
+                <UUID>11e77b68-db50-4db2-af44-6b2815ea9e07</UUID>
+                <content>files/music/mixtape/Loose Yourself.txt</content>
+                <genre>RAP</genre>
+            </song>
+        </audios>
+    </playlist>
+</playlists>
