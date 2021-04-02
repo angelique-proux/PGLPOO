@@ -9,7 +9,8 @@ import java.util.UUID;
   *
   * @author Jean Michel D.
   */
-public abstract class Audio {
+public abstract class Audio implements Serializable		//must implement Serializable in order to be sent over a Socket
+{
 
 	/**
      * Title of the audio file

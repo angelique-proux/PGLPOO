@@ -8,7 +8,8 @@ package business;
  *
  * @author Gaël Lejeune and Steve Chauvreau-Manat
  */
-public interface AudioList {
+public interface AudioList extends Serializable		//must implement Serializable in order to be sent over a Socket
+{
 
     /**
 	 * Allow the user to add a given song to the AudioList
