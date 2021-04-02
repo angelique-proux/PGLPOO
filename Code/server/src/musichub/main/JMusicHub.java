@@ -13,46 +13,46 @@ import java.util.regex.Matcher;
 
 
 /** JMusicHub Class is the main class of the JMusicHub program.
- *
- *
- * Version : 1.0
- *
- * Date : 30/02/2001
- *
- * @author Gaël Lejeune and Steve Chauvreau-Manat
- */
+*
+*
+* Version : 1.0
+*
+* Date : 30/02/2001
+*
+* @author Gaël Lejeune and Steve Chauvreau-Manat
+*/
 public class JMusicHub{
 
     /**
-     * XML editor allowing to read and write XML files
-     * @see XMLReaderWriter
-     */
+    * XML editor allowing to read and write XML files
+    * @see XMLReaderWriter
+    */
     private XMLReaderWriter xmlEditor;
 
     /**
-     * List of the registered playlists
-     * @see Playlist
-     */
+    * List of the registered playlists
+    * @see Playlist
+    */
     private LinkedList<Playlist> playlists;
 
     /**
-     * List of the registered albums
-     * @see Album
-     */
+    * List of the registered albums
+    * @see Album
+    */
     private LinkedList<Album> albums;
 
     /**
-     * List of the registered audio elements
-     * @see Audio
-     */
+    * List of the registered audio elements
+    * @see Audio
+    */
     private LinkedList<Audio> elements;
 
     /**
-     * Album constructor
-     * Initialize all the attributes and fill the lists by reading the XML files
-     *
-     * @author Gaël Lejeune
-     */
+    * Album constructor
+    * Initialize all the attributes and fill the lists by reading the XML files
+    *
+    * @author Gaël Lejeune
+    */
     public JMusicHub() {
         this.xmlEditor = new XMLReaderWriter();
         /* Load of all the XML files */
@@ -66,11 +66,11 @@ public class JMusicHub{
     }
 
     /**
-     * Display the album list ordered by release date
-     * @exception   Exception Thrown the given String cannot be converted to date.
-     * @see         Album
-     * @author      Gaël Lejeune and Steve Chauvreau-Manat
-     */
+    * Display the album list ordered by release date
+    * @exception   Exception Thrown the given String cannot be converted to date.
+    * @see         Album
+    * @author      Gaël Lejeune and Steve Chauvreau-Manat
+    */
     public void displayAlbumByReleaseDate() throws Exception {
         Date datePrec = new SimpleDateFormat("dd/MM/yyyy").parse("0/00/0000");
         Date date = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(0).getReleaseDate());
@@ -97,11 +97,11 @@ public class JMusicHub{
     }
 
     /**
-     * Display the song list of an asked album, ordered by genre
-     * @see         Album
-     * @see         Song
-     * @author      Gaël Lejeune and Steve Chauvreau-Manat
-     */
+    * Display the song list of an asked album, ordered by genre
+    * @see         Album
+    * @see         Song
+    * @author      Gaël Lejeune and Steve Chauvreau-Manat
+    */
     public void displaySongByGenre() {
         Scanner scanner = new Scanner (System.in);
         System.out.println("\nName of the album to display :");
@@ -134,10 +134,10 @@ public class JMusicHub{
 
 
     /**
-     * Displays all the registered playlists
-     * @see         Playlist
-     * @author      Gaël Lejeune
-     */
+    * Displays all the registered playlists
+    * @see         Playlist
+    * @author      Gaël Lejeune
+    */
     public void displayPlaylists() {
         System.out.println("\nExisting playlists :\n");
         for (int i = 0; i < this.playlists.size(); i++) {
@@ -146,10 +146,10 @@ public class JMusicHub{
     }
 
     /**
-     * Asks and displays an specific registered playlist
-     * @see         Playlist
-     * @author      Gaël Lejeune
-     */
+    * Asks and displays an specific registered playlist
+    * @see         Playlist
+    * @author      Gaël Lejeune
+    */
     public void displaySpecificPlaylist() {
         Scanner scanner = new Scanner (System.in);
         System.out.println("\nName of the playlist :\n");
@@ -167,10 +167,10 @@ public class JMusicHub{
     }
 
     /**
-     * Displays all the registered albums
-     * @see         Album
-     * @author      Gaël Lejeune
-     */
+    * Displays all the registered albums
+    * @see         Album
+    * @author      Gaël Lejeune
+    */
     public void displayAlbums() {
         System.out.println("\nExisting albums :\n");
         for (int i = 0; i < this.albums.size(); i++) {
@@ -179,10 +179,10 @@ public class JMusicHub{
     }
 
     /**
-     * Asks and displays an specific registered album
-     * @see         Album
-     * @author      Gaël Lejeune
-     */
+    * Asks and displays an specific registered album
+    * @see         Album
+    * @author      Gaël Lejeune
+    */
     public void displaySpecificAlbum() {
         Scanner scanner = new Scanner (System.in);
         System.out.println("\nName of the album to display :\n");
@@ -201,10 +201,10 @@ public class JMusicHub{
 
 
     /**
-     * Displays all the registered audio elements
-     * @see         Album
-     * @author      Gaël Lejeune
-     */
+    * Displays all the registered audio elements
+    * @see         Album
+    * @author      Gaël Lejeune
+    */
     public void displayElements() {
         System.out.println("\nExisting elements :\n");
         for (int i = 0; i < this.elements.size(); i++) {
@@ -213,10 +213,10 @@ public class JMusicHub{
     }
 
     /**
-     * Display all audio books ordered by author
-     * @see         AudioBook
-     * @author      Gaël Lejeune and Steve Chauvreau-Manat
-     */
+    * Display all audio books ordered by author
+    * @see         AudioBook
+    * @author      Gaël Lejeune and Steve Chauvreau-Manat
+    */
     public void displayAudioBooksByAuthor() {
         LinkedList<AudioBook> audioBooks = new LinkedList<AudioBook>();
         for (int i = 0; i < this.elements.size(); i++) {
@@ -238,10 +238,10 @@ public class JMusicHub{
     }
 
     /**
-     * Asks the information about a song to add it to the audio elements
-     * @see         Song
-     * @author      Gaël Lejeune and Steve Chauvreau-Manat
-     */
+    * Asks the information about a song to add it to the audio elements
+    * @see         Song
+    * @author      Gaël Lejeune and Steve Chauvreau-Manat
+    */
     public void addSong() {
         Scanner scan = new Scanner(System.in);
         System.out.println("\nTitle :");
@@ -287,10 +287,10 @@ public class JMusicHub{
     }
 
     /**
-     * Asks the information about an audio book to add it to the audio elements
-     * @see         AudioBook
-     * @author      Gaël Lejeune and Steve Chauvreau-Manat
-     */
+    * Asks the information about an audio book to add it to the audio elements
+    * @see         AudioBook
+    * @author      Gaël Lejeune and Steve Chauvreau-Manat
+    */
     public void addAudioBook() {
         Scanner scan = new Scanner(System.in);
         System.out.println("\nTitle :");
@@ -346,10 +346,10 @@ public class JMusicHub{
     }
 
     /**
-     * Asks the information about an album to add it to the audio elements
-     * @see         Album
-     * @author      Gaël Lejeune and Steve Chauvreau-Manat
-     */
+    * Asks the information about an album to add it to the audio elements
+    * @see         Album
+    * @author      Gaël Lejeune and Steve Chauvreau-Manat
+    */
     public void addAlbum() {
         Scanner scan = new Scanner(System.in);
         LinkedList<Song> songs = new LinkedList<Song>();
@@ -387,11 +387,11 @@ public class JMusicHub{
     }
 
     /**
-     * Asks and add an existing song to a chosen album
-     * @see         Album
-     * @see         Song
-     * @author      Gaël Lejeune
-     */
+    * Asks and add an existing song to a chosen album
+    * @see         Album
+    * @see         Song
+    * @author      Gaël Lejeune
+    */
     public void addSongToAlbum() {
         Scanner scanner = new Scanner (System.in);
         System.out.println("\nEnter the name of an album :");
@@ -429,11 +429,11 @@ public class JMusicHub{
     }
 
     /**
-     * Asks and add an existing audio to a chosen playlist
-     * @see         Playlist
-     * @see         Audio
-     * @author      Gaël Lejeune
-     */
+    * Asks and add an existing audio to a chosen playlist
+    * @see         Playlist
+    * @see         Audio
+    * @author      Gaël Lejeune
+    */
     public void addSongToPlaylist() {
         Scanner scanner = new Scanner (System.in);
         System.out.println("\nEnter the name of a playlist :");
@@ -469,10 +469,10 @@ public class JMusicHub{
     }
 
     /**
-     * Asks the informations and the audios to create and register a playlist
-     * @see         Playlist
-     * @author      Gaël Lejeune
-     */
+    * Asks the informations and the audios to create and register a playlist
+    * @see         Playlist
+    * @author      Gaël Lejeune
+    */
     public void createPlaylistFromExisting() {
         Scanner scanner = new Scanner (System.in);
 
@@ -508,10 +508,10 @@ public class JMusicHub{
     }
 
     /**
-     * Asks and delete the chosen playlist
-     * @see         Playlist
-     * @author      Gaël Lejeune
-     */
+    * Asks and delete the chosen playlist
+    * @see         Playlist
+    * @author      Gaël Lejeune
+    */
     public void deletePlaylist() {
         Scanner scanner = new Scanner (System.in);
         System.out.println("\nName of the playlist to delete :");
@@ -530,20 +530,68 @@ public class JMusicHub{
     }
 
     /**
-     * Create XML files containing the registered playlists, elements, and albums using the class XML editor
-     * @see         XMLReaderWriter
-     * @author      Gaël Lejeune
-     */
+    * Create XML files containing the registered playlists, elements, and albums using the class XML editor
+    * @see         XMLReaderWriter
+    * @author      Gaël Lejeune
+    */
     public void save() {
         this.xmlEditor.writeElementXML("files/elements.xml", this.elements);
         this.xmlEditor.writeAlbumXML("files/albums.xml", this.albums);
         this.xmlEditor.writePlaylistXML("files/playlists.xml", this.playlists);
     }
 
+    public void editDatabase(JMusicHub jMusicHub) {
+        while(true) {
+            System.out.println(" What you want to do ? Hit a button to make changes.");
+            System.out.println("h : show the help\t\t|\tm : return to the menu");
+            System.out.println("Don't forget to save all your modifications.");
+            Scanner scanner = new Scanner (System.in);
+            String editCommand = scanner.nextLine();
+            switch (editCommand) {
+                case "h":
+                System.out.println("Here are the commands you can use to make changes:");
+                System.out.println("c : add a song\t\t\t|\tl : add an audiobook");
+                System.out.println("a : add an album\t\t|\tp : create a new playlist");
+                System.out.println("+ : add a song to an album\t|\t- : delete a playlist");
+                System.out.println("s : save all modifications");
+                break;
+
+                case "c":// ajouter une chanson
+                jMusicHub.addSong();
+                break;
+
+                case "a":// ajouter un album
+                jMusicHub.addAlbum();
+                break;
+
+                case "+"://ajout d'une chanson existante à un album existant
+                jMusicHub.addSongToAlbum();
+                break;
+
+                case "l":// ajouter un livre audio
+                jMusicHub.addAudioBook();
+                break;
+
+                case "p":
+                jMusicHub.createPlaylistFromExisting();
+                break;
+
+                case "-":
+                jMusicHub.deletePlaylist();
+                break;
+
+                case "s":
+                jMusicHub.save();
+                break;
+            }
+            System.out.println("\n\n\n");
+        }
+    }
+
     /**
-     * Displays information and help about various commands
-     * @author Steve Chauvreau-Manat
-     */
+    * Displays information and help about various commands
+    * @author Steve Chauvreau-Manat
+    */
     public void help() {
         System.out.println("- c : add a new song");
         System.out.println("- l : add a new audio book");
@@ -566,10 +614,10 @@ public class JMusicHub{
     }
 
     /**
-     * Execution of the JMusicHub program and interaction with the user using a terminal
-     * @param       args Arguments of the function
-     * @author Gaël Lejeune and Steve Chauvreau-Manat
-     */
+    * Execution of the JMusicHub program and interaction with the user using a terminal
+    * @param       args Arguments of the function
+    * @author Gaël Lejeune and Steve Chauvreau-Manat
+    */
     public static void main(String[] args) {
         System.out.println("\n\nWelcome in JMusicHub,");
         System.out.println("Reading library...\n\n");
@@ -579,68 +627,61 @@ public class JMusicHub{
         while(true) {
             String command = scanner.nextLine();
             switch (command) {
-                case "c":
-                    jMusicHub.addSong();
-                    break;
-                case "a":
-                    jMusicHub.addAlbum();
-                    break;
-                case "+":
-                    jMusicHub.addSongToAlbum();
-                    break;
-                case "l":
-                    jMusicHub.addAudioBook();
-                    break;
-                case "p":
-                    jMusicHub.createPlaylistFromExisting();
-                    break;
-                case "-":
-                    jMusicHub.deletePlaylist();
-                    break;
-                case "s":
-                    jMusicHub.save();
-                    break;
-                case "d":
-                    jMusicHub.displayElements();
-                    break;
-                case "dab":
-                    jMusicHub.displayAudioBooksByAuthor();
-                    break;
-                case "da":
-                    jMusicHub.displayAlbums();
-                    break;
-                case "dsa":
-                    jMusicHub.displaySpecificAlbum();
-                    break;
-                case "dad":
-                    try {
-                        jMusicHub.displayAlbumByReleaseDate();
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                    break;
-                case "dag":
-                    jMusicHub.displaySongByGenre();
-                    break;
-                case "dp":
-                    jMusicHub.displayPlaylists();
-                    break;
-                case "dsp":
-                    jMusicHub.displaySpecificPlaylist();
-                    break;
-                case "h":
-                    jMusicHub.help();
-                    break;
-                case "q":
-                    System.out.println("\n\nAll your unsaved changes will be lost, continue ?(Press \"y\" to quit or anything else to abort.)");
-                    String confirm = scanner.nextLine();
-                    if (confirm.equals("y")) {
-                        System.out.println("\n\nThank you to trust jMusicHub to manage your audio files :)");
-                        return;
-                    }
+                case "1" : // Show albums
+                System.out.println("\t\t Album titles sorted by them date:");
+                jMusicHub.displayAlbumByReleaseDate();
+                break;
+
+                case "2" : // Show songs
+                System.out.println("\t\t Song titles sorted by them genre:");
+                //TODO
+                jMusicHub.displaySongByGenre();
+                break;
+
+                case "3" : // Show audiobooks
+                System.out.println("\t\t AudioBook titles sorted by them author:");
+                jMusicHub.displayAudioBooksByAuthor();
+                break;
+
+                case "4" : // Show playlists
+                System.out.println("\t\t Playlist names sorted by alphabetical order:");
+                //TODO
+                jMusicHub.displayPlaylists();
+                break;
+
+                case "5" : // Select an album
+                jMusicHub.displaySpecificAlbum();
+                break;
+
+                case "6" : // Select a playlist
+                jMusicHub.displaySpecificPlaylist();
+                break;
+
+                case "7" : // Select all the song of an artist
+                //TODO
+                // selectArtist7(util, sc);
+                break;
+
+                case "8" : // Select all the song of an author
+                //TODO
+                // selectAuthor8(util, sc);
+                break;
+
+                case "9" : // Change the content of the application
+                jMusicHub.editDatabase(jMusicHub);
+                break;
+
+                case "10" :// Quit the application
+                System.out.println("\t\t Thank you for you time, have a nice day!\n");
+                System.out.println("\t\t\t\t\tSigned by nope.\n\n\n");
+                System.exit(0);
+                break;
+                case "h" ://Display the help
+                jMusicHub.help();
+                break;
                 default:
-                    System.out.println("\nWrong command, press \"h\" for help.");
-                    break;
+                System.out.println("\nWrong command, press \"h\" for help.");
+                break;
             }
         }
     }
