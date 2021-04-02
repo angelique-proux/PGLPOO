@@ -5,6 +5,7 @@ import java.net.*;
 import java.io.File;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.Scanner;
 import java.util.UUID;
 import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
@@ -52,142 +53,159 @@ public class ServerThread extends Thread {
          input = new ObjectInputStream(socket.getInputStream());
 		     output = new ObjectOutputStream(socket.getOutputStream());
 
-         String command = (String) input.readObject();  //read the object received through the stream and deserialize it
-         System.out.println(command);
+         output.writeObject("\nConnected to the server"); //serialize and write the object to the stream
+         String result = null;
 
-         switch (command) {
-              case "p": //createPlaylistFromExisting();
-                  //Scanner scanner = new Scanner (System.in);
-                  output.writeObject("\nName of your new playlist :");
-                  //String name = scanner.nextLine();
-                  String name = (String) input.readObject();
-                  output.writeObject("\nGenerating UUID");
-                  UUID uuid = UUID.randomUUID();
+         while(true) {
+           String command = (String) input.readObject();  //read the object received through the stream and deserialize it
+           System.out.println(command);
+            switch (command) {
+              case "1" : // Show albums public void displayAlbumByReleaseDate() throws Exception
+                result = "\t\t Album titles sorted by them date:\nAlbums ordered by release date :");
+                Date datePrec = new SimpleDateFormat("dd/MM/yyyy").parse("0/00/0000");
+                Date date = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(0).getReleaseDate());
+                Date dateTemp = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(0).getReleaseDate());
+                int albumIndex = 0;
+                boolean found = true;
+                while (found) {
+                    found = false;
+                    date = new SimpleDateFormat("dd/MM/yyyy").parse("31/12/3000");
+                    for (int i = 0; i < this.albums.size() ; i++) {
+                        dateTemp = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(i).getReleaseDate());
+                        if (dateTemp.after(datePrec) && dateTemp.before(date)) {
+                            date = dateTemp;
+                            albumIndex = i;
+                            found = true;
+                        }
+                    }
+                    datePrec = date;
+                    if (found == true) {
+                        result+="\n"+albums.get(albumIndex) + "\n";
+                    }
+                }
+                output.writeObject(result);
+                break;
 
-                  LinkedList<Audio> audios = new LinkedList<Audio>();
-                  output.writeObject("\nEnter the name of the songs you wish to add or press enter to finish : ");
-                  do{
-                      //String songname = scanner.nextLine();
-                      String songname = (String) input.readObject();
-                      boolean found = false;
-                      for (int i = 0; i < this.elements.size(); i++) {
-                          if (this.elements.get(i).getTitle().equals(songname)) {
-                              audios.add(this.elements.get(i));
-                              output.writeObject("\nAdded song : " + this.elements.get(i));
-                              found = true;
-                          }
-                      }
-                      if (!found) {
-                          output.writeObject("\nNo song found.");
-                      }
-                  }while(songname.equals(""));
-                  if (audios.size() == 0) {
-                      output.writeObject("\nEmpty playlist, abort creation.");
-                      return;
-                  }
-                  this.playlists.add(new Playlist(name, uuid, audios));
-                  output.writeObject("\nPlaylist created");
-                  break;
-              case "-": //deletePlaylist();
-                  //A mettre dans le client
-                  //Scanner scanner = new Scanner (System.in);
-                  output.writeObject("\nName of the playlist to delete :");
-                  //String name = scanner.nextLine();
-                  String name = (String) input.readObject();
-                  boolean found = false;
-                  for (int i = 0; i < this.playlists.size(); i++) {
-                      if (this.playlists.get(i).getName().equals(name)) {
-                          this.playlists.remove(i);
-                          found = true;
-                          output.writeObject("\nSuccessfully removed");
-                      }
-                      if (!found) {
-                          output.writeObject("\nNo playlist found");
-                      }
-                  }
-                  break;
-              case "s": //save();
-                  this.xmlEditor.writeElementXML("files/elements.xml", this.elements);
-                  this.xmlEditor.writeAlbumXML("files/albums.xml", this.albums);
-                  this.xmlEditor.writePlaylistXML("files/playlists.xml", this.playlists);
-                  output.writeObject("\nSuccessfully saved");
-                  break;
-              case "d": //displayElements();
-                  output.writeObject("\nExisting elements :\n");
-                  for (int i = 0; i < this.elements.size(); i++) {
-                      output.writeObject(this.elements.get(i) + "\n");
-                  }
-                  break;
-              case "dab": //displayAudioBooksByAuthor();
-                  LinkedList<AudioBook> audioBooks = new LinkedList<AudioBook>();
-                  for (int i = 0; i < this.elements.size(); i++) {
-                      if (this.elements.get(i) instanceof AudioBook) {
-                          audioBooks.add((AudioBook)this.elements.get(i));
-                      }
-                  }
-                  while(audioBooks.size() > 0) {
-                      String author = audioBooks.get(0).getAuthor();
-                      output.writeObject("\nAuthor : " + author+"\n");
-                      for (int i = 0; i < audioBooks.size(); i++) {
-                          if (audioBooks.get(i).getAuthor().equals(author)) {
-                              output.writeObject(audioBooks.get(i) + "\n");
-                              audioBooks.remove(i);
-                              i--;
-                          }
-                      }
-                  }
-                  break;
-              case "da": //displayAlbums();
-                  output.writeObject("\nExisting albums :\n");
-                  for (int i = 0; i < this.albums.size(); i++) {
-                      output.writeObject(this.albums.get(i) + "\n");
-                  }
-                  break;
-              case "dsa": //displaySpecificAlbum();
-                  //Scanner scanner = new Scanner (System.in);
-                  output.writeObject("\nName of the album to display :\n");
-                  boolean found = false;
-                  //String title = scanner.nextLine();  /* Album title entered by the user */
-                  String title = (String) input.readObject();
-                  for (int i = 0; i < this.albums.size(); i++) {
-                      if (this.albums.get(i).getTitle().equals(title)) {
-                          output.writeObject(this.albums.get(i) + "\n");
-                          found = true;
-                      }
-                  }
-                  if (!found) {
-                      output.writeObject("No album found.\n");
-                  }
-                  break;
-              case "dad":
-                  try {
-                      jMusicHub.displayAlbumByReleaseDate();
-                  } catch (Exception ex) {
-                      ex.printStackTrace();
-                  }
-                  break;
-              case "dag":
-                  jMusicHub.displaySongByGenre();
-                  break;
-              case "dp":
-                  jMusicHub.displayPlaylists();
-                  break;
-              case "dsp":
-                  jMusicHub.displaySpecificPlaylist();
-                  break;
-              case "h":
-                  jMusicHub.help();
-                  break;
-              case "q":
-                  jMusicHub.save();
-                  String object = "\n\nThank you to trust jMusicHub to manage your audio files :)";
+              case "2" : // Show songs public void displaySongByGenre()
+                output.writeObject("\t\t Song titles sorted by them genre:\nName of the album to display :");
+                //Scanner scanner = new Scanner (System.in);
+                result = null;
+                boolean found = false;
+                Album album = this.albums.get(0);
+                String title = (String) input.readObject();  /* Album title entered by the user */
+                for (int i = 0; i < this.albums.size(); i++) {
+                    if (this.albums.get(i).getTitle().equals(title)) {
+                        found = true;
+                        album = this.albums.get(i);
+                    }
+                }
+                if(found) {
+                    LinkedList<Song> songs = album.getSongs();
+                    while(songs.size() > 0) {
+                        Genre genre = songs.get(0).getGenre();
+                        result = "\nSongs with genre : " + genre;
+                        for (int i = 0; i < songs.size(); i++) {
+                            if (songs.get(i).getGenre().equals(genre)) {
+                                result+="\n"+songs.get(i) + "\n";
+                                songs.remove(i);
+                                i--;
+                            }
+                        }
+                    }
+                    output.writeObject(result);
+                } else {
+                    output.writeObject("\nNo album found.\n");
+                }
+                break;
+
+              case "3" : // Show audiobooks public void displayAudioBooksByAuthor()
+                result = "\t\t AudioBook titles sorted by them author:";
+                LinkedList<AudioBook> audioBooks = new LinkedList<AudioBook>();
+                for (int i = 0; i < this.elements.size(); i++) {
+                    if (this.elements.get(i) instanceof AudioBook) {
+                        audioBooks.add((AudioBook)this.elements.get(i));
+                    }
+                }
+                while(audioBooks.size() > 0) {
+                    String author = audioBooks.get(0).getAuthor();
+                    result += "\nAuthor : " + author+"\n";
+                    for (int i = 0; i < audioBooks.size(); i++) {
+                        if (audioBooks.get(i).getAuthor().equals(author)) {
+                            result+=audioBooks.get(i) + "\n";
+                            audioBooks.remove(i);
+                            i--;
+                        }
+                    }
+                    output.writeObject(result);
+                }
+                break;
+
+              case "4" : // Show playlists public void displayPlaylists()
+                result = "\t\t Playlist names sorted by alphabetical order:\nExisting playlists :\n");
+                for (int i = 0; i < this.playlists.size(); i++) {
+                    result += this.playlists.get(i) + "\n";
+                }
+                output.writeObject(result);
+                break;
+
+              case "5" : // Select an album public void displaySpecificAlbum()
+                output.writeObject("\nName of the album to display :\n");
+                result = null;
+                boolean found = false;
+                String title = (String) input.readObject();  /* Album title entered by the user */
+                for (int i = 0; i < this.albums.size(); i++) {
+                    if (this.albums.get(i).getTitle().equals(title)) {
+                        result += this.albums.get(i) + "\n";
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    result += "No album found.\n";
+                }
+                output.writeObject(result);
+                break;
+
+              case "6" : // Select a playlist public void displaySpecificPlaylist()
+                output.writeObject("\nName of the playlist :\n");
+                result = null;
+                boolean found = false;
+                String name = (String) input.readObject();
+                for (int i = 0; i < this.playlists.size(); i++) {
+                    if (this.playlists.get(i).getName().equals(name)) {
+                        result += this.playlists.get(i) + "\n";
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    result += "No playlist found.\n";
+                }
+                output.writeObject(result);
+                break;
+
+              case "7" : // Select all the song of an artist
+                //TODO
+                // selectArtist7(util, sc);
+                break;
+
+              case "8" : // Select all the song of an author
+                //TODO
+                // selectAuthor8(util, sc);
+                break;
+
+              case "10" :// Quit the application
+                output.writeObject("\t\t Thank you for you time, have a nice day!\n\t\t\t\t\tSigned by nope.\n\n\n");
+                System.exit(0);
+                break;
+
+              case "h" ://Display the help
+                jMusicHub.help();
+                break;
+
               default:
-                  String object = "\nWrong command, press \"h\" for help.";
-                  break;
+                output.writeObject("\nWrong command, press \"h\" for help.");
+                break;
             }
-
-         Student student = new Student(1234, "john.doe");
-         output.writeObject(object);		//serialize and write the object to the stream
+         }
     } catch (IOException ex) {
           System.out.println("Server exception: " + ex.getMessage());
           ex.printStackTrace();
