@@ -4,7 +4,7 @@ Projet du module Génie Logiciel Programmation Orientée Objet
 
 ### Auteurs de ce projet :
 
-CHAUVREAU-MANAT Steve, LEJEUNE Gaël et PROUX Angélique
+CHAUVREAU-MANAT Steve, LEJEUNE Gaël, MORCRETTE Antonin et PROUX Angélique
 
 ### Contenu du projet :
 
