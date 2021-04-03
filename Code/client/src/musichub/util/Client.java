@@ -24,11 +24,10 @@ public class Client {
 			System.out.println("\n\nWelcome in JMusicHub,");
 			System.out.println("Connection to the server...\n\n");
 			System.out.println((String) input.readObject());
-			System.out.println("Reading library...\n\n");
-			System.out.println("Type any command to begin using jMusicHub\nType \"h\" for help\n");
 			Scanner scanner = new Scanner (System.in);
 			while(true) {
 					String command = scanner.nextLine();
+					output.writeObject(command);
 					switch (command) {
 							case "1" : // Show albums
 								System.out.println((String) input.readObject());
@@ -79,7 +78,7 @@ public class Client {
 								break;
 
 							case "h" ://Display the help
-								jMusicHub.help();
+								System.out.println((String) input.readObject());
 								break;
 
 							default:

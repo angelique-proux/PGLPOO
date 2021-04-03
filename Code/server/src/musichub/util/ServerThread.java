@@ -53,7 +53,7 @@ public class ServerThread extends Thread {
          input = new ObjectInputStream(socket.getInputStream());
 		     output = new ObjectOutputStream(socket.getOutputStream());
 
-         output.writeObject("\nConnected to the server"); //serialize and write the object to the stream
+         output.writeObject("\nConnected to the server\nType any command to begin using jMusicHub\nType \"h\" for help\n"); //serialize and write the object to the stream
          String result = null;
 
          while(true) {
@@ -61,7 +61,7 @@ public class ServerThread extends Thread {
            System.out.println(command);
             switch (command) {
               case "1" : // Show albums public void displayAlbumByReleaseDate() throws Exception
-                result = "\t\t Album titles sorted by them date:\nAlbums ordered by release date :");
+                result = "\t\tAlbum titles sorted by them date:\nAlbums ordered by release date :");
                 Date datePrec = new SimpleDateFormat("dd/MM/yyyy").parse("0/00/0000");
                 Date date = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(0).getReleaseDate());
                 Date dateTemp = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(0).getReleaseDate());
