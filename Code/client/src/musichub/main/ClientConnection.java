@@ -2,7 +2,7 @@ public class ClientConnection
 {
 	public static void main (String[] args)
 	{
-		SimpleClient c1 = new SimpleClient();
+		Client c1 = new Client();
 		c1.connect("localhost");
 	}
 }
