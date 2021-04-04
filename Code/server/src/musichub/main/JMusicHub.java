@@ -71,7 +71,8 @@ public class JMusicHub{
     * @see         Album
     * @author      Gaël Lejeune and Steve Chauvreau-Manat
     */
-    public void displayAlbumByReleaseDate() throws Exception {
+    public LinkedList<Album> displayAlbumByReleaseDate() throws Exception {
+        LinkedList<Album> albumList = new LinkedList<Album>();
         Date datePrec = new SimpleDateFormat("dd/MM/yyyy").parse("0/00/0000");
         Date date = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(0).getReleaseDate());
         Date dateTemp = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(0).getReleaseDate());
@@ -91,7 +92,8 @@ public class JMusicHub{
             }
             datePrec = date;
             if (found == true) {
-                System.out.println("\n"+albums.get(albumIndex) + "\n");
+                // System.out.println("\n"+albums.get(albumIndex) + "\n");
+                albumList.add(albums.get(albumIndex));
             }
         }
     }
@@ -138,11 +140,12 @@ public class JMusicHub{
     * @see         Playlist
     * @author      Gaël Lejeune
     */
-    public void displayPlaylists() {
-        System.out.println("\nExisting playlists :\n");
-        for (int i = 0; i < this.playlists.size(); i++) {
-            System.out.println(this.playlists.get(i) + "\n");
-        }
+    public LinkedList<Playlist> getPlaylists() {
+        return this.playlists;
+        // System.out.println("\nExisting playlists :\n");
+        // for (int i = 0; i < this.playlists.size(); i++) {
+        //     System.out.println(this.playlists.get(i) + "\n");
+        // }
     }
 
     /**
@@ -150,15 +153,16 @@ public class JMusicHub{
     * @see         Playlist
     * @author      Gaël Lejeune
     */
-    public void displaySpecificPlaylist() {
+    public Playlist getSpecificPlaylist() {
         Scanner scanner = new Scanner (System.in);
         System.out.println("\nName of the playlist :\n");
         boolean found = false;
         String name = scanner.nextLine();
         for (int i = 0; i < this.playlists.size(); i++) {
             if (this.playlists.get(i).getName().equals(name)) {
-                System.out.println(this.playlists.get(i) + "\n");
-                found = true;
+                // System.out.println(this.playlists.get(i) + "\n");
+                return this.playlists.get(i);
+                // found = true;
             }
         }
         if (!found) {
@@ -171,11 +175,12 @@ public class JMusicHub{
     * @see         Album
     * @author      Gaël Lejeune
     */
-    public void displayAlbums() {
-        System.out.println("\nExisting albums :\n");
-        for (int i = 0; i < this.albums.size(); i++) {
-            System.out.println(this.albums.get(i) + "\n");
-        }
+    public LinkedList<Album> getAlbums() {
+        return this.albums;
+        // System.out.println("\nExisting albums :\n");
+        // for (int i = 0; i < this.albums.size(); i++) {
+        //     System.out.println(this.albums.get(i) + "\n");
+        // }
     }
 
     /**
@@ -183,14 +188,15 @@ public class JMusicHub{
     * @see         Album
     * @author      Gaël Lejeune
     */
-    public void displaySpecificAlbum() {
+    public Album getSpecificAlbum() {
         Scanner scanner = new Scanner (System.in);
         System.out.println("\nName of the album to display :\n");
         boolean found = false;
         String title = scanner.nextLine();  /* Album title entered by the user */
         for (int i = 0; i < this.albums.size(); i++) {
             if (this.albums.get(i).getTitle().equals(title)) {
-                System.out.println(this.albums.get(i) + "\n");
+                // System.out.println(this.albums.get(i) + "\n");
+                return this.albums.get(i);
                 found = true;
             }
         }
@@ -205,11 +211,12 @@ public class JMusicHub{
     * @see         Album
     * @author      Gaël Lejeune
     */
-    public void displayElements() {
-        System.out.println("\nExisting elements :\n");
-        for (int i = 0; i < this.elements.size(); i++) {
-            System.out.println(this.elements.get(i) + "\n");
-        }
+    public LinkedList<Audio> getElements() {
+        return this.elements;
+        // System.out.println("\nExisting elements :\n");
+        // for (int i = 0; i < this.elements.size(); i++) {
+        //     System.out.println(this.elements.get(i) + "\n");
+        // }
     }
 
     /**
@@ -645,16 +652,18 @@ public class JMusicHub{
 
                 case "4" : // Show playlists
                 System.out.println("\t\t Playlist names sorted by alphabetical order:");
-                //TODO
-                jMusicHub.displayPlaylists();
+                System.out.println("\nExisting playlists :\n");
+                for (int i = 0; i < jMusicHub.getPlaylists().size(); i++) {
+                    System.out.println(jMusicHub.getPlaylists().get(i) + "\n");
+                }
                 break;
 
                 case "5" : // Select an album
-                jMusicHub.displaySpecificAlbum();
+                System.out.println(jMusicHub.getSpecificAlbum() + "\n");
                 break;
 
                 case "6" : // Select a playlist
-                jMusicHub.displaySpecificPlaylist();
+                System.out.println(jMusicHub.getSpecificPlaylist() + "\n");
                 break;
 
                 case "7" : // Select all the song of an artist

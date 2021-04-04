@@ -61,7 +61,7 @@ public class ServerThread extends Thread {
            System.out.println(command);
             switch (command) {
               case "1" : // Show albums public void displayAlbumByReleaseDate() throws Exception
-                result = "\t\tAlbum titles sorted by them date:\nAlbums ordered by release date :");
+                result = "\t\tAlbum titles sorted by them date:\nAlbums ordered by release date :";
                 Date datePrec = new SimpleDateFormat("dd/MM/yyyy").parse("0/00/0000");
                 Date date = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(0).getReleaseDate());
                 Date dateTemp = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(0).getReleaseDate());
@@ -141,7 +141,7 @@ public class ServerThread extends Thread {
                 break;
 
               case "4" : // Show playlists public void displayPlaylists()
-                result = "\t\t Playlist names sorted by alphabetical order:\nExisting playlists :\n");
+                result = "\t\t Playlist names sorted by alphabetical order:\nExisting playlists :\n";
                 for (int i = 0; i < this.playlists.size(); i++) {
                     result += this.playlists.get(i) + "\n";
                 }
