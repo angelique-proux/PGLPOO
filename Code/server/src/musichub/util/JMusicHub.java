@@ -104,7 +104,7 @@ public class JMusicHub{
     * @see         Song
     * @author      Gaël Lejeune and Steve Chauvreau-Manat
     */
-    public void displaySongByGenre() {
+    public LinkedList<Song> getSongByGenre(String title) {
         Scanner scanner = new Scanner (System.in);
         System.out.println("\nName of the album to display :");
         boolean found = false;
@@ -130,7 +130,7 @@ public class JMusicHub{
                 }
             }
         } else {
-            System.out.println("\nNo album found.\n");
+            return null;
         }
     }
 
@@ -185,20 +185,17 @@ public class JMusicHub{
     * @see         Album
     * @author      Gaël Lejeune
     */
-    public Album getSpecificAlbum() {
-        Scanner scanner = new Scanner (System.in);
-        System.out.println("\nName of the album to display :\n");
-        boolean found = false;
-        String title = scanner.nextLine();  /* Album title entered by the user */
+    public Album getSpecificAlbum(String title) {
+        boolean found = false; /* Album title entered by the user */
         for (int i = 0; i < this.albums.size(); i++) {
             if (this.albums.get(i).getTitle().equals(title)) {
                 // System.out.println(this.albums.get(i) + "\n");
-                return this.albums.get(i);
                 found = true;
+                return this.albums.get(i);
             }
         }
         if (!found) {
-            System.out.println("No album found.\n");
+            return null;
         }
     }
 
@@ -596,7 +593,7 @@ public class JMusicHub{
     * Displays information and help about various commands
     * @author Steve Chauvreau-Manat
     */
-    public void help() {
+    public String help() {
       String helpString = "\n- 1 : display registered albums ordered by release date"
       +"\n- 2 : display a registered album songs ordered by genre"
       +"\n- 3 : display registered audio book ordered by author"
@@ -637,7 +634,7 @@ public class JMusicHub{
                 case "2" : // Show songs
                 System.out.println("\t\t Song titles sorted by them genre:");
                 //TODO
-                jMusicHub.displaySongByGenre();
+                jMusicHub.getSongByGenre();
                 break;
 
                 case "3" : // Show audiobooks
@@ -655,7 +652,7 @@ public class JMusicHub{
                 break;
 
                 case "5" : // Select an album
-                System.out.println(jMusicHub.getSpecificAlbum() + "\n");
+                System.out.println(jMusicHub.getSpecificAlbum().toString() + "\n");
                 break;
 
                 case "6" : // Select a playlist

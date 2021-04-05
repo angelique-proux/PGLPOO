@@ -18,32 +18,7 @@ public class ServerThread extends Thread {
   private Socket socket;
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
-
-  /**
-   * XML editor allowing to read and write XML files
-   * @see XMLReaderWriter
-   */
-  private XMLReaderWriter xmlEditor;
-
-  /**
-   * List of the registered playlists
-   * @see Playlist
-   */
-  private LinkedList<Playlist> playlists;
-
-  /**
-   * List of the registered albums
-   * @see Album
-   */
-  private LinkedList<Album> albums;
-
   private JMusicHub jMusicHub;
-
-  /**
-   * List of the registered audio elements
-   * @see Audio
-   */
-  private LinkedList<Audio> elements;
 
   public ServerThread(Socket socket) {
     this.socket = socket;
@@ -56,7 +31,6 @@ public class ServerThread extends Thread {
 		     output = new ObjectOutputStream(socket.getOutputStream());
 
          output.writeObject("\nConnected to the server\nType any command to begin using jMusicHub\nType \"h\" for help\n"); //serialize and write the object to the stream
-         String result = null;
 
          while(true) {
            String command = (String) input.readObject();  //read the object received through the stream and deserialize it
@@ -65,19 +39,25 @@ public class ServerThread extends Thread {
               case "1" : // Show albums public void displayAlbumByReleaseDate() throws Exception
                 output.writeObject("\t\tAlbum titles sorted by them date:\nAlbums ordered by release date :\n\n");
                 output.writeObject(jMusicHub.getAlbumByReleaseDate());
+                output.writeObject("Which one would you like to hear? (Enter the number)");
+                output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
+                if(((String) input.readObject())=="1") {
+                  output.writeObject(true);
+                } else {
+                  output.writeObject(false);
+                }
                 break;
 
               case "2" : // Show songs public void displaySongByGenre()
-                output.writeObject("\t\t Song titles sorted by them genre:\nName of the album to display :");
-                //Scanner scanner = new Scanner (System.in);
-                result = null;
+                /*output.writeObject("\t\t Song titles sorted by them genre:\nName of the album to display :");
+                String result = null;
                 boolean found = false;
-                Album album = this.albums.get(0);
-                String title = (String) input.readObject();  /* Album title entered by the user */
-                for (int i = 0; i < this.albums.size(); i++) {
+                Album album = albums.get(0);
+                String title = (String) input.readObject();  //Album title entered by the user
+                for (int i = 0; i < albums.size(); i++) {
                     if (this.albums.get(i).getTitle().equals(title)) {
                         found = true;
-                        album = this.albums.get(i);
+                        album = albums.get(i);
                     }
                 }
                 if(found) {
@@ -96,11 +76,11 @@ public class ServerThread extends Thread {
                     output.writeObject(result);
                 } else {
                     output.writeObject("\nNo album found.\n");
-                }
+                }*/
                 break;
 
               case "3" : // Show audiobooks public void displayAudioBooksByAuthor()
-                result = "\t\t AudioBook titles sorted by them author:";
+                /*output.writeObject("\t\t AudioBook titles sorted by them author:");
                 LinkedList<AudioBook> audioBooks = new LinkedList<AudioBook>();
                 for (int i = 0; i < this.elements.size(); i++) {
                     if (this.elements.get(i) instanceof AudioBook) {
@@ -118,29 +98,35 @@ public class ServerThread extends Thread {
                         }
                     }
                     output.writeObject(result);
-                }
+                }*/
                 break;
 
               case "4" : // Show playlists public void displayPlaylists()
                 output.writeObject("\t\t Playlist names sorted by alphabetical order:\nExisting playlists :\n\n");
                 output.writeObject(jMusicHub.getPlaylists());
+                output.writeObject("Which one would you like to hear? (Enter the number)");
+                output.writeObject("What do you want? (Enter the number)\n1- Listen the playlist\n2- More informtion");
+                if(((String) input.readObject())=="1") {
+                  output.writeObject(true);
+                } else {
+                  output.writeObject(false);
+                }
                 break;
 
               case "5" : // Select an album public void displaySpecificAlbum()
                 output.writeObject("\nName of the album to display :\n");
-                result = null;
-                boolean found = false;
-                String title = (String) input.readObject();  /* Album title entered by the user */
-                for (int i = 0; i < this.albums.size(); i++) {
-                    if (this.albums.get(i).getTitle().equals(title)) {
-                        result += this.albums.get(i) + "\n";
-                        found = true;
-                    }
+                String albumTitle = (String) input.readObject();  /* Album title entered by the user */
+                Album album = jMusicHub.getSpecificAlbum(albumTitle);
+                if (album==null) {
+                    output.writeObject("No album found.\n");
+                } else {
+                  output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
+                  if(((String) input.readObject())=="1") {
+                    output.writeObject(true);
+                  } else {
+                    output.writeObject(false);
+                  }
                 }
-                if (!found) {
-                    result += "No album found.\n";
-                }
-                output.writeObject(result);
                 break;
 
               case "6" : // Select a playlist public void displaySpecificPlaylist()
@@ -151,6 +137,12 @@ public class ServerThread extends Thread {
                     output.writeObject("No playlist found.\n");
                 } else {
                   output.writeObject(playlist);
+                  output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
+                  if(((String) input.readObject())=="1") {
+                    output.writeObject(true);
+                  } else {
+                    output.writeObject(false);
+                  }
                 }
                 break;
 
@@ -170,7 +162,7 @@ public class ServerThread extends Thread {
                 break;
 
               case "h" ://Display the help
-                jMusicHub.help();
+                output.writeObject(jMusicHub.help());
                 break;
 
               default:

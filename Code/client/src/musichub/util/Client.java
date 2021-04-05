@@ -38,7 +38,20 @@ public class Client {
 								System.out.println((String) input.readObject());
 								LinkedList<Album> albums = (LinkedList<Album>) input.readObject();
 								for(int i=0;i<albums.size();i++) {
-									System.out.println(albums.get(i)+"\n");
+									System.out.println(i+"- "+albums.get(i)+"\n");
+								}
+								System.out.println((String) input.readObject());
+								Album oneAlbum = albums.get(Integer.parseInt(scan.nextLine()));
+								System.out.println(input.readObject());
+								output.writeObject(scan.nextLine());
+								if(((boolean) input.readObject())) {
+									LinkedList<Song> song = oneAlbum.getSongs();
+									for(int i=0;i<song.size();i++) {
+										playMusicFacade.setContent(song.get(i).getContent());
+										playMusicFacade.play();
+									}
+								} else {
+									System.out.println(oneAlbum);
 								}
 								break;
 
@@ -58,22 +71,41 @@ public class Client {
 								for (int i = 0; i < playlists.size(); i++) {
 									System.out.println(i+"- "+playlists.get(i) + "\n");
 				        }
-								System.out.println("Voulez vous le lire ?");
-								if(scan.nextLine()=="yes") {
-									System.out.println("Laquelle ?");
-									Playlist playlist = playlists.get(Integer.parseInt(scan.nextLine()));
-									LinkedList<Audio> audio = playlist.getAudios();
+								System.out.println((String) input.readObject());
+								Playlist onePlaylist = playlists.get(Integer.parseInt(scan.nextLine()));
+								System.out.println(input.readObject());
+								output.writeObject(scan.nextLine());
+								if(((boolean) input.readObject())) {
+									LinkedList<Audio> audio = onePlaylist.getAudios();
 									for(int i=0;i<audio.size();i++) {
 										playMusicFacade.setContent(audio.get(i).getContent());
 										playMusicFacade.play();
 									}
+								} else {
+									System.out.println(onePlaylist);
 								}
 								break;
 
 							case "5" : // Select an album
 								System.out.println((String) input.readObject());
 								output.writeObject(scan.nextLine());  /* Album title entered by the user */
-								System.out.println((String) input.readObject());
+								if(input.readObject() instanceof String) {
+									System.out.println((String) input.readObject());
+								} else {
+									Album album = (Album) input.readObject();
+									System.out.println(album);
+									System.out.println(input.readObject());
+									output.writeObject(scan.nextLine());
+									if(((boolean) input.readObject())) {
+										LinkedList<Song> song = album.getSongs();
+										for(int i=0;i<song.size();i++) {
+											playMusicFacade.setContent(song.get(i).getContent());
+											playMusicFacade.play();
+										}
+									} else {
+										System.out.println(album);
+									}
+								}
 								break;
 
 							case "6" : // Select a playlist
@@ -82,7 +114,19 @@ public class Client {
 								if(input.readObject() instanceof String) {
 									System.out.println((String) input.readObject());
 								} else {
-									System.out.println((Playlist) input.readObject());
+									Playlist playlist = (Playlist) input.readObject();
+									System.out.println(playlist);
+									System.out.println(input.readObject());
+									output.writeObject(scan.nextLine());
+									if(((boolean) input.readObject())) {
+										LinkedList<Audio> audio = playlist.getAudios();
+										for(int i=0;i<audio.size();i++) {
+											playMusicFacade.setContent(audio.get(i).getContent());
+											playMusicFacade.play();
+										}
+									} else {
+										System.out.println(playlist);
+									}
 								}
 								break;
 

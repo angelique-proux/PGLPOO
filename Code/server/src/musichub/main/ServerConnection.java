@@ -10,7 +10,7 @@ public class ServerConnection
 {
 	public static void main (String[] args) {
 		Scanner scanner = new Scanner (System.in);
-		System.out.println("Which mod do you want ? active/passive");
+		System.out.println("Which mod do you want ? (active/passive)");
 		String command = scanner.nextLine();
 		if(command=="active") {
 			
