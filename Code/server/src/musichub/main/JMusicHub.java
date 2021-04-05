@@ -600,23 +600,18 @@ public class JMusicHub{
     * @author Steve Chauvreau-Manat
     */
     public void help() {
-        System.out.println("- c : add a new song");
-        System.out.println("- l : add a new audio book");
-        System.out.println("- a : add a new album");
-        System.out.println("- + : add an existing song to an album");
-        System.out.println("- p : Creation of a new playlist from existing songs and audiobooks");
-        System.out.println("- - : delete a playlist");
-        System.out.println("- s : save playlists, albums, songs and audiobooks in the respective xml files");
+        System.out.println("- 1 : display registered albums ordered by release date");
+        System.out.println("- 2 : display a registered album songs ordered by genre");
+        System.out.println("- 3 : display registered audio book ordered by author");
+        System.out.println("- 4 : display all registered playlists");
+        System.out.println("- 5 : display a specific registered album");
+        System.out.println("- 6 : display a specific registered playlist");
 
-        System.out.println("- d : display all the registered elements");
-        System.out.println("    - dab : display registered audio book ordered by author");
-        System.out.println("    - da : display all the registered albums");
-        System.out.println("    - dsa : display a specific registered album");
-        System.out.println("    - dad : display registered albums ordered by release date");
-        System.out.println("    - dag : display a registered album songs ordered by genre");
-        System.out.println("    - dp : display all registered playlists");
-        System.out.println("    - dsp : display a specific registered playlist");
-        System.out.println("- q : exit the jMusicHub");
+        // System.out.println("-  : display all the registered elements");
+        // System.out.println("-  : display all the registered albums");
+
+        System.out.println("- 9 : edit the registered elements database");
+        System.out.println("- 10 : exit the jMusicHub");
         System.out.println("- h : help with details of previous commands");
     }
 
