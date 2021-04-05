@@ -7,6 +7,7 @@ public class PlayData implements PlayDataInterface {
     AudioInputStream musicToListenTo;
     SourceDataLine line;
     boolean stopMusic = false;
+    boolean nouvAudio = true;
     byte[] samples = new byte[4096];
 
     public PlayData(AudioInputStream stream, SourceDataLine line) {
@@ -15,15 +16,12 @@ public class PlayData implements PlayDataInterface {
     }
 
     public void setMusicToListenTo(AudioInputStream musicToListenTo) {
-      this.musicToListenTo = musicToListenTo;
+        this.musicToListenTo = musicToListenTo;
+        this.nouvAudio = true;
     }
 
     public void setStopMusic(boolean stop) {
-        if (stop == true) {
-            this.stopMusic = true;
-        } else {
-            this.stopMusic = false;
-        }
+        this.stopMusic = stop;
     }
 
     public void playTheMusic(){
@@ -32,10 +30,13 @@ public class PlayData implements PlayDataInterface {
             this.stopMusic = false;
             this.line.open(musicToListenTo.getFormat());
             this.line.start();
-            this.musicToListenTo.reset();
+            if(!this.nouvAudio){
+                this.musicToListenTo.reset();
+            }
             while ((count = this.musicToListenTo.read(samples, 0, samples.length)) != -1) {
                 this.line.write(samples, 0, count);
-                if(this.stopMusic == true) {
+                if(this.stopMusic) {
+                    this.nouvAudio = false;
                     this.musicToListenTo.mark(10);
                     break;
                 }

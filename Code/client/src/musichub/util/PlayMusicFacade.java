@@ -1,27 +1,40 @@
 package util;
 
-
-import business.Audio;
-import business.Genre;
-import business.Song;
-
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
+import java.util.LinkedList;
 
 public class PlayMusicFacade {
-    AudioInputStream musicToListenTo; // audio à écouter
-    SourceDataLine line; // ligne pour écrire l'audio
-    PlayData playDataObject;
+    private LinkedList<String> listeAttente;
+    private AudioInputStream musicToListenTo; // audio à écouter
+    private SourceDataLine line; // ligne pour écrire l'audio
+    private final PlayData playDataObject;
+    private final ManageMusicList manageMusicList;
 
     public PlayMusicFacade() {
+        // initialisation des objets nécessaire pour les utiliser après (setContent)
+        this.listeAttente = new LinkedList<>();
+        this.listeAttente.add("Code/client/files/Precious.wav");
+        this.musicToListenTo = getAudioInputStreamFromFile(listeAttente.getFirst());
         this.initialiseLine();
+        playDataObject = new PlayData(musicToListenTo, line);
+        manageMusicList = new ManageMusicList();
     }
 
     public void setContent(String content) {
-      this.musicToListenTo = getAudioInputStreamFromFile(content);
-      this.playDataObject.setMusicToListenTo(musicToListenTo);
+        this.musicToListenTo = getAudioInputStreamFromFile(content);
+        this.playDataObject.setMusicToListenTo(this.musicToListenTo);
+    }
+
+    public void addAudioToListAttente(String audioToAdd){
+        this.listeAttente = manageMusicList.addAudioToListe(listeAttente, audioToAdd);
+        setContent(audioToAdd);
+    }
+
+    public void changeListeAttente(LinkedList<String> listAudio) {
+        this.listeAttente = manageMusicList.changeListe(listAudio);
+        setContent(listeAttente.getFirst());
     }
 
     public static AudioInputStream getAudioInputStreamFromFile(String filepath) {
@@ -60,10 +73,27 @@ public class PlayMusicFacade {
     }
 
     public void play() {
-        this.playDataObject.playTheMusic();
+        Thread t = new Thread(() -> playDataObject.playTheMusic());
+        t.start();
     }
 
     public void pause() {
         playDataObject.setStopMusic(true);
     }
+
+    public void playNext() {
+        if (!listeAttente.isEmpty()) {
+            listeAttente.remove();
+            if (!listeAttente.isEmpty()) {
+                setContent(listeAttente.getFirst());
+                Thread t = new Thread(() -> play());
+                t.start();
+            } else {
+                System.out.println("La liste d'attente est vide, ajoutez un audio si vous voulez écouter une autre musique.");
+            }
+        } else {
+            System.out.println("La liste d'attente est vide, ajoutez un audio si vous voulez écouter une autre musique.");
+        }
+    }
+
 }
