@@ -5,11 +5,11 @@ import java.net.*;
 import java.io.File;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.Scanner;
 import java.util.UUID;
 import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import business.*;
 
 /**
  * This thread is responsible to handle client connection.
@@ -37,6 +37,8 @@ public class ServerThread extends Thread {
    */
   private LinkedList<Album> albums;
 
+  private JMusicHub jMusicHub;
+
   /**
    * List of the registered audio elements
    * @see Audio
@@ -61,29 +63,8 @@ public class ServerThread extends Thread {
            System.out.println(command);
             switch (command) {
               case "1" : // Show albums public void displayAlbumByReleaseDate() throws Exception
-                result = "\t\tAlbum titles sorted by them date:\nAlbums ordered by release date :";
-                Date datePrec = new SimpleDateFormat("dd/MM/yyyy").parse("0/00/0000");
-                Date date = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(0).getReleaseDate());
-                Date dateTemp = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(0).getReleaseDate());
-                int albumIndex = 0;
-                boolean found = true;
-                while (found) {
-                    found = false;
-                    date = new SimpleDateFormat("dd/MM/yyyy").parse("31/12/3000");
-                    for (int i = 0; i < this.albums.size() ; i++) {
-                        dateTemp = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(i).getReleaseDate());
-                        if (dateTemp.after(datePrec) && dateTemp.before(date)) {
-                            date = dateTemp;
-                            albumIndex = i;
-                            found = true;
-                        }
-                    }
-                    datePrec = date;
-                    if (found == true) {
-                        result+="\n"+albums.get(albumIndex) + "\n";
-                    }
-                }
-                output.writeObject(result);
+                output.writeObject("\t\tAlbum titles sorted by them date:\nAlbums ordered by release date :\n\n");
+                output.writeObject(jMusicHub.getAlbumByReleaseDate());
                 break;
 
               case "2" : // Show songs public void displaySongByGenre()
@@ -141,11 +122,8 @@ public class ServerThread extends Thread {
                 break;
 
               case "4" : // Show playlists public void displayPlaylists()
-                result = "\t\t Playlist names sorted by alphabetical order:\nExisting playlists :\n";
-                for (int i = 0; i < this.playlists.size(); i++) {
-                    result += this.playlists.get(i) + "\n";
-                }
-                output.writeObject(result);
+                output.writeObject("\t\t Playlist names sorted by alphabetical order:\nExisting playlists :\n\n");
+                output.writeObject(jMusicHub.getPlaylists());
                 break;
 
               case "5" : // Select an album public void displaySpecificAlbum()
@@ -167,19 +145,13 @@ public class ServerThread extends Thread {
 
               case "6" : // Select a playlist public void displaySpecificPlaylist()
                 output.writeObject("\nName of the playlist :\n");
-                result = null;
-                boolean found = false;
                 String name = (String) input.readObject();
-                for (int i = 0; i < this.playlists.size(); i++) {
-                    if (this.playlists.get(i).getName().equals(name)) {
-                        result += this.playlists.get(i) + "\n";
-                        found = true;
-                    }
+                Playlist playlist = jMusicHub.getSpecificPlaylist(name);
+                if (playlist==null) {
+                    output.writeObject("No playlist found.\n");
+                } else {
+                  output.writeObject(playlist);
                 }
-                if (!found) {
-                    result += "No playlist found.\n";
-                }
-                output.writeObject(result);
                 break;
 
               case "7" : // Select all the song of an artist

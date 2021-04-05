@@ -1,4 +1,4 @@
-package main;
+package util;
 
 import business.*;
 import util.*;
@@ -71,7 +71,7 @@ public class JMusicHub{
     * @see         Album
     * @author      Gaël Lejeune and Steve Chauvreau-Manat
     */
-    public LinkedList<Album> displayAlbumByReleaseDate() throws Exception {
+    public LinkedList<Album> getAlbumByReleaseDate() throws Exception {
         LinkedList<Album> albumList = new LinkedList<Album>();
         Date datePrec = new SimpleDateFormat("dd/MM/yyyy").parse("0/00/0000");
         Date date = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(0).getReleaseDate());
@@ -154,20 +154,17 @@ public class JMusicHub{
     * @see         Playlist
     * @author      Gaël Lejeune
     */
-    public Playlist getSpecificPlaylist() {
-        Scanner scanner = new Scanner (System.in);
-        System.out.println("\nName of the playlist :\n");
+    public Playlist getSpecificPlaylist(String name) {
         boolean found = false;
-        String name = scanner.nextLine();
         for (int i = 0; i < this.playlists.size(); i++) {
             if (this.playlists.get(i).getName().equals(name)) {
                 // System.out.println(this.playlists.get(i) + "\n");
+                found = true;
                 return this.playlists.get(i);
-                // found = true;
             }
         }
         if (!found) {
-            System.out.println("No playlist found.\n");
+            return null;
         }
     }
 
@@ -601,19 +598,19 @@ public class JMusicHub{
     * @author Steve Chauvreau-Manat
     */
     public void help() {
-        System.out.println("- 1 : display registered albums ordered by release date");
-        System.out.println("- 2 : display a registered album songs ordered by genre");
-        System.out.println("- 3 : display registered audio book ordered by author");
-        System.out.println("- 4 : display all registered playlists");
-        System.out.println("- 5 : display a specific registered album");
-        System.out.println("- 6 : display a specific registered playlist");
+      String helpString = "\n- 1 : display registered albums ordered by release date"
+      +"\n- 2 : display a registered album songs ordered by genre"
+      +"\n- 3 : display registered audio book ordered by author"
+      +"\n- 4 : display all registered playlists"
+      +"\n- 5 : display a specific registered album"
+      +"\n- 6 : display a specific registered playlist"
 
         // System.out.println("-  : display all the registered elements");
         // System.out.println("-  : display all the registered albums");
 
-        System.out.println("- 9 : edit the registered elements database");
-        System.out.println("- 10 : exit the jMusicHub");
-        System.out.println("- h : help with details of previous commands");
+      +"\n- 9 : edit the registered elements database"
+      +"\n- 10 : exit the jMusicHub"
+      +"\n- h : help with details of previous commands";
     }
 
     /**
@@ -632,7 +629,7 @@ public class JMusicHub{
             switch (command) {
                 case "1" : // Show albums
                 System.out.println("\t\t Album titles sorted by them date:");
-                LinkedList<Album> albumList = jMusicHub.displayAlbumByReleaseDate();
+                LinkedList<Album> albumList = jMusicHub.getAlbumByReleaseDate();
                 for (int i = 0; i < albumList.size(); i++) {
                     System.out.println("\n"+albumList.get(i) + "\n");
                 }

@@ -31,10 +31,13 @@ public class Client {
 					switch (command) {
 							case "1" : // Show albums
 								System.out.println((String) input.readObject());
+								LinkedList<Album> albums = (LinkedList<Album>) input.readObject();
+								for(int i=0;i<albums.size();i++) {
+									System.out.println(albums.get(i)+"\n");
+								}
 								break;
 
 							case "2" : // Show songs
-								Scanner scanner = new Scanner (System.in);
 								System.out.println((String) input.readObject());
 								output.writeObject(scanner.nextLine());  /* Album title entered by the user */
 								System.out.println((String) input.readObject());
@@ -46,20 +49,26 @@ public class Client {
 
 							case "4" : // Show playlists
 								System.out.println((String) input.readObject());
+								LinkedList<Playlist> playlists = (LinkedList<Playlist>) input.readObject();
+								for (int i = 0; i < playlists.size(); i++) {
+									System.out.println(playlists.get(i) + "\n");
+				        }
 								break;
 
 							case "5" : // Select an album
-								Scanner scanner = new Scanner (System.in);
 								System.out.println((String) input.readObject());
 								output.writeObject(scanner.nextLine());  /* Album title entered by the user */
 								System.out.println((String) input.readObject());
 								break;
 
 							case "6" : // Select a playlist
-								Scanner scanner = new Scanner (System.in);
 								System.out.println((String) input.readObject());
 								output.writeObject(scanner.nextLine());  /* Album title entered by the user */
-								System.out.println((String) input.readObject());
+								if(input.readObject() instanceof String) {
+									System.out.println((String) input.readObject());
+								} else {
+									System.out.println((Playlist) input.readObject());
+								}
 								break;
 
 							case "7" : // Select all the song of an artist
