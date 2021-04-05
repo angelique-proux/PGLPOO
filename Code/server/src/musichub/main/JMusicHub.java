@@ -19,7 +19,7 @@ import java.util.regex.Matcher;
 *
 * Date : 30/02/2001
 *
-* @author Gaël Lejeune and Steve Chauvreau-Manat
+* @author Gaël Lejeune and Steve Chauvreau-Manat (based on the work of Angélique Proux & Manelle Nouar)
 */
 public class JMusicHub{
 
@@ -96,6 +96,7 @@ public class JMusicHub{
                 albumList.add(albums.get(albumIndex));
             }
         }
+        return albumList;
     }
 
     /**
@@ -631,7 +632,10 @@ public class JMusicHub{
             switch (command) {
                 case "1" : // Show albums
                 System.out.println("\t\t Album titles sorted by them date:");
-                jMusicHub.displayAlbumByReleaseDate();
+                LinkedList<Album> albumList = jMusicHub.displayAlbumByReleaseDate();
+                for (int i = 0; i < albumList.size(); i++) {
+                    System.out.println("\n"+albumList.get(i) + "\n");
+                }
                 break;
 
                 case "2" : // Show songs
@@ -642,6 +646,7 @@ public class JMusicHub{
 
                 case "3" : // Show audiobooks
                 System.out.println("\t\t AudioBook titles sorted by them author:");
+                //TODO
                 jMusicHub.displayAudioBooksByAuthor();
                 break;
 
