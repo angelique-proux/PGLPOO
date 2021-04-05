@@ -1,5 +1,7 @@
 package business;
 
+import java.io.Serializable;
+
 /** AudioList Interface represent object containing a list of song or audio
  *
  * Version : 1.0

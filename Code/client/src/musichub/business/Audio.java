@@ -1,7 +1,7 @@
 package business;
 
 import java.util.UUID;
-
+import java.io.Serializable;
 
  /** Audio Abstract class representing an audio file
   *

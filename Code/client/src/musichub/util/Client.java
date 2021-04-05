@@ -1,8 +1,10 @@
 package util;
 
+import business.*;
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
+import java.util.LinkedList;
 
 public class Client {
 
@@ -24,9 +26,12 @@ public class Client {
 			System.out.println("\n\nWelcome in JMusicHub,");
 			System.out.println("Connection to the server...\n\n");
 			System.out.println((String) input.readObject());
-			Scanner scanner = new Scanner (System.in);
+			Scanner scan = new Scanner (System.in);
+
+			PlayMusicFacade playMusicFacade = new PlayMusicFacade();
+
 			while(true) {
-					String command = scanner.nextLine();
+					String command = scan.nextLine();
 					output.writeObject(command);
 					switch (command) {
 							case "1" : // Show albums
@@ -39,7 +44,7 @@ public class Client {
 
 							case "2" : // Show songs
 								System.out.println((String) input.readObject());
-								output.writeObject(scanner.nextLine());  /* Album title entered by the user */
+								output.writeObject(scan.nextLine());  /* Album title entered by the user */
 								System.out.println((String) input.readObject());
 								break;
 
@@ -51,19 +56,29 @@ public class Client {
 								System.out.println((String) input.readObject());
 								LinkedList<Playlist> playlists = (LinkedList<Playlist>) input.readObject();
 								for (int i = 0; i < playlists.size(); i++) {
-									System.out.println(playlists.get(i) + "\n");
+									System.out.println(i+"- "+playlists.get(i) + "\n");
 				        }
+								System.out.println("Voulez vous le lire ?");
+								if(scan.nextLine()=="yes") {
+									System.out.println("Laquelle ?");
+									Playlist playlist = playlists.get(Integer.parseInt(scan.nextLine()));
+									LinkedList<Audio> audio = playlist.getAudios();
+									for(int i=0;i<audio.size();i++) {
+										playMusicFacade.setContent(audio.get(i).getContent());
+										playMusicFacade.play();
+									}
+								}
 								break;
 
 							case "5" : // Select an album
 								System.out.println((String) input.readObject());
-								output.writeObject(scanner.nextLine());  /* Album title entered by the user */
+								output.writeObject(scan.nextLine());  /* Album title entered by the user */
 								System.out.println((String) input.readObject());
 								break;
 
 							case "6" : // Select a playlist
 								System.out.println((String) input.readObject());
-								output.writeObject(scanner.nextLine());  /* Album title entered by the user */
+								output.writeObject(scan.nextLine());  /* Album title entered by the user */
 								if(input.readObject() instanceof String) {
 									System.out.println((String) input.readObject());
 								} else {

@@ -14,6 +14,10 @@ public class PlayData implements PlayDataInterface {
         this.line = line;
     }
 
+    public void setMusicToListenTo(AudioInputStream musicToListenTo) {
+      this.musicToListenTo = musicToListenTo;
+    }
+
     public void setStopMusic(boolean stop) {
         if (stop == true) {
             this.stopMusic = true;
@@ -24,20 +28,20 @@ public class PlayData implements PlayDataInterface {
 
     public void playTheMusic(){
         try {
-            stopMusic = false;
-            line.open(musicToListenTo.getFormat());
-            line.start();
             int count;
-            musicToListenTo.reset();
-            while ((count = musicToListenTo.read(samples, 0, samples.length)) != -1) {
-                line.write(samples, 0, count);
-                if(stopMusic == true) {
-                    musicToListenTo.mark(10);
+            this.stopMusic = false;
+            this.line.open(musicToListenTo.getFormat());
+            this.line.start();
+            this.musicToListenTo.reset();
+            while ((count = this.musicToListenTo.read(samples, 0, samples.length)) != -1) {
+                this.line.write(samples, 0, count);
+                if(this.stopMusic == true) {
+                    this.musicToListenTo.mark(10);
                     break;
                 }
             }
-            line.drain();
-            line.stop();
+            this.line.drain();
+            this.line.stop();
         }
         catch (IOException | LineUnavailableException e) {
             e.printStackTrace();

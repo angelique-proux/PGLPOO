@@ -11,21 +11,17 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class PlayMusicFacade {
-    int numAudio; // numéro de l'objet à écouter
     AudioInputStream musicToListenTo; // audio à écouter
     SourceDataLine line; // ligne pour écrire l'audio
     PlayData playDataObject;
 
     public PlayMusicFacade() {
-        Audio audioToListenTo = audioGivenByServer(numAudio);
-        this.musicToListenTo = getAudioInputStreamFromFile(audioToListenTo.getContent());
         this.initialiseLine();
-        this.playDataObject = new PlayData(musicToListenTo, line);
     }
 
-    private Audio audioGivenByServer(int numAudio) {
-        Song song = new Song("Precious", "Ateez", 122, UUID.randomUUID(), "Code/client/files/Precious.wav", Genre.valueOf("HIPHOP"));
-        return song;
+    public void setContent(String content) {
+      this.musicToListenTo = getAudioInputStreamFromFile(content);
+      this.playDataObject.setMusicToListenTo(musicToListenTo);
     }
 
     public static AudioInputStream getAudioInputStreamFromFile(String filepath) {
