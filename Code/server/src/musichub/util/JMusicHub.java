@@ -259,8 +259,8 @@ public class JMusicHub{
           while(songs.size() > 0) {
             Genre genre = songs.get(0).getGenre();
             System.out.println("\nSongs with genre : " + genre);
-            for (int i = 0; i < songs.size(); i++) {
-              if (songs.get(i).getGenre().equals(genre)) {
+            for(int i = 0; i < songs.size(); i++) {
+              if(songs.get(i).getGenre().equals(genre)) {
                 songsSort.get(j) = songs.get(i);
                 songs.remove(i);
                 j++;
@@ -279,15 +279,16 @@ public class JMusicHub{
     * @author Steve Chauvreau-Manat
     */
     public String help() {
-      String helpString = "\n- 1 : display registered albums ordered by release date"
-      +"\n- 2 : display a registered album songs ordered by genre"
-      +"\n- 3 : display registered audio books ordered by author"
-      +"\n- 4 : display all registered playlists"
-      +"\n- 5 : display a specific registered album"
-      +"\n- 6 : display a specific registered playlist"
-      +"\n- 7 : display all the registered elements"
-      +"\n- 8 : exit the jMusicHub"
-      +"\n- 9 : display all registered albums"
+      String helpString = "\n- 1 : display all registered elements"
+      +"\n- 2 : display all registered albums"
+      +"\n- 3 : display all registered playlists"
+      +"\n- 4 : display a specific registered album"
+      +"\n- 5 : display a specific registered playlist"
+      +"\n- 6 : display all artist's songs"
+      +"\n- 7 : display all author's audiobooks"
+      +"\n- 8 : display all albums release by date"
+      +"\n- 9 : display all songs sorted by genre"
+      +"\n- 10 : exit the jMusicHub"
       +"\n- h : help with details of previous commands";
     }
 

@@ -79,6 +79,7 @@ public class ServerThread extends Thread {
                 if (album==null) {
                     output.writeObject("No album found.\n");
                 } else {
+                  output.writeObject(album);
                   output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
                   if(((String) input.readObject())=="1") {
                     output.writeObject(true);
@@ -112,30 +113,30 @@ public class ServerThread extends Thread {
                   output.writeObject("No artist with this name or no artist's song found.\n");
                 } else {
                   output.writeObject(artistSongs);
-                }
-                output.writeObject("Which one would you like to hear? (Enter the number)");
-                output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More informtion");
-                if(((String) input.readObject())=="1") {
-                  output.writeObject(true);
-                } else {
-                  output.writeObject(false);
+                  output.writeObject("Which one would you like to hear? (Enter the number)");
+                  output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More informtion");
+                  if(((String) input.readObject())=="1") {
+                    output.writeObject(true);
+                  } else {
+                    output.writeObject(false);
+                  }
                 }
                 break;
 
               case "7" : // Select and send all author's audiobooks
-                output.writeObject("\t\t AudioBook titles sorted by them author:");
-                LinkedList<AudioBook> authorAudioBooks = jMusicHub.getAudioBooksByAuthor();
+                output.writeObject("\t\t AudioBook titles sorted by them author:\nAuthor's name :\n\n");
+                LinkedList<AudioBook> authorAudioBooks = jMusicHub.getAudioBooksByAuthor((String) input.readObject());
                 if(authorAudioBooks==null) {
                   output.writeObject("No author with this name or no author's audio book found.\n");
                 } else {
                   output.writeObject(authorAudioBooks);
-                }
-                output.writeObject("Which one would you like to hear? (Enter the number)");
-                output.writeObject("What do you want? (Enter the number)\n1- Listen the audio book\n2- More informtion");
-                if(((String) input.readObject())=="1") {
-                  output.writeObject(true);
-                } else {
-                  output.writeObject(false);
+                  output.writeObject("Which one would you like to hear? (Enter the number)");
+                  output.writeObject("What do you want? (Enter the number)\n1- Listen the audio book\n2- More informtion");
+                  if(((String) input.readObject())=="1") {
+                    output.writeObject(true);
+                  } else {
+                    output.writeObject(false);
+                  }
                 }
                 break;
 
@@ -151,13 +152,13 @@ public class ServerThread extends Thread {
                 }
                 break;
 
-              case "9" : // Send all songs sorted by genre 
+              case "9" : // Send all songs sorted by genre
                 output.writeObject("\t\t Song titles sorted by them genre:\nName of the album to display :");
-                LinkedList<Song> song = jMusicHub.getSongByGenre((String) input.readObject()); //Album title entered by the user
-                if(song==null) {
+                LinkedList<Song> songs = jMusicHub.getSongByGenre((String) input.readObject()); //Album title entered by the user
+                if(songs==null) {
                   output.writeObject("\nNo album found.\n");
                 } else {
-                  output.writeObject(song);
+                  output.writeObject(songs);
                 }
                 output.writeObject("Which one would you like to hear? (Enter the number)");
                 output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More informtion");
