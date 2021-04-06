@@ -218,7 +218,7 @@ public class JMusicHub{
     * @see         AudioBook
     * @author      Gaël Lejeune and Steve Chauvreau-Manat
     */
-    public void displayAudioBooksByAuthor() {
+    public LinkedList<AudioBook> getAudioBooksByAuthor(String author) {
         LinkedList<AudioBook> audioBooks = new LinkedList<AudioBook>();
         for (int i = 0; i < this.elements.size(); i++) {
             if (this.elements.get(i) instanceof AudioBook) {
@@ -229,13 +229,38 @@ public class JMusicHub{
             String author = audioBooks.get(0).getAuthor();
             System.out.println("\nAuthor : " + author+"\n");
             for (int i = 0; i < audioBooks.size(); i++) {
-                if (audioBooks.get(i).getAuthor().equals(author)) {
-                    System.out.println(audioBooks.get(i) + "\n");
+                if (!audioBooks.get(i).getAuthor().equals(author)) {
                     audioBooks.remove(i);
                     i--;
                 }
             }
         }
+        return audioBooks;
+    }
+
+    /**
+    * Display all audio books ordered by author
+    * @see         AudioBook
+    * @author      Gaël Lejeune and Steve Chauvreau-Manat
+    */
+    public LinkedList<Song> getSongsByArtist(String author) {
+        LinkedList<Song> songs = new LinkedList<Song>();
+        for (int i = 0; i < this.elements.size(); i++) {
+            if (this.elements.get(i) instanceof AudioBook) {
+                songs.add((AudioBook)this.elements.get(i));
+            }
+        }
+        while(songs.size() > 0) {
+            String author = songs.get(0).getAuthor();
+            System.out.println("\nAuthor : " + author+"\n");
+            for (int i = 0; i < songs.size(); i++) {
+                if (!songs.get(i).getArtist().equals(author)) {
+                    songs.remove(i);
+                    i--;
+                }
+            }
+        }
+        return songs;
     }
 
     /**
@@ -660,13 +685,12 @@ public class JMusicHub{
                 break;
 
                 case "7" : // Select all the song of an artist
-                //TODO
+                jMusicHub.getSongsByArtist();
                 // selectArtist7(util, sc);
                 break;
 
-                case "8" : // Select all the song of an author
-                //TODO
-                // selectAuthor8(util, sc);
+                case "8" : // Select all the audiobooks of an author
+                jMusicHub.getAudioBooksByAuthor();
                 break;
 
                 case "9" : // Change the content of the application
