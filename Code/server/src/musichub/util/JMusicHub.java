@@ -65,6 +65,145 @@ public class JMusicHub{
     }
 
     /**
+    * Displays all the registered audio elements
+    * @see         Album
+    * @author      Gaël Lejeune
+    */
+    public LinkedList<Audio> getElements() {
+        return this.elements;
+        // System.out.println("\nExisting elements :\n");
+        // for (int i = 0; i < this.elements.size(); i++) {
+        //     System.out.println(this.elements.get(i) + "\n");
+        // }
+    }
+
+    /**
+    * Displays all the registered albums
+    * @see         Album
+    * @author      Gaël Lejeune
+    */
+    public LinkedList<Album> getAlbums() {
+        return this.albums;
+        // System.out.println("\nExisting albums :\n");
+        // for (int i = 0; i < this.albums.size(); i++) {
+        //     System.out.println(this.albums.get(i) + "\n");
+        // }
+    }
+
+    /**
+    * Displays all the registered playlists
+    * @see         Playlist
+    * @author      Gaël Lejeune
+    */
+    public LinkedList<Playlist> getPlaylists() {
+        return this.playlists;
+        // System.out.println("\nExisting playlists :\n");
+        // for (int i = 0; i < this.playlists.size(); i++) {
+        //     System.out.println(this.playlists.get(i) + "\n");
+        // }
+    }
+
+    /**
+    * Asks and displays an specific registered album
+    * @see         Album
+    * @author      Gaël Lejeune
+    */
+    public Album getSpecificAlbum(String title) {
+        boolean found = false; /* Album title entered by the user */
+        for (int i = 0; i < this.albums.size(); i++) {
+            if (this.albums.get(i).getTitle().equals(title)) {
+                // System.out.println(this.albums.get(i) + "\n");
+                found = true;
+                return this.albums.get(i);
+            }
+        }
+        if (!found) {
+            return null;
+        }
+    }
+
+    /**
+    * Asks and displays an specific registered playlist
+    * @see         Playlist
+    * @author      Gaël Lejeune
+    */
+    public Playlist getSpecificPlaylist(String name) {
+        boolean found = false;
+        for (int i = 0; i < this.playlists.size(); i++) {
+            if (this.playlists.get(i).getName().equals(name)) {
+                // System.out.println(this.playlists.get(i) + "\n");
+                found = true;
+                return this.playlists.get(i);
+            }
+        }
+        if (!found) {
+            return null;
+        }
+    }
+
+    /**
+    * Display all audio books ordered by author
+    * @see         AudioBook
+    * @author      Gaël Lejeune and Steve Chauvreau-Manat
+    */
+    public LinkedList<Song> getSongsByArtist(String author) {
+        LinkedList<Song> songs = new LinkedList<Song>();
+        boolean found = false;
+        for (int i = 0; i < this.elements.size(); i++) {
+            if (this.elements.get(i) instanceof AudioBook) {
+                songs.add((AudioBook)this.elements.get(i));
+            }
+        }
+        while(songs.size() > 0) {
+            String author = songs.get(0).getAuthor();
+            System.out.println("\nAuthor : "+author+"\n");
+            for (int i = 0; i < songs.size(); i++) {
+                if (!songs.get(i).getArtist().equals(author)) {
+                    songs.remove(i);
+                    i--;
+                    found = true;
+                }
+            }
+        }
+        if(!found) {
+          return null;
+        } else {
+          return songs;
+        }
+    }
+
+    /**
+    * Display all audio books ordered by author
+    * @see         AudioBook
+    * @author      Gaël Lejeune and Steve Chauvreau-Manat
+    */
+    public LinkedList<AudioBook> getAudioBooksByAuthor(String author) {
+        LinkedList<AudioBook> audioBooks = new LinkedList<AudioBook>();
+        boolean found = false;
+        for (int i = 0; i < this.elements.size(); i++) {
+            if (this.elements.get(i) instanceof AudioBook) {
+                audioBooks.add((AudioBook)this.elements.get(i));
+            }
+        }
+        while(audioBooks.size() > 0) {
+            String author = audioBooks.get(0).getAuthor();
+            System.out.println("\nAuthor : " + author+"\n");
+            for (int i=0;i<audioBooks.size();i++) {
+                if (!audioBooks.get(i).getAuthor().equals(author)) {
+                    audioBooks.remove(i);
+                    i--;
+                    found = true;
+                }
+            }
+        }
+        if(!found) {
+          return null;
+        } else {
+          return audioBooks;
+        }
+    }
+
+    /**
     * Display the album list ordered by release date
     * @exception   Exception Thrown the given String cannot be converted to date.
     * @see         Album
@@ -105,11 +244,8 @@ public class JMusicHub{
     * @author      Gaël Lejeune and Steve Chauvreau-Manat
     */
     public LinkedList<Song> getSongByGenre(String title) {
-        Scanner scanner = new Scanner (System.in);
-        System.out.println("\nName of the album to display :");
         boolean found = false;
-        Album album = this.albums.get(0);
-        String title = scanner.nextLine();  /* Album title entered by the user */
+        Album album = this.albums.get(0); /* Album title entered by the user */
         for (int i = 0; i < this.albums.size(); i++) {
             if (this.albums.get(i).getTitle().equals(title)) {
                 found = true;
@@ -117,150 +253,42 @@ public class JMusicHub{
             }
         }
         if (found) {
-            LinkedList<Song> songs = album.getSongs();
-            while(songs.size() > 0) {
-                Genre genre = songs.get(0).getGenre();
-                System.out.println("\nSongs with genre : " + genre);
-                for (int i = 0; i < songs.size(); i++) {
-                    if (songs.get(i).getGenre().equals(genre)) {
-                        System.out.println("\n"+songs.get(i) + "\n");
-                        songs.remove(i);
-                        i--;
-                    }
-                }
+          LinkedList<Song> songs = album.getSongs();
+          LinkedList<Song> songsSort = new LinkedList<Song>();
+          int j=0;
+          while(songs.size() > 0) {
+            Genre genre = songs.get(0).getGenre();
+            System.out.println("\nSongs with genre : " + genre);
+            for (int i = 0; i < songs.size(); i++) {
+              if (songs.get(i).getGenre().equals(genre)) {
+                songsSort.get(j) = songs.get(i);
+                songs.remove(i);
+                j++;
+                i--;
+              }
             }
+          }
+          return songsSort;
         } else {
             return null;
         }
     }
 
-
     /**
-    * Displays all the registered playlists
-    * @see         Playlist
-    * @author      Gaël Lejeune
+    * Displays information and help about various commands
+    * @author Steve Chauvreau-Manat
     */
-    public LinkedList<Playlist> getPlaylists() {
-        return this.playlists;
-        // System.out.println("\nExisting playlists :\n");
-        // for (int i = 0; i < this.playlists.size(); i++) {
-        //     System.out.println(this.playlists.get(i) + "\n");
-        // }
-    }
-
-    /**
-    * Asks and displays an specific registered playlist
-    * @see         Playlist
-    * @author      Gaël Lejeune
-    */
-    public Playlist getSpecificPlaylist(String name) {
-        boolean found = false;
-        for (int i = 0; i < this.playlists.size(); i++) {
-            if (this.playlists.get(i).getName().equals(name)) {
-                // System.out.println(this.playlists.get(i) + "\n");
-                found = true;
-                return this.playlists.get(i);
-            }
-        }
-        if (!found) {
-            return null;
-        }
-    }
-
-    /**
-    * Displays all the registered albums
-    * @see         Album
-    * @author      Gaël Lejeune
-    */
-    public LinkedList<Album> getAlbums() {
-        return this.albums;
-        // System.out.println("\nExisting albums :\n");
-        // for (int i = 0; i < this.albums.size(); i++) {
-        //     System.out.println(this.albums.get(i) + "\n");
-        // }
-    }
-
-    /**
-    * Asks and displays an specific registered album
-    * @see         Album
-    * @author      Gaël Lejeune
-    */
-    public Album getSpecificAlbum(String title) {
-        boolean found = false; /* Album title entered by the user */
-        for (int i = 0; i < this.albums.size(); i++) {
-            if (this.albums.get(i).getTitle().equals(title)) {
-                // System.out.println(this.albums.get(i) + "\n");
-                found = true;
-                return this.albums.get(i);
-            }
-        }
-        if (!found) {
-            return null;
-        }
-    }
-
-
-    /**
-    * Displays all the registered audio elements
-    * @see         Album
-    * @author      Gaël Lejeune
-    */
-    public LinkedList<Audio> getElements() {
-        return this.elements;
-        // System.out.println("\nExisting elements :\n");
-        // for (int i = 0; i < this.elements.size(); i++) {
-        //     System.out.println(this.elements.get(i) + "\n");
-        // }
-    }
-
-    /**
-    * Display all audio books ordered by author
-    * @see         AudioBook
-    * @author      Gaël Lejeune and Steve Chauvreau-Manat
-    */
-    public LinkedList<AudioBook> getAudioBooksByAuthor(String author) {
-        LinkedList<AudioBook> audioBooks = new LinkedList<AudioBook>();
-        for (int i = 0; i < this.elements.size(); i++) {
-            if (this.elements.get(i) instanceof AudioBook) {
-                audioBooks.add((AudioBook)this.elements.get(i));
-            }
-        }
-        while(audioBooks.size() > 0) {
-            String author = audioBooks.get(0).getAuthor();
-            System.out.println("\nAuthor : " + author+"\n");
-            for (int i = 0; i < audioBooks.size(); i++) {
-                if (!audioBooks.get(i).getAuthor().equals(author)) {
-                    audioBooks.remove(i);
-                    i--;
-                }
-            }
-        }
-        return audioBooks;
-    }
-
-    /**
-    * Display all audio books ordered by author
-    * @see         AudioBook
-    * @author      Gaël Lejeune and Steve Chauvreau-Manat
-    */
-    public LinkedList<Song> getSongsByArtist(String author) {
-        LinkedList<Song> songs = new LinkedList<Song>();
-        for (int i = 0; i < this.elements.size(); i++) {
-            if (this.elements.get(i) instanceof AudioBook) {
-                songs.add((AudioBook)this.elements.get(i));
-            }
-        }
-        while(songs.size() > 0) {
-            String author = songs.get(0).getAuthor();
-            System.out.println("\nAuthor : " + author+"\n");
-            for (int i = 0; i < songs.size(); i++) {
-                if (!songs.get(i).getArtist().equals(author)) {
-                    songs.remove(i);
-                    i--;
-                }
-            }
-        }
-        return songs;
+    public String help() {
+      String helpString = "\n- 1 : display registered albums ordered by release date"
+      +"\n- 2 : display a registered album songs ordered by genre"
+      +"\n- 3 : display registered audio books ordered by author"
+      +"\n- 4 : display all registered playlists"
+      +"\n- 5 : display a specific registered album"
+      +"\n- 6 : display a specific registered playlist"
+      +"\n- 7 : display all the registered elements"
+      +"\n- 8 : exit the jMusicHub"
+      +"\n- 9 : display all registered albums"
+      +"\n- h : help with details of previous commands";
     }
 
     /**
@@ -615,31 +643,11 @@ public class JMusicHub{
     }
 
     /**
-    * Displays information and help about various commands
-    * @author Steve Chauvreau-Manat
-    */
-    public String help() {
-      String helpString = "\n- 1 : display registered albums ordered by release date"
-      +"\n- 2 : display a registered album songs ordered by genre"
-      +"\n- 3 : display registered audio book ordered by author"
-      +"\n- 4 : display all registered playlists"
-      +"\n- 5 : display a specific registered album"
-      +"\n- 6 : display a specific registered playlist"
-
-        // System.out.println("-  : display all the registered elements");
-        // System.out.println("-  : display all the registered albums");
-
-      +"\n- 9 : edit the registered elements database"
-      +"\n- 10 : exit the jMusicHub"
-      +"\n- h : help with details of previous commands";
-    }
-
-    /**
     * Execution of the JMusicHub program and interaction with the user using a terminal
     * @param       args Arguments of the function
     * @author Gaël Lejeune and Steve Chauvreau-Manat
     */
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         System.out.println("\n\nWelcome in JMusicHub,");
         System.out.println("Reading library...\n\n");
         JMusicHub jMusicHub = new JMusicHub();
@@ -710,5 +718,5 @@ public class JMusicHub{
                 break;
             }
         }
-    }
+    }*/
 }

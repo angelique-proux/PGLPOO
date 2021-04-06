@@ -58,11 +58,50 @@ public class Client {
 							case "2" : // Show songs
 								System.out.println((String) input.readObject());
 								output.writeObject(scan.nextLine());  /* Album title entered by the user */
+								if(input.readObject() instanceof String) {
+									System.out.println((String) input.readObject());
+								} else {
+									LinkedList<Song> songs = (LinkedList<Song>) input.readObject();
+									System.out.println("---"+songs.get(0).getGenre()+"---\n");
+									for(int i=0;i<songs.size();i++) {
+										System.out.println(i+"- "+songs.get(i)+"\n");
+										if(songs.get(i).getGenre()!=songs.get(i+1).getGenre()) {
+											System.out.println("---"+songs.get(i+1).getGenre()+"---\n");
+										}
+									}
+								}
 								System.out.println((String) input.readObject());
+								Song song = songs.get(Integer.parseInt(scan.nextLine()));
+								System.out.println((String) input.readObject());
+								output.writeObject(scan.nextLine());
+								if(((boolean) input.readObject())) {
+									playMusicFacade.setContent(song.getContent());
+									playMusicFacade.play();
+								} else {
+									System.out.println(song);
+								}
 								break;
 
 							case "3" : // Show audiobooks
 								System.out.println((String) input.readObject());
+								if(input.readObject() instanceof String) {
+									System.out.println((String) input.readObject());
+								} else {
+									LinkedList<AudioBook> audiobooks = (LinkedList<AudioBook>) input.readObject();
+									for(int i=0;i<audiobooks.size();i++) {
+										System.out.println(i+"- "+aduiobooks.get(i)+"\n");
+									}
+									System.out.println((String) input.readObject());
+									AudioBook audiobook = audiobooks.get(Integer.parseInt(scan.nextLine()));
+									System.out.println((String) input.readObject());
+									output.writeObject(scan.nextLine());
+									if(((boolean) input.readObject())) {
+										playMusicFacade.setContent(audiobook.getContent());
+										playMusicFacade.play();
+									} else {
+										System.out.println(audiobook);
+									}
+								}
 								break;
 
 							case "4" : // Show playlists
@@ -131,16 +170,50 @@ public class Client {
 								break;
 
 							case "7" : // Select all the song of an artist
-								//TODO
-								// selectArtist7(util, sc);
+								System.out.println((String) input.readObject());
+								output.writeObject(scan.nextLine());  /* Album title entered by the user */
+								if(input.readObject() instanceof String) {
+									System.out.println((String) input.readObject());
+								} else {
+									LinkedList<Song> artistSongs = (LinkedList<Song>) input.readObject();
+									for(int i=0;i<artistSongs.size();i++) {
+										System.out.println(i+"- "+artistsSongs.get(i)+"\n");
+									}
+									System.out.println((String) input.readObject());
+									Song song = artistSongs.get(Integer.parseInt(scan.nextLine()));
+									System.out.println(input.readObject());
+									output.writeObject(scan.nextLine());
+									if(((boolean) input.readObject())) {
+										playMusicFacade.setContent(song.getContent());
+										playMusicFacade.play();
+									} else {
+										System.out.println(song);
+									}
+								}
 								break;
 
-							case "8" : // Select all the song of an author
-								//TODO
-								// selectAuthor8(util, sc);
-								break;
+								case "8" : // Show albums
+									System.out.println((String) input.readObject());
+									LinkedList<Album> albums = (LinkedList<Album>) input.readObject();
+									for (int i = 0; i < albums.size(); i++) {
+										System.out.println(i+"- "+albums.get(i) + "\n");
+									}
+									System.out.println((String) input.readObject());
+									Playlist oneAlbum = albums.get(Integer.parseInt(scan.nextLine()));
+									System.out.println(input.readObject());
+									output.writeObject(scan.nextLine());
+									if(((boolean) input.readObject())) {
+										LinkedList<Song> songs = oneAlbum.getSongs();
+										for(int i=0;i<songs.size();i++) {
+											playMusicFacade.setContent(songs.get(i).getContent());
+											playMusicFacade.play();
+										}
+									} else {
+										System.out.println(oneAlbum);
+									}
+									break;
 
-							case "10" :// Quit the application
+							case "9" :// Quit the application
 								System.out.println((String) input.readObject());
 								System.exit(0);
 								break;
