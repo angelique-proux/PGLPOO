@@ -43,11 +43,14 @@ public class JMusicHubView implements View {
             switch (command) {
                 case "1" : // Show albums
                 System.out.println("\t\t Album titles sorted by them date:");
-                //TODO(Erreur à gérer)
-                // LinkedList<Album> albumList = controller.getAlbumByReleaseDate();
-                // for (int i = 0; i < albumList.size(); i++) {
-                //     System.out.println("\n"+albumList.get(i) + "\n");
-                // }
+                try {
+                    LinkedList<Album> albumList = controller.getAlbumByReleaseDate();
+                    for (int i = 0; i < albumList.size(); i++) {
+                        System.out.println("\n"+albumList.get(i) + "\n");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
 
                 case "2" : // Show songs
@@ -65,19 +68,13 @@ public class JMusicHubView implements View {
                 }
                 break;
 
-                case "3" : // Show audiobooks
-                //TODO
+                case "3" : // Select all the audiobooks of an author
                 System.out.println("Enter an author's name : ");
-                LinkedList<AudioBook> audioBooks =  this.controller.getAudioBooksByAuthor(scanner.nextLine());
-                System.out.println("\t\t AudioBook titles sorted by them author:");
-                String currentAuthor = audioBooks.get(0).getAuthor();
-                System.out.println("\nAuthor : "+ currentAuthor);
-                for (int i = 0; i < audioBooks.size() ; i++) {
-                    if(!audioBooks.get(i).getAuthor().equals(currentAuthor)) {
-                      currentAuthor = audioBooks.get(i).getAuthor();
-                      System.out.println("\nAuthor : "+ currentAuthor);
-                    }
-                    System.out.println(audioBooks.get(i));
+                String authorName = scanner.nextLine();
+                LinkedList<AudioBook> booksToDisplay = controller.getAudioBooksByAuthor(authorName);
+                System.out.println("\nBooks from : " + authorName + "\n");
+                for (int i = 0; i < booksToDisplay.size(); i++) {
+                    System.out.println("\n" + booksToDisplay.get(i));
                 }
                 break;
 
@@ -102,7 +99,6 @@ public class JMusicHubView implements View {
                 break;
 
                 case "7" : // Select all the song of an artist
-                //TODO
                 String artistName = scanner.nextLine();
                 LinkedList<Song> songsToDisplay = controller.getSongsByArtist(artistName);
                 System.out.println("\nSongs from : " + artistName + "\n");
@@ -111,21 +107,11 @@ public class JMusicHubView implements View {
                 }
                 break;
 
-                case "8" : // Select all the audiobooks of an author
-                //TODO
-                String authorName = scanner.nextLine();
-                LinkedList<AudioBook> booksToDisplay = controller.getAudioBooksByAuthor(authorName);
-                System.out.println("\nBooks from : " + authorName + "\n");
-                for (int i = 0; i < booksToDisplay.size(); i++) {
-                    System.out.println("\n" + booksToDisplay.get(i));
-                }
-                break;
-
-                case "9" : // Change the content of the application
+                case "8" : // Change the content of the application
                 controller.editDatabase();
                 break;
 
-                case "10" :// Quit the application
+                case "q" :// Quit the application
                   System.out.println("\t\t Thank you for you time, have a nice day!\n");
                   System.out.println("\t\t\t\t\tSigned by nope.\n\n\n");
                   System.exit(0);
