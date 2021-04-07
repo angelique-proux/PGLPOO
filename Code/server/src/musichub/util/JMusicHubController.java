@@ -20,13 +20,13 @@ import java.util.regex.Matcher;
 *
 * @author Gaël Lejeune and Steve Chauvreau-Manat (based on the work of Angélique Proux & Manelle Nouar)
 */
-public class JMusicHub{
+public class JMusicHubController {
 
     /**
     * XML editor allowing to read and write XML files
-    * @see XMLReaderWriter
+    * @see JMusicHubModel
     */
-    private XMLReaderWriter xmlEditor;
+    private JMusicHubModel xmlEditor;
 
     /**
     * List of the registered playlists
@@ -52,8 +52,8 @@ public class JMusicHub{
     *
     * @author Gaël Lejeune
     */
-    public JMusicHub() {
-        this.xmlEditor = new XMLReaderWriter();
+    public JMusicHubController() {
+        this.xmlEditor = new JMusicHubModel();
         /* Load of all the XML files */
         try {
             this.playlists = this.xmlEditor.readPlaylistXML("files/playlists.xml");
@@ -117,9 +117,7 @@ public class JMusicHub{
                 return this.albums.get(i);
             }
         }
-        if (!found) {
-            return null;
-        }
+        return null;
     }
 
     /**
@@ -136,9 +134,7 @@ public class JMusicHub{
                 return this.playlists.get(i);
             }
         }
-        if (!found) {
-            return null;
-        }
+        return null;
     }
 
     /**
@@ -151,11 +147,10 @@ public class JMusicHub{
         boolean found = false;
         for (int i = 0; i < this.elements.size(); i++) {
             if (this.elements.get(i) instanceof AudioBook) {
-                songs.add((AudioBook)this.elements.get(i));
+                songs.add((Song)this.elements.get(i));
             }
         }
         while(songs.size() > 0) {
-            String author = songs.get(0).getAuthor();
             System.out.println("\nAuthor : "+author+"\n");
             for (int i = 0; i < songs.size(); i++) {
                 if (!songs.get(i).getArtist().equals(author)) {
@@ -166,9 +161,9 @@ public class JMusicHub{
             }
         }
         if(!found) {
-          return null;
+            return null;
         } else {
-          return songs;
+            return songs;
         }
     }
 
@@ -186,7 +181,6 @@ public class JMusicHub{
             }
         }
         while(audioBooks.size() > 0) {
-            String author = audioBooks.get(0).getAuthor();
             System.out.println("\nAuthor : " + author+"\n");
             for (int i=0;i<audioBooks.size();i++) {
                 if (!audioBooks.get(i).getAuthor().equals(author)) {
@@ -197,9 +191,9 @@ public class JMusicHub{
             }
         }
         if(!found) {
-          return null;
+            return null;
         } else {
-          return audioBooks;
+            return audioBooks;
         }
     }
 
@@ -250,25 +244,24 @@ public class JMusicHub{
             if (this.albums.get(i).getTitle().equals(title)) {
                 found = true;
                 album = this.albums.get(i);
+                break;
             }
         }
         if (found) {
-          LinkedList<Song> songs = album.getSongs();
-          LinkedList<Song> songsSort = new LinkedList<Song>();
-          int j=0;
-          while(songs.size() > 0) {
-            Genre genre = songs.get(0).getGenre();
-            System.out.println("\nSongs with genre : " + genre);
-            for(int i = 0; i < songs.size(); i++) {
-              if(songs.get(i).getGenre().equals(genre)) {
-                songsSort.get(j) = songs.get(i);
-                songs.remove(i);
-                j++;
-                i--;
-              }
+            LinkedList<Song> songs = album.getSongs();
+            LinkedList<Song> songsSort = new LinkedList<Song>();
+            int j=0;
+            while(songs.size() > 0) {
+                Genre genre = songs.get(0).getGenre();
+                for(int i = 0; i < songs.size(); i++) {
+                    if(songs.get(i).getGenre().equals(genre)) {
+                        songsSort.add(songs.get(i));
+                        songs.remove(i);
+                        i--;
+                    }
+                }
             }
-          }
-          return songsSort;
+            return songsSort;
         } else {
             return null;
         }
@@ -279,17 +272,17 @@ public class JMusicHub{
     * @author Steve Chauvreau-Manat
     */
     public String help() {
-      String helpString = "\n- 1 : display all registered elements"
-      +"\n- 2 : display all registered albums"
-      +"\n- 3 : display all registered playlists"
-      +"\n- 4 : display a specific registered album"
-      +"\n- 5 : display a specific registered playlist"
-      +"\n- 6 : display all artist's songs"
-      +"\n- 7 : display all author's audiobooks"
-      +"\n- 8 : display all albums release by date"
-      +"\n- 9 : display all songs sorted by genre"
-      +"\n- 10 : exit the jMusicHub"
-      +"\n- h : help with details of previous commands";
+        return "\n- 1 : display all registered elements"
+        +"\n- 2 : display all registered albums"
+        +"\n- 3 : display all registered playlists"
+        +"\n- 4 : display a specific registered album"
+        +"\n- 5 : display a specific registered playlist"
+        +"\n- 6 : display all artist's songs"
+        +"\n- 7 : display all author's audiobooks"
+        +"\n- 8 : display all albums release by date"
+        +"\n- 9 : display all songs sorted by genre"
+        +"\n- 10 : exit the jMusicHub"
+        +"\n- h : help with details of previous commands";
     }
 
     /**
@@ -586,7 +579,7 @@ public class JMusicHub{
 
     /**
     * Create XML files containing the registered playlists, elements, and albums using the class XML editor
-    * @see         XMLReaderWriter
+    * @see         JMusicHubModel
     * @author      Gaël Lejeune
     */
     public void save() {
@@ -595,7 +588,7 @@ public class JMusicHub{
         this.xmlEditor.writePlaylistXML("files/playlists.xml", this.playlists);
     }
 
-    public void editDatabase(JMusicHub jMusicHub) {
+    public void editDatabase() {
         while(true) {
             System.out.println(" What you want to do ? Hit a button to make changes.");
             System.out.println("h : show the help\t\t|\tm : return to the menu");
@@ -612,31 +605,31 @@ public class JMusicHub{
                 break;
 
                 case "c":// ajouter une chanson
-                jMusicHub.addSong();
+                this.addSong();
                 break;
 
                 case "a":// ajouter un album
-                jMusicHub.addAlbum();
+                this.addAlbum();
                 break;
 
                 case "+"://ajout d'une chanson existante à un album existant
-                jMusicHub.addSongToAlbum();
+                this.addSongToAlbum();
                 break;
 
                 case "l":// ajouter un livre audio
-                jMusicHub.addAudioBook();
+                this.addAudioBook();
                 break;
 
                 case "p":
-                jMusicHub.createPlaylistFromExisting();
+                this.createPlaylistFromExisting();
                 break;
 
                 case "-":
-                jMusicHub.deletePlaylist();
+                this.deletePlaylist();
                 break;
 
                 case "s":
-                jMusicHub.save();
+                this.save();
                 break;
             }
             System.out.println("\n\n\n");
@@ -649,75 +642,75 @@ public class JMusicHub{
     * @author Gaël Lejeune and Steve Chauvreau-Manat
     */
     /*public static void main(String[] args) {
-        System.out.println("\n\nWelcome in JMusicHub,");
-        System.out.println("Reading library...\n\n");
-        JMusicHub jMusicHub = new JMusicHub();
-        System.out.println("Library loaded, type any command to begin using jMusicHub\nType \"h\" for help\n");
-        Scanner scanner = new Scanner (System.in);
-        while(true) {
-            String command = scanner.nextLine();
-            switch (command) {
-                case "1" : // Show albums
-                System.out.println("\t\t Album titles sorted by them date:");
-                LinkedList<Album> albumList = jMusicHub.getAlbumByReleaseDate();
-                for (int i = 0; i < albumList.size(); i++) {
-                    System.out.println("\n"+albumList.get(i) + "\n");
-                }
-                break;
+    System.out.println("\n\nWelcome in JMusicHub,");
+    System.out.println("Reading library...\n\n");
+    JMusicHub jMusicHub = new JMusicHub();
+    System.out.println("Library loaded, type any command to begin using jMusicHub\nType \"h\" for help\n");
+    Scanner scanner = new Scanner (System.in);
+    while(true) {
+    String command = scanner.nextLine();
+    switch (command) {
+    case "1" : // Show albums
+    System.out.println("\t\t Album titles sorted by them date:");
+    LinkedList<Album> albumList = jMusicHub.getAlbumByReleaseDate();
+    for (int i = 0; i < albumList.size(); i++) {
+    System.out.println("\n"+albumList.get(i) + "\n");
+}
+break;
 
-                case "2" : // Show songs
-                System.out.println("\t\t Song titles sorted by them genre:");
-                //TODO
-                jMusicHub.getSongByGenre();
-                break;
+case "2" : // Show songs
+System.out.println("\t\t Song titles sorted by them genre:");
+//TODO
+jMusicHub.getSongByGenre();
+break;
 
-                case "3" : // Show audiobooks
-                System.out.println("\t\t AudioBook titles sorted by them author:");
-                //TODO
-                jMusicHub.displayAudioBooksByAuthor();
-                break;
+case "3" : // Show audiobooks
+System.out.println("\t\t AudioBook titles sorted by them author:");
+//TODO
+jMusicHub.displayAudioBooksByAuthor();
+break;
 
-                case "4" : // Show playlists
-                System.out.println("\t\t Playlist names sorted by alphabetical order:");
-                System.out.println("\nExisting playlists :\n");
-                for (int i = 0; i < jMusicHub.getPlaylists().size(); i++) {
-                    System.out.println(jMusicHub.getPlaylists().get(i) + "\n");
-                }
-                break;
+case "4" : // Show playlists
+System.out.println("\t\t Playlist names sorted by alphabetical order:");
+System.out.println("\nExisting playlists :\n");
+for (int i = 0; i < jMusicHub.getPlaylists().size(); i++) {
+System.out.println(jMusicHub.getPlaylists().get(i) + "\n");
+}
+break;
 
-                case "5" : // Select an album
-                System.out.println(jMusicHub.getSpecificAlbum().toString() + "\n");
-                break;
+case "5" : // Select an album
+System.out.println(jMusicHub.getSpecificAlbum().toString() + "\n");
+break;
 
-                case "6" : // Select a playlist
-                System.out.println(jMusicHub.getSpecificPlaylist() + "\n");
-                break;
+case "6" : // Select a playlist
+System.out.println(jMusicHub.getSpecificPlaylist() + "\n");
+break;
 
-                case "7" : // Select all the song of an artist
-                jMusicHub.getSongsByArtist();
-                // selectArtist7(util, sc);
-                break;
+case "7" : // Select all the song of an artist
+jMusicHub.getSongsByArtist();
+// selectArtist7(util, sc);
+break;
 
-                case "8" : // Select all the audiobooks of an author
-                jMusicHub.getAudioBooksByAuthor();
-                break;
+case "8" : // Select all the audiobooks of an author
+jMusicHub.getAudioBooksByAuthor();
+break;
 
-                case "9" : // Change the content of the application
-                jMusicHub.editDatabase(jMusicHub);
-                break;
+case "9" : // Change the content of the application
+jMusicHub.editDatabase(jMusicHub);
+break;
 
-                case "10" :// Quit the application
-                System.out.println("\t\t Thank you for you time, have a nice day!\n");
-                System.out.println("\t\t\t\t\tSigned by nope.\n\n\n");
-                System.exit(0);
-                break;
-                case "h" ://Display the help
-                jMusicHub.help();
-                break;
-                default:
-                System.out.println("\nWrong command, press \"h\" for help.");
-                break;
-            }
-        }
-    }*/
+case "10" :// Quit the application
+System.out.println("\t\t Thank you for you time, have a nice day!\n");
+System.out.println("\t\t\t\t\tSigned by nope.\n\n\n");
+System.exit(0);
+break;
+case "h" ://Display the help
+jMusicHub.help();
+break;
+default:
+System.out.println("\nWrong command, press \"h\" for help.");
+break;
+}
+}
+}*/
 }

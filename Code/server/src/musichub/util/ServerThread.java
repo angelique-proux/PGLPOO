@@ -18,7 +18,7 @@ public class ServerThread extends Thread {
   private Socket socket;
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
-  private JMusicHub jMusicHub;
+  private JMusicHubController controller;
 
   public ServerThread(Socket socket) {
     this.socket = socket;
@@ -38,7 +38,7 @@ public class ServerThread extends Thread {
             switch (command) {
               case "1" : //Send all Elements
                 output.writeObject("\t\tSongs and AudioBooks sorted by alphabetical order:\n");
-                output.writeObject(jMusicHub.getElements());
+                output.writeObject(controller.getElements());
                 output.writeObject("Which one would you like to hear? (Enter the number)");
                 output.writeObject("What do you want? (Enter the number)\n1- Listen the playlist\n2- More informtion");
                 if(((String) input.readObject())=="1") {
@@ -50,7 +50,7 @@ public class ServerThread extends Thread {
 
               case "2" : //Send all Albums
                 output.writeObject("\t\tAlbums sorted by alphabetical order:\n");
-                output.writeObject(jMusicHub.getAlbums());
+                output.writeObject(controller.getAlbums());
                 output.writeObject("Which one would you like to hear? (Enter the number)");
                 output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
                 if(((String) input.readObject())=="1") {
@@ -62,7 +62,7 @@ public class ServerThread extends Thread {
 
               case "3" : // Send all playlists
                 output.writeObject("\t\t Playlist names sorted by alphabetical order:\nExisting playlists :\n\n");
-                output.writeObject(jMusicHub.getPlaylists());
+                output.writeObject(controller.getPlaylists());
                 output.writeObject("Which one would you like to hear? (Enter the number)");
                 output.writeObject("What do you want? (Enter the number)\n1- Listen the playlist\n2- More informtion");
                 if(((String) input.readObject())=="1") {
@@ -75,7 +75,7 @@ public class ServerThread extends Thread {
               case "4" : // Select and send an album
                 output.writeObject("\nName of the album to display :\n");
                 String albumTitle = (String) input.readObject();  /* Album title entered by the user */
-                Album album = jMusicHub.getSpecificAlbum(albumTitle);
+                Album album = controller.getSpecificAlbum(albumTitle);
                 if (album==null) {
                     output.writeObject("No album found.\n");
                 } else {
@@ -92,7 +92,7 @@ public class ServerThread extends Thread {
               case "5" : // Select and send a playlist
                 output.writeObject("\nName of the playlist :\n");
                 String name = (String) input.readObject();
-                Playlist playlist = jMusicHub.getSpecificPlaylist(name);
+                Playlist playlist = controller.getSpecificPlaylist(name);
                 if (playlist==null) {
                     output.writeObject("No playlist found.\n");
                 } else {
@@ -108,7 +108,7 @@ public class ServerThread extends Thread {
 
               case "6" : // Select and send all artist's songs
                 output.writeObject("\t\tArtist's song names sorted by alphabetical order:\nArtist's name :\n\n");
-                LinkedList<Song> artistSongs = jMusicHub.getSongsByArtist((String) input.readObject());
+                LinkedList<Song> artistSongs = controller.getSongsByArtist((String) input.readObject());
                 if(artistSongs==null) {
                   output.writeObject("No artist with this name or no artist's song found.\n");
                 } else {
@@ -125,7 +125,7 @@ public class ServerThread extends Thread {
 
               case "7" : // Select and send all author's audiobooks
                 output.writeObject("\t\t AudioBook titles sorted by them author:\nAuthor's name :\n\n");
-                LinkedList<AudioBook> authorAudioBooks = jMusicHub.getAudioBooksByAuthor((String) input.readObject());
+                LinkedList<AudioBook> authorAudioBooks = controller.getAudioBooksByAuthor((String) input.readObject());
                 if(authorAudioBooks==null) {
                   output.writeObject("No author with this name or no author's audio book found.\n");
                 } else {
@@ -142,7 +142,8 @@ public class ServerThread extends Thread {
 
               case "8" : // Send all albums release by date
                 output.writeObject("\t\tAlbum titles sorted by them date:\nAlbums ordered by release date :\n\n");
-                output.writeObject(jMusicHub.getAlbumByReleaseDate());
+                //TODO(Exception handling)
+                // output.writeObject(controller.getAlbumByReleaseDate());
                 output.writeObject("Which one would you like to hear? (Enter the number)");
                 output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
                 if(((String) input.readObject())=="1") {
@@ -154,7 +155,7 @@ public class ServerThread extends Thread {
 
               case "9" : // Send all songs sorted by genre
                 output.writeObject("\t\t Song titles sorted by them genre:\nName of the album to display :");
-                LinkedList<Song> songs = jMusicHub.getSongByGenre((String) input.readObject()); //Album title entered by the user
+                LinkedList<Song> songs = controller.getSongByGenre((String) input.readObject()); //Album title entered by the user
                 if(songs==null) {
                   output.writeObject("\nNo album found.\n");
                 } else {
@@ -175,7 +176,7 @@ public class ServerThread extends Thread {
                 break;
 
               case "h" ://Display the help
-                output.writeObject(jMusicHub.help());
+                output.writeObject(controller.help());
                 break;
 
               default:

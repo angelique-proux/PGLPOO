@@ -13,7 +13,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.text.Normalizer;
 
-/** XMLReaderWriter class allowing to read and write xml files
+/** JMusicHubModel class allowing to read and write xml files
  * Read the different XML of the jMusicHub program
  *
  * Version : 1.2
@@ -23,18 +23,18 @@ import java.text.Normalizer;
  * @author Gaël Lejeune (Based on the work of Felicia Ionascu)
  */
 
-public class XMLReaderWriter{
+public class JMusicHubModel{
 	private TransformerFactory transformerFactory;
 	private Transformer transformer;
 	private DocumentBuilderFactory documentFactory;
 	private DocumentBuilder documentBuilder;
 
 	/**
-	 * XMLReaderWriter constructor
+	 * JMusicHubModel constructor
 	 *
 	 * @author Felicia Ionascu
 	 */
-	public XMLReaderWriter() {
+	public JMusicHubModel() {
 		try {
 			transformerFactory = TransformerFactory.newInstance();
 			transformer = transformerFactory.newTransformer();

@@ -12,7 +12,7 @@ public class ServerConnection
 		Scanner scanner = new Scanner (System.in);
 		System.out.println("Which mod do you want ? (active/passive)");
 		String command = scanner.nextLine();
-		if(command=="active") {
+		if(command.equals("active")) {
 			
 		} else {
 			AbstractServer as = new Server();
