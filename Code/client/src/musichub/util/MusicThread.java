@@ -13,8 +13,8 @@ public class MusicThread extends Thread {
   private boolean nouvAudio = true;
   private AudioInputStream musicToListen;
   private SourceDataLine line;
-  boolean stopMusic = false;
-  byte[] samples = new byte[4096];
+  private boolean stopMusic = false;
+  private byte[] samples = new byte[4096];
 
   public MusicThread(Audio audio) {
     this.audio = audio;
@@ -24,13 +24,12 @@ public class MusicThread extends Thread {
 
   public void run() {
     Scanner scanner = new Scanner (System.in);
+    int count;
     if(audio instanceof Song) {
       System.out.println((Song) audio);
     } else if(audio instanceof AudioBook) {
       System.out.println((AudioBook) audio);
     }
-    int count;
-    this.stopMusic = false;
     try {
       this.line.open(musicToListen.getFormat());
     } catch (LineUnavailableException e) {
@@ -40,30 +39,13 @@ public class MusicThread extends Thread {
 
     while(running) {
       try {
-        if(!this.nouvAudio){
-          this.musicToListen.reset();
-        }
         count = this.musicToListen.read(samples, 0, samples.length);
         if (count==-1) {
+          this.endThread();
           break;
         }
-        if (this.stopMusic) {
-          this.musicToListen.mark(10);
-          break;
-        }
-        this.line.write(samples, 0, count);
-        System.out.println("Write \"pause\" if you want to pause th music\nWrite \"stop\" if you want to stop the music\n");
-        switch(scanner.nextLine()) {
-          case "pause":
-            this.stopMusic = true;
-            this.nouvAudio = false;
-            break;
-          case "stop":
-            this.endThread();
-            break;
-          default:
-            System.out.println("This is not a command");
-            break;
+        if(!this.stopMusic) {
+          this.line.write(samples, 0, count);
         }
       } catch(IOException ex) {
         ex.printStackTrace();
@@ -75,6 +57,14 @@ public class MusicThread extends Thread {
 
   public void endThread() {
     this.running = false;
+  }
+
+  public void pauseRestart() {
+    if(this.stopMusic) {
+      this.stopMusic = false;
+    } else {
+      this.stopMusic = true;
+    }
   }
 
   public static AudioInputStream getAudioInputStreamFromFile(String filepath) {

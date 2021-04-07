@@ -28,7 +28,7 @@ public class JMusicHubController implements Controller {
     */
     private JMusicHubModel model;
 
-    private JMusicHubView view;
+    private View view;
 
     /**
     * List of the registered playlists
@@ -48,8 +48,6 @@ public class JMusicHubController implements Controller {
     */
     private LinkedList<Audio> elements;
 
-
-
     /**
     * Album constructor
     * Initialize all the attributes and fill the lists by reading the XML files
@@ -59,6 +57,26 @@ public class JMusicHubController implements Controller {
     public JMusicHubController(JMusicHubModel model) {
         this.model = model;
         this.view = new JMusicHubView(this);
+        /* Load of all the XML files */
+        try {
+            this.playlists = this.model.readPlaylistXML("files/playlists.xml");
+            this.albums = this.model.readAlbumXML("files/albums.xml");
+            this.elements = this.model.readElementXML("files/elements.xml");
+        } catch (MissingFileException ex) {
+            System.out.println(ex.getMessage());
+        }
+        this.view.display();
+    }
+
+    /**
+    * Album constructor
+    * Initialize all the attributes and fill the lists by reading the XML files
+    *
+    * @author Gaël Lejeune
+    */
+    public JMusicHubController(JMusicHubModel model, View view) {
+        this.model = model;
+        this.view = view;
         /* Load of all the XML files */
         try {
             this.playlists = this.model.readPlaylistXML("files/playlists.xml");

@@ -18,6 +18,7 @@ public class ServerThread extends Thread implements View {
   private Socket socket;
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
+  private JMusicHubModel model;
   private JMusicHubController controller;
 
   public ServerThread(Socket socket) {
@@ -25,7 +26,8 @@ public class ServerThread extends Thread implements View {
   }
 
   public void run() {
-        this.display();
+    this.model = new JMusicHubModel();
+    this.controller = new JMusicHubController(model, this);
   }
 
   public void display() {

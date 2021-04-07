@@ -28,12 +28,12 @@ public class Client {
 			System.out.println((String) input.readObject());
 			Scanner scan = new Scanner (System.in);
 
-			PlayMusicFacade playMusicFacade = new PlayMusicFacade();
+			SingletonMusic music = SingletonMusic.getInstance();
 
 			while(true) {
 					String command = scan.nextLine();
 					output.writeObject(command);
-					switch (command) {
+					switch(command) {
 							case "1": //Receive and shows all Elements
 								System.out.println((String) input.readObject());
 								LinkedList<Audio> audios = (LinkedList<Audio>) input.readObject();
@@ -45,8 +45,7 @@ public class Client {
 								System.out.println(input.readObject());
 								output.writeObject(scan.nextLine());
 								if(((boolean) input.readObject())) {
-									playMusicFacade.setContent(oneAudio.getContent());
-									playMusicFacade.play();
+									music.playMusic(oneAudio);
 								} else {
 									System.out.println(oneAudio);
 								}
@@ -65,8 +64,7 @@ public class Client {
 								if(((boolean) input.readObject())) {
 									LinkedList<Song> song = oneAlbum.getSongs();
 									for(int i=0;i<song.size();i++) {
-										playMusicFacade.setContent(song.get(i).getContent());
-										playMusicFacade.play();
+										music.playMusic(song.get(i));
 									}
 								} else {
 									System.out.println(oneAlbum);
@@ -86,8 +84,7 @@ public class Client {
 								if(((boolean) input.readObject())) {
 									LinkedList<Audio> audio = onePlaylist.getAudios();
 									for(int i=0;i<audio.size();i++) {
-										playMusicFacade.setContent(audio.get(i).getContent());
-										playMusicFacade.play();
+										music.playMusic(audio.get(i));
 									}
 								} else {
 									System.out.println(onePlaylist);
@@ -106,8 +103,7 @@ public class Client {
 									if(((boolean) input.readObject())) {
 										LinkedList<Song> song = album.getSongs();
 										for(int i=0;i<song.size();i++) {
-											playMusicFacade.setContent(song.get(i).getContent());
-											playMusicFacade.play();
+											music.playMusic(song.get(i));
 										}
 									} else {
 										System.out.println(album);
@@ -127,8 +123,7 @@ public class Client {
 									if(((boolean) input.readObject())) {
 										LinkedList<Audio> audio = playlist.getAudios();
 										for(int i=0;i<audio.size();i++) {
-											playMusicFacade.setContent(audio.get(i).getContent());
-											playMusicFacade.play();
+											music.playMusic(audio.get(i));
 										}
 									} else {
 										System.out.println(playlist);
@@ -151,8 +146,7 @@ public class Client {
 									System.out.println(input.readObject());
 									output.writeObject(scan.nextLine());
 									if(((boolean) input.readObject())) {
-										playMusicFacade.setContent(song.getContent());
-										playMusicFacade.play();
+										music.playMusic(song);
 									} else {
 										System.out.println(song);
 									}
@@ -174,8 +168,7 @@ public class Client {
 									System.out.println((String) input.readObject());
 									output.writeObject(scan.nextLine());
 									if(((boolean) input.readObject())) {
-										playMusicFacade.setContent(audiobook.getContent());
-										playMusicFacade.play();
+										music.playMusic(audiobook);
 									} else {
 										System.out.println(audiobook);
 									}
@@ -195,8 +188,7 @@ public class Client {
 								if(((boolean) input.readObject())) {
 									LinkedList<Song> songs = one_Album.getSongs();
 									for(int i=0;i<songs.size();i++) {
-										playMusicFacade.setContent(songs.get(i).getContent());
-										playMusicFacade.play();
+										music.playMusic(songs.get(i));
 									}
 								} else {
 									System.out.println(one_Album);
@@ -222,8 +214,7 @@ public class Client {
 									System.out.println((String) input.readObject());
 									output.writeObject(scan.nextLine());
 									if(((boolean) input.readObject())) {
-										playMusicFacade.setContent(song.getContent());
-										playMusicFacade.play();
+										music.playMusic(song);
 									} else {
 										System.out.println(song);
 									}
