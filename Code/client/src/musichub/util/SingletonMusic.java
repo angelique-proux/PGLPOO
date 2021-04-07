@@ -1,8 +1,9 @@
 package util;
 
+import business.Audio;
+
 import java.io.*;
 import java.net.*;
-import business.*;
 
 public class SingletonMusic {
   private static SingletonMusic uniqueInstance = null;
@@ -10,21 +11,21 @@ public class SingletonMusic {
 
   private SingletonMusic() {}
 
-  public static synchronized SingletonMusic getInstance() {
-    if(uniqueInstance==null) {
-      uniqueInstance = new SingletonMusic();
+  public synchronized SingletonMusic getInstance(Audio audio) {
+    if(this.uniqueInstance==null) {
+      this.uniqueInstance = new SingletonMusic();
+      this.music = new MusicThread(audio);
     }
-    return uniqueInstance;
+    return this.uniqueInstance;
   }
 
-  public void playMusic(Audio audio) {
-    this.music = new MusicThread(audio);
+  public void playMusic() {
     this.music.start();
   }
 
   public void stopMusic() {
     this.music.endThread();
     this.music = null;
-    uniqueInstance = null;
+    this.uniqueInstance = null;
   }
 }
