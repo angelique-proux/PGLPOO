@@ -8,8 +8,6 @@ import java.util.UUID;
  *
  * Version : 1.6
  *
- * Date : 30/02/2001
- *
  * @author       Gaël Lejeune
  */
 public class Album implements AudioList {
