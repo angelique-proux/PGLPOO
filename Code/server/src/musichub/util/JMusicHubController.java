@@ -9,7 +9,7 @@ import java.util.UUID;
 import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-
+import java.net.*;
 
 /** JMusicHub Class is the main class of the JMusicHub program.
 *
@@ -56,7 +56,8 @@ public class JMusicHubController implements Controller {
     */
     public JMusicHubController(JMusicHubModel model) {
         this.model = model;
-        this.view = new JMusicHubView(this);
+        this.view = new JMusicHubActiveView(this);
+
         /* Load of all the XML files */
         try {
             this.playlists = this.model.readPlaylistXML("files/playlists.xml");
@@ -74,9 +75,10 @@ public class JMusicHubController implements Controller {
     *
     * @author Gaël Lejeune
     */
-    public JMusicHubController(JMusicHubModel model, View view) {
+    public JMusicHubController(JMusicHubModel model, Socket socket) {
         this.model = model;
-        this.view = view;
+        this.view = new JMusicHubPassiveView(this,socket);
+
         /* Load of all the XML files */
         try {
             this.playlists = this.model.readPlaylistXML("files/playlists.xml");

@@ -1,7 +1,6 @@
 package util;
 
 import business.*;
-import java.io.File;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -20,11 +19,11 @@ import java.util.regex.Matcher;
 *
 * @author Gaël Lejeune and Steve Chauvreau-Manat (based on the work of Angélique Proux & Manelle Nouar)
 */
-public class JMusicHubView implements View {
+public class JMusicHubActiveView implements View {
 
     private JMusicHubController controller;
 
-    public JMusicHubView(JMusicHubController controller) {
+    public JMusicHubActiveView(JMusicHubController controller) {
         this.controller = controller;
     }
 
