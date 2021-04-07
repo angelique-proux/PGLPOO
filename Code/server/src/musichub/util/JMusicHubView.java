@@ -20,16 +20,15 @@ import java.util.regex.Matcher;
 *
 * @author Gaël Lejeune and Steve Chauvreau-Manat (based on the work of Angélique Proux & Manelle Nouar)
 */
-public class JMusicHubView {
+public class JMusicHubView implements View {
 
 
     private JMusicHubController controller;
 
     private JMusicHubModel model;
 
-    public JMusicHubView(JMusicHubController controller, JMusicHubModel model) {
+    public JMusicHubView(JMusicHubController controller) {
         this.controller = controller;
-        this.model = model;
     }
 
     /**
@@ -37,7 +36,7 @@ public class JMusicHubView {
     * @param       args Arguments of the function
     * @author Gaël Lejeune and Steve Chauvreau-Manat
     */
-    public void console() {
+    public void display() {
         System.out.println("\n\nWelcome in JMusicHub,");
         System.out.println("Reading library...\n\n");
         System.out.println("Library loaded, type any command to begin using jMusicHub\nType \"h\" for help\n");

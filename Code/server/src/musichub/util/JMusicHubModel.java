@@ -23,7 +23,7 @@ import java.text.Normalizer;
  * @author Gaël Lejeune (Based on the work of Felicia Ionascu)
  */
 
-public class JMusicHubModel{
+public class JMusicHubModel implements Model{
 	private TransformerFactory transformerFactory;
 	private Transformer transformer;
 	private DocumentBuilderFactory documentFactory;

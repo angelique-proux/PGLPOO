@@ -20,13 +20,15 @@ import java.util.regex.Matcher;
 *
 * @author Gaël Lejeune and Steve Chauvreau-Manat (based on the work of Angélique Proux & Manelle Nouar)
 */
-public class JMusicHubController {
+public class JMusicHubController implements Controller {
 
     /**
     * XML editor allowing to read and write XML files
     * @see JMusicHubModel
     */
-    private JMusicHubModel xmlEditor;
+    private JMusicHubModel model;
+
+    private JMusicHubView view;
 
     /**
     * List of the registered playlists
@@ -46,6 +48,8 @@ public class JMusicHubController {
     */
     private LinkedList<Audio> elements;
 
+
+
     /**
     * Album constructor
     * Initialize all the attributes and fill the lists by reading the XML files
@@ -53,15 +57,17 @@ public class JMusicHubController {
     * @author Gaël Lejeune
     */
     public JMusicHubController() {
-        this.xmlEditor = new JMusicHubModel();
+        this.model = new JMusicHubModel();
+        this.view = new JMusicHubView(this);
         /* Load of all the XML files */
         try {
-            this.playlists = this.xmlEditor.readPlaylistXML("files/playlists.xml");
-            this.albums = this.xmlEditor.readAlbumXML("files/albums.xml");
-            this.elements = this.xmlEditor.readElementXML("files/elements.xml");
+            this.playlists = this.model.readPlaylistXML("files/playlists.xml");
+            this.albums = this.model.readAlbumXML("files/albums.xml");
+            this.elements = this.model.readElementXML("files/elements.xml");
         } catch (MissingFileException ex) {
             System.out.println(ex.getMessage());
         }
+        this.view.display();
     }
 
     /**
@@ -583,9 +589,9 @@ public class JMusicHubController {
     * @author      Gaël Lejeune
     */
     public void save() {
-        this.xmlEditor.writeElementXML("files/elements.xml", this.elements);
-        this.xmlEditor.writeAlbumXML("files/albums.xml", this.albums);
-        this.xmlEditor.writePlaylistXML("files/playlists.xml", this.playlists);
+        this.model.writeElementXML("files/elements.xml", this.elements);
+        this.model.writeAlbumXML("files/albums.xml", this.albums);
+        this.model.writePlaylistXML("files/playlists.xml", this.playlists);
     }
 
     public void editDatabase() {
