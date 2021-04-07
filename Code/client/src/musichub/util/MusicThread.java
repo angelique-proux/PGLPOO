@@ -19,7 +19,6 @@ public class MusicThread extends Thread {
       System.out.println((AudioBook) audio);
     }
     while(running) {
-      try {
         System.out.println("Write \"pause\" if you want to pause th music\nWrite \"stop\" if you want to stop the music\n");
         switch(scanner.nextLine()) {
           case "pause":
@@ -31,9 +30,6 @@ public class MusicThread extends Thread {
             System.out.println("This is not a command");
             break;
         }
-      } catch(InterruptedException ex) {
-        ex.printStackTrace();
-      }
     }
   }
 

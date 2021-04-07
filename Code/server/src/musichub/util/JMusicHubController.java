@@ -56,8 +56,8 @@ public class JMusicHubController implements Controller {
     *
     * @author Gaël Lejeune
     */
-    public JMusicHubController() {
-        this.model = new JMusicHubModel();
+    public JMusicHubController(JMusicHubModel model) {
+        this.model = model;
         this.view = new JMusicHubView(this);
         /* Load of all the XML files */
         try {
@@ -157,7 +157,6 @@ public class JMusicHubController implements Controller {
             }
         }
         while(songs.size() > 0) {
-            System.out.println("\nAuthor : "+author+"\n");
             for (int i = 0; i < songs.size(); i++) {
                 if (!songs.get(i).getArtist().equals(author)) {
                     songs.remove(i);
@@ -187,7 +186,6 @@ public class JMusicHubController implements Controller {
             }
         }
         while(audioBooks.size() > 0) {
-            System.out.println("\nAuthor : " + author+"\n");
             for (int i=0;i<audioBooks.size();i++) {
                 if (!audioBooks.get(i).getAuthor().equals(author)) {
                     audioBooks.remove(i);

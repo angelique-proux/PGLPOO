@@ -13,7 +13,8 @@ public class ServerConnection
 		System.out.println("Which mod do you want ? (active/passive)");
 		String command = scanner.nextLine();
 		if(command.equals("active")) {
-			
+			JMusicHubModel model = new JMusicHubModel();
+			JMusicHubController controller = new JMusicHubController(model);
 		} else {
 			AbstractServer as = new Server();
 			String ip = "localhost";

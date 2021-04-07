@@ -22,10 +22,7 @@ import java.util.regex.Matcher;
 */
 public class JMusicHubView implements View {
 
-
     private JMusicHubController controller;
-
-    private JMusicHubModel model;
 
     public JMusicHubView(JMusicHubController controller) {
         this.controller = controller;
@@ -54,36 +51,33 @@ public class JMusicHubView implements View {
                 break;
 
                 case "2" : // Show songs
+                System.out.println("\nEnter an album's title : ");
+                LinkedList<Song> songs = this.controller.getSongByGenre(scanner.nextLine());
                 System.out.println("\t\t Song titles sorted by them genre:");
-                String album = scanner.nextLine();
-                LinkedList<Song> songs = this.controller.getSongByGenre(album);
                 Genre currentGenre = songs.get(0).getGenre();
-                while(songs.size()>0){
-                    System.out.println("\nSongs with Genre : "+ currentGenre);
-                    for (int i = 0; i < songs.size() ; i++) {
-                        if (songs.get(i).getGenre().equals(currentGenre)) {
-                            System.out.println(songs.get(i));
-                            songs.remove(i);
-                            i--;
-                        }
-                    }
+                System.out.println("\nSongs with Genre : "+ currentGenre);
+                for (int i = 0; i < songs.size() ; i++) {
+                  if(!songs.get(i).getGenre().equals(currentGenre)) {
+                    currentGenre = songs.get(i).getGenre();
+                    System.out.println("\nSongs with Genre : "+ currentGenre+"\n");
+                  }
+                  System.out.println(songs.get(i));
                 }
                 break;
 
                 case "3" : // Show audiobooks
+                //TODO
+                System.out.println("Enter an author's name : ");
+                LinkedList<AudioBook> audioBooks =  this.controller.getAudioBooksByAuthor(scanner.nextLine());
                 System.out.println("\t\t AudioBook titles sorted by them author:");
-                String author = scanner.nextLine();
-                LinkedList<AudioBook> audioBooks =  this.controller.getAudioBooksByAuthor(author);
                 String currentAuthor = audioBooks.get(0).getAuthor();
-                while(audioBooks.size()>0){
-                    System.out.println("\nAuthor : "+ currentAuthor);
-                    for (int i = 0; i < audioBooks.size() ; i++) {
-                        if (audioBooks.get(i).getAuthor().equals(currentAuthor)) {
-                            System.out.println(audioBooks.get(i));
-                            audioBooks.remove(i);
-                            i--;
-                        }
+                System.out.println("\nAuthor : "+ currentAuthor);
+                for (int i = 0; i < audioBooks.size() ; i++) {
+                    if(!audioBooks.get(i).getAuthor().equals(currentAuthor)) {
+                      currentAuthor = audioBooks.get(i).getAuthor();
+                      System.out.println("\nAuthor : "+ currentAuthor);
                     }
+                    System.out.println(audioBooks.get(i));
                 }
                 break;
 
@@ -108,6 +102,7 @@ public class JMusicHubView implements View {
                 break;
 
                 case "7" : // Select all the song of an artist
+                //TODO
                 String artistName = scanner.nextLine();
                 LinkedList<Song> songsToDisplay = controller.getSongsByArtist(artistName);
                 System.out.println("\nSongs from : " + artistName + "\n");
@@ -117,6 +112,7 @@ public class JMusicHubView implements View {
                 break;
 
                 case "8" : // Select all the audiobooks of an author
+                //TODO
                 String authorName = scanner.nextLine();
                 LinkedList<AudioBook> booksToDisplay = controller.getAudioBooksByAuthor(authorName);
                 System.out.println("\nBooks from : " + authorName + "\n");
@@ -130,16 +126,16 @@ public class JMusicHubView implements View {
                 break;
 
                 case "10" :// Quit the application
-                System.out.println("\t\t Thank you for you time, have a nice day!\n");
-                System.out.println("\t\t\t\t\tSigned by nope.\n\n\n");
-                System.exit(0);
-                break;
+                  System.out.println("\t\t Thank you for you time, have a nice day!\n");
+                  System.out.println("\t\t\t\t\tSigned by nope.\n\n\n");
+                  System.exit(0);
+                  break;
                 case "h" ://Display the help
-                controller.help();
-                break;
+                  System.out.println(controller.help());
+                  break;
                 default:
-                System.out.println("\nWrong command, press \"h\" for help.");
-                break;
+                  System.out.println("\nWrong command, press \"h\" for help.");
+                  break;
             }
         }
     }
