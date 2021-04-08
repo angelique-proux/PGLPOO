@@ -1,35 +1,33 @@
 package util;
 
 import business.*;
-
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+import javax.swing.JLabel;
 
 public class MusicThread extends Thread {
-  private Audio audio;
   private boolean running = true;
-  private boolean nouvAudio = true;
+  private boolean stopMusic = false;
   private AudioInputStream musicToListen;
   private SourceDataLine line;
-  private boolean stopMusic = false;
   private byte[] samples = new byte[4096];
 
-  public MusicThread(Audio audio) {
-    this.audio = audio;
-    this.musicToListen = getAudioInputStreamFromFile(audio.getContent());
+  public MusicThread(AudioInputStream musicToListen) {
+    this.musicToListen = musicToListen;
     this.initialiseLine();
   }
 
   public void run() {
-    Scanner scanner = new Scanner (System.in);
     int count;
-    if(audio instanceof Song) {
-      System.out.println((Song) audio);
-    } else if(audio instanceof AudioBook) {
-      System.out.println((AudioBook) audio);
-    }
+    String label = "Press \'p\' to pause the music\nPress \'p\' a second time to restart the music\nPress \'s\' to stop the music\n\n";
+    /*if(this.music.getAudio() instanceof Song) {
+      label += (Song) this.music.getAudio();
+    } else if(this.music.getAudio() instanceof AudioBook) {
+      label += (AudioBook) this.music.getAudio();
+    }*/
+    //new ConsolMusic(this,new JLabel(label));
     try {
       this.line.open(musicToListen.getFormat());
     } catch (LineUnavailableException e) {
@@ -59,12 +57,16 @@ public class MusicThread extends Thread {
     this.running = false;
   }
 
-  public void pauseRestart() {
-    if(this.stopMusic) {
-      this.stopMusic = false;
-    } else {
-      this.stopMusic = true;
-    }
+  public void pause() {
+    this.stopMusic = false;
+  }
+
+  public void restart() {
+    this.stopMusic = true;
+  }
+
+  public boolean getStatus() {
+    return this.stopMusic;
   }
 
   public static AudioInputStream getAudioInputStreamFromFile(String filepath) {

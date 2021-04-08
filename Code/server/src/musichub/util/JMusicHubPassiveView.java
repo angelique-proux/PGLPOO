@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.io.*;
 import java.net.*;
+import javax.sound.sampled.*;
 
 public class JMusicHubPassiveView implements View {
   private JMusicHubController controller;
@@ -27,6 +28,7 @@ public class JMusicHubPassiveView implements View {
       //create the streams that will handle the objects coming through the sockets
       this.input = new ObjectInputStream(socket.getInputStream());
       this.output = new ObjectOutputStream(socket.getOutputStream());
+      MusicSerializable in;
 
       output.writeObject("\nConnected to the server\nType any command to begin using jMusicHub\nType \"h\" for help\n"); //serialize and write the object to the stream
 
@@ -36,11 +38,15 @@ public class JMusicHubPassiveView implements View {
          switch (command) {
            case "1" : //Send all Elements
              output.writeObject("\t\tSongs and AudioBooks sorted by alphabetical order:\n");
-             output.writeObject(controller.getElements());
+             LinkedList<Audio> audios = controller.getElements();
+             output.writeObject(audios);
              output.writeObject("Which one would you like to hear? (Enter the number)");
+             Audio audio = audios.get((int) input.readObject());
              output.writeObject("What do you want? (Enter the number)\n1- Listen the playlist\n2- More informtion");
-             if(((String) input.readObject())=="1") {
+             if(((String) input.readObject()).equals("1")) {
                output.writeObject(true);
+               in = new MusicSerializable(audio.getContent());
+               output.writeObject(in);
              } else {
                output.writeObject(false);
              }

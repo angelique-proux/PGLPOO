@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.net.*;
+import java.io.*;
+import javax.sound.sampled.*;
 
 /** JMusicHub Class is the main class of the JMusicHub program.
 *
@@ -596,13 +598,14 @@ public class JMusicHubController implements Controller {
     }
 
     public void editDatabase() {
+        Scanner scanner = new Scanner (System.in);
+        System.out.println(" What you want to do ? Hit a button to make changes.");
+        System.out.println("h : show the help\t\t|\tm : return to the menu");
+        System.out.println("Don't forget to save all your modifications.");
         while(true) {
-            System.out.println(" What you want to do ? Hit a button to make changes.");
-            System.out.println("h : show the help\t\t|\tm : return to the menu");
-            System.out.println("Don't forget to save all your modifications.");
-            Scanner scanner = new Scanner (System.in);
+            System.out.println("JMusicHub - edit>");
             String editCommand = scanner.nextLine();
-            switch (editCommand) {
+            switch(editCommand) {
                 case "h":
                 System.out.println("Here are the commands you can use to make changes:");
                 System.out.println("c : add a song\t\t\t|\tl : add an audiobook");
@@ -638,8 +641,14 @@ public class JMusicHubController implements Controller {
                 case "s":
                 this.save();
                 break;
+
+                default:
+                  break;
             }
-            System.out.println("\n\n\n");
+            if(editCommand.equals("m")) {
+              break;
+            }
+            System.out.println("\n");
         }
     }
 }

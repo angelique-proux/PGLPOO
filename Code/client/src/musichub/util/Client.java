@@ -3,6 +3,7 @@ package util;
 import business.*;
 import java.io.*;
 import java.net.*;
+import javax.sound.sampled.*;
 import java.util.Scanner;
 import java.util.LinkedList;
 
@@ -11,6 +12,7 @@ public class Client {
 	private ObjectOutputStream output;
 	private ObjectInputStream input;
 	private Socket socket;
+	private InputStream in;
 
 	public void connect(String ip)
 	{
@@ -27,8 +29,9 @@ public class Client {
 			System.out.println("Connection to the server...\n\n");
 			System.out.println((String) input.readObject());
 			Scanner scan = new Scanner (System.in);
+			SingletonMusic music;
+			int choice;
 
-			SingletonMusic music = SingletonMusic.getInstance();
 
 			while(true) {
 					String command = scan.nextLine();
@@ -41,11 +44,14 @@ public class Client {
 									System.out.println(i+"- "+audios.get(i)+"\n");
 								}
 								System.out.println((String) input.readObject());
-								Audio oneAudio = audios.get(Integer.parseInt(scan.nextLine()));
+								choice = Integer.parseInt(scan.nextLine());
+								Audio oneAudio = audios.get(choice);
+								output.writeObject(choice);
 								System.out.println(input.readObject());
 								output.writeObject(scan.nextLine());
 								if(((boolean) input.readObject())) {
-									music.playMusic(oneAudio);
+									music = SingletonMusic.getInstance(((MusicSerializable) input.readObject()).getAudioInputStream());
+									music.playMusic();
 								} else {
 									System.out.println(oneAudio);
 								}
@@ -64,7 +70,8 @@ public class Client {
 								if(((boolean) input.readObject())) {
 									LinkedList<Song> song = oneAlbum.getSongs();
 									for(int i=0;i<song.size();i++) {
-										music.playMusic(song.get(i));
+										music = SingletonMusic.getInstance((AudioInputStream) input.readObject());
+										music.playMusic();
 									}
 								} else {
 									System.out.println(oneAlbum);
@@ -84,7 +91,8 @@ public class Client {
 								if(((boolean) input.readObject())) {
 									LinkedList<Audio> audio = onePlaylist.getAudios();
 									for(int i=0;i<audio.size();i++) {
-										music.playMusic(audio.get(i));
+										music = SingletonMusic.getInstance((AudioInputStream) input.readObject());
+										music.playMusic();
 									}
 								} else {
 									System.out.println(onePlaylist);
@@ -103,7 +111,8 @@ public class Client {
 									if(((boolean) input.readObject())) {
 										LinkedList<Song> song = album.getSongs();
 										for(int i=0;i<song.size();i++) {
-											music.playMusic(song.get(i));
+											music = SingletonMusic.getInstance((AudioInputStream) input.readObject());
+											music.playMusic();
 										}
 									} else {
 										System.out.println(album);
@@ -123,7 +132,8 @@ public class Client {
 									if(((boolean) input.readObject())) {
 										LinkedList<Audio> audio = playlist.getAudios();
 										for(int i=0;i<audio.size();i++) {
-											music.playMusic(audio.get(i));
+											music = SingletonMusic.getInstance((AudioInputStream) input.readObject());
+											music.playMusic();
 										}
 									} else {
 										System.out.println(playlist);
@@ -146,7 +156,8 @@ public class Client {
 									System.out.println(input.readObject());
 									output.writeObject(scan.nextLine());
 									if(((boolean) input.readObject())) {
-										music.playMusic(song);
+										music = SingletonMusic.getInstance((AudioInputStream) input.readObject());
+										music.playMusic();
 									} else {
 										System.out.println(song);
 									}
@@ -168,7 +179,8 @@ public class Client {
 									System.out.println((String) input.readObject());
 									output.writeObject(scan.nextLine());
 									if(((boolean) input.readObject())) {
-										music.playMusic(audiobook);
+										music = SingletonMusic.getInstance((AudioInputStream) input.readObject());
+										music.playMusic();
 									} else {
 										System.out.println(audiobook);
 									}
@@ -188,7 +200,8 @@ public class Client {
 								if(((boolean) input.readObject())) {
 									LinkedList<Song> songs = one_Album.getSongs();
 									for(int i=0;i<songs.size();i++) {
-										music.playMusic(songs.get(i));
+										music = SingletonMusic.getInstance((AudioInputStream) input.readObject());
+										music.playMusic();
 									}
 								} else {
 									System.out.println(one_Album);
@@ -214,7 +227,8 @@ public class Client {
 									System.out.println((String) input.readObject());
 									output.writeObject(scan.nextLine());
 									if(((boolean) input.readObject())) {
-										music.playMusic(song);
+										music = SingletonMusic.getInstance((AudioInputStream) input.readObject());
+										music.playMusic();
 									} else {
 										System.out.println(song);
 									}
