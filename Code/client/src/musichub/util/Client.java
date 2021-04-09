@@ -27,7 +27,7 @@ public class Client {
 			System.out.println("\n\nWelcome in JMusicHub,");
 			System.out.println("Connection to the server...\n\n");
 			System.out.println((String) input.readObject());
-			Scanner scan = new Scanner (System.in);
+			Scanner scan = new Scanner(System.in);
 			SingletonMusic music;
 			int choice;
 
@@ -250,6 +250,126 @@ public class Client {
 									}
 								}
 								break;
+
+							case "10": //Show all Artists
+								System.out.println((String) input.readObject());
+								LinkedList<String> artistsName = (LinkedList<String>) input.readObject();
+								for(int i=0;i<artistsName.size();i++) {
+									System.out.println("\n"+i+"- "+artistsName+"\n");
+								}
+								System.out.println("\n"+artistsName.size()+"- None");
+								System.out.println((String) input.readObject());
+								int numberArtistName = Integer.parseInt(scan.nextLine());
+								output.writeObject(numberArtistName);
+								if(numberArtistName==artistsName.size()) {
+									break;
+								} else if((numberArtistName<artistsName.size())&&(numberArtistName>=0)){
+									System.out.println((String) input.readObject());
+									LinkedList<Song> songsToDisplayArtist = (LinkedList<Song>) input.readObject();
+									for (int i = 0; i < songsToDisplayArtist.size(); i++) {
+											System.out.println("\n" + songsToDisplayArtist.get(i));
+									}
+									break;
+								} else {
+									System.out.println((String) input.readObject());
+									break;
+								}
+
+							case "11": //Show all Authors
+								System.out.println((String) input.readObject());
+								LinkedList<String> authorsName = (LinkedList<String>) input.readObject();
+								for(int i=0;i<authorsName.size();i++) {
+									System.out.println("\n"+i+"- "+authorsName+"\n");
+								}
+								System.out.println("\n"+authorsName.size()+"- None");
+								System.out.println((String) input.readObject());
+								int numberAuthorName = Integer.parseInt(scan.nextLine());
+								output.writeObject(numberAuthorName);
+								if(numberAuthorName==authorsName.size()) {
+									break;
+								} else if((numberAuthorName<authorsName.size())&&(numberAuthorName>=0)){
+									System.out.println((String) input.readObject());
+									LinkedList<AudioBook> booksToDisplayAuthor = (LinkedList<AudioBook>) input.readObject();
+									for (int i = 0; i < booksToDisplayAuthor.size(); i++) {
+											System.out.println("\n" + booksToDisplayAuthor.get(i));
+									}
+									break;
+								} else {
+									System.out.println((String) input.readObject());
+									break;
+								}
+
+							case "12": //Show all Genres
+								System.out.println((String) input.readObject());
+								LinkedList<Genre> genres = (LinkedList<Genre>) input.readObject();
+								for(int i=0;i<genres.size();i++) {
+									System.out.println("\n"+i+"- "+genres+"\n");
+								}
+								System.out.println("\n"+genres.size()+"- None");
+								System.out.println((String) input.readObject());
+								int numberGenre = Integer.parseInt(scan.nextLine());
+								output.writeObject(numberGenre);
+								if(numberGenre==genres.size()) {
+									break;
+								} else if((numberGenre<genres.size())&&(numberGenre>=0)){
+									System.out.println((String) input.readObject());
+									LinkedList<Song> songsToDisplayGenre = (LinkedList<Song>) input.readObject();
+									for (int i = 0; i < songsToDisplayGenre.size(); i++) {
+											System.out.println("\n" + songsToDisplayGenre.get(i));
+									}
+									break;
+								} else {
+									System.out.println((String) input.readObject());
+									break;
+								}
+
+							case "13": //Show all Categories
+								System.out.println((String) input.readObject());
+								LinkedList<Category> categories = (LinkedList<Category>) input.readObject();
+								for(int i=0;i<categories.size();i++) {
+									System.out.println("\n"+i+"- "+categories+"\n");
+								}
+								System.out.println("\n"+categories.size()+"- None");
+								System.out.println((String) input.readObject());
+								int numberCategory = Integer.parseInt(scan.nextLine());
+								output.writeObject(numberCategory);
+								if(numberCategory==categories.size()) {
+									break;
+								} else if((numberCategory<categories.size())&&(numberCategory>=0)){
+									System.out.println((String) input.readObject());
+									LinkedList<AudioBook> audioBooksToDisplayCategory = (LinkedList<AudioBook>) input.readObject();
+									for (int i = 0; i < audioBooksToDisplayCategory.size(); i++) {
+											System.out.println("\n" + audioBooksToDisplayCategory.get(i));
+									}
+									break;
+								} else {
+									System.out.println((String) input.readObject());
+									break;
+								}
+
+							case "14": //Show all Languages
+								System.out.println((String) input.readObject());
+								LinkedList<Language> languages = (LinkedList<Language>) input.readObject();
+								for(int i=0;i<languages.size();i++) {
+									System.out.println("\n"+i+"- "+languages+"\n");
+								}
+								System.out.println("\n"+languages.size()+"- None");
+								System.out.println((String) input.readObject());
+								int numberLanguage = Integer.parseInt(scan.nextLine());
+								output.writeObject(numberLanguage);
+								if(numberLanguage==languages.size()) {
+									break;
+								} else if((numberLanguage<languages.size())&&(numberLanguage>=0)){
+									System.out.println((String) input.readObject());
+									LinkedList<AudioBook> audioBooksToDisplayLanguage = (LinkedList<AudioBook>) input.readObject();
+									for (int i = 0; i < audioBooksToDisplayLanguage.size(); i++) {
+											System.out.println("\n" + audioBooksToDisplayLanguage.get(i));
+									}
+									break;
+								} else {
+									System.out.println((String) input.readObject());
+									break;
+								}
 
 							case "q" :// Quit the application
 								System.out.println((String) input.readObject());

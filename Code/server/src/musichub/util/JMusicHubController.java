@@ -399,6 +399,11 @@ public class JMusicHubController implements Controller {
         +"\n- 7 : display all author's audiobooks"
         +"\n- 8 : display all albums release by date"
         +"\n- 9 : display all songs sorted by genre"
+        +"\n- 10 : diplay all registered artists"
+        +"\n- 11 : diplay all registered authors"
+        +"\n- 12 : diplay all registered genres"
+        +"\n- 13 : diplay all registred categories"
+        +"\n- 14 : diplay all registered languages"
         +"\n- q : exit the jMusicHub"
         +"\n- h : help with details of previous commands";
     }
@@ -417,7 +422,12 @@ public class JMusicHubController implements Controller {
         +"\n- 7 : display all author's audiobooks"
         +"\n- 8 : display all albums release by date"
         +"\n- 9 : display all songs sorted by genre"
-        +"\n- 10 : edit the database"
+        +"\n- 10 : diplay all registered artists"
+        +"\n- 11 : diplay all registered authors"
+        +"\n- 12 : diplay all registered genres"
+        +"\n- 13 : diplay all registred categories"
+        +"\n- 14 : diplay all registered languages"
+        +"\n- edit : edit the database"
         +"\n- q : exit the jMusicHub"
         +"\n- h : help with details of previous commands";
     }

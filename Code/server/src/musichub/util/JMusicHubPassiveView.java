@@ -30,6 +30,7 @@ public class JMusicHubPassiveView implements View {
             //create the streams that will handle the objects coming through the sockets
             this.input = new ObjectInputStream(socket.getInputStream());
             this.output = new ObjectOutputStream(socket.getOutputStream());
+            SingletonMusic music = SingletonMusic.getInstance();
 
             output.writeObject("\nConnected to the server\nType any command to begin using jMusicHub\nType \"h\" for help\n"); //serialize and write the object to the stream
 
@@ -47,8 +48,8 @@ public class JMusicHubPassiveView implements View {
                     output.writeObject("What do you want? (Enter the number)\n1- Listen the playlist\n2- More informtion");
                     if(((String) input.readObject()).equals("1")) {
                         output.writeObject(true);
-                        AudioServer audioServer = new AudioServer(6668,audio.getContent(),socket);
-                        audioServer.start();
+                        music.checkInstance();
+                        music.startMusic(audio.getContent(),6668,socket);
                     } else {
                         output.writeObject(false);
                     }
@@ -168,19 +169,131 @@ public class JMusicHubPassiveView implements View {
                         output.writeObject("\nNo album found.\n");
                     } else {
                         output.writeObject(songs);
-                    }
-                    output.writeObject("Which one would you like to hear? (Enter the number)");
-                    output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More informtion");
-                    if(((String) input.readObject()).equals("1")) {
-                        output.writeObject(true);
-                    } else {
-                        output.writeObject(false);
+                        output.writeObject("Which one would you like to hear? (Enter the number)");
+                        output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More informtion");
+                        if(((String) input.readObject()).equals("1")) {
+                            output.writeObject(true);
+                        } else {
+                            output.writeObject(false);
+                        }
                     }
                     break;
 
+                  case "10": //Show all Artists
+                    output.writeObject("\t\tAll artists' name :");
+                    LinkedList<String> artistsName = this.controller.getArtists();
+                    if(artistsName==null) {
+                      output.writeObject("\nNo artist found.\n");
+                    } else {
+                      output.writeObject(artistsName);
+                      output.writeObject("\n\nEnter a name's-artist number :");
+                      int numberArtistName = (int) input.readObject();
+                      if(numberArtistName==artistsName.size()) {
+                        break;
+                      } else if((numberArtistName<artistsName.size())&&(numberArtistName>=0)){
+                        output.writeObject("\n\t\tAll the "+artistsName.get(numberArtistName)+"\'s songs :\n\n");
+                        output.writeObject(this.controller.getSongsByArtist(artistsName.get(numberArtistName)));
+                        break;
+                      } else {
+                        output.writeObject("\nInvalid number");
+                        break;
+                      }
+                    }
+
+                  case "11": //Show all Authors
+                    output.writeObject("\t\tAll author's name :");
+                    LinkedList<String> authorsName = this.controller.getAuthors();
+                    if(authorsName==null) {
+                      output.writeObject("\nNo authors found.\n");
+                    } else {
+                      output.writeObject(authorsName);
+                      int numberAuthorName = (int) input.readObject();
+                      if(numberAuthorName==authorsName.size()) {
+                        break;
+                      } else if((numberAuthorName<authorsName.size())&&(numberAuthorName>=0)){
+                        output.writeObject("\n\t\tAll the "+authorsName.get(numberAuthorName)+"\'s songs :\n\n");
+                        LinkedList<AudioBook> booksToDisplayAuthor = this.controller.getAudioBooksByAuthor(authorsName.get(numberAuthorName));
+                        for (int i = 0; i < booksToDisplayAuthor.size(); i++) {
+                            output.writeObject(booksToDisplayAuthor.get(i));
+                        }
+                        break;
+                      } else {
+                        output.writeObject("\nInvalid number");
+                        break;
+                      }
+                    }
+
+                  case "12": //Show all Genres
+                    output.writeObject("\t\tAll genres :");
+                    LinkedList<Genre> genres = this.controller.getGenres();
+                    if(genres==null) {
+                      output.writeObject("\nNo genres found.\n");
+                    } else {
+                      output.writeObject(genres);
+                      int numberGenre = (int) input.readObject();
+                      if(numberGenre==genres.size()) {
+                        break;
+                      } else if((numberGenre<genres.size())&&(numberGenre>=0)){
+                        output.writeObject("\n\t\tAll the "+genres.get(numberGenre)+"\'s songs :\n\n");
+                        LinkedList<Song> songsToDisplayGenre = this.controller.getSongsByGenre(genres.get(numberGenre));
+                        for (int i = 0; i < songsToDisplayGenre.size(); i++) {
+                            output.writeObject(songsToDisplayGenre.get(i));
+                        }
+                        break;
+                      } else {
+                        output.writeObject("\nInvalid number");
+                        break;
+                      }
+                    }
+
+                  case "13": //Show all Categories
+                    output.writeObject("\t\tAll categories :");
+                    LinkedList<Category> categories = this.controller.getCategories();
+                    if(categories==null) {
+                      output.writeObject("\nNo categories found.\n");
+                    } else {
+                      output.writeObject(categories);
+                      int numberCategory = (int) input.readObject();
+                      if(numberCategory==categories.size()) {
+                        break;
+                      } else if((numberCategory<categories.size())&&(numberCategory>=0)){
+                        output.writeObject("\n\t\tAll the "+categories.get(numberCategory)+"\'s songs :\n\n");
+                        LinkedList<AudioBook> audioBooksToDisplayCategory = this.controller.getAudioBooksByCategory(categories.get(numberCategory));
+                        for (int i = 0; i < audioBooksToDisplayCategory.size(); i++) {
+                            output.writeObject(audioBooksToDisplayCategory.get(i));
+                        }
+                        break;
+                      } else {
+                        output.writeObject("\nInvalid number");
+                        break;
+                      }
+                    }
+
+                  case "14": //Show all Languages
+                    output.writeObject("\t\tAll languages :");
+                    LinkedList<Language> languages = this.controller.getLanguages();
+                    if(languages==null) {
+                      output.writeObject("\nNo languages found.\n");
+                    } else {
+                      output.writeObject(languages);
+                      int numberLanguage = (int) input.readObject();
+                      if(numberLanguage==languages.size()) {
+                        break;
+                      } else if((numberLanguage<languages.size())&&(numberLanguage>=0)){
+                        output.writeObject("\n\t\tAll the "+languages.get(numberLanguage)+"\'s songs :\n\n");
+                        LinkedList<AudioBook> audioBooksToDisplayLanguage = this.controller.getAudioBooksByLanguage(languages.get(numberLanguage));
+                        for (int i = 0; i < audioBooksToDisplayLanguage.size(); i++) {
+                            output.writeObject(audioBooksToDisplayLanguage.get(i));
+                        }
+                        break;
+                      } else {
+                        output.writeObject("\nInvalid number");
+                        break;
+                      }
+                    }
+
                     case "q" :// Quit the application
                     output.writeObject("\t\t Thank you for you time, have a nice day!\n\t\t\t\t\tSigned by nope.\n\n\n");
-                    System.exit(0);
                     break;
 
                     case "h" ://Display the help
@@ -190,6 +303,9 @@ public class JMusicHubPassiveView implements View {
                     default:
                     output.writeObject("\nWrong command, press \"h\" for help.");
                     break;
+                }
+                if(command.equals("q")) {
+                  break;
                 }
             }
         } catch (IOException ex) {

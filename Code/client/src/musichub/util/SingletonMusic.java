@@ -51,4 +51,11 @@ public class SingletonMusic {
   public boolean isRunning() {
     return music.isRunning();
   }
+
+  public void checkInstance() {
+    if(this.music.isRunning()) {
+      this.music = null;
+      this.uniqueInstance = null;
+    }
+  }
 }
