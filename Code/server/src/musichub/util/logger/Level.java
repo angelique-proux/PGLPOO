@@ -1,4 +1,4 @@
-package util;
+package util.logger;
 
 public enum Level
 {

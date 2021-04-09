@@ -1,3 +1,6 @@
+package business.exceptions;
+
+
 /*
 * Nom de l'exception : NotAGenreException
 *
@@ -7,9 +10,6 @@
 *
 * Copyright     : Manelle & Angélique
 */
-
-
-package exceptions;
 
 import java.lang.Exception;
 

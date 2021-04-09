@@ -1,6 +1,8 @@
 package util;
 
+import util.logger.*;
 import business.*;
+import business.exceptions.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 import java.io.File;
@@ -201,7 +203,6 @@ public class JMusicHubModel implements Model{
 		languages.add("ITALIEN");
 		languages.add("ESPAGNOL");
 		languages.add("ALLEMAND");
-		boolean erreur = true;
 		for (int c=0; c<languages.size(); c++) {
 			if (language.equals(languages.get(c))) {
 				erreur = false;

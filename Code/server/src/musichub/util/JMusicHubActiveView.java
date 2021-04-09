@@ -129,7 +129,9 @@ public class JMusicHubActiveView implements View {
                 case "10": //Show all Artists
                   System.out.println("\t\tAll artists' name :");
                   LinkedList<String> artistsName = this.controller.getArtists();
-
+                  for(int i=0;i<artistName.size();i++) {
+                    System.out.println("\n"+i+"- "+artistName+"\n");
+                  }
                   break;
 
                 case "" : // Change the content of the application

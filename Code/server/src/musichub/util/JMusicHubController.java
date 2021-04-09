@@ -1,6 +1,7 @@
 package util;
 
 import business.*;
+import business.exceptions.*;
 import java.io.File;
 import java.util.Date;
 import java.util.LinkedList;
@@ -689,6 +690,12 @@ public class JMusicHubController implements Controller {
         }
         this.playlists.add(new Playlist(name, uuid, audios));
         System.out.println("\nPlaylist created");
+    }
+
+    public void removeSongFromPlaylist(Playlist playlist, Song song) {
+        if (playlist.getAudios().contains(song)) {
+            playlist.getAudios().remove(song);
+        }
     }
 
     /**

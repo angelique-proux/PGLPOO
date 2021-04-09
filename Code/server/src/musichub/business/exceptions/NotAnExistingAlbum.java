@@ -9,7 +9,7 @@
 */
 
 
-package exceptions;
+package business.exceptions;
 
 import java.lang.Exception;
 
