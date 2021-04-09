@@ -174,13 +174,13 @@ public class JMusicHubPassiveView implements View {
              }
              break;
 
-           case "10" :// Quit the application
+           case "q" :// Quit the application
              output.writeObject("\t\t Thank you for you time, have a nice day!\n\t\t\t\t\tSigned by nope.\n\n\n");
              System.exit(0);
              break;
 
            case "h" ://Display the help
-             output.writeObject(this.controller.help());
+             output.writeObject(this.controller.helpPassive());
              break;
 
            default:

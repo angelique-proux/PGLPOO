@@ -40,75 +40,91 @@ public class JMusicHubActiveView implements View {
         while(true) {
             String command = scanner.nextLine();
             switch (command) {
-                case "1" : // Show albums
-                System.out.println("\t\t Album titles sorted by them date:");
-                try {
-                    LinkedList<Album> albumList = controller.getAlbumByReleaseDate();
-                    for (int i = 0; i < albumList.size(); i++) {
-                        System.out.println("\n"+albumList.get(i) + "\n");
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-
-                case "2" : // Show songs
-                System.out.println("\nEnter an album's title : ");
-                LinkedList<Song> songs = this.controller.getSongByGenre(scanner.nextLine());
-                System.out.println("\t\t Song titles sorted by them genre:");
-                Genre currentGenre = songs.get(0).getGenre();
-                System.out.println("\nSongs with Genre : "+ currentGenre);
-                for (int i = 0; i < songs.size() ; i++) {
-                  if(!songs.get(i).getGenre().equals(currentGenre)) {
-                    currentGenre = songs.get(i).getGenre();
-                    System.out.println("\nSongs with Genre : "+ currentGenre+"\n");
+                case "1" : //Show all Elements
+                  System.out.println("\t\tSongs and AudioBooks sorted by alphabetical order:\n");
+                  LinkedList<Audio> audios = controller.getElements();
+                  for(int i=0;i<audios.size();i++) {
+                    System.out.println("\n"+audios.get(i)+"\n");
                   }
-                  System.out.println(songs.get(i));
-                }
-                break;
+                  break;
 
-                case "3" : // Select all the audiobooks of an author
-                System.out.println("Enter an author's name : ");
-                String authorName = scanner.nextLine();
-                LinkedList<AudioBook> booksToDisplay = controller.getAudioBooksByAuthor(authorName);
-                System.out.println("\nBooks from : " + authorName + "\n");
-                for (int i = 0; i < booksToDisplay.size(); i++) {
-                    System.out.println("\n" + booksToDisplay.get(i));
-                }
-                break;
+                case "2" : //Show all Albums
+                  System.out.println("\t\tAlbums sorted by alphabetical order:\n");
+                  LinkedList<Albums> albums = controller.getAlbums();
+                  for(int i=0;i<albums.size();i++) {
+                    System.out.println("\n"albums.get(i)+"\n");
+                  }
+                  break;
 
-                case "4" : // Show playlists
-                System.out.println("\t\t Playlist names sorted by alphabetical order:");
-                System.out.println("\nExisting playlists :\n");
-                for (int i = 0; i < controller.getPlaylists().size(); i++) {
-                    System.out.println(controller.getPlaylists().get(i) + "\n");
-                }
-                break;
+                case "3" : // Show all playlists
+                  System.out.println("\t\t Playlist names sorted by alphabetical order:");
+                  System.out.println("\nExisting playlists :\n");
+                  for (int i = 0; i < controller.getPlaylists().size(); i++) {
+                      System.out.println(controller.getPlaylists().get(i) + "\n");
+                  }
+                  break;
 
-                case "5" : // Select an album
-                String albumName = scanner.nextLine();
-                Album albumToDisplay = controller.getSpecificAlbum(albumName);
-                System.out.println(albumToDisplay + "\n");
-                break;
+                case "4" : // Select and show an album
+                  String albumName = scanner.nextLine();
+                  Album albumToDisplay = controller.getSpecificAlbum(albumName);
+                  System.out.println(albumToDisplay + "\n");
+                  break;
 
-                case "6" : // Select a playlist
-                String playlistName = scanner.nextLine();
-                Playlist playlistToDisplay = controller.getSpecificPlaylist(playlistName);
-                System.out.println(playlistToDisplay + "\n");
-                break;
+                case "5" : // Select and show a playlist
+                  String playlistName = scanner.nextLine();
+                  Playlist playlistToDisplay = controller.getSpecificPlaylist(playlistName);
+                  System.out.println(playlistToDisplay + "\n");
+                  break;
 
-                case "7" : // Select all the song of an artist
-                String artistName = scanner.nextLine();
-                LinkedList<Song> songsToDisplay = controller.getSongsByArtist(artistName);
-                System.out.println("\nSongs from : " + artistName + "\n");
-                for (int i = 0; i < songsToDisplay.size(); i++) {
-                    System.out.println("\n" + songsToDisplay.get(i));
-                }
-                break;
+                case "6" : // Select and show all artist's songs
+                  String artistName = scanner.nextLine();
+                  LinkedList<Song> songsToDisplay = controller.getSongsByArtist(artistName);
+                  System.out.println("\nSongs from : " + artistName + "\n");
+                  for (int i = 0; i < songsToDisplay.size(); i++) {
+                      System.out.println("\n" + songsToDisplay.get(i));
+                  }
+                  break;
 
-                case "8" : // Change the content of the application
-                controller.editDatabase();
-                break;
+                case "7" : // Select all author's audiobooks
+                  System.out.println("Enter an author's name : ");
+                  String authorName = scanner.nextLine();
+                  LinkedList<AudioBook> booksToDisplay = controller.getAudioBooksByAuthor(authorName);
+                  System.out.println("\nBooks from : " + authorName + "\n");
+                  for (int i = 0; i < booksToDisplay.size(); i++) {
+                      System.out.println("\n" + booksToDisplay.get(i));
+                  }
+                  break;
+
+                case "8" : // Show all albums release by date
+                  System.out.println("\t\t Album titles sorted by them date:");
+                  try {
+                      LinkedList<Album> albumList = controller.getAlbumByReleaseDate();
+                      for (int i = 0; i < albumList.size(); i++) {
+                          System.out.println("\n"+albumList.get(i) + "\n");
+                      }
+                  } catch (Exception e) {
+                      e.printStackTrace();
+                  }
+                  break;
+
+                case "9" : // Show all songs sorted by genre
+                  System.out.println("\nEnter an album's title : ");
+                  LinkedList<Song> songs = this.controller.getSongByGenre(scanner.nextLine());
+                  System.out.println("\t\t Song titles sorted by them genre:");
+                  Genre currentGenre = songs.get(0).getGenre();
+                  System.out.println("\nSongs with Genre : "+ currentGenre);
+                  for (int i = 0; i < songs.size() ; i++) {
+                    if(!songs.get(i).getGenre().equals(currentGenre)) {
+                      currentGenre = songs.get(i).getGenre();
+                      System.out.println("\nSongs with Genre : "+ currentGenre+"\n");
+                    }
+                    System.out.println(songs.get(i));
+                  }
+                  break;
+
+                case "10" : // Change the content of the application
+                  controller.editDatabase();
+                  break;
 
                 case "q" :// Quit the application
                   System.out.println("\t\t Thank you for you time, have a nice day!\n");
@@ -116,7 +132,7 @@ public class JMusicHubActiveView implements View {
                   System.exit(0);
                   break;
                 case "h" ://Display the help
-                  System.out.println(controller.help());
+                  System.out.println(controller.helpActive());
                   break;
                 default:
                   System.out.println("\nWrong command, press \"h\" for help.");

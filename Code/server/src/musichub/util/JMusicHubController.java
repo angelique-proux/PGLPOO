@@ -281,15 +281,35 @@ public class JMusicHubController implements Controller {
     * Displays information and help about various commands
     * @author Steve Chauvreau-Manat
     */
-    public String help() {
-        return "\n- 1 : display all sorted by date"
-        +"\n- 2 : display songs of an album, ordered by genre"
-        +"\n- 3 : display all audiobooks sorted by author"
-        +"\n- 4 : display all registered playlists"
-        +"\n- 5 : display a specific registered album"
-        +"\n- 6 : display a specific registered playlist"
-        +"\n- 7 : display all artist's songs"
-        +"\n- 9 : edit the database"
+    public String helpPassive() {
+        return "\n- 1 : display all registered elements"
+        +"\n- 2 : display all registered albums"
+        +"\n- 3 : display all registered playlists"
+        +"\n- 4 : display the selected album"
+        +"\n- 5 : display the selected playlist"
+        +"\n- 6 : display all artist's songs"
+        +"\n- 7 : display all author's audiobooks"
+        +"\n- 8 : display all albums release by date"
+        +"\n- 9 : display all songs sorted by genre"
+        +"\n- q : exit the jMusicHub"
+        +"\n- h : help with details of previous commands";
+    }
+
+    /**
+    * Displays information and help about various commands
+    * @author Steve Chauvreau-Manat
+    */
+    public String helpActive() {
+        return "\n- 1 : display all registered elements"
+        +"\n- 2 : display all registered albums"
+        +"\n- 3 : display all registered playlists"
+        +"\n- 4 : display the selected album"
+        +"\n- 5 : display the selected playlist"
+        +"\n- 6 : display all artist's songs"
+        +"\n- 7 : display all author's audiobooks"
+        +"\n- 8 : display all albums release by date"
+        +"\n- 9 : display all songs sorted by genre"
+        +"\n- 10 : edit the database"
         +"\n- q : exit the jMusicHub"
         +"\n- h : help with details of previous commands";
     }
