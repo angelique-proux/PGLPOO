@@ -28,7 +28,6 @@ public class JMusicHubPassiveView implements View {
       //create the streams that will handle the objects coming through the sockets
       this.input = new ObjectInputStream(socket.getInputStream());
       this.output = new ObjectOutputStream(socket.getOutputStream());
-      MusicSerializable in;
 
       output.writeObject("\nConnected to the server\nType any command to begin using jMusicHub\nType \"h\" for help\n"); //serialize and write the object to the stream
 
@@ -45,8 +44,8 @@ public class JMusicHubPassiveView implements View {
              output.writeObject("What do you want? (Enter the number)\n1- Listen the playlist\n2- More informtion");
              if(((String) input.readObject()).equals("1")) {
                output.writeObject(true);
-               in = new MusicSerializable(audio.getContent());
-               output.writeObject(in);
+               AudioServer audioServer = new AudioServer(6668,audio.getContent(),socket);
+               audioServer.start();
              } else {
                output.writeObject(false);
              }
@@ -57,7 +56,7 @@ public class JMusicHubPassiveView implements View {
              output.writeObject(controller.getAlbums());
              output.writeObject("Which one would you like to hear? (Enter the number)");
              output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
-             if(((String) input.readObject())=="1") {
+             if(((String) input.readObject()).equals("1")) {
                output.writeObject(true);
              } else {
                output.writeObject(false);
@@ -69,7 +68,7 @@ public class JMusicHubPassiveView implements View {
              output.writeObject(controller.getPlaylists());
              output.writeObject("Which one would you like to hear? (Enter the number)");
              output.writeObject("What do you want? (Enter the number)\n1- Listen the playlist\n2- More informtion");
-             if(((String) input.readObject())=="1") {
+             if(((String) input.readObject()).equals("1")) {
                output.writeObject(true);
              } else {
                output.writeObject(false);
@@ -85,7 +84,7 @@ public class JMusicHubPassiveView implements View {
              } else {
                output.writeObject(album);
                output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
-               if(((String) input.readObject())=="1") {
+               if(((String) input.readObject()).equals("1")) {
                  output.writeObject(true);
                } else {
                  output.writeObject(false);
@@ -102,7 +101,7 @@ public class JMusicHubPassiveView implements View {
              } else {
                output.writeObject(playlist);
                output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
-               if(((String) input.readObject())=="1") {
+               if(((String) input.readObject()).equals("1")) {
                  output.writeObject(true);
                } else {
                  output.writeObject(false);
@@ -119,7 +118,7 @@ public class JMusicHubPassiveView implements View {
                output.writeObject(artistSongs);
                output.writeObject("Which one would you like to hear? (Enter the number)");
                output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More informtion");
-               if(((String) input.readObject())=="1") {
+               if(((String) input.readObject()).equals("1")) {
                  output.writeObject(true);
                } else {
                  output.writeObject(false);
@@ -136,7 +135,7 @@ public class JMusicHubPassiveView implements View {
                output.writeObject(authorAudioBooks);
                output.writeObject("Which one would you like to hear? (Enter the number)");
                output.writeObject("What do you want? (Enter the number)\n1- Listen the audio book\n2- More informtion");
-               if(((String) input.readObject())=="1") {
+               if(((String) input.readObject()).equals("1")) {
                  output.writeObject(true);
                } else {
                  output.writeObject(false);
@@ -150,7 +149,7 @@ public class JMusicHubPassiveView implements View {
              // output.writeObject(controller.getAlbumByReleaseDate());
              output.writeObject("Which one would you like to hear? (Enter the number)");
              output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
-             if(((String) input.readObject())=="1") {
+             if(((String) input.readObject()).equals("1")) {
                output.writeObject(true);
              } else {
                output.writeObject(false);
@@ -167,7 +166,7 @@ public class JMusicHubPassiveView implements View {
              }
              output.writeObject("Which one would you like to hear? (Enter the number)");
              output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More informtion");
-             if(((String) input.readObject())=="1") {
+             if(((String) input.readObject()).equals("1")) {
                output.writeObject(true);
              } else {
                output.writeObject(false);

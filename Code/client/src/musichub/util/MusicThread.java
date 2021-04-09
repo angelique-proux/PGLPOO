@@ -2,31 +2,56 @@ package util;
 
 import business.*;
 import javax.sound.sampled.*;
+import java.io.*;
+import java.net.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JLabel;
 
 public class MusicThread extends Thread {
-  private boolean running = true;
-  private boolean stopMusic = false;
-  private AudioInputStream musicToListen;
-  private SourceDataLine line;
-  private byte[] samples = new byte[4096];
+  private int port;
+  private String ip;
+  private Socket socket;
+  private Clip clip;
 
-  public MusicThread(AudioInputStream musicToListen) {
-    this.musicToListen = musicToListen;
-    this.initialiseLine();
+  public MusicThread(String ip,int port, Socket socket) {
+    this.ip = ip;
+    this.port = port;
+    this.socket = socket;
   }
 
   public void run() {
-    int count;
+    //Thread.sleep(100);
+    try /*(Socket socket = new Socket(this.ip,this.port))*/ {
+      //if (socket.isConnected()) {
+        InputStream in = new BufferedInputStream(socket.getInputStream());
+        AudioInputStream ais = AudioSystem.getAudioInputStream(in);
+        this.clip = AudioSystem.getClip();
+        this.clip.open(ais);
+        this.clip.start();
+        Thread.sleep(100); // given clip.drain a chance to start
+        this.clip.drain();
+      //}
+    } catch(UnknownHostException uhe) {
+			uhe.printStackTrace();
+		} catch(IOException ioe) {
+			ioe.printStackTrace();
+		} catch(UnsupportedAudioFileException uafe) {
+      uafe.printStackTrace();
+    } catch(LineUnavailableException lue) {
+      lue.printStackTrace();
+    } catch(InterruptedException ie) {
+      ie.printStackTrace();
+    }
+
+    /*int count;
     String label = "Press \'p\' to pause the music\nPress \'p\' a second time to restart the music\nPress \'s\' to stop the music\n\n";
-    /*if(this.music.getAudio() instanceof Song) {
+    if(this.music.getAudio() instanceof Song) {
       label += (Song) this.music.getAudio();
     } else if(this.music.getAudio() instanceof AudioBook) {
       label += (AudioBook) this.music.getAudio();
-    }*/
+    }
     //new ConsolMusic(this,new JLabel(label));
     try {
       this.line.open(musicToListen.getFormat());
@@ -50,26 +75,22 @@ public class MusicThread extends Thread {
       }
     }
     this.line.drain();
-    this.line.stop();
-  }
-
-  public void endThread() {
-    this.running = false;
+    this.line.stop();*/
   }
 
   public void pause() {
-    this.stopMusic = false;
+    this.clip.stop();
   }
 
   public void restart() {
-    this.stopMusic = true;
+    this.clip.start();
   }
 
-  public boolean getStatus() {
-    return this.stopMusic;
+  public void stopThread() {
+    this.clip.stop();
   }
 
-  public static AudioInputStream getAudioInputStreamFromFile(String filepath) {
+  /*public static AudioInputStream getAudioInputStreamFromFile(String filepath) {
     if (filepath == null) {
       throw new IllegalArgumentException("filename is null");
     }
@@ -96,11 +117,21 @@ public class MusicThread extends Thread {
 
   public void initialiseLine() {
     try {
-      AudioFormat audioFormat = musicToListen.getFormat();
+      AudioFormat audioFormat = getAudioFormat();
       DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
-      line = (SourceDataLine) AudioSystem.getLine(info);
+      this.line = (SourceDataLine) AudioSystem.getLine(info);
     } catch (LineUnavailableException e) {
       e.printStackTrace();
     }
   }
+
+  private AudioFormat getAudioFormat() {
+	   AudioFormat.Encoding encoding = AudioFormat.Encoding.PCM_SIGNED;
+	   float sampleRate = 16000.0F;
+     int sampleInbits = 16;
+     int channels = 1;
+     boolean signed = true;
+     boolean bigEndian = false;
+     return new AudioFormat(sampleRate, sampleInbits, channels, signed, bigEndian);
+   }*/
 }

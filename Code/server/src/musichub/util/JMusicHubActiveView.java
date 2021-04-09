@@ -50,9 +50,9 @@ public class JMusicHubActiveView implements View {
 
                 case "2" : //Show all Albums
                   System.out.println("\t\tAlbums sorted by alphabetical order:\n");
-                  LinkedList<Albums> albums = controller.getAlbums();
+                  LinkedList<Album> albums = controller.getAlbums();
                   for(int i=0;i<albums.size();i++) {
-                    System.out.println("\n"albums.get(i)+"\n");
+                    System.out.println("\n"+albums.get(i)+"\n");
                   }
                   break;
 

@@ -14,20 +14,20 @@ import javax.swing.SwingUtilities;
 
 public class SingletonMusic {
   private static SingletonMusic uniqueInstance = null;
-  private static MusicThread music = null;
+  private MusicThread music;
 
   private SingletonMusic() {
   }
 
-  public static synchronized SingletonMusic getInstance(AudioInputStream musicToListen) {
+  public static synchronized SingletonMusic getInstance() {
     if(uniqueInstance==null) {
       uniqueInstance = new SingletonMusic();
-      music = new MusicThread(musicToListen);
     }
     return uniqueInstance;
   }
 
-  public void playMusic() {
+  public void startMusic(String ip,int port, Socket socket) {
+    this.music = new MusicThread(ip,port,socket);
     music.start();
     if(!music.isAlive()) {
       music = null;
@@ -44,6 +44,10 @@ public class SingletonMusic {
   }
 
   public void stopMusic() {
-    music.endThread();
+    music.stopThread();
+  }
+
+  public boolean isAlive() {
+    return music.isAlive();
   }
 }
