@@ -48,7 +48,6 @@ public class JMusicHubPassiveView implements View {
                logger = SingletonConsoleLogger.getInstance();
                logger.write(Level.ERROR, NotAlbum.getMessage());
              }
-
              output.writeObject("What do you want? (Enter the number)\n1- Listen the playlist\n2- More informtion");
              if(((String) input.readObject()).equals("1")) {
                output.writeObject(true);

@@ -49,7 +49,7 @@ public class JMusicHubActiveView implements View {
                   break;
 
                 case "2" : //Show all Albums
-                  System.out.println("\t\tAlbums sorted by alphabetical order:\n");
+                  System.out.println("\t\tAlbums sorted by alphabetical order:\n\n");
                   LinkedList<Album> albums = controller.getAlbums();
                   for(int i=0;i<albums.size();i++) {
                     System.out.println("\n"+albums.get(i)+"\n");
@@ -57,48 +57,52 @@ public class JMusicHubActiveView implements View {
                   break;
 
                 case "3" : // Show all playlists
-                  System.out.println("\t\t Playlist names sorted by alphabetical order:");
-                  System.out.println("\nExisting playlists :\n");
+                  System.out.println("\t\tPlaylist names sorted by alphabetical order:\n\n");
                   for (int i = 0; i < controller.getPlaylists().size(); i++) {
                       System.out.println(controller.getPlaylists().get(i) + "\n");
                   }
                   break;
 
                 case "4" : // Select and show an album
+                  System.out.println("Enter an album's title :");
                   String albumName = scanner.nextLine();
+                  System.out.println("\n\t\tSelected album "+albumName+" :\n\n");
                   Album albumToDisplay = controller.getSpecificAlbum(albumName);
                   System.out.println(albumToDisplay + "\n");
                   break;
 
                 case "5" : // Select and show a playlist
+                  System.out.println("Enter a playlist's name :");
                   String playlistName = scanner.nextLine();
+                  System.out.println("\n\t\tThe selected playlist "+playlistName+" :\n\n");
                   Playlist playlistToDisplay = controller.getSpecificPlaylist(playlistName);
-                  System.out.println(playlistToDisplay + "\n");
+                  System.out.println(playlistToDisplay+"\n");
                   break;
 
-                case "6" : // Select and show all artist's songs
+                case "6" : // Select and show all selected artist's songs
+                  System.out.println("Enter an artist's name :");
                   String artistName = scanner.nextLine();
-                  LinkedList<Song> songsToDisplay = controller.getSongsByArtist(artistName);
-                  System.out.println("\nSongs from : " + artistName + "\n");
+                  System.out.println("\n\t\tAll the "+artistName+"\'s songs :\n\n");
+                  LinkedList<Song> songsToDisplay = this.controller.getSongsByArtist(artistName);
                   for (int i = 0; i < songsToDisplay.size(); i++) {
                       System.out.println("\n" + songsToDisplay.get(i));
                   }
                   break;
 
                 case "7" : // Select all author's audiobooks
-                  System.out.println("Enter an author's name : ");
+                  System.out.println("Enter an author's name :");
                   String authorName = scanner.nextLine();
-                  LinkedList<AudioBook> booksToDisplay = controller.getAudioBooksByAuthor(authorName);
-                  System.out.println("\nBooks from : " + authorName + "\n");
+                  System.out.println("\n\t\tAll the "+authorName+"\'s audio books :\n\n");
+                  LinkedList<AudioBook> booksToDisplay = this.controller.getAudioBooksByAuthor(authorName);
                   for (int i = 0; i < booksToDisplay.size(); i++) {
                       System.out.println("\n" + booksToDisplay.get(i));
                   }
                   break;
 
                 case "8" : // Show all albums release by date
-                  System.out.println("\t\t Album titles sorted by them date:");
+                  System.out.println("\t\tAll date-release-sorted albums :");
                   try {
-                      LinkedList<Album> albumList = controller.getAlbumByReleaseDate();
+                      LinkedList<Album> albumList = this.controller.getAlbumByReleaseDate();
                       for (int i = 0; i < albumList.size(); i++) {
                           System.out.println("\n"+albumList.get(i) + "\n");
                       }
@@ -108,9 +112,9 @@ public class JMusicHubActiveView implements View {
                   break;
 
                 case "9" : // Show all songs sorted by genre
-                  System.out.println("\nEnter an album's title : ");
+                  System.out.println("Enter an album's title : ");
                   LinkedList<Song> songs = this.controller.getSongByGenre(scanner.nextLine());
-                  System.out.println("\t\t Song titles sorted by them genre:");
+                  System.out.println("\n\t\t Songs' titles sorted by genre:");
                   Genre currentGenre = songs.get(0).getGenre();
                   System.out.println("\nSongs with Genre : "+ currentGenre);
                   for (int i = 0; i < songs.size() ; i++) {
@@ -122,7 +126,13 @@ public class JMusicHubActiveView implements View {
                   }
                   break;
 
-                case "10" : // Change the content of the application
+                case "10": //Show all Artists
+                  System.out.println("\t\tAll artists' name :");
+                  LinkedList<String> artistsName = this.controller.getArtists();
+
+                  break;
+
+                case "" : // Change the content of the application
                   controller.editDatabase();
                   break;
 
@@ -132,7 +142,7 @@ public class JMusicHubActiveView implements View {
                   System.exit(0);
                   break;
                 case "h" ://Display the help
-                  System.out.println(controller.helpActive());
+                  System.out.println(this.controller.helpActive());
                   break;
                 default:
                   System.out.println("\nWrong command, press \"h\" for help.");
