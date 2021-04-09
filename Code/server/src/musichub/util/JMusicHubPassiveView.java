@@ -40,7 +40,15 @@ public class JMusicHubPassiveView implements View {
              LinkedList<Audio> audios = controller.getElements();
              output.writeObject(audios);
              output.writeObject("Which one would you like to hear? (Enter the number)");
-             Audio audio = audios.get((int) input.readObject());
+             try {
+               Audio audio = audios.get((int) input.readObject());
+             } catch (NotAnExistingAlbum NotAlbum){
+               ILogger logger = SingletonFileLogger.getInstance();
+               logger.write(Level.ERROR, NotAlbum.getMessage());
+               logger = SingletonConsoleLogger.getInstance();
+               logger.write(Level.ERROR, NotAlbum.getMessage());
+             }
+
              output.writeObject("What do you want? (Enter the number)\n1- Listen the playlist\n2- More informtion");
              if(((String) input.readObject()).equals("1")) {
                output.writeObject(true);

@@ -77,17 +77,17 @@ public class JMusicHubModel implements Model{
 	 * Create the xml document
 	 * @return the created document
 	 *
-  	 * @author Felicia Ionascu
- 	 */
+	 * @author Felicia Ionascu
+	 */
 	public Document createXMLDocument() {
 		return documentBuilder.newDocument();
 	}
 
 	/**
-	* Return a NodeList based on the XML elements of the file
-	* @param filePath Path of the file to read and parse
-	* @return List of the read nodes
-	*/
+	 * Return a NodeList based on the XML elements of the file
+	 * @param filePath Path of the file to read and parse
+	 * @return List of the read nodes
+	 */
 	public NodeList parseXMLFile (String filePath) {
 		NodeList elementNodes = null;
 		try {
@@ -110,7 +110,7 @@ public class JMusicHubModel implements Model{
 	 * @see         Song
 	 * @author      Gaël Lejeune
 	 */
-	private Song getSong(Element element) {
+	private Song getSong(Element element) throws NotAGenreException {
 		// NodeList song = node.getChildNodes();
 		String title = element.getElementsByTagName("title").item(0).getTextContent();
 		String artist = element.getElementsByTagName("artist").item(0).getTextContent();
@@ -129,11 +129,27 @@ public class JMusicHubModel implements Model{
 		}
 		String content = element.getElementsByTagName("content").item(0).getTextContent();
 		String genre = element.getElementsByTagName("genre").item(0).getTextContent();
-
+		//gestion des exceptions de genres
+		LinkedList<String> genres = new LinkedList<String>();
+		genres.add("JAZZ");
+		genres.add("CLASSIQUE");
+		genres.add("HIPHOP");
+		genres.add("ROCK");
+		genres.add("POP");
+		genres.add("RAP");
+		genres.add("METAL");
+		boolean erreur = true;
+		for (int c=0; c<genres.size(); c++) {
+			if (genre.equals(genres.get(c))) {
+				erreur = false;
+				break;
+			}
+		} if (erreur == true) {
+			throw new NotAGenreException(title);
+		}
 
 		return new Song(title, artist, duration, id, content, Genre.valueOf(genre));
 	}
-
 
 	/**
 	 * Read an element and convert it into an audio book
@@ -142,7 +158,7 @@ public class JMusicHubModel implements Model{
 	 * @see         AudioBook
 	 * @author      Gaël Lejeune
 	 */
-	private AudioBook getAudioBook(Element element) {
+	private AudioBook getAudioBook(Element element) throws NotACategoryException, NotALanguageException {
 		String title = element.getElementsByTagName("title").item(0).getTextContent();
 		String author = element.getElementsByTagName("author").item(0).getTextContent();
 		int duration = Integer.parseInt(element.getElementsByTagName("duration").item(0).getTextContent());
@@ -160,8 +176,40 @@ public class JMusicHubModel implements Model{
 		}
 		String content = element.getElementsByTagName("content").item(0).getTextContent();
 		String category = element.getElementsByTagName("category").item(0).getTextContent();
-		String language = element.getElementsByTagName("language").item(0).getTextContent();
+		//gestion des exceptions de categories
+		LinkedList<String> categories = new LinkedList<String>();
+		categories.add("JEUNESSE");
+		categories.add("ROMAN");
+		categories.add("THEATRE");
+		categories.add("DISCOURS");
+		categories.add("DOCUMENTAIRE");
+		boolean erreur = true;
+		for (int c=0; c<categories.size(); c++) {
+			if (category.equals(categories.get(c))) {
+				erreur = false;
+				break;
+			}
+		} if (erreur == true) {
+			throw new NotACategoryException(title);
+		}
 
+		String language = element.getElementsByTagName("language").item(0).getTextContent();
+		//gestion des exceptions de langages
+		LinkedList<String> languages = new LinkedList<String>();
+		languages.add("FRANCAIS");
+		languages.add("ANGLAIS");
+		languages.add("ITALIEN");
+		languages.add("ESPAGNOL");
+		languages.add("ALLEMAND");
+		boolean erreur = true;
+		for (int c=0; c<languages.size(); c++) {
+			if (language.equals(languages.get(c))) {
+				erreur = false;
+				break;
+			}
+		} if (erreur == true) {
+			throw new NotALanguageException(title);
+		}
 
 		return new AudioBook(title, author, duration, id, content,Language.valueOf(language), Category.valueOf(category));
 	}
@@ -328,9 +376,28 @@ public class JMusicHubModel implements Model{
 			if (list.item(i).getNodeType() == Node.ELEMENT_NODE) {
 				Element currentElement = (Element) list.item(i);
 				if (currentElement.getNodeName().equals("song")) {
-					elementList.add(getSong(currentElement));
+					try {
+						elementList.add(getSong(currentElement));
+					} catch (NotAGenreException exceptGen) {
+						ILogger logger = SingletonFileLogger.getInstance();
+						logger.write(Level.ERROR, exceptGen.getMessage());
+						logger = SingletonConsoleLogger.getInstance();
+						logger.write(Level.ERROR, exceptGen.getMessage());
+					}
 				} else if (currentElement.getNodeName().equals("audioBook")) {
-					elementList.add(getAudioBook(currentElement));
+					try {
+						elementList.add(getAudioBook(currentElement));
+					} catch (NotACategoryException exceptCat) {
+						ILogger logger = SingletonFileLogger.getInstance();
+						logger.write(Level.ERROR, exceptCat.getMessage());
+						logger = SingletonConsoleLogger.getInstance();
+						logger.write(Level.ERROR, exceptCat.getMessage());
+					} catch (NotALanguageException exceptLang) {
+						ILogger logger = SingletonFileLogger.getInstance();
+						logger.write(Level.ERROR, exceptLang.getMessage());
+						logger = SingletonConsoleLogger.getInstance();
+						logger.write(Level.ERROR, exceptLang.getMessage());
+					}
 				}
 			}
 		}

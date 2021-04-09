@@ -51,7 +51,7 @@ public class Client {
 								if(((boolean) input.readObject())) {
 									music = SingletonMusic.getInstance();
 									music.startMusic(ip,6668,this.socket);
-									while(music.isAlive()) {
+									do {
 										System.out.println("Enter a command : (play/pause/stop)");
 										switch(scan.nextLine()) {
 											case "pause":
@@ -67,7 +67,7 @@ public class Client {
 												System.out.println("This is not a command");
 												break;
 										}
-									}
+									} while(music.isRunning());
 								} else {
 									System.out.println(oneAudio);
 								}

@@ -10,6 +10,8 @@ import java.util.Scanner;
 import javax.swing.JLabel;
 
 public class MusicThread extends Thread {
+  private boolean running;
+  private boolean isRunning;
   private int port;
   private String ip;
   private Socket socket;
@@ -19,9 +21,12 @@ public class MusicThread extends Thread {
     this.ip = ip;
     this.port = port;
     this.socket = socket;
+    this.running = true;
+    this.isRunning = false;
   }
 
   public void run() {
+    this.isRunning = true;
     //Thread.sleep(100);
     try /*(Socket socket = new Socket(this.ip,this.port))*/ {
       //if (socket.isConnected()) {
@@ -30,8 +35,10 @@ public class MusicThread extends Thread {
         this.clip = AudioSystem.getClip();
         this.clip.open(ais);
         this.clip.start();
-        Thread.sleep(100); // given clip.drain a chance to start
-        this.clip.drain();
+        while(this.running);
+        //this.clip.stop();
+        //Thread.sleep(100); // given clip.drain a chance to start
+        //this.clip.drain();
       //}
     } catch(UnknownHostException uhe) {
 			uhe.printStackTrace();
@@ -41,9 +48,9 @@ public class MusicThread extends Thread {
       uafe.printStackTrace();
     } catch(LineUnavailableException lue) {
       lue.printStackTrace();
-    } catch(InterruptedException ie) {
+    }/* catch(InterruptedException ie) {
       ie.printStackTrace();
-    }
+    }*/
 
     /*int count;
     String label = "Press \'p\' to pause the music\nPress \'p\' a second time to restart the music\nPress \'s\' to stop the music\n\n";
@@ -87,7 +94,14 @@ public class MusicThread extends Thread {
   }
 
   public void stopThread() {
+    this.isRunning = false;
+    this.running = false;
     this.clip.stop();
+    this.clip.drain();
+  }
+
+  public boolean isRunning() {
+    return this.isRunning;
   }
 
   /*public static AudioInputStream getAudioInputStreamFromFile(String filepath) {
