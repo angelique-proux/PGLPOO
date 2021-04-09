@@ -15,7 +15,7 @@ import java.lang.Exception;
 
 public class NotACategoryException extends Exception{
 
-	public NotACategoryException(String titleSong) {
-		System.out.println("False category in xml. Please change the category of " + titleSong + ".");
+	public NotACategoryException(String titleAudioBook) {
+		System.out.println("False category in xml. Please change the category of " + titleAudioBook + ".");
 	}
 }

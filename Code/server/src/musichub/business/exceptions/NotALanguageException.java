@@ -15,7 +15,7 @@ import java.lang.Exception;
 
 public class NotALanguageException extends Exception{
 
-	public NotALanguageException(String titleSong) {
-		System.out.println("False language in xml. Please change the language of " + titleSong + ".");
+	public NotALanguageException(String titleAudioBook) {
+		System.out.println("False language in xml. Please change the language of " + titleAudioBook + ".");
 	}
 }
