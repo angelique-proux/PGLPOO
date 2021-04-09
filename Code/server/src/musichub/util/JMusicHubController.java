@@ -9,6 +9,7 @@ import java.util.UUID;
 import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.Collections;
 import java.net.*;
 import java.io.*;
 import javax.sound.sampled.*;
@@ -99,10 +100,6 @@ public class JMusicHubController implements Controller {
     */
     public LinkedList<Audio> getElements() {
         return this.elements;
-        // System.out.println("\nExisting elements :\n");
-        // for (int i = 0; i < this.elements.size(); i++) {
-        //     System.out.println(this.elements.get(i) + "\n");
-        // }
     }
 
     /**
@@ -112,10 +109,6 @@ public class JMusicHubController implements Controller {
     */
     public LinkedList<Album> getAlbums() {
         return this.albums;
-        // System.out.println("\nExisting albums :\n");
-        // for (int i = 0; i < this.albums.size(); i++) {
-        //     System.out.println(this.albums.get(i) + "\n");
-        // }
     }
 
     /**
@@ -125,10 +118,6 @@ public class JMusicHubController implements Controller {
     */
     public LinkedList<Playlist> getPlaylists() {
         return this.playlists;
-        // System.out.println("\nExisting playlists :\n");
-        // for (int i = 0; i < this.playlists.size(); i++) {
-        //     System.out.println(this.playlists.get(i) + "\n");
-        // }
     }
 
     /**
@@ -165,6 +154,61 @@ public class JMusicHubController implements Controller {
         return null;
     }
 
+    public LinkedList<String> getArtists() {
+        LinkedList<String> artists = new LinkedList<String>();
+        for (int i = 0; i < this.elements.size(); i++) {
+            if ((this.elements.get(i) instanceof Song)&&(artists.contains(((Song)this.elements.get(i)).getArtist()))) {
+                    artists.add(((Song)this.elements.get(i)).getArtist());
+            }
+        }
+        Collections.sort(artists);
+        return artists;
+    }
+
+    public LinkedList<String> getAuthors() {
+        LinkedList<String> authors = new LinkedList<String>();
+        for (int i = 0; i < this.elements.size(); i++) {
+            if ((this.elements.get(i) instanceof AudioBook)&&(authors.contains(((AudioBook)this.elements.get(i)).getAuthor()))) {
+                    authors.add(((AudioBook)this.elements.get(i)).getAuthor());
+            }
+        }
+        Collections.sort(authors);
+        return authors;
+    }
+
+    public LinkedList<Genre> getGenres() {
+        LinkedList<Genre> genres = new LinkedList<Genre>();
+        for (int i = 0; i < this.elements.size(); i++) {
+            if ((this.elements.get(i) instanceof Song)&&(genres.contains(((Song)this.elements.get(i)).getGenre()))) {
+                    genres.add(((Song)this.elements.get(i)).getGenre());
+            }
+        }
+        Collections.sort(genres);
+        return genres;
+    }
+
+    public LinkedList<Category> getCategories() {
+        LinkedList<Category> categories = new LinkedList<Category>();
+        for (int i = 0; i < this.elements.size(); i++) {
+            if ((this.elements.get(i) instanceof AudioBook)&&(categories.contains(((AudioBook)this.elements.get(i)).getCategory()))) {
+                    categories.add(((AudioBook)this.elements.get(i)).getCategory());
+            }
+        }
+        Collections.sort(categories);
+        return categories;
+    }
+
+    public LinkedList<Language> getLanguages() {
+        LinkedList<Language> languages = new LinkedList<Language>();
+        for (int i = 0; i < this.elements.size(); i++) {
+            if ((this.elements.get(i) instanceof AudioBook)&&(languages.contains(((AudioBook)this.elements.get(i)).getLanguage()))) {
+                    languages.add(((AudioBook)this.elements.get(i)).getLanguage());
+            }
+        }
+        Collections.sort(languages);
+        return languages;
+    }
+
     /**
     * Display all audio books ordered by author
     * @see         AudioBook
@@ -183,6 +227,69 @@ public class JMusicHubController implements Controller {
             return null;
         } else {
             return songs;
+        }
+    }
+
+    /**
+    * Display all audio books ordered by genre
+    * @see         AudioBook
+    * @author      Gaël Lejeune and Steve Chauvreau-Manat
+    */
+    public LinkedList<Song> getSongsByGenre(Genre genre) {
+        LinkedList<Song> songs = new LinkedList<Song>();
+        boolean found = false;
+        for (int i = 0; i < this.elements.size(); i++) {
+            if ((this.elements.get(i) instanceof Song)&&(((Song)this.elements.get(i)).getGenre().equals(genre))) {
+                songs.add((Song)this.elements.get(i));
+                found = true;
+            }
+        }
+        if(!found) {
+            return null;
+        } else {
+            return songs;
+        }
+    }
+
+    /**
+    * Display all audio books ordered by author
+    * @see         AudioBook
+    * @author      Gaël Lejeune and Steve Chauvreau-Manat
+    */
+    public LinkedList<AudioBook> getAudioBooksByLanguage(Language language) {
+        LinkedList<AudioBook> audioBooks = new LinkedList<AudioBook>();
+        boolean found = false;
+        for (int i = 0; i < this.elements.size(); i++) {
+            if ((this.elements.get(i) instanceof AudioBook)&&(((AudioBook)this.elements.get(i)).getLanguage().equals(language))) {
+                audioBooks.add((AudioBook)this.elements.get(i));
+                found = true;
+            }
+        }
+        if(!found) {
+            return null;
+        } else {
+            return audioBooks;
+        }
+    }
+
+    /**
+    * Display all audio books ordered by author
+    * @see         AudioBook
+    * @author      Gaël Lejeune and Steve Chauvreau-Manat
+    */
+    public LinkedList<AudioBook> getAudioBooksByCategory(Category category) {
+        LinkedList<AudioBook> audioBooks = new LinkedList<AudioBook>();
+        boolean found = false;
+        for (int i = 0; i < this.elements.size(); i++) {
+            if ((this.elements.get(i) instanceof AudioBook)&&(((AudioBook)this.elements.get(i)).getCategory().equals(category))) {
+                audioBooks.add((AudioBook)this.elements.get(i));
+                found = true;
+            }
+        }
+        if(!found) {
+            return null;
+        } else {
+            return audioBooks;
         }
     }
 
