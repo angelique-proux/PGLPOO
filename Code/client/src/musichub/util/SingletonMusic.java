@@ -45,9 +45,10 @@ public class SingletonMusic {
 
   public void stopMusic() {
     music.stopThread();
+    music.stop();
   }
 
-  public boolean isAlive() {
-    return music.isAlive();
+  public boolean isRunning() {
+    return music.isRunning();
   }
 }
