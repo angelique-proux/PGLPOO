@@ -16,6 +16,8 @@ public class Server extends AbstractServer
 			while (true) {
 				Socket socket = ss.accept(); //establishes connection
 				System.out.println("Connected as " + ip);
+				ILogger logger = SingletonFileLogger.getInstance();
+	            logger.write(Level.INFO, "Connected to " + ip);
 				// create a new thread to handle client socket
 				new ServerThread(socket).start();
 			}
