@@ -189,7 +189,7 @@ public class JMusicHubActiveView implements View {
                   System.out.println("\t\tAll artists' name :");
                   LinkedList<String> artistsName = this.controller.getArtists();
                   for(int i=0;i<artistsName.size();i++) {
-                    System.out.println("\n"+i+"- "+artistsName+"\n");
+                    System.out.println("\n"+i+"- "+artistsName.get(i)+"\n");
                   }
                   System.out.println("\n"+artistsName.size()+"- None");
                   System.out.println("\n\nEnter a name's-artist number :");

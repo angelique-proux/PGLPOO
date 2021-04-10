@@ -158,7 +158,7 @@ public class JMusicHubController implements Controller {
     public LinkedList<String> getArtists() {
         LinkedList<String> artists = new LinkedList<String>();
         for (int i = 0; i < this.elements.size(); i++) {
-            if ((this.elements.get(i) instanceof Song)&&(artists.contains(((Song)this.elements.get(i)).getArtist()))) {
+            if ((this.elements.get(i) instanceof Song)&&(!artists.contains(((Song)this.elements.get(i)).getArtist()))) {
                     artists.add(((Song)this.elements.get(i)).getArtist());
             }
         }
@@ -169,7 +169,7 @@ public class JMusicHubController implements Controller {
     public LinkedList<String> getAuthors() {
         LinkedList<String> authors = new LinkedList<String>();
         for (int i = 0; i < this.elements.size(); i++) {
-            if ((this.elements.get(i) instanceof AudioBook)&&(authors.contains(((AudioBook)this.elements.get(i)).getAuthor()))) {
+            if ((this.elements.get(i) instanceof AudioBook)&&(!authors.contains(((AudioBook)this.elements.get(i)).getAuthor()))) {
                     authors.add(((AudioBook)this.elements.get(i)).getAuthor());
             }
         }
@@ -180,7 +180,7 @@ public class JMusicHubController implements Controller {
     public LinkedList<Genre> getGenres() {
         LinkedList<Genre> genres = new LinkedList<Genre>();
         for (int i = 0; i < this.elements.size(); i++) {
-            if ((this.elements.get(i) instanceof Song)&&(genres.contains(((Song)this.elements.get(i)).getGenre()))) {
+            if ((this.elements.get(i) instanceof Song)&&(!genres.contains(((Song)this.elements.get(i)).getGenre()))) {
                     genres.add(((Song)this.elements.get(i)).getGenre());
             }
         }
@@ -191,7 +191,7 @@ public class JMusicHubController implements Controller {
     public LinkedList<Category> getCategories() {
         LinkedList<Category> categories = new LinkedList<Category>();
         for (int i = 0; i < this.elements.size(); i++) {
-            if ((this.elements.get(i) instanceof AudioBook)&&(categories.contains(((AudioBook)this.elements.get(i)).getCategory()))) {
+            if ((this.elements.get(i) instanceof AudioBook)&&(!categories.contains(((AudioBook)this.elements.get(i)).getCategory()))) {
                     categories.add(((AudioBook)this.elements.get(i)).getCategory());
             }
         }
@@ -202,7 +202,7 @@ public class JMusicHubController implements Controller {
     public LinkedList<Language> getLanguages() {
         LinkedList<Language> languages = new LinkedList<Language>();
         for (int i = 0; i < this.elements.size(); i++) {
-            if ((this.elements.get(i) instanceof AudioBook)&&(languages.contains(((AudioBook)this.elements.get(i)).getLanguage()))) {
+            if ((this.elements.get(i) instanceof AudioBook)&&(!languages.contains(((AudioBook)this.elements.get(i)).getLanguage()))) {
                     languages.add(((AudioBook)this.elements.get(i)).getLanguage());
             }
         }
