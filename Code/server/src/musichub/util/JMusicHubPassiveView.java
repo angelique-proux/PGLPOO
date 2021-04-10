@@ -30,7 +30,6 @@ public class JMusicHubPassiveView implements View {
             //create the streams that will handle the objects coming through the sockets
             this.input = new ObjectInputStream(socket.getInputStream());
             this.output = new ObjectOutputStream(socket.getOutputStream());
-            SingletonMusic music = SingletonMusic.getInstance();
 
             output.writeObject("\nConnected to the server\nType any command to begin using jMusicHub\nType \"h\" for help\n"); //serialize and write the object to the stream
 
@@ -48,8 +47,8 @@ public class JMusicHubPassiveView implements View {
                     output.writeObject("What do you want? (Enter the number)\n1- Listen the playlist\n2- More informtion");
                     if(((String) input.readObject()).equals("1")) {
                         output.writeObject(true);
-                        music.checkInstance();
-                        music.startMusic(audio.getContent(),6668,socket);
+                        SingletonMusic music = SingletonMusic.getInstance(audio.getContent(),6668,socket);
+                        //music.startMusic();
                     } else {
                         output.writeObject(false);
                     }

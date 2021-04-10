@@ -12,6 +12,7 @@ public class Client {
 	private ObjectOutputStream output;
 	private ObjectInputStream input;
 	private Socket socket;
+	private SingletonMusic music;
 
 	public void connect(String ip)
 	{
@@ -28,9 +29,7 @@ public class Client {
 			System.out.println("Connection to the server...\n\n");
 			System.out.println((String) input.readObject());
 			Scanner scan = new Scanner(System.in);
-			SingletonMusic music;
 			int choice;
-
 
 			while(true) {
 					String command = scan.nextLine();
@@ -49,9 +48,10 @@ public class Client {
 								System.out.println(input.readObject());
 								output.writeObject(scan.nextLine());
 								if(((boolean) input.readObject())) {
-									music = SingletonMusic.getInstance();
-									music.startMusic(ip,6668,this.socket);
+									music = SingletonMusic.getInstance(ip,6668,this.socket);
+									//music.startMusic();
 									do {
+										System.out.println("\nPlease wait a few moments before the music starts\n");
 										System.out.println("Enter a command : (play/pause/stop)");
 										switch(scan.nextLine()) {
 											case "pause":
@@ -86,7 +86,7 @@ public class Client {
 								if(((boolean) input.readObject())) {
 									LinkedList<Song> song = oneAlbum.getSongs();
 									for(int i=0;i<song.size();i++) {
-										music = SingletonMusic.getInstance();
+										//music = SingletonMusic.getInstance();
 										//music.playMusic(ip,6668);
 									}
 								} else {
@@ -107,7 +107,7 @@ public class Client {
 								if(((boolean) input.readObject())) {
 									LinkedList<Audio> audio = onePlaylist.getAudios();
 									for(int i=0;i<audio.size();i++) {
-										music = SingletonMusic.getInstance();
+										//music = SingletonMusic.getInstance();
 										//music.playMusic(ip,6668);
 									}
 								} else {
@@ -127,7 +127,7 @@ public class Client {
 									if(((boolean) input.readObject())) {
 										LinkedList<Song> song = album.getSongs();
 										for(int i=0;i<song.size();i++) {
-											music = SingletonMusic.getInstance();
+											//music = SingletonMusic.getInstance();
 											//music.playMusic(ip,6668);
 										}
 									} else {
@@ -148,7 +148,7 @@ public class Client {
 									if(((boolean) input.readObject())) {
 										LinkedList<Audio> audio = playlist.getAudios();
 										for(int i=0;i<audio.size();i++) {
-											music = SingletonMusic.getInstance();
+											//music = SingletonMusic.getInstance();
 											//music.playMusic(ip,6668);
 										}
 									} else {
@@ -172,7 +172,7 @@ public class Client {
 									System.out.println(input.readObject());
 									output.writeObject(scan.nextLine());
 									if(((boolean) input.readObject())) {
-										music = SingletonMusic.getInstance();
+										//music = SingletonMusic.getInstance();
 										//music.playMusic(ip,6668);
 									} else {
 										System.out.println(song);
@@ -195,7 +195,7 @@ public class Client {
 									System.out.println((String) input.readObject());
 									output.writeObject(scan.nextLine());
 									if(((boolean) input.readObject())) {
-										music = SingletonMusic.getInstance();
+										//music = SingletonMusic.getInstance();
 										//music.playMusic(ip,6668);
 									} else {
 										System.out.println(audiobook);
@@ -216,7 +216,7 @@ public class Client {
 								if(((boolean) input.readObject())) {
 									LinkedList<Song> songs = one_Album.getSongs();
 									for(int i=0;i<songs.size();i++) {
-										music = SingletonMusic.getInstance();
+										//music = SingletonMusic.getInstance();
 										//music.playMusic(ip,6668);
 									}
 								} else {
@@ -243,7 +243,7 @@ public class Client {
 									System.out.println((String) input.readObject());
 									output.writeObject(scan.nextLine());
 									if(((boolean) input.readObject())) {
-										music = SingletonMusic.getInstance();
+										//music = SingletonMusic.getInstance();
 										//music.playMusic(ip,6668);
 									} else {
 										System.out.println(song);
@@ -255,7 +255,7 @@ public class Client {
 								System.out.println((String) input.readObject());
 								LinkedList<String> artistsName = (LinkedList<String>) input.readObject();
 								for(int i=0;i<artistsName.size();i++) {
-									System.out.println("\n"+i+"- "+artistsName+"\n");
+									System.out.println("\n"+i+"- "+artistsName.get(i)+"\n");
 								}
 								System.out.println("\n"+artistsName.size()+"- None");
 								System.out.println((String) input.readObject());
@@ -279,7 +279,7 @@ public class Client {
 								System.out.println((String) input.readObject());
 								LinkedList<String> authorsName = (LinkedList<String>) input.readObject();
 								for(int i=0;i<authorsName.size();i++) {
-									System.out.println("\n"+i+"- "+authorsName+"\n");
+									System.out.println("\n"+i+"- "+authorsName.get(i)+"\n");
 								}
 								System.out.println("\n"+authorsName.size()+"- None");
 								System.out.println((String) input.readObject());
@@ -303,7 +303,7 @@ public class Client {
 								System.out.println((String) input.readObject());
 								LinkedList<Genre> genres = (LinkedList<Genre>) input.readObject();
 								for(int i=0;i<genres.size();i++) {
-									System.out.println("\n"+i+"- "+genres+"\n");
+									System.out.println("\n"+i+"- "+genres.get(i)+"\n");
 								}
 								System.out.println("\n"+genres.size()+"- None");
 								System.out.println((String) input.readObject());
@@ -327,7 +327,7 @@ public class Client {
 								System.out.println((String) input.readObject());
 								LinkedList<Category> categories = (LinkedList<Category>) input.readObject();
 								for(int i=0;i<categories.size();i++) {
-									System.out.println("\n"+i+"- "+categories+"\n");
+									System.out.println("\n"+i+"- "+categories.get(i)+"\n");
 								}
 								System.out.println("\n"+categories.size()+"- None");
 								System.out.println((String) input.readObject());
@@ -351,7 +351,7 @@ public class Client {
 								System.out.println((String) input.readObject());
 								LinkedList<Language> languages = (LinkedList<Language>) input.readObject();
 								for(int i=0;i<languages.size();i++) {
-									System.out.println("\n"+i+"- "+languages+"\n");
+									System.out.println("\n"+i+"- "+languages.get(i)+"\n");
 								}
 								System.out.println("\n"+languages.size()+"- None");
 								System.out.println((String) input.readObject());

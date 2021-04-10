@@ -14,25 +14,22 @@ import javax.swing.SwingUtilities;
 
 public class SingletonMusic {
   private static SingletonMusic uniqueInstance = null;
-  private MusicThread music;
+  private static MusicThread music = null;
 
   private SingletonMusic() {
   }
 
-  public static synchronized SingletonMusic getInstance() {
-    if(uniqueInstance==null) {
+  public static synchronized SingletonMusic getInstance(String ip,int port, Socket socket) {
+    if((uniqueInstance==null)&&(music==null)) {
       uniqueInstance = new SingletonMusic();
+      music = new MusicThread(ip,port,socket);
+      music.start();
     }
     return uniqueInstance;
   }
 
-  public void startMusic(String ip,int port, Socket socket) {
-    this.music = new MusicThread(ip,port,socket);
+  public void startMusic() {
     music.start();
-    if(!music.isAlive()) {
-      music = null;
-      uniqueInstance = null;
-    }
   }
 
   public void pauseMusic() {
@@ -45,17 +42,17 @@ public class SingletonMusic {
 
   public void stopMusic() {
     music.stopThread();
-    music.stop();
+    if(!music.isInterrupted()) {
+      music = null;
+      uniqueInstance = null;
+    }
   }
 
   public boolean isRunning() {
-    return music.isRunning();
-  }
-
-  public void checkInstance() {
-    if(this.music.isRunning()) {
-      this.music = null;
-      this.uniqueInstance = null;
+    if(music==null) {
+      return false;
+    } else {
+      return true;
     }
   }
 }

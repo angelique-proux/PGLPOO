@@ -117,7 +117,7 @@ public class JMusicHubActiveView implements View {
                   }
                   if(playlists.size()>numberObjectByPage) {
                     int numberMaxPagesPlaylists = playlists.size()/numberObjectByPage+((playlists.size()%numberObjectByPage==0)? 0 : 1);
-                    System.out.println("\t\tPage ["+((int) numberPlaylists/10)+"/"+numberMaxPagesPlaylists+"]");
+                    System.out.println("\t\tPage ["+numberPlaylists/10+"/"+numberMaxPagesPlaylists+"]");
                     System.out.println("\nTo see the following pages: 1 [page]\ne.g. 2nd page: \'1 2\'");
                   }
                   break;
@@ -301,7 +301,7 @@ public class JMusicHubActiveView implements View {
                   }
 
                 case "edit" : // Change the content of the application
-                  controller.editDatabase();
+                  this.controller.editDatabase();
                   break;
 
                 case "q" :// Quit the application

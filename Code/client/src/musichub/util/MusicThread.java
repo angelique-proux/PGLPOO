@@ -6,40 +6,33 @@ import java.io.*;
 import java.net.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
-import javax.swing.JLabel;
 
 public class MusicThread extends Thread {
-  private boolean running;
-  private boolean isRunning;
   private int port;
   private String ip;
   private Socket socket;
   private Clip clip;
+  private InputStream in;
 
   public MusicThread(String ip,int port, Socket socket) {
     this.ip = ip;
     this.port = port;
     this.socket = socket;
-    this.running = true;
-    this.isRunning = false;
   }
 
   public void run() {
-    this.isRunning = true;
-    //Thread.sleep(100);
-    try /*(Socket socket = new Socket(this.ip,this.port))*/ {
-      //if (socket.isConnected()) {
-        InputStream in = new BufferedInputStream(socket.getInputStream());
+    try (Socket socket = new Socket(this.ip,this.port)) {
+      if (socket.isConnected()) {
+        this.in = new BufferedInputStream(socket.getInputStream());
         AudioInputStream ais = AudioSystem.getAudioInputStream(in);
         this.clip = AudioSystem.getClip();
+        Thread.sleep(100);
         this.clip.open(ais);
         this.clip.start();
-        while(this.running);
-        //this.clip.stop();
-        //Thread.sleep(100); // given clip.drain a chance to start
-        //this.clip.drain();
-      //}
+        while(!Thread.currentThread().isInterrupted()) {
+          Thread.sleep(100);
+        }
+      }
     } catch(UnknownHostException uhe) {
 			uhe.printStackTrace();
 		} catch(IOException ioe) {
@@ -48,9 +41,10 @@ public class MusicThread extends Thread {
       uafe.printStackTrace();
     } catch(LineUnavailableException lue) {
       lue.printStackTrace();
-    }/* catch(InterruptedException ie) {
+    } catch(InterruptedException ie) {
       ie.printStackTrace();
-    }*/
+      Thread.currentThread().interrupted();
+    }
 
     /*int count;
     String label = "Press \'p\' to pause the music\nPress \'p\' a second time to restart the music\nPress \'s\' to stop the music\n\n";
@@ -94,14 +88,15 @@ public class MusicThread extends Thread {
   }
 
   public void stopThread() {
-    this.isRunning = false;
-    this.running = false;
     this.clip.stop();
     this.clip.drain();
-  }
-
-  public boolean isRunning() {
-    return this.isRunning;
+    this.clip.close();
+    try {
+      this.in.close();
+    } catch(IOException ioe) {
+      ioe.printStackTrace();
+    }
+    Thread.currentThread().interrupt();
   }
 
   /*public static AudioInputStream getAudioInputStreamFromFile(String filepath) {
