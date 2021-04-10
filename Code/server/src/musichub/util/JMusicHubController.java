@@ -130,7 +130,6 @@ public class JMusicHubController implements Controller {
         boolean found = false; /* Album title entered by the user */
         for (int i = 0; i < this.albums.size(); i++) {
             if (this.albums.get(i).getTitle().equals(title)) {
-                // System.out.println(this.albums.get(i) + "\n");
                 found = true;
                 return this.albums.get(i);
             }
@@ -147,7 +146,6 @@ public class JMusicHubController implements Controller {
         boolean found = false;
         for (int i = 0; i < this.playlists.size(); i++) {
             if (this.playlists.get(i).getName().equals(name)) {
-                // System.out.println(this.playlists.get(i) + "\n");
                 found = true;
                 return this.playlists.get(i);
             }
@@ -159,7 +157,7 @@ public class JMusicHubController implements Controller {
         LinkedList<String> artists = new LinkedList<String>();
         for (int i = 0; i < this.elements.size(); i++) {
             if ((this.elements.get(i) instanceof Song)&&(!artists.contains(((Song)this.elements.get(i)).getArtist()))) {
-                    artists.add(((Song)this.elements.get(i)).getArtist());
+                artists.add(((Song)this.elements.get(i)).getArtist());
             }
         }
         Collections.sort(artists);
@@ -170,7 +168,7 @@ public class JMusicHubController implements Controller {
         LinkedList<String> authors = new LinkedList<String>();
         for (int i = 0; i < this.elements.size(); i++) {
             if ((this.elements.get(i) instanceof AudioBook)&&(!authors.contains(((AudioBook)this.elements.get(i)).getAuthor()))) {
-                    authors.add(((AudioBook)this.elements.get(i)).getAuthor());
+                authors.add(((AudioBook)this.elements.get(i)).getAuthor());
             }
         }
         Collections.sort(authors);
@@ -181,7 +179,7 @@ public class JMusicHubController implements Controller {
         LinkedList<Genre> genres = new LinkedList<Genre>();
         for (int i = 0; i < this.elements.size(); i++) {
             if ((this.elements.get(i) instanceof Song)&&(!genres.contains(((Song)this.elements.get(i)).getGenre()))) {
-                    genres.add(((Song)this.elements.get(i)).getGenre());
+                genres.add(((Song)this.elements.get(i)).getGenre());
             }
         }
         Collections.sort(genres);
@@ -192,7 +190,7 @@ public class JMusicHubController implements Controller {
         LinkedList<Category> categories = new LinkedList<Category>();
         for (int i = 0; i < this.elements.size(); i++) {
             if ((this.elements.get(i) instanceof AudioBook)&&(!categories.contains(((AudioBook)this.elements.get(i)).getCategory()))) {
-                    categories.add(((AudioBook)this.elements.get(i)).getCategory());
+                categories.add(((AudioBook)this.elements.get(i)).getCategory());
             }
         }
         Collections.sort(categories);
@@ -203,7 +201,7 @@ public class JMusicHubController implements Controller {
         LinkedList<Language> languages = new LinkedList<Language>();
         for (int i = 0; i < this.elements.size(); i++) {
             if ((this.elements.get(i) instanceof AudioBook)&&(!languages.contains(((AudioBook)this.elements.get(i)).getLanguage()))) {
-                    languages.add(((AudioBook)this.elements.get(i)).getLanguage());
+                languages.add(((AudioBook)this.elements.get(i)).getLanguage());
             }
         }
         Collections.sort(languages);
@@ -702,10 +700,24 @@ public class JMusicHubController implements Controller {
         System.out.println("\nPlaylist created");
     }
 
-    public void removeSongFromPlaylist(Playlist playlist, Song song) {
-        if (playlist.getAudios().contains(song)) {
-            playlist.getAudios().remove(song);
+    public void removeSongFromPlaylist() {
+        System.out.println("\nPlaylists :");
+        LinkedList<Playlist> playlists = this.playlists;
+        for (int i = 0; i < playlists.size(); i++) {
+            System.out.println("\n"+i+"- "+playlists.get(i).getName()+"\n");
         }
+        System.out.println("\nNumber of playlist to edit :");
+        Scanner scanner = new Scanner (System.in);
+        String playlistNumber = scanner.nextLine();
+        System.out.println("\nAudios of the playlist :");
+        LinkedList<Audio> audios = this.getPlaylists().get(Integer.parseInt(playlistNumber)).getAudios();
+        for (int i = 0; i < audios.size(); i++) {
+            System.out.println("\n"+i+"- "+audios.get(i).getTitle()+"\n");
+        }
+        System.out.println("\nNumber of the audio to remove from he playlist :");
+        String audioNumber = scanner.nextLine();
+        this.playlists.get(Integer.parseInt(playlistNumber)).removeAudio(this.playlists.get(Integer.parseInt(playlistNumber)).getAudios().get(Integer.parseInt(audioNumber)));
+        System.out.println("\nSuccessfully removed audio from playlist");
     }
 
     /**
@@ -714,20 +726,15 @@ public class JMusicHubController implements Controller {
     * @author      Gaël Lejeune
     */
     public void deletePlaylist() {
-        Scanner scanner = new Scanner (System.in);
-        System.out.println("\nName of the playlist to delete :");
-        String name = scanner.nextLine();
-        boolean found = false;
-        for (int i = 0; i < this.playlists.size(); i++) {
-            if (this.playlists.get(i).getName().equals(name)) {
-                this.playlists.remove(i);
-                found = true;
-                System.out.println("\nSuccessfully removed");
-            }
-            if (!found) {
-                System.out.println("\nNo playlist found");
-            }
+        System.out.println("\nPlaylists :");
+        LinkedList<Playlist> playlists = this.playlists;
+        for (int i = 0; i < playlists.size(); i++) {
+            System.out.println("\n"+i+"- "+playlists.get(i).getName()+"\n");
         }
+        System.out.println("\nNumber of playlist to delete :");
+        Scanner scanner = new Scanner (System.in);
+        String playlistNumber = scanner.nextLine();
+        this.playlists.remove(Integer.parseInt(playlistNumber));
     }
 
     /**
@@ -755,7 +762,7 @@ public class JMusicHubController implements Controller {
                 System.out.println("c : add a song\t\t\t|\tl : add an audiobook");
                 System.out.println("a : add an album\t\t|\tp : create a new playlist");
                 System.out.println("+ : add a song to an album\t|\t- : delete a playlist");
-                System.out.println("s : save all modifications");
+                System.out.println("-- : remove a song from a playlist\t|\ts : save all modifications");
                 break;
 
                 case "c":// ajouter une chanson
@@ -782,15 +789,19 @@ public class JMusicHubController implements Controller {
                 this.deletePlaylist();
                 break;
 
+                case "--":
+                this.removeSongFromPlaylist();
+                break;
+
                 case "s":
                 this.save();
                 break;
 
                 default:
-                  break;
+                break;
             }
             if(editCommand.equals("m")) {
-              break;
+                break;
             }
             System.out.println("\n");
         }

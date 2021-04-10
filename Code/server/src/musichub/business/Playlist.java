@@ -63,6 +63,15 @@ public class Playlist implements AudioList {
 	}
 
 	/**
+	 * Accessor of the audio list
+	 * @return      LinkedList containing the playlist's audio list
+	 * @author      Gaël Lejeune
+	 */
+	public void removeAudio(Audio audio) {
+		this.audios.remove(audio);
+	}
+
+	/**
      * Accessor of the unique id
      * @return      UUID containing the playlist's unique id
      * @author      Gaël Lejeune
