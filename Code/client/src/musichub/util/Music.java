@@ -21,16 +21,23 @@ import java.util.Scanner;
 import java.util.Collections;
 import java.util.LinkedList;
 
+/**
+ * TODO
+ *
+ * @version 1.0
+ *
+ * @author TODO
+ */
 public class Music {
 
 	/**
-  *	Method that plays the sound given as argument
-	* Only for songs and audiobooks
-  * @param sound
-  *				Sound we wanted to listen to
-	* @param i
-	*				Int used to know if an extract must be played or the entire sound
-  */
+  	 * Method that plays the sound given as argument
+	 * Only for songs and audiobooks
+  	 * @param sound
+  	 *				Sound we wanted to listen to
+	 * @param i
+	 *				Int used to know if an extract must be played or the entire sound
+  	 */
 	public static void PlaySound(File sound, int i) {
 		try {
 			Clip clip = AudioSystem.getClip();
@@ -68,13 +75,13 @@ public class Music {
 	}
 
 	/**
-  *	Method that plays the sound list given as argument
-	* Only for albums and playlists
-  * @param soundList
-  *				List of sounds we wanted to listen to
-	* @param i
-	*				Int used to know if an extract must be played or the entire sound
-  */
+     * Method that plays the sound list given as argument
+	 * Only for albums and playlists
+     * @param soundList
+     *				List of sounds we wanted to listen to
+	 * @param i
+	 *				Int used to know if an extract must be played or the entire sound
+     */
 	public static void PlayListOfSound(LinkedList<File> soundList, int i) {
 		try {
 			System.out.println("\nAdjust your volume, the music is playing!");
@@ -108,14 +115,14 @@ public class Music {
 
 
 	/**
-  *	Method that enables to make a choice between listen the entire sound or an extract
-	* Only for songs and audiobooks
-  * @param musicFilepath
-  *				File where the sound is
-	* @param sc
-	*				Scanner
-	* @see PlaySound
-  */
+     *Method that enables to make a choice between listen the entire sound or an extract
+	 * Only for songs and audiobooks
+	 *
+     * @param musicFilepath	File where the sound is
+	 * @param sc Scanner
+	 *
+	 * @see PlaySound
+     */
 	public static void listenToSomeMusic(String musicFilepath, Scanner sc) {
 		File mus = new File(musicFilepath); // Warning : it must be a .wav
 		String decision;

@@ -5,15 +5,42 @@ import business.Audio;
 import java.net.Socket;
 import java.util.LinkedList;
 
+/**
+ * TODO
+ *
+ * Version : 1.0
+ *
+ * @author Angélique Proux
+ */
 public class ControlMusicList implements ControlMusic {
 
-    private LinkedList<Audio> audioList = new LinkedList<>();
+    /**
+     * TODO
+     */
+    private LinkedList<Audio> audioList;
+
+    /**
+     * TODO
+     */
     private boolean nextMusic;
+
+    /**
+     * TODO
+     */
     private boolean previousMusic;
+
+    /**
+     * TODO
+     */
     private int port;
+
+    /**
+     * TODO
+     */
     private Socket socket;
 
     public ControlMusicList(Audio audio, int port, Socket socket) {
+        this.audioList = new LinkedList<>();
         this.audioList.add(audio);
         this.port = port;
         this.socket = socket;
@@ -35,7 +62,7 @@ public class ControlMusicList implements ControlMusic {
                 continue;
             }
             if (this.previousMusic) {
-                if (!i==0) {
+                if (i!=0) {
                     i--;
                 }
                 this.previousMusic = false;
@@ -43,13 +70,11 @@ public class ControlMusicList implements ControlMusic {
         }
     }
 
-    public void nextMusicAskByClient() {
-        if (((String) input.readObject()).equals("next")) {
+    public void nextMusic() {
             this.nextMusic = true;
-        }
     }
 
-    public void previousMusicAskByClient() {
+    public void previousMusicAskByClient(ObjectInputStream input) {
         if (((String) input.readObject()).equals("previous")) {
             this.previousMusic = true;
         }

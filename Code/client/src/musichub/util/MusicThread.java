@@ -9,6 +9,13 @@ import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JLabel;
 
+/**
+ * TODO
+ *
+ * @version 1.0
+ *
+ * @author TODO
+ */
 public class MusicThread extends Thread {
   private boolean running;
   private boolean isRunning;

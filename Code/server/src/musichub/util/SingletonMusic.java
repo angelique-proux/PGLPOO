@@ -12,8 +12,23 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
+/**
+ * SingletonMusic TODO
+ *
+ * Version : 1.0
+ *
+ * @author TODO
+ */
 public class SingletonMusic {
+
+ /**
+  * TODO
+  */
   private static SingletonMusic uniqueInstance = null;
+
+  /**
+   * TODO
+   */
   private AudioServer music;
 
   private SingletonMusic() {

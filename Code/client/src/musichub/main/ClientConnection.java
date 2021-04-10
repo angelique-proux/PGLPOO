@@ -2,10 +2,15 @@ package main;
 
 import util.*;
 
-public class ClientConnection
-{
-	public static void main (String[] args)
-	{
+/**
+ * TODO
+ *
+ * @version 1.0
+ *
+ * @author TODO
+ */
+public class ClientConnection {
+	public static void main (String[] args) {
 		Client c1 = new Client();
 		c1.connect("localhost");
 	}

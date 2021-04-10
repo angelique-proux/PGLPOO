@@ -12,6 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
+/**
+ * TODO
+ *
+ * @version 1.0
+ *
+ * @author TODO
+ */
 public class SingletonMusic {
   private static SingletonMusic uniqueInstance = null;
   private MusicThread music;

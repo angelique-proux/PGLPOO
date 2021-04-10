@@ -9,17 +9,19 @@ import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-/** JMusicHub Class is the main class of the JMusicHub program.
-*
-*
-* Version : 1.0
-*
-* Date : 30/02/2001
-*
-* @author Gaël Lejeune and Steve Chauvreau-Manat (based on the work of Angélique Proux & Manelle Nouar)
-*/
+/**
+ * JMusicHubActiveView is the view used when the server is in active mod
+ *
+ * Version : 1.0
+ *
+ * @see View
+ * @author TODO
+ */
 public class JMusicHubActiveView implements View {
 
+    /**
+     * TODO
+     */
     private JMusicHubController controller;
 
     public JMusicHubActiveView(JMusicHubController controller) {
@@ -196,7 +198,7 @@ public class JMusicHubActiveView implements View {
                   int numberArtistName = Integer.parseInt(scanner.nextLine());
                   if(numberArtistName==artistsName.size()) {
                     break;
-                  } else if((numberArtistName<artistsName.size())&&(numberArtistName>=0)){
+                  } else if((numberArtistName<artistsName.size())&&(numberArtistName>=0)) {
                     System.out.println("\n\t\tAll the "+artistsName.get(numberArtistName)+"\'s songs :\n\n");
                     LinkedList<Song> songsToDisplayArtist = this.controller.getSongsByArtist(artistsName.get(numberArtistName));
                     for (int i = 0; i < songsToDisplayArtist.size(); i++) {
@@ -219,7 +221,7 @@ public class JMusicHubActiveView implements View {
                   int numberAuthorName = Integer.parseInt(scanner.nextLine());
                   if(numberAuthorName==authorsName.size()) {
                     break;
-                  } else if((numberAuthorName<authorsName.size())&&(numberAuthorName>=0)){
+                  } else if((numberAuthorName<authorsName.size())&&(numberAuthorName>=0)) {
                     System.out.println("\n\t\tAll the "+authorsName.get(numberAuthorName)+"\'s audio books :\n\n");
                     LinkedList<AudioBook> booksToDisplayAuthor = this.controller.getAudioBooksByAuthor(authorsName.get(numberAuthorName));
                     for (int i = 0; i < booksToDisplayAuthor.size(); i++) {
@@ -242,7 +244,7 @@ public class JMusicHubActiveView implements View {
                   int numberGenre = Integer.parseInt(scanner.nextLine());
                   if(numberGenre==genres.size()) {
                     break;
-                  } else if((numberGenre<genres.size())&&(numberGenre>=0)){
+                  } else if((numberGenre<genres.size())&&(numberGenre>=0)) {
                     System.out.println("\n\t\tAll the "+genres.get(numberGenre)+"\'s songs :\n\n");
                     LinkedList<Song> songsToDisplayGenre = this.controller.getSongsByGenre(genres.get(numberGenre));
                     for (int i = 0; i < songsToDisplayGenre.size(); i++) {
@@ -265,7 +267,7 @@ public class JMusicHubActiveView implements View {
                   int numberCategory = Integer.parseInt(scanner.nextLine());
                   if(numberCategory==categories.size()) {
                     break;
-                  } else if((numberCategory<categories.size())&&(numberCategory>=0)){
+                  } else if((numberCategory<categories.size())&&(numberCategory>=0)) {
                     System.out.println("\n\t\tAll the "+categories.get(numberCategory)+"\'s audio books :\n\n");
                     LinkedList<AudioBook> audioBooksToDisplayCategory = this.controller.getAudioBooksByCategory(categories.get(numberCategory));
                     for (int i = 0; i < audioBooksToDisplayCategory.size(); i++) {
@@ -288,7 +290,7 @@ public class JMusicHubActiveView implements View {
                   int numberLanguage = Integer.parseInt(scanner.nextLine());
                   if(numberLanguage==languages.size()) {
                     break;
-                  } else if((numberLanguage<languages.size())&&(numberLanguage>=0)){
+                  } else if((numberLanguage<languages.size())&&(numberLanguage>=0)) {
                     System.out.println("\n\t\tAll the "+languages.get(numberLanguage)+"\'s audio books :\n\n");
                     LinkedList<AudioBook> audioBooksToDisplayLanguage = this.controller.getAudioBooksByLanguage(languages.get(numberLanguage));
                     for (int i = 0; i < audioBooksToDisplayLanguage.size(); i++) {

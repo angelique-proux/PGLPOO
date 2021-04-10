@@ -4,9 +4,25 @@ import util.logger.*;
 import java.io.*;
 import java.net.*;
 
-public class Server extends AbstractServer
-{
+
+/**
+ * Server TODO
+ *
+ * Version : 1.0
+ *
+ * @see AbstractServer
+ * @author TODO
+ */
+public class Server extends AbstractServer {
+
+	/**
+     * TODO
+     */
 	private String ip = "localhost";
+
+	/**
+     * TODO
+     */
 	private ServerSocket ss;
 
 	public void connect(String ip) {
