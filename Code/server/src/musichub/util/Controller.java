@@ -16,6 +16,6 @@ import java.util.regex.Matcher;
  *
  * Version : 1.0
  *
- * @author Gaël Lejeune
+ * @author  Gaël Lejeune
  */
 public interface Controller {}

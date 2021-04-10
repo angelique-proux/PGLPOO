@@ -5,7 +5,7 @@ package util;
  *
  * Version : 1.0
  *
- * @author Steve Chauvreau-Manat
+ * @author	Steve Chauvreau-Manat
  */
 public abstract class AbstractServer
 {
@@ -14,7 +14,7 @@ public abstract class AbstractServer
 	 *
 	 * @param       ip TODO
 	 *
-	 * @author   Steve Chauvreau-Manat
+	 * @author   	Steve Chauvreau-Manat
 	 */
 	public abstract void connect(String ip);
 }

@@ -13,9 +13,9 @@ public class MissingFileException extends Exception {
 
     /**
      * MissingFileException constructor
-     * @param message Message returned by the exception catch
+     * @param   message Message returned by the exception catch
      *
-     * @author Gaël Lejeune
+     * @author  Gaël Lejeune
      */
     public MissingFileException(String message) {
         System.out.println(message);

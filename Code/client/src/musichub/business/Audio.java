@@ -1,3 +1,15 @@
+/*
+ * Nom de classe : Album
+ *
+ * Description   : Audio Abstract class representing an audio file
+ *
+ * Version       : 1.0
+ *
+ * Date          : 10/04/2021
+ *
+ * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package business;
 
 import java.util.UUID;

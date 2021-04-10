@@ -31,7 +31,7 @@ public class SingletonConsoleLogger implements ILogger
      *
      * @return      SingletonConsoleLogger
      *
-     * @author   Gaël Lejeune
+     * @author      Gaël Lejeune
      */
     public static synchronized SingletonConsoleLogger getInstance() {
         if (logger == null) //création d’instance unique
@@ -45,7 +45,7 @@ public class SingletonConsoleLogger implements ILogger
      * @param       l importance level of the log to write
      * @param       message message of the log to write
      *
-     * @author   Gaël Lejeune
+     * @author      Gaël Lejeune
      */
     public void write(Level l, String message) {
         writeAtTerminal(l, message);
@@ -57,7 +57,7 @@ public class SingletonConsoleLogger implements ILogger
      * @param       l importance level of the log to write
      * @param       message message of the log to write
      *
-     * @author   Gaël Lejeune
+     * @author      Gaël Lejeune
      */
     public static void writeAtTerminal (Level l, String message) {
         System.out.println ("[" + new Timestamp(new Date().getTime()).toString() + "] - " + l + " - " + message);

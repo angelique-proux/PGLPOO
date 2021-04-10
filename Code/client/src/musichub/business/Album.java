@@ -1,3 +1,15 @@
+/*
+ * Nom de classe : Album
+ *
+ * Description   : Album class representing an audio album
+ *
+ * Version       : 1.0
+ *
+ * Date          : 10/04/2021
+ *
+ * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package business;
 
 import java.util.LinkedList;
@@ -7,8 +19,6 @@ import java.util.UUID;
 /** Album class representing an audio album
  *
  * Version : 1.6
- *
- * Date : 30/02/2001
  *
  * @author  Gaël Lejeune
  */

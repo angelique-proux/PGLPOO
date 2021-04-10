@@ -22,8 +22,8 @@ public interface View {
 
     /**
     * Execution of the JMusicHub program and interaction with the user using a terminal
-    * @param       args Arguments of the function
-    * @author Gaël Lejeune and Steve Chauvreau-Manat
+    *
+    * @author       Gaël Lejeune and Steve Chauvreau-Manat
     */
     public void display();
 }

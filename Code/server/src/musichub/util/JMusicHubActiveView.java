@@ -30,8 +30,8 @@ public class JMusicHubActiveView implements View {
 
     /**
     * Execution of the JMusicHub program and interaction with the user using a terminal
-    * @param       args Arguments of the function
-    * @author Gaël Lejeune and Steve Chauvreau-Manat
+    * @param        args Arguments of the function
+    * @author       Gaël Lejeune and Steve Chauvreau-Manat
     */
     public void display() {
         System.out.println("\n\nWelcome in JMusicHub,");

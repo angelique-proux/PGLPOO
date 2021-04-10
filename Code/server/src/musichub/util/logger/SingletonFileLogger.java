@@ -41,7 +41,7 @@ public class SingletonFileLogger implements ILogger
      *
      * @return      SingletonFileLogger
      *
-     * @author   Gaël Lejeune
+     * @author      Gaël Lejeune
      */
     public static synchronized SingletonFileLogger getInstance() {
         if (logger == null) //création d’instance unique
@@ -55,7 +55,7 @@ public class SingletonFileLogger implements ILogger
      * @param       l importance level of the log to write
      * @param       message message of the log to write
      *
-     * @author   Gaël Lejeune
+     * @author      Gaël Lejeune
      */
     public void write(Level l, String message) {
         writeToFile(l, message, LOGS_FILE_PATH);
@@ -68,7 +68,7 @@ public class SingletonFileLogger implements ILogger
      * @param       message message of the log to write
      * @param       fileName name of the log file
      *
-     * @author   Gaël Lejeune
+     * @author      Gaël Lejeune
      */
     private void writeToFile(Level l, String message, String fileName) {
         try{

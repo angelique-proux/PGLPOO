@@ -18,15 +18,15 @@ import java.lang.Exception;
  *
  * Version : 1.0
  *
- * @author Manelle Nouar & Angélique Proux
+ * @author	Manelle Nouar & Angélique Proux
  */
 public class NotACategoryException extends Exception{
 
 	/**
      * NotACategoryException constructor
-     * @param titleAudioBook name of the audio book with a wrong category
+     * @param	titleAudioBook name of the audio book with a wrong category
      *
-     * @author Angelique Proux
+     * @author	Angelique Proux
      */
 	public NotACategoryException(String titleAudioBook) {
 		System.out.println("False category in xml. Please change the category of " + titleAudioBook + ".");

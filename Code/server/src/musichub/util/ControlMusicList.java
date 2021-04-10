@@ -10,7 +10,7 @@ import java.util.LinkedList;
  *
  * Version : 1.0
  *
- * @author Angélique Proux
+ * @author  Angélique Proux
  */
 public class ControlMusicList implements ControlMusic {
 

@@ -1,3 +1,15 @@
+/*
+ * Nom de classe : AudioList
+ *
+ * Description   : AudioList Interface represent object containing a list of song or audio
+ *
+ * Version       : 1.0
+ *
+ * Date          : 10/04/2021
+ *
+ * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package business;
 
 import java.io.Serializable;
