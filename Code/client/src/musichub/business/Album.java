@@ -10,7 +10,7 @@ import java.util.UUID;
  *
  * Date : 30/02/2001
  *
- * @author       Gaël Lejeune
+ * @author  Gaël Lejeune
  */
 public class Album implements AudioList {
 
@@ -68,7 +68,9 @@ public class Album implements AudioList {
 
     /**
      * Accessor of the title
+     *
      * @return      String containing the album's title
+     *
      * @author      Gaël Lejeune
      */
     public String getTitle() {
@@ -77,7 +79,9 @@ public class Album implements AudioList {
 
     /**
      * Accessor of the artist
+     *
      * @return      String containing the album's artist
+     *
      * @author      Gaël Lejeune
      */
     public String getArtist() {
@@ -86,7 +90,9 @@ public class Album implements AudioList {
 
     /**
      * Accessor of the release date
+     *
      * @return      String containing the album's release date
+     *
      * @author      Gaël Lejeune
      */
     public String getReleaseDate() {
@@ -95,7 +101,9 @@ public class Album implements AudioList {
 
     /**
      * Accessor of the song list
+     *
      * @return      LinkedList containing the album's song list
+     *
      * @author      Gaël Lejeune
      */
     public LinkedList<Song> getSongs() {
@@ -104,7 +112,9 @@ public class Album implements AudioList {
 
     /**
      * Accessor of the duration
+     *
      * @return      int containing the album's duration
+     *
      * @author      Gaël Lejeune
      */
     public int getDuration() {
@@ -113,7 +123,9 @@ public class Album implements AudioList {
 
     /**
      * Accessor of the unique id
+     *
      * @return      UUID containing the album's unique id
+     *
      * @author      Gaël Lejeune
      */
     public UUID getID() {
@@ -122,7 +134,9 @@ public class Album implements AudioList {
 
     /**
      * Override of the toString java method
+     *
      * @return      String containing the album's informations
+     *
      * @author      Gaël Lejeune
      */
     public String toString() {
@@ -136,7 +150,9 @@ public class Album implements AudioList {
 
     /**
      * Allow the user to add a given song to the album
+     *
      * @param       audio Audio to add
+     *
      * @see         Audio
      * @author      Gaël Lejeune
      */

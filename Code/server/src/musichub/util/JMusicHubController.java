@@ -15,15 +15,14 @@ import java.net.*;
 import java.io.*;
 import javax.sound.sampled.*;
 
-/** JMusicHub Class is the main class of the JMusicHub program.
-*
-*
-* Version : 1.0
-*
-* Date : 30/02/2001
-*
-* @author Gaël Lejeune and Steve Chauvreau-Manat (based on the work of Angélique Proux & Manelle Nouar)
-*/
+/**
+ * JMusicHubController Class is the controller of the JMusicHub program.
+ *
+ * Version : 1.0
+ *
+ * @see Controller
+ * @author TODO
+ */
 public class JMusicHubController implements Controller {
 
     /**
@@ -32,6 +31,9 @@ public class JMusicHubController implements Controller {
     */
     private JMusicHubModel model;
 
+    /**
+     * TODO
+     */
     private View view;
 
     /**

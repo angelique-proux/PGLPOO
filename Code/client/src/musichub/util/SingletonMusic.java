@@ -12,15 +12,41 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
+/**
+ * TODO
+ *
+ * @version 1.0
+ *
+ * @author TODO
+ */
 public class SingletonMusic {
+
+  /**
+   * TODO
+   */
   private static SingletonMusic uniqueInstance = null;
-  private static MusicThread music = null;
 
-  private SingletonMusic() {
-  }
+  /**
+   * TODO
+   */
+  private static MusicThread music;
 
-  public static synchronized SingletonMusic getInstance(String ip,int port, Socket socket) {
-    if((uniqueInstance==null)&&(music==null)) {
+  /**
+   * Constructor of SingletonMusic
+   *
+   * @author	TODO
+   */
+  private SingletonMusic() {}
+
+  /**
+   * Acts as the singleton constructor and return an instance of SingletonMusic
+   *
+   * @return    SingletonMusic
+   *
+   * @author    Gaël Lejeune
+   */
+  public static synchronized SingletonMusic getInstance() {
+    if(uniqueInstance==null) {
       uniqueInstance = new SingletonMusic();
       music = new MusicThread(ip,port,socket);
       music.start();
@@ -28,18 +54,42 @@ public class SingletonMusic {
     return uniqueInstance;
   }
 
+  /**
+   * TODO
+   *
+   * @param     ip TODO
+   * @param     port TODO
+   * @param     socket TODO
+   *
+   * @author    TODO
+   */
   public void startMusic() {
     music.start();
   }
 
+  /**
+   * TODO
+   *
+   * @author    TODO
+   */
   public void pauseMusic() {
     music.pause();
   }
 
+  /**
+   * TODO
+   *
+   * @author    TODO
+   */
   public void restartMusic() {
     music.restart();
   }
 
+  /**
+   * TODO
+   *
+   * @author    TODO
+   */
   public void stopMusic() {
     music.stopThread();
     if(!music.isInterrupted()) {
@@ -48,6 +98,11 @@ public class SingletonMusic {
     }
   }
 
+  /**
+   * TODO
+   *
+   * @author    TODO
+   */
   public boolean isRunning() {
     if(music==null) {
       return false;

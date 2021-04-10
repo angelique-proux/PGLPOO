@@ -13,14 +13,12 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.text.Normalizer;
 
-/** JMusicHubModel class allowing to read and write xml files
- * Read the different XML of the jMusicHub program
+/**
+ * Model Interface is the interface representing a base model
  *
- * Version : 1.2
+ * Version : 1.0
  *
- * Date : 30/02/2001
- *
- * @author Gaël Lejeune (Based on the work of Felicia Ionascu)
+ * @author Gaël Lejeune
  */
 public interface Model {
 

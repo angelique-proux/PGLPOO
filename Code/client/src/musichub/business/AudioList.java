@@ -6,8 +6,6 @@ import java.io.Serializable;
  *
  * Version : 1.0
  *
- * Date : 30/02/2001
- *
  * @author Gaël Lejeune and Steve Chauvreau-Manat
  */
 public interface AudioList extends Serializable		//must implement Serializable in order to be sent over a Socket
@@ -15,9 +13,11 @@ public interface AudioList extends Serializable		//must implement Serializable i
 
     /**
 	 * Allow the user to add a given song to the AudioList
+     *
      * @param       audio Audio to add
+     *
 	 * @see         Audio
-     * @author Gaël Lejeune and Steve Chauvreau-Manat
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
 	 */
     abstract void addAudio(Audio audio);
 }

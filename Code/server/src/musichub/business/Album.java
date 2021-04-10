@@ -8,7 +8,7 @@ import java.util.UUID;
  *
  * Version : 1.6
  *
- * @author       Gaël Lejeune
+ * @author Gaël Lejeune
  */
 public class Album implements AudioList {
 

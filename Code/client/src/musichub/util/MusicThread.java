@@ -7,6 +7,13 @@ import java.net.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * TODO
+ *
+ * @version 1.0
+ *
+ * @author TODO
+ */
 public class MusicThread extends Thread {
   private int port;
   private String ip;
@@ -14,6 +21,15 @@ public class MusicThread extends Thread {
   private Clip clip;
   private InputStream in;
 
+  /**
+   * AudioBook constructor
+   *
+   * @param     ip TODO
+   * @param     author Author of the book
+   * @param     duration Duration of the audio book
+   *
+   * @author      Gaël Lejeune
+   */
   public MusicThread(String ip,int port, Socket socket) {
     this.ip = ip;
     this.port = port;

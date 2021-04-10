@@ -1,4 +1,10 @@
 package util;
 
-public interface ControlMusic {
-}
+/**
+ * TODO
+ *
+ * Version : 1.0
+ *
+ * @author Angélique Proux
+ */
+public interface ControlMusic {}

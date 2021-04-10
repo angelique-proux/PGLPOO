@@ -7,8 +7,6 @@ import java.util.UUID;
  *
  * Version : 1.0
  *
- * Date : 30/02/2001
- *
  * @author Gaël Lejeune
  */
 public class Playlist implements AudioList {
@@ -46,7 +44,9 @@ public class Playlist implements AudioList {
 
 	/**
      * Accessor of the name
+	 *
      * @return      String containing the playlist's name
+	 *
      * @author      Gaël Lejeune
      */
 	public String getName() {
@@ -55,7 +55,9 @@ public class Playlist implements AudioList {
 
 	/**
      * Accessor of the audio list
+	 *
      * @return      LinkedList containing the playlist's audio list
+	 *
      * @author      Gaël Lejeune
      */
 	public LinkedList<Audio> getAudios() {
@@ -64,7 +66,9 @@ public class Playlist implements AudioList {
 
 	/**
      * Accessor of the unique id
+	 *
      * @return      UUID containing the playlist's unique id
+	 *
      * @author      Gaël Lejeune
      */
 	public UUID getID() {
@@ -73,7 +77,9 @@ public class Playlist implements AudioList {
 
 	/**
      * Override of the toString java method
+	 *
      * @return      String containing the playlist's informations
+	 *
      * @author      Gaël Lejeune
      */
 	public String toString() {
@@ -87,7 +93,9 @@ public class Playlist implements AudioList {
 
 	/**
 	 * Allow the user to add a given audio file to the playlist
+	 *
 	 * @param       audio Audio to add
+	 *
 	 * @see         Audio
 	 * @author      Gaël Lejeune
 	 */

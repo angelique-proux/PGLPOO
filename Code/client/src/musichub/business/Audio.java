@@ -7,7 +7,7 @@ import java.io.Serializable;
   *
   * @version 1.0
   *
-  * @author Jean Michel D.
+  * @author Gaël Lejeune
   */
 public abstract class Audio implements Serializable		//must implement Serializable in order to be sent over a Socket
 {
@@ -34,7 +34,9 @@ public abstract class Audio implements Serializable		//must implement Serializab
 
 	/**
      * Accessor of the title
+
      * @return      String containing the audio file's title
+
      * @author      Gaël Lejeune
      */
     public String getTitle() {
@@ -43,7 +45,9 @@ public abstract class Audio implements Serializable		//must implement Serializab
 
 	/**
      * Accessor of the duration
+	 *
      * @return      Int containing the audio file's duration
+	 *
      * @author      Gaël Lejeune
      */
     public int getDuration() {
@@ -52,7 +56,9 @@ public abstract class Audio implements Serializable		//must implement Serializab
 
 	/**
      * Accessor of the unique ID
+	 *
      * @return      UUID containing the audio file's unique ID
+	 *
      * @author      Gaël Lejeune
      */
     public UUID getID() {
@@ -61,7 +67,9 @@ public abstract class Audio implements Serializable		//must implement Serializab
 
 	/**
      * Accessor of the content
+	 *
      * @return      String containing the path of the audio file
+	 *
      * @author      Gaël Lejeune
      */
     public String getContent() {

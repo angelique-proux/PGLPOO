@@ -6,18 +6,56 @@ import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.*;
 
+/**
+ * AudioServer TODO
+ *
+ * Version : 1.0
+ *
+ * @author TODO
+ */
+
 public class AudioServer extends Thread {
+  /**
+   * TODO
+   */
   private String content;
+
+  /**
+   * TODO
+   */
   private int port;
+
+  /**
+   * TODO
+   */
   private Socket socket;
+
+  /**
+   * TODO
+   */
   private OutputStream out;
 
+  /**
+   * AudioServer constructor
+   *
+   * @param       content TODO
+   * @param       port TODO
+   * @param       socket TODO
+   *
+   * @author      TODO
+   */
   public AudioServer(String content, int port, Socket socket) {
     this.content = content;
     this.port = port;
     this.socket = socket;
   }
 
+  /**
+   * TODO
+   *
+   * @see         Thread
+   * @author      TODO
+   */
   public void run() {
     try (ServerSocket serverSocker = new ServerSocket(this.port);
     FileInputStream in = new FileInputStream(new File(this.content))) {
@@ -35,6 +73,13 @@ public class AudioServer extends Thread {
     }
   }
 
+  /**
+   * TODO
+   *
+   * @return      TODO
+   *
+   * @author      TODO
+   */
   public void stopThread() {
     try {
       this.out.close();
