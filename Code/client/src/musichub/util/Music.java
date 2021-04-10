@@ -3,9 +3,11 @@
  *
  * Description   : Class which manages the sound
  *
+ * Version 		 : 1.0
+ *
  * Date          : 03/01/2021
  *
- * Copyright     : Angélique & Gaël & Steve & Antonin
+ * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
  */
 
 package util;
@@ -19,7 +21,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 /**
- * TODO
+ * Class which manages the sound
  *
  * @version 1.0
  *

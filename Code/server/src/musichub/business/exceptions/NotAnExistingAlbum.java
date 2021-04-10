@@ -18,14 +18,14 @@ import java.lang.Exception;
  *
  * Version : 1.0
  *
- * @author Manelle Nouar & Angélique Proux
+ * @author	Manelle Nouar & Angélique Proux
  */
 public class NotAnExistingAlbum extends Exception{
 
 	/**
      * NotAnExistingAlbum constructor
      *
-     * @author Angelique Proux
+     * @author	Angelique Proux
      */
 	public NotAnExistingAlbum() {
 		System.out.printf("\n\nPlease, chose an existing album.\n");

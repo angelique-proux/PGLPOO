@@ -1,3 +1,15 @@
+/*
+ * Nom de classe : Category
+ *
+ * Description   : Category Enumeration of the different available audio book categories
+ *
+ * Version       : 1.0
+ *
+ * Date          : 10/04/2021
+ *
+ * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package business;
 
 /** Category Enumeration of the different available audio book categories

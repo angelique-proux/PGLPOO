@@ -1,3 +1,16 @@
+/*
+ * Nom de classe : Language
+ *
+ * Description   : Language Enumeration of the different available audio book languages
+ *
+ * Version       : 1.0
+ *
+ * Date          : 10/04/2021
+ *
+ * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
+
 package business;
 
 /** Language Enumeration of the different available audio book languages

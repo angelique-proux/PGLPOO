@@ -11,14 +11,14 @@ import java.util.Scanner;
  *
  * Version : 1.0
  *
- * @author Steve Chauvreau-Manat
+ * @author	Steve Chauvreau-Manat
  */
 public class ServerConnection
 {
 	/**
 	 * Main of the JMusicHub server
 	 *
-	 * @author TODO
+	 * @author	TODO
 	 */
 	public static void main (String[] args) {
 		Scanner scanner = new Scanner (System.in);

@@ -27,7 +27,7 @@ public class JMusicHubController implements Controller {
 
     /**
     * XML editor allowing to read and write XML files
-    * @see JMusicHubModel
+    * @see  JMusicHubModel
     */
     private JMusicHubModel model;
 
@@ -38,19 +38,19 @@ public class JMusicHubController implements Controller {
 
     /**
     * List of the registered playlists
-    * @see Playlist
+    * @see  Playlist
     */
     private LinkedList<Playlist> playlists;
 
     /**
     * List of the registered albums
-    * @see Album
+    * @see  Album
     */
     private LinkedList<Album> albums;
 
     /**
     * List of the registered audio elements
-    * @see Audio
+    * @see  Audio
     */
     private LinkedList<Audio> elements;
 
@@ -58,7 +58,7 @@ public class JMusicHubController implements Controller {
     * Album constructor
     * Initialize all the attributes and fill the lists by reading the XML files
     *
-    * @author Gaël Lejeune
+    * @author   Gaël Lejeune
     */
     public JMusicHubController(JMusicHubModel model) {
         this.model = model;
@@ -79,7 +79,7 @@ public class JMusicHubController implements Controller {
     * Album constructor
     * Initialize all the attributes and fill the lists by reading the XML files
     *
-    * @author Gaël Lejeune
+    * @author   Gaël Lejeune
     */
     public JMusicHubController(JMusicHubModel model, Socket socket) {
         this.model = model;

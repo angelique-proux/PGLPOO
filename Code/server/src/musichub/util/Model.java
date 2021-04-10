@@ -24,6 +24,7 @@ public interface Model {
 
 	/**
 	 * Transforms the given element into a file
+	 *
 	 * @param document document to transform
 	 * @param filePath path where the file will be created
 	 *
@@ -33,6 +34,7 @@ public interface Model {
 
 	/**
 	 * Create the xml document
+	 *
 	 * @return the created document
 	 *
   	 * @author Felicia Ionascu
@@ -41,7 +43,9 @@ public interface Model {
 
 	/**
 	* Return a NodeList based on the XML elements of the file
+	*
 	* @param filePath Path of the file to read and parse
+	*
 	* @return List of the read nodes
 	*/
 	public NodeList parseXMLFile (String filePath);

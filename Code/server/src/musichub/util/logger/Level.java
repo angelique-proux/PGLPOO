@@ -32,7 +32,7 @@ public enum Level
 	 * Write the log with it's level and message
  	 * @return      return the string value of a level
 	 *
-	 * @author   Gaël Lejeune
+	 * @author   	Gaël Lejeune
 	 */
 	public String getLevelValue()
 	{

@@ -5,6 +5,6 @@ package util;
  *
  * Version : 1.0
  *
- * @author Angélique Proux
+ * @author  Angélique Proux
  */
 public interface ControlMusic {}

@@ -1,3 +1,15 @@
+/*
+ * Nom de classe : SingletonMusic
+ *
+ * Description   : TODO
+ *
+ * Version       : 1.0
+ *
+ * Date          : 10/04/2021
+ *
+ * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package util;
 
 import java.io.*;
