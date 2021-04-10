@@ -6,8 +6,8 @@ import java.util.UUID;
  *
  * @version 1.0
  *
- * @see Audio
- * @author Gaël Lejeune
+ * @see     Audio
+ * @author  Gaël Lejeune
  */
 public class Song extends Audio {
     /**
@@ -44,7 +44,9 @@ public class Song extends Audio {
 
     /**
      * Accessor of the genre
+     *
      * @return      Genre of the song
+     *
      * @see         Genre
      * @author      Gaël Lejeune
      */
@@ -54,7 +56,9 @@ public class Song extends Audio {
 
     /**
      * Accessor of the artist
+     *
      * @return      String containing the song's artist
+     *
      * @author      Gaël Lejeune
      */
     public String getArtist() {
@@ -63,7 +67,9 @@ public class Song extends Audio {
 
     /**
      * Override of the toString java method
+     *
      * @return      String containing the songs's informations
+     *
      * @author      Gaël Lejeune
      */
     public String toString() {

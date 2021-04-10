@@ -4,8 +4,6 @@ package business;
  *
  * Version : 1.0
  *
- * Date : 30/02/2001
- *
  * @author Gaël Lejeune
  */
 public enum Genre {
@@ -62,7 +60,9 @@ public enum Genre {
 
     /**
      * Override of the toString java method
+     *
      * @return      String containing the genre
+     *
      * @author      Gaël Lejeune
      */
     public String toString() {

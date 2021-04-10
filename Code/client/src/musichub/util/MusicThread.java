@@ -24,6 +24,15 @@ public class MusicThread extends Thread {
   private Socket socket;
   private Clip clip;
 
+  /**
+   * AudioBook constructor
+   *
+   * @param     ip TODO
+   * @param     author Author of the book
+   * @param     duration Duration of the audio book
+   *
+   * @author      Gaël Lejeune
+   */
   public MusicThread(String ip,int port, Socket socket) {
     this.ip = ip;
     this.port = port;

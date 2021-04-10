@@ -4,8 +4,6 @@ package business;
  *
  * Version : 1.0
  *
- * Date : 30/02/2001
- *
  * @author Gaël Lejeune
  */
 public enum Language {
@@ -52,7 +50,9 @@ public enum Language {
 
     /**
      * Override of the toString java method
+     *
      * @return      String containing the language
+     *
      * @author      Gaël Lejeune
      */
     public String toString() {

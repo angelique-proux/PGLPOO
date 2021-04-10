@@ -31,6 +31,13 @@ public class Client {
 	 */
 	private Socket socket;
 
+	/**
+	 * description de la méthode.
+	 *
+	 * @param	ip TODO
+	 *
+	 * @author	TODO
+	 */
 	public void connect(String ip) {
 		int port = 6666;
 		try {
@@ -402,7 +409,6 @@ public class Client {
 					break;
 				}
 			}
-
 		} catch  (UnknownHostException uhe) {
 			uhe.printStackTrace();
 		}

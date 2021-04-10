@@ -1,18 +1,15 @@
 /*
-* Name of class : Music
-*
-* Description   : Class which manages the sound
-*
-* Date          : 03/01/2021
-*
-* Copyright     : Angélique & Gaël & Steve & Antonin
-*/
+ * Name of class : Music
+ *
+ * Description   : Class which manages the sound
+ *
+ * Date          : 03/01/2021
+ *
+ * Copyright     : Angélique & Gaël & Steve & Antonin
+ */
 
-
-// Our package
 package util;
 
-// Packages from java
 import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -33,10 +30,11 @@ public class Music {
 	/**
   	 * Method that plays the sound given as argument
 	 * Only for songs and audiobooks
-  	 * @param sound
-  	 *				Sound we wanted to listen to
-	 * @param i
-	 *				Int used to know if an extract must be played or the entire sound
+	 *
+  	 * @param	sound we want to listen to
+	 * @param	int used to know if an extract must be played or the entire sound
+  	 *
+	 * @author	TODO
   	 */
 	public static void PlaySound(File sound, int i) {
 		try {
@@ -77,10 +75,11 @@ public class Music {
 	/**
      * Method that plays the sound list given as argument
 	 * Only for albums and playlists
-     * @param soundList
-     *				List of sounds we wanted to listen to
-	 * @param i
-	 *				Int used to know if an extract must be played or the entire sound
+     *
+	 * @param	soundList List of sounds we wanted to listen to
+	 * @param	i Int used to know if an extract must be played or the entire sound
+	 *
+	 * @author TODO
      */
 	public static void PlayListOfSound(LinkedList<File> soundList, int i) {
 		try {
@@ -115,13 +114,14 @@ public class Music {
 
 
 	/**
-     *Method that enables to make a choice between listen the entire sound or an extract
+     * Method that enables to make a choice between listen the entire sound or an extract
 	 * Only for songs and audiobooks
 	 *
-     * @param musicFilepath	File where the sound is
-	 * @param sc Scanner
+     * @param	musicFilepath File where the sound is
+	 * @param	sc Scanner
 	 *
 	 * @see PlaySound
+	 * @author TODO
      */
 	public static void listenToSomeMusic(String musicFilepath, Scanner sc) {
 		File mus = new File(musicFilepath); // Warning : it must be a .wav
@@ -136,14 +136,15 @@ public class Music {
 	}
 
 	/**
-	*	Method that enables to make a choice between listen the entire sound or an extract
-	* Only for albums and playlists
-	* @param listMusicFilepath
-	*				List of files where the sounds are
-	* @param sc
-	*				Scanner
-	* @see PlayListOfSound
-	*/
+	 * Method that enables to make a choice between listen the entire sound or an extract
+	 * Only for albums and playlists
+	 *
+	 * @param	listMusicFilepath List of files where the sounds are
+	 * @param	sc Scanner
+	 *
+	 * @see PlayListOfSound
+	 * @author TODO
+	 */
 	public static void listenToAListOfMusics(LinkedList<String> listMusicFilepath, Scanner sc) {
 		LinkedList<File> musList = new LinkedList<File>();
 		for (int ind=0; ind<listMusicFilepath.size(); ind++) {
