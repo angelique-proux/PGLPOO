@@ -1,6 +1,6 @@
 import org.junit.Test;
 
-public class GestionBibliothèqueTest {
+public class GestionBibliothequeTest {
     @Test
     public void addSongTest(){
         /*Tester l'ajout d'une chanson à la liste des chansons*/
