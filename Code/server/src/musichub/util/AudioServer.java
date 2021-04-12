@@ -57,7 +57,7 @@ public class AudioServer extends Thread {
    * @author      TODO
    */
   public void run() {
-    try (ServerSocket serverSocker = new ServerSocket(this.port);
+    try(ServerSocket serverSocker = new ServerSocket(this.port);
     FileInputStream in = new FileInputStream(new File(this.content))) {
       if(serverSocker.isBound()) {
         Socket socket = serverSocker.accept();

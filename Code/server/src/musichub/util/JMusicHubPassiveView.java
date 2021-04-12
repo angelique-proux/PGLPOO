@@ -74,11 +74,11 @@ public class JMusicHubPassiveView implements View {
                         output.writeObject(true);
                         SingletonMusic music = SingletonMusic.getInstance(audio.getContent(),6668,socket);
                         //music.startMusic();
+                        while((boolean) input.readObject());
+                        music.stopMusic();
                     } else {
                         output.writeObject(false);
                     }
-
-
                     break;
 
                     case "2" : //Send all Albums

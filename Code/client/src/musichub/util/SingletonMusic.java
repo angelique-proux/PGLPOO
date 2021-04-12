@@ -57,7 +57,7 @@ public class SingletonMusic {
    *
    * @author    Gaël Lejeune
    */
-  public static synchronized SingletonMusic getInstance() {
+  public static synchronized SingletonMusic getInstance(String ip, int port, Socket socket) {
     if(uniqueInstance==null) {
       uniqueInstance = new SingletonMusic();
       music = new MusicThread(ip,port,socket);
