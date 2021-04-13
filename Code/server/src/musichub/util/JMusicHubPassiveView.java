@@ -1,3 +1,15 @@
+/*
+ * Class' name : JMusicHubPassiveView
+ *
+ * Description : JMusicHubPassiveView is the view used when the server is in passive mod
+ *
+ * Version     : 1.0
+ *
+ * Date        : 13/04/2021
+ *
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package util;
 
 import business.*;
@@ -21,35 +33,49 @@ import javax.sound.sampled.*;
  * Version : 1.0
  *
  * @see View
- * @author TODO
+ * @author Steve Chauvreau-Manat
  */
 public class JMusicHubPassiveView implements View {
 
     /**
-     * TODO
+     * Contains all the methods used by the View
+     * @see  JMusicHubController
      */
     private JMusicHubController controller;
 
     /**
-     * TODO
+     * Network interface to retrieve network's data
      */
     private ObjectInputStream input;
 
     /**
-     * TODO
+     * Network interface to send data over the network
      */
     private ObjectOutputStream output;
 
     /**
-     * TODO
+     * Class to establish a connection with the client
      */
     private Socket socket;
 
+    /**
+     * JMusicHubPassiveView constructor
+     *
+     * @param     controller
+     * @param     socket TODO
+     *
+     * @author      Steve Chauvreau-Manat
+     */
     public JMusicHubPassiveView(JMusicHubController controller, Socket socket) {
         this.controller = controller;
         this.socket = socket;
     }
 
+    /**
+    * Send to the customer the result of all commands
+    * @see         JMusicHubController
+    * @author      Steve Chauvreau-Manat
+    */
     public void display() {
         try {
             //create the streams that will handle the objects coming through the sockets

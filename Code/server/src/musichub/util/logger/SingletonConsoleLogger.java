@@ -1,3 +1,15 @@
+/*
+ * Class' name : SingletonConsoleLogger
+ *
+ * Description : Class is a console logger and display messages and errors on the console
+ *
+ * Version     : 1.0
+ *
+ * Date        : 13/04/2021
+ *
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package util.logger;
 
 import java.util.*;

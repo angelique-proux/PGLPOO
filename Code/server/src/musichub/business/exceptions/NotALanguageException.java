@@ -1,13 +1,14 @@
 /*
- * Nom de l'exception : NotALanguageException
+ * Exception's name : NotALanguageException
  *
- * Description   : Exception qui gère les languages des livres audio
+ * Description   		: Class is the Exception thrown the language given does not exists
  *
- * Date          : 03/01/2021
+ * Version       		: 1.0
  *
- * Copyright     : Manelle & Angélique
+ * Date          		: 13/04/2021
+ *
+ * Copyright     		: Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
  */
-
 
 package business.exceptions;
 

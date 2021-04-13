@@ -1,3 +1,15 @@
+/*
+ * Exception's name : MissingFileException
+ *
+ * Description      : Class is the Exception thrown when the XML files aren't found in the "files" folder
+ *
+ * Version          : 1.0
+ *
+ * Date             : 13/04/2021
+ *
+ * Copyright        : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package business.exceptions;
 
 import java.lang.Exception;

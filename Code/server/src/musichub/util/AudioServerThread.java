@@ -1,3 +1,15 @@
+/*
+ * Class' name : AudioServerThread
+ *
+ * Description  : Thread to manage music playback
+ *
+ * Version     : 1.0
+ *
+ * Date        : 13/04/2021
+ *
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package util;
 
 import java.io.*;
@@ -7,21 +19,21 @@ import java.io.IOException;
 import javax.sound.sampled.*;
 
 /**
- * AudioServer TODO
+ * Thread to send audio data to the client
  *
  * Version : 1.0
  *
  * @author TODO
  */
 
-public class AudioServer extends Thread {
+public class AudioServerThread extends Thread {
   /**
-   * TODO
+   * The path to the audio file
    */
   private String content;
 
   /**
-   * TODO
+   * Server's open port
    */
   private int port;
 
@@ -31,30 +43,29 @@ public class AudioServer extends Thread {
   private Socket socket;
 
   /**
-   * TODO
+   * Stream to send the audio data to the client
    */
   private OutputStream out;
 
   /**
-   * AudioServer constructor
+   * AudioServerThread constructor
    *
-   * @param       content TODO
-   * @param       port TODO
+   * @param       content Audio file path
+   * @param       port Open port
    * @param       socket TODO
    *
-   * @author      TODO
+   * @author      Steve Chauvreau-Manat
    */
-  public AudioServer(String content, int port, Socket socket) {
+  public AudioServerThread(String content, int port, Socket socket) {
     this.content = content;
     this.port = port;
     this.socket = socket;
   }
 
   /**
-   * TODO
-   *
+   * Opens a socket to send the read data from the audio to the client
    * @see         Thread
-   * @author      TODO
+   * @author      Steve Chauvreau-Manat and Angélique Proux
    */
   public void run() {
     try(ServerSocket serverSocker = new ServerSocket(this.port);
@@ -74,11 +85,8 @@ public class AudioServer extends Thread {
   }
 
   /**
-   * TODO
-   *
-   * @return      TODO
-   *
-   * @author      TODO
+   * Stops the thread and music playback
+   * @author      Steve Chauvreau-Manat
    */
   public void stopThread() {
     try {

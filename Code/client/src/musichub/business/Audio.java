@@ -1,13 +1,13 @@
 /*
- * Nom de classe : Album
+ * Class' name : Audio
  *
- * Description   : Audio Abstract class representing an audio file
+ * Description : Abstract class representing an audio file
  *
- * Version       : 1.0
+ * Version     : 1.0
  *
- * Date          : 10/04/2021
+ * Date        : 13/04/2021
  *
- * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
  */
 
 package business;

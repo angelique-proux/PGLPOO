@@ -1,13 +1,13 @@
 /*
- * Nom de classe : MusicThread
+ * Class' name : MusicThread
  *
- * Description   : TODO
+ * Description : Thread to manage music playback
  *
- * Version       : 1.0
+ * Version     : 1.0
  *
- * Date          : 10/04/2021
+ * Date        : 13/04/2021
  *
- * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
  */
 
 package util;
@@ -20,27 +20,47 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * TODO
+ * Thread to manage music playback
  *
  * @version 1.0
  *
- * @author TODO
+ * @see Thread
+ * @author Steve Chauvreau-Manat
  */
 public class MusicThread extends Thread {
+  /**
+   * Server's open port
+   */
   private int port;
+
+  /**
+   * Server's ip
+   */
   private String ip;
+
+  /**
+   * The path to the audio file
+   */
   private Socket socket;
+
+  /**
+   * Class that manages audio
+   */
   private Clip clip;
+
+  /**
+   * Stream to read the audio data sent by the server
+   */
   private InputStream in;
 
   /**
-   * AudioBook constructor
+   * MusicThread constructor
    *
-   * @param     ip TODO
-   * @param     author Author of the book
-   * @param     duration Duration of the audio book
+   * @param     ip server's ip
+   * @param     port open port for the connection
+   * @param     socket TODO
    *
-   * @author      Gaël Lejeune
+   * @author    Steve Chauvreau-Manat
    */
   public MusicThread(String ip,int port, Socket socket) {
     this.ip = ip;
@@ -48,6 +68,11 @@ public class MusicThread extends Thread {
     this.socket = socket;
   }
 
+  /**
+  * Audio playback
+  * @see         Thread
+  * @author      Steve Chauvreau-Manat and Angélique Proux
+  */
   public void run() {
     try (Socket socket = new Socket(this.ip,this.port)) {
       if (socket.isConnected()) {
@@ -107,14 +132,26 @@ public class MusicThread extends Thread {
     this.line.stop();*/
   }
 
+  /**
+  * Pause the music
+  * @author      Steve Chauvreau-Manat
+  */
   public void pause() {
     this.clip.stop();
   }
 
+  /**
+  * Restarts the music if it has been paused
+  * @author      Steve Chauvreau-Manat
+  */
   public void restart() {
     this.clip.start();
   }
 
+  /**
+  * Stops the thread and music playback
+  * @author      Steve Chauvreau-Manat
+  */
   public void stopThread() {
     this.clip.stop();
     this.clip.drain();

@@ -1,3 +1,15 @@
+/*
+ * Class' name : JMusicHubModel
+ *
+ * Description : class allowing to read and write xml files and read the different XML of the jMusicHub program
+ *
+ * Version     : 1.0
+ *
+ * Date        : 13/04/2021
+ *
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package util;
 
 import util.logger.*;

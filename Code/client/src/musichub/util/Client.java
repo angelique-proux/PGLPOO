@@ -1,3 +1,15 @@
+/*
+ * Class' names : Client
+ *
+ * Description 	: Thread to manage the server/client software
+ *
+ * Version      : 1.0
+ *
+ * Date         : 13/04/2021
+ *
+ * Copyright    : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package util;
 
 import business.*;
@@ -8,21 +20,21 @@ import java.util.Scanner;
 import java.util.LinkedList;
 
 /**
- * TODO
+ * This thread is responsible for managing the connection with the server.
  *
  * @version 1.0
  *
- * @author TODO
+ * @author Félicia Ionascu and Steve Chauvreau-Manat
  */
 public class Client {
 
 	/**
-	 * TODO
+	 * Stream to send data to the server
 	 */
 	private ObjectOutputStream output;
 
 	/**
-	 * TODO
+	 * Stream to read data sent by the server
 	 */
 	private ObjectInputStream input;
 
@@ -35,9 +47,9 @@ public class Client {
 	/**
 	 * description de la méthode.
 	 *
-	 * @param	ip TODO
+	 * @param	ip Server's ip
 	 *
-	 * @author	TODO
+	 * @author	Félicia Ionascu and Steve Chauvreau-Manat
 	 */
 	public void connect(String ip) {
 		int port = 6666;

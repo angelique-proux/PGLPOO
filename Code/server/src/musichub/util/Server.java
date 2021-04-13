@@ -1,28 +1,39 @@
+/*
+ * Class' name : Server
+ *
+ * Description : Server start the connection with the client and open a thread for every client
+ *
+ * Version     : 1.0
+ *
+ * Date        : 13/04/2021
+ *
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package util;
 
 import util.logger.*;
 import java.io.*;
 import java.net.*;
 
-
 /**
- * Server TODO
+ * Server start the connection with the client and open a thread for every client
  *
  * Version : 1.0
  *
  * @see AbstractServer
- * @author TODO
+ * @author Félicia Ionascu and Gaël Lejeune
  */
 public class Server extends AbstractServer {
 
 	/**
-     * TODO
-     */
+   * Server's ip
+   */
 	private String ip = "localhost";
 
 	/**
-     * TODO
-     */
+   * TODO
+   */
 	private ServerSocket ss;
 
 	public void connect(String ip) {
@@ -35,7 +46,7 @@ public class Server extends AbstractServer {
 				System.out.println("Connected as " + ip);
 				ILogger logger = SingletonFileLogger.getInstance();
 	            logger.write(Level.INFO, "Connected to " + ip);
-				// create a new thread to handle client socket
+				//create a new thread to handle client socket
 				new ServerThread(socket).start();
 			}
 		} catch (IOException ioe) {

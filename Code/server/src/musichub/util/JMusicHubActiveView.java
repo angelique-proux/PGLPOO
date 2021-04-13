@@ -1,3 +1,15 @@
+/*
+ * Class' name : JMusicHubActiveView
+ *
+ * Description : JMusicHubActiveView is the view used when the server is in active mod
+ *
+ * Version     : 1.0
+ *
+ * Date        : 13/04/2021
+ *
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package util;
 
 import business.*;
@@ -14,16 +26,23 @@ import java.util.regex.Matcher;
  *
  * Version : 1.0
  *
- * @see View
- * @author TODO
+ * @see       View
+ * @author    Gaël Lejeune and Steve Chauvreau-Manat
  */
 public class JMusicHubActiveView implements View {
 
     /**
-     * TODO
+     * Contains all the methods used by the View
      */
     private JMusicHubController controller;
 
+    /**
+     * JMusicHubPassiveView constructor
+     *
+     * @param     controller
+     *
+     * @author      Gaël Lejeune
+     */
     public JMusicHubActiveView(JMusicHubController controller) {
         this.controller = controller;
     }

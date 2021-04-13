@@ -1,3 +1,15 @@
+/*
+ * Enumeration's name : Category
+ *
+ * Description        : Enumeration of the different available audio book categories
+ *
+ * Version            : 1.0
+ *
+ * Date               : 13/04/2021
+ *
+ * Copyright          : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package business;
 
 /** Category Enumeration of the different available audio book categories

@@ -1,13 +1,13 @@
 /*
- * Nom de classe : Playlist
+ * Class' name : Playlist
  *
- * Description   : Playlist class representing a playlist containing audios
+ * Description : Class representing a playlist containing audios
  *
- * Version       : 1.0
+ * Version     : 1.0
  *
- * Date          : 10/04/2021
+ * Date        : 13/04/2021
  *
- * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
  */
 
 package business;

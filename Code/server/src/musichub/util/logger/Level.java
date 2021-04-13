@@ -1,3 +1,15 @@
+/*
+ * Class' name : Level
+ *
+ * Description : Enumeration of the different levels of log entry
+ *
+ * Version     : 1.0
+ *
+ * Date        : 13/04/2021
+ *
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package util.logger;
 
 /**

@@ -1,13 +1,13 @@
 /*
- * Nom de classe : ClientConnection
+ * Class' name : ClientConnection
  *
- * Description   : TODO
+ * Description : TODO
  *
- * Version       : 1.0
+ * Version     : 1.0
  *
- * Date          : 10/04/2021
+ * Date        : 10/04/2021
  *
- * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
  */
 
 package main;
@@ -19,14 +19,14 @@ import util.*;
  *
  * @version 1.0
  *
- * @author TODO
+ * @author Félicia Ionascu
  */
 public class ClientConnection {
 
 	/**
  	 * Main function of the JMusicHub Client Program
  	 *
- 	 * @author		TODO
+ 	 * @author		Félicia Ionascu
  	 */
 	public static void main (String[] args) {
 		Client c1 = new Client();

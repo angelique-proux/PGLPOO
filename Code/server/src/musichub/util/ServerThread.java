@@ -1,3 +1,15 @@
+/*
+ * Class' name : ServerThread
+ *
+ * Description : Thread to manage the server/client software
+ *
+ * Version     : 1.0
+ *
+ * Date        : 13/04/2021
+ *
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package util;
 
 import java.net.*;
@@ -8,8 +20,8 @@ import business.*;
  *
  * Version : 1.0
  *
- * @see Thread
- * @author TODO
+ * @see       Thread
+ * @author    Félicia Ionascu and Steve Chauvreau-Manat
  */
 public class ServerThread extends Thread {
 
@@ -19,19 +31,33 @@ public class ServerThread extends Thread {
     private Socket socket;
 
     /**
-    * TODO
+    * XML editor allowing to read and write XML files
+    * @see  JMusicHubModel
     */
     private JMusicHubModel model;
 
     /**
-    * TODO
+    * Contains all the methods used by the View
+    * @see  JMusicHubController
     */
     private JMusicHubController controller;
 
+    /**
+     * ServerThread constructor
+     *
+     * @param     socket TODO
+     *
+     * @author    Félicia Ionascu and Steve Chauvreau-Manat
+     */
     public ServerThread(Socket socket) {
         this.socket = socket;
     }
 
+    /**
+     * Start the server/client software
+     * @see       Thread
+     * @author    Félicia Ionascu and Steve Chauvreau-Manat
+     */
     public void run() {
         this.model = new JMusicHubModel();
         this.controller = new JMusicHubController(model, socket);

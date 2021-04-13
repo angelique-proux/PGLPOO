@@ -1,7 +1,18 @@
+/*
+ * Class' name : ControlMusicList
+ *
+ * Description : TODO
+ *
+ * Version     : 1.0
+ *
+ * Date        : 13/04/2021
+ *
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package util;
 
 import business.Audio;
-
 import java.net.Socket;
 import java.util.LinkedList;
 
@@ -39,6 +50,16 @@ public class ControlMusicList implements ControlMusic {
      */
     private Socket socket;
 
+
+    /**
+  	 * description de la méthode.
+  	 *
+     * @param audio Audio we want to hear
+  	 * @param	port Server's open port
+     * @param
+  	 *
+  	 * @author	Angélique Proux
+  	 */
     public ControlMusicList(Audio audio, int port, Socket socket) {
         this.audioList = new LinkedList<>();
         this.audioList.add(audio);
@@ -46,6 +67,15 @@ public class ControlMusicList implements ControlMusic {
         this.socket = socket;
     }
 
+    /**
+     * description de la méthode.
+     *
+     * @param audios Audios we want to hear
+     * @param	port Server's open port
+     * @param
+     *
+     * @author	Angélique Proux
+     */
     public ControlMusicList(LinkedList<Audio> audioList, int port, Socket socket) {
         this.audioList = audioList;
         this.port = port;

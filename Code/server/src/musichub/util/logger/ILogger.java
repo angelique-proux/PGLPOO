@@ -1,3 +1,15 @@
+/*
+ * Interface's name : ILogger
+ *
+ * Description      : Interface is the interface representing a base logger
+ *
+ * Version          : 1.0
+ *
+ * Date             : 13/04/2021
+ *
+ * Copyright        : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package util.logger;
 
 /**

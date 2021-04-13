@@ -1,13 +1,13 @@
 /*
- * Nom de classe : Language
+ * Enumeration's name : Language
  *
- * Description   : Language Enumeration of the different available audio book languages
+ * Description        : Enumeration of the different available audio book languages
  *
- * Version       : 1.0
+ * Version            : 1.0
  *
- * Date          : 10/04/2021
+ * Date               : 13/04/2021
  *
- * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright          : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
  */
 
 

@@ -1,13 +1,13 @@
 /*
- * Nom de classe : Genre
+ * Enumeration's name : Genre
  *
- * Description   : Genre Enumeration of the different available song genres
+ * Description        : Enumeration of the different available song genres
  *
- * Version       : 1.0
+ * Version            : 1.0
  *
- * Date          : 10/04/2021
+ * Date               : 13/04/2021
  *
- * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright          : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
  */
 
 package business;

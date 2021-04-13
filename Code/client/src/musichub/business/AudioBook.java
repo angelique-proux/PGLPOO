@@ -1,13 +1,13 @@
 /*
- * Nom de classe : AudioBook
+ * Class' name : AudioBook
  *
- * Description   : AudioBook Class representing an audio book and it's caracteristics
+ * Description : Class representing an audio book and it's caracteristics
  *
- * Version       : 1.0
+ * Version     : 1.0
  *
- * Date          : 10/04/2021
+ * Date        : 13/04/2021
  *
- * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
  */
 
 package business;

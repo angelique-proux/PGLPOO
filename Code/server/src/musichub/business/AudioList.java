@@ -1,4 +1,17 @@
+/*
+ * Interface's name : AudioList
+ *
+ * Description      : Interface represent object containing a list of song or audio
+ *
+ * Version          : 1.0
+ *
+ * Date             : 13/04/2021
+ *
+ * Copyright        : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package business;
+
 import java.io.Serializable;
 
 /** AudioList Interface represent object containing a list of song or audio

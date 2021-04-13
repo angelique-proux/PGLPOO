@@ -1,13 +1,13 @@
 /*
- * Name of class : Music
+ * Class' name	: Music
  *
- * Description   : Class which manages the sound
+ * Description 	: Class which manages the sound
  *
- * Version 		 : 1.0
+ * Version 			: 1.0
  *
- * Date          : 03/01/2021
+ * Date        	: 13/04/2021
  *
- * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright   	: Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
  */
 
 package util;

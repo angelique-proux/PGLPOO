@@ -1,13 +1,13 @@
 /*
- * Nom de classe : AudioList
+ * Interface's name : AudioList
  *
- * Description   : AudioList Interface represent object containing a list of song or audio
+ * Description      : Interface represent object containing a list of song or audio
  *
- * Version       : 1.0
+ * Version          : 1.0
  *
- * Date          : 10/04/2021
+ * Date             : 13/04/2021
  *
- * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright        : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
  */
 
 package business;

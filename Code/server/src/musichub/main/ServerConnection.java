@@ -1,3 +1,15 @@
+/*
+ * Class' name : ServerConnection
+ *
+ * Description : TODO
+ *
+ * Version     : 1.0
+ *
+ * Date        : 13/04/2021
+ *
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package main;
 
 import business.*;
@@ -11,14 +23,14 @@ import java.util.Scanner;
  *
  * Version : 1.0
  *
- * @author	Steve Chauvreau-Manat
+ * @author	Félicia Ionascu
  */
 public class ServerConnection
 {
 	/**
 	 * Main of the JMusicHub server
 	 *
-	 * @author	TODO
+	 * @author	Félicia Ionascu and Steve Chauvreau-Manat and Gaël Lejeune
 	 */
 	public static void main (String[] args) {
 		Scanner scanner = new Scanner (System.in);

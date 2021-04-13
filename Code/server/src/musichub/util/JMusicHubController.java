@@ -1,3 +1,15 @@
+/*
+ * Class' name : JMusicHubController
+ *
+ * Description : Controller of the JMusicHub program.
+ *
+ * Version     : 1.0
+ *
+ * Date        : 13/04/2021
+ *
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package util;
 
 import business.*;
@@ -21,7 +33,7 @@ import javax.sound.sampled.*;
  * Version : 1.0
  *
  * @see Controller
- * @author TODO
+ * @author Gaël Lejeune
  */
 public class JMusicHubController implements Controller {
 

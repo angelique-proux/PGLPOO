@@ -1,3 +1,15 @@
+/*
+ * Class' name : SingletonMusic
+ *
+ * Description : Singleton to have only one music playback per client at the same time
+ *
+ * Version     : 1.0
+ *
+ * Date        : 10/04/2021
+ *
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ */
+
 package util;
 
 import java.io.*;
@@ -13,40 +25,52 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 /**
- * SingletonMusic TODO
+ * Singleton to manage audio-playback threads
  *
- * Version : 1.0
+ * @version 1.0
  *
- * @author TODO
+ * @author Steve Chauvreau-Manat
  */
 public class SingletonMusic {
 
- /**
-  * TODO
-  */
+  /**
+   * Singleton Instance
+   */
   private static SingletonMusic uniqueInstance = null;
 
   /**
-   * TODO
+   * Class that allows to manage audio
+   * @see AudioServerThread
    */
-  private static AudioServer music;
+  private static AudioServerThread music;
 
+  /**
+   * Constructor of SingletonMusic
+   *
+   * @author	Steve Chauvreau-Manat
+   */
   private SingletonMusic() {
   }
 
+  /**
+   * Create and return an instance of SingletonMusic and start AudioServerThread
+   * @return    SingletonMusic
+   * @author    Steve Chauvreau-Manat
+   */
   public static synchronized SingletonMusic getInstance(String ip,int port, Socket socket) {
     if(uniqueInstance==null) {
       uniqueInstance = new SingletonMusic();
-      music = new AudioServer(ip,port,socket);
+      music = new AudioServerThread(ip,port,socket);
       music.start();
     }
     return uniqueInstance;
   }
 
-  public void startMusic() {
-    music.start();
-  }
-
+  /**
+   * Stops the thread and music playback and reset SingletonMusic
+   * @see       AudioServerThread
+   * @author    Steve Chauvreau-Manat
+   */
   public void stopMusic() {
     music.stopThread();
     if(!music.isInterrupted()) {

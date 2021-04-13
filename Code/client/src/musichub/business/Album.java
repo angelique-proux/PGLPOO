@@ -1,11 +1,11 @@
 /*
  * Nom de classe : Album
  *
- * Description   : Album class representing an audio album
+ * Description   : class representing an audio album
  *
  * Version       : 1.0
  *
- * Date          : 10/04/2021
+ * Date          : 13/04/2021
  *
  * Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
  */
