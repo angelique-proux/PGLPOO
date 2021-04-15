@@ -7,7 +7,7 @@
  *
  * Date        : 13/04/2021
  *
- * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
  */
 
 package util;
@@ -41,7 +41,7 @@ public class JMusicHubPassiveView implements View {
      * Contains all the methods used by the View
      * @see  JMusicHubController
      */
-    private JMusicHubController controller;
+    private Controller controller;
 
     /**
      * Network interface to retrieve network's data
@@ -66,7 +66,7 @@ public class JMusicHubPassiveView implements View {
      *
      * @author      Steve Chauvreau-Manat
      */
-    public JMusicHubPassiveView(JMusicHubController controller, Socket socket) {
+    public JMusicHubPassiveView(Controller controller, Socket socket) {
         this.controller = controller;
         this.socket = socket;
     }

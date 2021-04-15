@@ -7,7 +7,7 @@
  *
  * Date        : 13/04/2021
  *
- * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
  */
 
 package util;
@@ -34,7 +34,7 @@ public class JMusicHubActiveView implements View {
     /**
      * Contains all the methods used by the View
      */
-    private JMusicHubController controller;
+    private Controller controller;
 
     /**
      * JMusicHubPassiveView constructor
@@ -43,7 +43,7 @@ public class JMusicHubActiveView implements View {
      *
      * @author      Gaël Lejeune
      */
-    public JMusicHubActiveView(JMusicHubController controller) {
+    public JMusicHubActiveView(Controller controller) {
         this.controller = controller;
     }
 

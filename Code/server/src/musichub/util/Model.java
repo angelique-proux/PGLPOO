@@ -1,13 +1,13 @@
 /*
  * Interface's name : Model
  *
- * Description   		: Interface is the interface representing a base model
+ * Description   	: Interface is the interface representing a base model
  *
- * Version       		: 1.0
+ * Version       	: 1.0
  *
- * Date		          : 13/04/2021
+ * Date		        : 13/04/2021
  *
- * Copyright		    : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright   		: Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
  */
 
 package util;

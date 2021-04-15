@@ -7,7 +7,7 @@
  *
  * Date             : 13/04/2021
  *
- * Copyright        : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright        : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
  */
 
 package business;

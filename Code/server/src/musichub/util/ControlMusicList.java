@@ -7,7 +7,7 @@
  *
  * Date        : 13/04/2021
  *
- * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
  */
 
 package util;
@@ -55,7 +55,7 @@ public class ControlMusicList implements ControlMusic {
 
 
     /**
-  	 * description de la méthode.
+  	 * TODO
   	 *
      * @param   audio Audio we want to hear
   	 * @param	port Server's open port
@@ -71,10 +71,10 @@ public class ControlMusicList implements ControlMusic {
     }
 
     /**
-     * description de la méthode.
+     * TODO
      *
      * @param   audioList Audios we want to hear
-     * @param    port Server's open port
+     * @param   port Server's open port
      * @param   socket
      *
      * @author	Angélique Proux
@@ -87,7 +87,7 @@ public class ControlMusicList implements ControlMusic {
     }
 
     /**
-     * description de la méthode.
+     * TODO
      *
      * @author	Angélique Proux
      */
@@ -108,7 +108,7 @@ public class ControlMusicList implements ControlMusic {
     }
 
     /**
-     * description de la méthode.
+     * TODO
      *
      * @author	Angélique Proux
      */
@@ -117,7 +117,7 @@ public class ControlMusicList implements ControlMusic {
     }
 
     /**
-     * description de la méthode.
+     * TODO
      *
      * @param   input
      *
