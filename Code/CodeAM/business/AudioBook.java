@@ -6,7 +6,7 @@
 *
 * Date          : 03/01/2021
 *
-* Copyright     : Angélique & Gaël & Steve & Antonin
+* Copyright     : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
 */
 
 
