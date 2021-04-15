@@ -34,13 +34,13 @@ public class ServerThread extends Thread {
     * XML editor allowing to read and write XML files
     * @see  JMusicHubModel
     */
-    private JMusicHubModel model;
+    private Model model;
 
     /**
     * Contains all the methods used by the View
     * @see  JMusicHubController
     */
-    private JMusicHubController controller;
+    private Controller controller;
 
     /**
      * ServerThread constructor

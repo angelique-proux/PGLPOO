@@ -139,7 +139,7 @@ public class JMusicHubModel implements Model{
 	 * @see         Song
 	 * @author      Gaël Lejeune
 	 */
-	private Song getSong(Element element) throws NotAGenreException {
+	public Song getSong(Element element) throws NotAGenreException {
 		// NodeList song = node.getChildNodes();
 		String title = element.getElementsByTagName("title").item(0).getTextContent();
 		String artist = element.getElementsByTagName("artist").item(0).getTextContent();
@@ -187,7 +187,7 @@ public class JMusicHubModel implements Model{
 	 * @see         AudioBook
 	 * @author      Gaël Lejeune
 	 */
-	private AudioBook getAudioBook(Element element) throws NotACategoryException, NotALanguageException {
+	public AudioBook getAudioBook(Element element) throws NotACategoryException, NotALanguageException {
 		String title = element.getElementsByTagName("title").item(0).getTextContent();
 		String author = element.getElementsByTagName("author").item(0).getTextContent();
 		int duration = Integer.parseInt(element.getElementsByTagName("duration").item(0).getTextContent());
@@ -249,7 +249,7 @@ public class JMusicHubModel implements Model{
 	 * @see         Playlist
 	 * @author      Gaël Lejeune
 	 */
-	private Playlist getPlaylist(Element element) {
+	public Playlist getPlaylist(Element element) {
 		LinkedList<Audio> audioList = new LinkedList<Audio>();
 		String name = "";
 		UUID uniqueID = null;
@@ -292,7 +292,7 @@ public class JMusicHubModel implements Model{
 	 * @see         Album
 	 * @author      Gaël Lejeune
 	 */
-	private Album getAlbum(Element element) {
+	public Album getAlbum(Element element) {
 		LinkedList<Song> songList = new LinkedList<Song>();
 		String title = "";
 		String artist = "";

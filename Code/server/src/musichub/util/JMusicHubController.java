@@ -41,7 +41,7 @@ public class JMusicHubController implements Controller {
     * XML editor allowing to read and write XML files
     * @see  JMusicHubModel
     */
-    private JMusicHubModel model;
+    private Model model;
 
     /**
      * TODO
@@ -72,7 +72,7 @@ public class JMusicHubController implements Controller {
     *
     * @author   Gaël Lejeune
     */
-    public JMusicHubController(JMusicHubModel model) {
+    public JMusicHubController(Model model) {
         this.model = model;
         this.view = new JMusicHubActiveView(this);
 
@@ -93,7 +93,7 @@ public class JMusicHubController implements Controller {
     *
     * @author   Gaël Lejeune
     */
-    public JMusicHubController(JMusicHubModel model, Socket socket) {
+    public JMusicHubController(Model model, Socket socket) {
         this.model = model;
         this.view = new JMusicHubPassiveView(this,socket);
 
