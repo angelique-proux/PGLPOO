@@ -116,15 +116,37 @@ public class Client {
 						System.out.println(i+"- "+albums.get(i)+"\n");
 					}
 					System.out.println((String) input.readObject());
-					Album oneAlbum = albums.get(Integer.parseInt(scan.nextLine()));
+					choice = Integer.parseInt(scan.nextLine());
+					Album oneAlbum = albums.get(choice);
+					output.writeObject(choice);
 					System.out.println(input.readObject());
 					output.writeObject(scan.nextLine());
 					if(((boolean) input.readObject())) {
 						LinkedList<Song> song = oneAlbum.getSongs();
-						for(int i=0;i<song.size();i++) {
+
+						/*for(int i=0;i<song.size();i++) {
 							//music = SingletonMusic.getInstance();
 							//music.playMusic(ip,6668);
-						}
+						}*/
+						do {
+							System.out.println("Enter a command : (play/pause/stop)");
+							music = SingletonMusic.getInstance(ip,6668,this.socket);
+							switch(scan.nextLine()) {
+								case "pause":
+									music.pauseMusic();
+									break;
+								case "play":
+									music.restartMusic();
+									break;
+								case "stop":
+									music.stopMusic();
+									output.writeObject(false);
+									break;
+								default:
+									System.out.println("This is not a command");
+									break;
+							}
+						} while(music.isRunning());
 					} else {
 						System.out.println(oneAlbum);
 					}
