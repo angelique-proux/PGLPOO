@@ -167,6 +167,14 @@ public class JMusicHubController implements Controller {
         return null;
     }
 
+    /**
+     * Returns the registered artists list
+     *
+     * @return		List of registered artists
+     *
+     * @see         Song
+     * @author      Gaël Lejeune
+     */
     public LinkedList<String> getArtists() {
         LinkedList<String> artists = new LinkedList<String>();
         for (int i = 0; i < this.elements.size(); i++) {
@@ -178,6 +186,14 @@ public class JMusicHubController implements Controller {
         return artists;
     }
 
+    /**
+     * Returns the registered authors list
+     *
+     * @return		List of registered authors
+     *
+     * @see         AudioBook
+     * @author      Gaël Lejeune
+     */
     public LinkedList<String> getAuthors() {
         LinkedList<String> authors = new LinkedList<String>();
         for (int i = 0; i < this.elements.size(); i++) {
@@ -189,6 +205,14 @@ public class JMusicHubController implements Controller {
         return authors;
     }
 
+    /**
+     * Returns the registered genres list
+     *
+     * @return		List of registered genres
+     *
+     * @see         Song
+     * @author      Gaël Lejeune
+     */
     public LinkedList<Genre> getGenres() {
         LinkedList<Genre> genres = new LinkedList<Genre>();
         for (int i = 0; i < this.elements.size(); i++) {
@@ -200,6 +224,14 @@ public class JMusicHubController implements Controller {
         return genres;
     }
 
+    /**
+     * Returns the registered categories list
+     *
+     * @return		List of registered categories
+     *
+     * @see         AudioBook
+     * @author      Gaël Lejeune
+     */
     public LinkedList<Category> getCategories() {
         LinkedList<Category> categories = new LinkedList<Category>();
         for (int i = 0; i < this.elements.size(); i++) {
@@ -211,6 +243,14 @@ public class JMusicHubController implements Controller {
         return categories;
     }
 
+    /**
+     * Returns the registered languages list
+     *
+     * @return		List of registered languages
+     *
+     * @see         AudioBook
+     * @author      Gaël Lejeune
+     */
     public LinkedList<Language> getLanguages() {
         LinkedList<Language> languages = new LinkedList<Language>();
         for (int i = 0; i < this.elements.size(); i++) {
