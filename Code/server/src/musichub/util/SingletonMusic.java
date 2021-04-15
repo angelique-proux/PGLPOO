@@ -57,10 +57,10 @@ public class SingletonMusic {
    * @return    SingletonMusic
    * @author    Steve Chauvreau-Manat
    */
-  public static synchronized SingletonMusic getInstance(String ip,int port, Socket socket) {
+  public static synchronized SingletonMusic getInstance(String audio, int port, Socket socket) {
     if(uniqueInstance==null) {
       uniqueInstance = new SingletonMusic();
-      music = new AudioServerThread(ip,port,socket);
+      music = new AudioServerThread(audio,port,socket);
       music.start();
     }
     return uniqueInstance;

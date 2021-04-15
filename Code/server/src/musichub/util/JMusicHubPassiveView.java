@@ -81,7 +81,8 @@ public class JMusicHubPassiveView implements View {
             //create the streams that will handle the objects coming through the sockets
             this.input = new ObjectInputStream(socket.getInputStream());
             this.output = new ObjectOutputStream(socket.getOutputStream());
-
+            //ICI
+            ControlMusic contMus;
             output.writeObject("\nConnected to the server\nType any command to begin using jMusicHub\nType \"h\" for help\n"); //serialize and write the object to the stream
 
             while(true) {
@@ -93,15 +94,16 @@ public class JMusicHubPassiveView implements View {
                     LinkedList<Audio> audios = controller.getElements();
                     output.writeObject(audios);
                     output.writeObject("Which one would you like to hear? (Enter the number)");
-
                     Audio audio = audios.get((int) input.readObject());
-                    output.writeObject("What do you want? (Enter the number)\n1- Listen the playlist\n2- More informtion");
+                    output.writeObject("What do you want? (Enter the number)\n1- Listen the playlist\n2- More information");
                     if(((String) input.readObject()).equals("1")) {
                         output.writeObject(true);
-                        SingletonMusic music = SingletonMusic.getInstance(audio.getContent(),6668,socket);
+                        contMus = new ControlMusicList(audio, 6668, socket);
+                        ((ControlMusicList) contMus).playMusicList();
+                        //SingletonMusic music = SingletonMusic.getInstance(audio.getContent(),6668,socket);
                         //music.startMusic();
                         while((boolean) input.readObject());
-                        music.stopMusic();
+                        //music.stopMusic();
                     } else {
                         output.writeObject(false);
                     }
@@ -109,11 +111,19 @@ public class JMusicHubPassiveView implements View {
 
                     case "2" : //Send all Albums
                     output.writeObject("\t\tAlbums sorted by alphabetical order:\n");
-                    output.writeObject(controller.getAlbums());
+                    LinkedList<Album> albums2 = controller.getAlbums();
+                    output.writeObject(albums2);
                     output.writeObject("Which one would you like to hear? (Enter the number)");
+                    Album album2 = albums2.get((int) input.readObject());
                     output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
                     if(((String) input.readObject()).equals("1")) {
                         output.writeObject(true);
+                        LinkedList<Audio> audios2 = new LinkedList<>();
+                        for (Song s: album2.getSongs()) {
+                            audios2.add(s);
+                        }
+                        contMus = new ControlMusicList(audios2, 6668, socket);
+                        ((ControlMusicList) contMus).playMusicList();
                     } else {
                         output.writeObject(false);
                     }

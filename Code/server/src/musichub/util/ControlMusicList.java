@@ -13,8 +13,11 @@
 package util;
 
 import business.Audio;
+import business.Song;
+
 import java.net.Socket;
 import java.util.LinkedList;
+import java.io.*;
 
 /**
  * TODO
@@ -54,9 +57,9 @@ public class ControlMusicList implements ControlMusic {
     /**
   	 * description de la méthode.
   	 *
-     * @param audio Audio we want to hear
+     * @param   audio Audio we want to hear
   	 * @param	port Server's open port
-     * @param
+     * @param   socket
   	 *
   	 * @author	Angélique Proux
   	 */
@@ -70,23 +73,27 @@ public class ControlMusicList implements ControlMusic {
     /**
      * description de la méthode.
      *
-     * @param audios Audios we want to hear
-     * @param	port Server's open port
-     * @param
+     * @param   audioList Audios we want to hear
+     * @param    port Server's open port
+     * @param   socket
      *
      * @author	Angélique Proux
      */
     public ControlMusicList(LinkedList<Audio> audioList, int port, Socket socket) {
+        this.audioList = new LinkedList<>();
         this.audioList = audioList;
         this.port = port;
         this.socket = socket;
     }
 
+    /**
+     * description de la méthode.
+     *
+     * @author	Angélique Proux
+     */
     public void playMusicList() {
         for (int i=0 ; i < this.audioList.size(); i++) {
-            SingletonMusic singletonMusic = SingletonMusic.getInstance();
-            singletonMusic.checkInstance();
-            singletonMusic.startMusic(audioList.get(i).getContent(),this.port,this.socket);
+            SingletonMusic singletonMusic = SingletonMusic.getInstance(this.audioList.get(i).getContent(), this.port, this.socket);
             if (this.nextMusic) {
                 this.nextMusic = false;
                 continue;
@@ -100,13 +107,31 @@ public class ControlMusicList implements ControlMusic {
         }
     }
 
+    /**
+     * description de la méthode.
+     *
+     * @author	Angélique Proux
+     */
     public void nextMusic() {
             this.nextMusic = true;
     }
 
+    /**
+     * description de la méthode.
+     *
+     * @param   input
+     *
+     * @author	Angélique Proux
+     */
     public void previousMusicAskByClient(ObjectInputStream input) {
-        if (((String) input.readObject()).equals("previous")) {
-            this.previousMusic = true;
+        try {
+            if (((String) input.readObject()).equals("previous")) {
+                this.previousMusic = true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
