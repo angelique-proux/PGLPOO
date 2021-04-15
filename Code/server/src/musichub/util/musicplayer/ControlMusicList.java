@@ -10,7 +10,7 @@
  * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
  */
 
-package util;
+package util.musicplayer;
 
 import business.Audio;
 import business.Song;
