@@ -4,7 +4,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>esiea.chauvreau-manat_lejeune_proux_morcrette</groupId>
-  <artifactId>JMusicHub.client</artifactId>
+  <artifactId>jMusicHub.client</artifactId>
   <packaging>jar</packaging>
   <version>0.1.0</version>
   <properties>
