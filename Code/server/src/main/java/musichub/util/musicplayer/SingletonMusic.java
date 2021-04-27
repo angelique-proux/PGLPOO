@@ -7,14 +7,14 @@
  *
  * Date        : 10/04/2021
  *
- * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright   : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
-package util.musicplayer;
+package musichub.util.musicplayer;
 
 import java.io.*;
 import java.net.*;
-import business.*;
+import musichub.business.*;
 import javax.sound.sampled.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -54,7 +54,12 @@ public class SingletonMusic {
 
   /**
    * Create and return an instance of SingletonMusic and start AudioServerThread
+   *
    * @return    SingletonMusic
+   * @param     audio //TODO
+   * @param     port //TODO
+   * @param     socket //TODO
+   *
    * @author    Steve Chauvreau-Manat
    */
   public static synchronized SingletonMusic getInstance(String audio, int port, Socket socket) {

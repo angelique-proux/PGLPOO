@@ -7,13 +7,13 @@
  *
  * Date        : 13/04/2021
  *
- * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright   : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
-package util.musicplayer;
+package musichub.util.musicplayer;
 
-import business.Audio;
-import business.Song;
+import musichub.business.Audio;
+import musichub.business.Song;
 
 import java.net.Socket;
 import java.util.LinkedList;
@@ -58,8 +58,8 @@ public class ControlMusicList implements ControlMusic {
   	 * TODO
   	 *
      * @param   audio Audio we want to hear
-  	 * @param	port Server's open port
-     * @param   socket
+  	 * @param	  port Server's open port
+     * @param   socket //TODO
   	 *
   	 * @author	Angélique Proux
   	 */
@@ -75,7 +75,7 @@ public class ControlMusicList implements ControlMusic {
      *
      * @param   audioList Audios we want to hear
      * @param   port Server's open port
-     * @param   socket
+     * @param   socket //TODO
      *
      * @author	Angélique Proux
      */
@@ -119,7 +119,7 @@ public class ControlMusicList implements ControlMusic {
     /**
      * TODO
      *
-     * @param   input
+     * @param   input //TODO
      *
      * @author	Angélique Proux
      */

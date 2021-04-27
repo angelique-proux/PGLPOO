@@ -7,14 +7,14 @@
  *
  * Date        : 13/04/2021
  *
- * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright   : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
-package main;
+package musichub.main;
 
-import business.*;
-import util.*;
-import util.server.*;
+import musichub.business.*;
+import musichub.util.*;
+import musichub.util.server.*;
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
@@ -30,6 +30,8 @@ public class ServerConnection
 {
 	/**
 	 * Main of the JMusicHub server
+	 *
+	 * @param 	args arguments of the exec command 
 	 *
 	 * @author	Félicia Ionascu and Steve Chauvreau-Manat and Gaël Lejeune
 	 */

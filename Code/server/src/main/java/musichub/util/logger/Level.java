@@ -7,10 +7,10 @@
  *
  * Date        : 13/04/2021
  *
- * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright   : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
-package util.logger;
+package musichub.util.logger;
 
 /**
  * Level Enumeration of the different levels of log entry
@@ -21,20 +21,38 @@ package util.logger;
  */
 public enum Level
 {
-	ERROR ("ERROR"), WARNING ("WARNING"), INFO ("INFO"), DEBUG("DEBUG");
+	/**
+	 * "error" message
+	 */
+	ERROR ("ERROR"),
 
 	/**
-     * value of the log level
-     */
+	 * "warning" message
+	 */
+	WARNING ("WARNING"),
+
+	/**
+	 * "info" message
+	 */
+	INFO ("INFO"),
+
+	/**
+	 * "debug" message
+	 */
+	DEBUG("DEBUG");
+
+	/**
+   * value of the log level
+   */
 	private String levelValue;
 
 	/**
-     * Level constructor
-     *
-     * @param       value value of the level
-     *
-     * @author      Gaël Lejeune
-     */
+   * Level constructor
+   *
+   * @param       value value of the level
+   *
+   * @author      Gaël Lejeune
+   */
 	private Level (String value)
 	{
 		levelValue = value;

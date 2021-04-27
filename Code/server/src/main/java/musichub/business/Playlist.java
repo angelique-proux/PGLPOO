@@ -7,10 +7,10 @@
  *
  * Date        : 13/04/2021
  *
- * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright   : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
-package business;
+package musichub.business;
 
 import java.util.LinkedList;
 import java.util.UUID;
@@ -26,30 +26,30 @@ import java.util.UUID;
 public class Playlist implements AudioList {
 
 	/**
-     * Name of the playlist
-     */
+	 * Name of the playlist
+	 */
 	private String name;
 
 	/**
-     * Unique ID identifying the playlist
-     */
+	 * Unique ID identifying the playlist
+	 */
 	private UUID id;
 
 	/**
-     * Audio list of the playlist
-     * @see Audio
-     */
+	 * Audio list of the playlist
+	 * @see Audio
+	 */
 	private LinkedList<Audio> audios = new LinkedList<Audio>();
 
 	/**
-     * Playlist constructor
-     *
-     * @param       name Name of the album
-     * @param       id Unique id of the album
-     * @param       audios List of the album audios
-     *
-     * @author      Gaël Lejeune
-     */
+	 * Playlist constructor
+	 *
+	 * @param       name Name of the album
+	 * @param       id Unique id of the album
+	 * @param       audios List of the album audios
+	 *
+	 * @author      Gaël Lejeune
+	 */
 	public Playlist(String name, UUID id, LinkedList<Audio> audios) {
 		this.name = name;
 		this.id = id;
@@ -57,21 +57,12 @@ public class Playlist implements AudioList {
 	}
 
 	/**
-     * Accessor of the name
-     * @return      String containing the playlist's name
-     * @author      Gaël Lejeune
-     */
+	 * Accessor of the name
+	 * @return      String containing the playlist's name
+	 * @author      Gaël Lejeune
+	 */
 	public String getName() {
 		return this.name;
-	}
-
-	/**
-     * Accessor of the audio list
-     * @return      LinkedList containing the playlist's audio list
-     * @author      Gaël Lejeune
-     */
-	public LinkedList<Audio> getAudios() {
-		return this.audios;
 	}
 
 	/**
@@ -79,24 +70,33 @@ public class Playlist implements AudioList {
 	 * @return      LinkedList containing the playlist's audio list
 	 * @author      Gaël Lejeune
 	 */
+	public LinkedList<Audio> getAudios() {
+		return this.audios;
+	}
+
+	/**
+	 * Accessor of the audio list
+	 * @param				audio audio to remove from the playlist
+	 * @author      Gaël Lejeune
+	 */
 	public void removeAudio(Audio audio) {
 		this.audios.remove(audio);
 	}
 
 	/**
-     * Accessor of the unique id
-     * @return      UUID containing the playlist's unique id
-     * @author      Gaël Lejeune
-     */
+	 * Accessor of the unique id
+	 * @return      UUID containing the playlist's unique id
+	 * @author      Gaël Lejeune
+	 */
 	public UUID getID() {
-    	return this.id;
-    }
+		return this.id;
+	}
 
 	/**
-     * Override of the toString java method
-     * @return      String containing the playlist's informations
-     * @author      Gaël Lejeune
-     */
+	 * Override of the toString java method
+	 * @return      String containing the playlist's informations
+	 * @author      Gaël Lejeune
+	 */
 	public String toString() {
 		String str;
 		str = "Playlist " + this.name;
@@ -114,6 +114,6 @@ public class Playlist implements AudioList {
 	 */
 	@Override
 	public void addAudio(Audio audio) {
-        this.audios.add(audio);
-    }
+		this.audios.add(audio);
+	}
 }

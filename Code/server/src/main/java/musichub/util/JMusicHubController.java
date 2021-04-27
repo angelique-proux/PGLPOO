@@ -7,13 +7,13 @@
  *
  * Date        : 13/04/2021
  *
- * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright   : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
-package util;
+package musichub.util;
 
-import business.*;
-import business.exceptions.*;
+import musichub.business.*;
+import musichub.business.exceptions.*;
 import java.io.File;
 import java.util.Date;
 import java.util.LinkedList;
@@ -70,6 +70,8 @@ public class JMusicHubController implements Controller {
     * Album constructor
     * Initialize all the attributes and fill the lists by reading the XML files
     *
+    * @param    model //TODO
+    *
     * @author   Gaël Lejeune
     */
     public JMusicHubController(Model model) {
@@ -91,6 +93,9 @@ public class JMusicHubController implements Controller {
     * Album constructor
     * Initialize all the attributes and fill the lists by reading the XML files
     *
+    * @param    model //TODO
+    * @param    socket //TODO
+    *
     * @author   Gaël Lejeune
     */
     public JMusicHubController(Model model, Socket socket) {
@@ -110,6 +115,9 @@ public class JMusicHubController implements Controller {
 
     /**
     * Displays all the registered audio elements
+    *
+    * @return       LinkedList //TODO
+    *
     * @see         Album
     * @author      Gaël Lejeune
     */

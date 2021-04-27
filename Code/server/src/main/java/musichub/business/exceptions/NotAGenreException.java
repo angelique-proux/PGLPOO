@@ -7,10 +7,10 @@
  *
  * Date          		: 13/04/2021
  *
- * Copyright   			: Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright   			: Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
-package business.exceptions;
+package musichub.business.exceptions;
 
 import java.lang.Exception;
 
@@ -19,7 +19,7 @@ import java.lang.Exception;
  *
  * Version : 1.0
  *
- * @author Manelle Nouar & Angélique Proux
+ * @author SManelle Nouar and Angélique Proux
  */
 public class NotAGenreException extends Exception{
 

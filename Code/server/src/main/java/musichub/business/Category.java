@@ -7,10 +7,10 @@
  *
  * Date               : 13/04/2021
  *
- * Copyright          : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright          : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
-package business;
+package musichub.business;
 
 /** Category Enumeration of the different available audio book categories
  *
@@ -54,7 +54,7 @@ public enum Category {
     /**
      * Category constructor
      *
-     * @param       category
+     * @param       category Desired category as a string
      *
      * @author      Gaël Lejeune
      */

@@ -7,12 +7,12 @@
  *
  * Date        : 13/04/2021
  *
- * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright   : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
-package util.server;
+package musichub.util.server;
 
-import util.logger.*;
+import musichub.util.logger.*;
 import java.io.*;
 import java.net.*;
 

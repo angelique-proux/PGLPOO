@@ -7,15 +7,15 @@
  *
  * Date        : 13/04/2021
  *
- * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright   : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
-package util;
+package musichub.util;
 
-import business.*;
-import business.exceptions.*;
-import business.*;
-import util.musicplayer.*;
+import musichub.business.*;
+import musichub.business.exceptions.*;
+import musichub.business.*;
+import musichub.util.musicplayer.*;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -62,8 +62,8 @@ public class JMusicHubPassiveView implements View {
     /**
      * JMusicHubPassiveView constructor
      *
-     * @param     controller
-     * @param     socket TODO
+     * @param     controller //TODO
+     * @param     socket //TODO
      *
      * @author      Steve Chauvreau-Manat
      */

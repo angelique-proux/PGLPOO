@@ -7,10 +7,10 @@
  *
  * Date               : 13/04/2021
  *
- * Copyright          : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright          : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
-package business;
+package musichub.business;
 
 /** Genre Enumeration of the different available song genres
  *
@@ -64,7 +64,7 @@ public enum Genre {
     /**
      * Genre constructor
      *
-     * @param       genre
+     * @param       genre Desired genre as a string
      *
      * @author      Gaël Lejeune
      */
