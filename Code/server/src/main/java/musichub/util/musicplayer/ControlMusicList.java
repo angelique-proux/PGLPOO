@@ -12,13 +12,7 @@
 
 package musichub.util.musicplayer;
 
-<<<<<<< HEAD:Code/server/src/musichub/util/musicplayer/ControlMusicList.java
 import business.*;
-=======
-import musichub.business.Audio;
-import musichub.business.Song;
-
->>>>>>> 981c0ab93f7f5e8e8d852a16d863093d4589381f:Code/server/src/main/java/musichub/util/musicplayer/ControlMusicList.java
 import java.net.Socket;
 import java.util.LinkedList;
 import java.io.*;
@@ -71,7 +65,6 @@ public class ControlMusicList implements ControlMusic {
         this.finished = false;
     }
 
-<<<<<<< HEAD:Code/server/src/musichub/util/musicplayer/ControlMusicList.java
     public void addAudio(Audio audio) {
       this.audioList.add(audio);
     }
@@ -92,22 +85,6 @@ public class ControlMusicList implements ControlMusic {
       for(int i=0;i<audioBooks.size();i++) {
         this.audioList.add(audioBooks.get(i));
       }
-=======
-    /**
-     * TODO
-     *
-     * @param   audioList Audios we want to hear
-     * @param   port Server's open port
-     * @param   socket //TODO
-     *
-     * @author	Angélique Proux
-     */
-    public ControlMusicList(LinkedList<Audio> audioList, int port, Socket socket) {
-        this.audioList = new LinkedList<>();
-        this.audioList = audioList;
-        this.port = port;
-        this.socket = socket;
->>>>>>> 981c0ab93f7f5e8e8d852a16d863093d4589381f:Code/server/src/main/java/musichub/util/musicplayer/ControlMusicList.java
     }
 
     /**

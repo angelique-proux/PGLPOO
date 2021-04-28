@@ -12,16 +12,10 @@
 
 package musichub.util;
 
-<<<<<<< HEAD:Code/server/src/musichub/util/JMusicHubPassiveView.java
-import business.*;
-import business.exceptions.*;
-import util.musicplayer.*;
-=======
 import musichub.business.*;
 import musichub.business.exceptions.*;
 import musichub.business.*;
 import musichub.util.musicplayer.*;
->>>>>>> 981c0ab93f7f5e8e8d852a16d863093d4589381f:Code/server/src/main/java/musichub/util/JMusicHubPassiveView.java
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -73,14 +67,9 @@ public class JMusicHubPassiveView implements View {
     /**
      * JMusicHubPassiveView constructor
      *
-<<<<<<< HEAD:Code/server/src/musichub/util/JMusicHubPassiveView.java
      * @param     controller
      * @param     socket TODO
      * @param     port TODO
-=======
-     * @param     controller //TODO
-     * @param     socket //TODO
->>>>>>> 981c0ab93f7f5e8e8d852a16d863093d4589381f:Code/server/src/main/java/musichub/util/JMusicHubPassiveView.java
      *
      * @author      Steve Chauvreau-Manat
      */

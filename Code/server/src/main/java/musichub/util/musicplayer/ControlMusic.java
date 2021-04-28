@@ -9,12 +9,8 @@
  *
  * Copyright        : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
-<<<<<<< HEAD:Code/server/src/musichub/util/musicplayer/ControlMusic.java
-package util.musicplayer;
-=======
 
 package musichub.util.musicplayer;
->>>>>>> 981c0ab93f7f5e8e8d852a16d863093d4589381f:Code/server/src/main/java/musichub/util/musicplayer/ControlMusic.java
 
 import business.*;
 import java.util.LinkedList;
