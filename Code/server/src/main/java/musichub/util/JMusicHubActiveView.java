@@ -146,6 +146,9 @@ public class JMusicHubActiveView implements View {
     /**
      * Display in the console all elements
      *
+     * @param       command //TODO
+     * @param       numberObjectByPage //TODO
+     *
      * @see         Audio
      * @see         JMusicHubController
      * @author      Steve CHAUVREAU-MANAT
@@ -178,6 +181,9 @@ public class JMusicHubActiveView implements View {
 
     /**
      * Display in the console all albums
+     *
+     * @param       command //TODO
+     * @param       numberObjectByPage //TODO
      *
      * @see         Album
      * @see         JMusicHubController
@@ -212,6 +218,9 @@ public class JMusicHubActiveView implements View {
     /**
      * Display in the console all playlists
      *
+     * @param       command //TODO
+     * @param       numberObjectByPage //TODO
+     *
      * @see         Playlist
      * @see         JMusicHubController
      * @author      Steve CHAUVREAU-MANAT
@@ -245,6 +254,8 @@ public class JMusicHubActiveView implements View {
     /**
      * Select an album and show detail
      *
+     * @param       scanner //TODO
+     *
      * @see         Album
      * @see         JMusicHubController
      * @author      Steve CHAUVREAU-MANAT
@@ -260,6 +271,8 @@ public class JMusicHubActiveView implements View {
     /**
      * Select a playlist and show detail
      *
+     * @param       scanner //TODO
+     *
      * @see         Playlist
      * @see         JMusicHubController
      * @author      Steve CHAUVREAU-MANAT
@@ -274,6 +287,10 @@ public class JMusicHubActiveView implements View {
 
     /**
      * Select a artist and show all his/her songs
+     *
+     * @param       scanner //TODO
+     * @param       command //TODO
+     * @param       numberObjectByPage //TODO
      *
      * @see         Song
      * @see         JMusicHubController
@@ -310,6 +327,10 @@ public class JMusicHubActiveView implements View {
     /**
      * Select a author and show all his/her audio books
      *
+     * @param       scanner //TODO
+     * @param       command //TODO
+     * @param       numberObjectByPage //TODO
+     *
      * @see         AudioBook
      * @see         JMusicHubController
      * @author      Steve CHAUVREAU-MANAT
@@ -344,6 +365,9 @@ public class JMusicHubActiveView implements View {
 
     /**
      * Show all albums release by date
+     *
+     * @param       command //TODO
+     * @param       numberObjectByPage //TODO
      *
      * @see         Album
      * @see         JMusicHubController
@@ -382,6 +406,8 @@ public class JMusicHubActiveView implements View {
     /**
      * Show all songs sorted by genre
      *
+     * @param       scanner //TODO
+     *
      * @see         Song
      * @see         Genre
      * @see         JMusicHubController
@@ -404,6 +430,8 @@ public class JMusicHubActiveView implements View {
 
     /**
      * Show all artists and select one to display all his/her songs
+     *
+     * @param       scanner //TODO
      *
      * @see         Song
      * @see         JMusicHubController
@@ -434,6 +462,8 @@ public class JMusicHubActiveView implements View {
     /**
      * Show all authors and select one to display all his/her audio books
      *
+     * @param       scanner //TODO
+     *
      * @see         AudioBook
      * @see         JMusicHubController
      * @author      Steve CHAUVREAU-MANAT
@@ -462,6 +492,8 @@ public class JMusicHubActiveView implements View {
 
     /**
      * Show all genres and select one to display all its songs
+     *
+     * @param       scanner //TODO
      *
      * @see         Genre
      * @see         Song
@@ -493,6 +525,8 @@ public class JMusicHubActiveView implements View {
     /**
      * Show all categories and select one to display all its audio books
      *
+     * @param       scanner //TODO
+     *
      * @see         Category
      * @see         AudioBook
      * @see         JMusicHubController
@@ -522,6 +556,8 @@ public class JMusicHubActiveView implements View {
 
     /**
      * Show all languages and select one to display all its audio books
+     *
+     * @param       scanner //TODO
      *
      * @see         Language
      * @see         AudioBook

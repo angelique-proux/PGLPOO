@@ -93,8 +93,9 @@ public class JMusicHubController implements Controller {
     * Album constructor
     * Initialize all the attributes and fill the lists by reading the XML files
     *
-    * @param    model //TODO
-    * @param    socket //TODO
+    * @param       model //TODO
+    * @param       socket //TODO
+    * @param       port //TODO
     *
     * @author   Gaël Lejeune
     */
@@ -127,6 +128,9 @@ public class JMusicHubController implements Controller {
 
     /**
     * Displays all the registered albums
+    *
+    * @return       LinkedList //TODO
+    *
     * @see         Album
     * @author      Gaël Lejeune
     */
@@ -136,6 +140,9 @@ public class JMusicHubController implements Controller {
 
     /**
     * Displays all the registered playlists
+    *
+    * @return       LinkedList //TODO
+    *
     * @see         Playlist
     * @author      Gaël Lejeune
     */
@@ -145,6 +152,10 @@ public class JMusicHubController implements Controller {
 
     /**
     * Asks and displays an specific registered album
+    *
+    * @param       title //TODO
+    * @return      Album //TODO
+    *
     * @see         Album
     * @author      Gaël Lejeune
     */
@@ -161,6 +172,10 @@ public class JMusicHubController implements Controller {
 
     /**
     * Asks and displays an specific registered playlist
+    *
+    * @param       name //TODO
+    * @return      Playlist //TODO
+    *
     * @see         Playlist
     * @author      Gaël Lejeune
     */
@@ -178,7 +193,7 @@ public class JMusicHubController implements Controller {
     /**
      * Returns the registered artists list
      *
-     * @return		List of registered artists
+     * @return		  LinkedList of registered artists
      *
      * @see         Song
      * @author      Gaël Lejeune
@@ -197,7 +212,7 @@ public class JMusicHubController implements Controller {
     /**
      * Returns the registered authors list
      *
-     * @return		List of registered authors
+     * @return		  LinkedList of registered authors
      *
      * @see         AudioBook
      * @author      Gaël Lejeune
@@ -216,7 +231,7 @@ public class JMusicHubController implements Controller {
     /**
      * Returns the registered genres list
      *
-     * @return		List of registered genres
+     * @return		  LinkedList of registered genres
      *
      * @see         Song
      * @author      Gaël Lejeune
@@ -235,7 +250,7 @@ public class JMusicHubController implements Controller {
     /**
      * Returns the registered categories list
      *
-     * @return		List of registered categories
+     * @return		  LinkedList of registered categories
      *
      * @see         AudioBook
      * @author      Gaël Lejeune
@@ -254,7 +269,7 @@ public class JMusicHubController implements Controller {
     /**
      * Returns the registered languages list
      *
-     * @return		List of registered languages
+     * @return		  LinkedList of registered languages
      *
      * @see         AudioBook
      * @author      Gaël Lejeune
@@ -272,6 +287,10 @@ public class JMusicHubController implements Controller {
 
     /**
     * Display all audio books ordered by author
+    *
+    * @param		  artist //TODO
+    * @return		  LinkedList //TODO
+    *
     * @see         AudioBook
     * @author      Gaël Lejeune and Steve Chauvreau-Manat
     */
@@ -293,6 +312,10 @@ public class JMusicHubController implements Controller {
 
     /**
     * Display all audio books ordered by genre
+    *
+    * @param		  genre //TODO
+    * @return		  LinkedList of registered genres
+    *
     * @see         AudioBook
     * @author      Gaël Lejeune and Steve Chauvreau-Manat
     */
@@ -314,6 +337,10 @@ public class JMusicHubController implements Controller {
 
     /**
     * Display all audio books ordered by author
+    *
+    * @param		  language //TODO
+    * @return		  LinkedList of registered languages
+    *
     * @see         AudioBook
     * @author      Gaël Lejeune and Steve Chauvreau-Manat
     */
@@ -335,6 +362,10 @@ public class JMusicHubController implements Controller {
 
     /**
     * Display all audio books ordered by author
+    *
+    * @param		  category //TODO
+    * @return		  LinkedList of registered categories
+    *
     * @see         AudioBook
     * @author      Gaël Lejeune and Steve Chauvreau-Manat
     */
@@ -356,6 +387,10 @@ public class JMusicHubController implements Controller {
 
     /**
     * Display all audio books ordered by author
+    *
+    * @param		  author //TODO
+    * @return		  LinkedList //TODO
+    *
     * @see         AudioBook
     * @author      Gaël Lejeune and Steve Chauvreau-Manat
     */
@@ -377,6 +412,10 @@ public class JMusicHubController implements Controller {
 
     /**
     * Display the album list ordered by release date
+    *
+    * @return		  LinkedList //TODO
+    * @throws		  Exception //TODO
+    *
     * @exception   Exception Thrown the given String cannot be converted to date.
     * @see         Album
     * @author      Gaël Lejeune and Steve Chauvreau-Manat
@@ -411,6 +450,10 @@ public class JMusicHubController implements Controller {
 
     /**
     * Display the song list of an asked album, ordered by genre
+    *
+    * @param		  title //TODO
+    * @return		  LinkedList //TODO
+    *
     * @see         Album
     * @see         Song
     * @author      Gaël Lejeune and Steve Chauvreau-Manat
@@ -447,6 +490,9 @@ public class JMusicHubController implements Controller {
 
     /**
     * Displays information and help about various commands
+    *
+    * @return String //TODO
+    *
     * @author Steve Chauvreau-Manat
     */
     public String helpPassive() {
@@ -470,6 +516,9 @@ public class JMusicHubController implements Controller {
 
     /**
     * Displays information and help about various commands
+    *
+    * @return String //TODO
+    *
     * @author Steve Chauvreau-Manat
     */
     public String helpActive() {

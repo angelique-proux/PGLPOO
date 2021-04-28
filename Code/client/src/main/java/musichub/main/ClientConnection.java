@@ -26,6 +26,8 @@ public class ClientConnection {
 	/**
  	 * Main function of the JMusicHub Client Program
  	 *
+ 	 * @param 		args //TODO
+ 	 *
  	 * @author		Félicia Ionascu
  	 */
 	public static void main (String[] args) {

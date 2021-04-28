@@ -40,6 +40,7 @@ public class ServerThread extends Thread {
      * ServerThread constructor
      *
      * @param     socket TODO
+     * @param     port TODO
      *
      * @author    Félicia Ionascu and Steve Chauvreau-Manat
      */

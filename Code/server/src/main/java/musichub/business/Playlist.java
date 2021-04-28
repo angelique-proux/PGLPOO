@@ -26,32 +26,6 @@ import java.util.UUID;
 public class Playlist implements AudioList {
 
 	/**
-<<<<<<< HEAD:Code/server/src/musichub/business/Playlist.java
-    * Name of the playlist
-    */
-	private String name;
-
-	/**
-    * Unique ID identifying the playlist
-    */
-	private UUID id;
-
-	/**
-    * Audio list of the playlist
-    * @see Audio
-    */
-	private LinkedList<Audio> audios = new LinkedList<Audio>();
-
-	/**
-    * Playlist constructor
-    *
-    * @param       name Name of the album
-    * @param       id Unique id of the album
-    * @param       audios List of the album audios
-    *
-    * @author      Gaël Lejeune
-    */
-=======
 	 * Name of the playlist
 	 */
 	private String name;
@@ -76,7 +50,7 @@ public class Playlist implements AudioList {
 	 *
 	 * @author      Gaël Lejeune
 	 */
->>>>>>> 981c0ab93f7f5e8e8d852a16d863093d4589381f:Code/server/src/main/java/musichub/business/Playlist.java
+
 	public Playlist(String name, UUID id, LinkedList<Audio> audios) {
 		this.name = name;
 		this.id = id;
@@ -84,33 +58,19 @@ public class Playlist implements AudioList {
 	}
 
 	/**
-<<<<<<< HEAD:Code/server/src/musichub/business/Playlist.java
-   * Accessor of the name
-   * @return      String containing the playlist's name
-   * @author      Gaël Lejeune
-   */
-=======
 	 * Accessor of the name
 	 * @return      String containing the playlist's name
 	 * @author      Gaël Lejeune
 	 */
->>>>>>> 981c0ab93f7f5e8e8d852a16d863093d4589381f:Code/server/src/main/java/musichub/business/Playlist.java
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-<<<<<<< HEAD:Code/server/src/musichub/business/Playlist.java
-   * Accessor of the audio list
-   * @return      LinkedList containing the playlist's audio list
-   * @author      Gaël Lejeune
-   */
-=======
 	 * Accessor of the audio list
 	 * @return      LinkedList containing the playlist's audio list
 	 * @author      Gaël Lejeune
 	 */
->>>>>>> 981c0ab93f7f5e8e8d852a16d863093d4589381f:Code/server/src/main/java/musichub/business/Playlist.java
 	public LinkedList<Audio> getAudios() {
 		return this.audios;
 	}
@@ -125,33 +85,19 @@ public class Playlist implements AudioList {
 	}
 
 	/**
-<<<<<<< HEAD:Code/server/src/musichub/business/Playlist.java
-   	* Accessor of the unique id
-   	* @return      UUID containing the playlist's unique id
-   	* @author      Gaël Lejeune
-   	*/
-=======
 	 * Accessor of the unique id
 	 * @return      UUID containing the playlist's unique id
 	 * @author      Gaël Lejeune
 	 */
->>>>>>> 981c0ab93f7f5e8e8d852a16d863093d4589381f:Code/server/src/main/java/musichub/business/Playlist.java
 	public UUID getID() {
 		return this.id;
 	}
 
 	/**
-<<<<<<< HEAD:Code/server/src/musichub/business/Playlist.java
-    * Override of the toString java method
-    * @return      String containing the playlist's informations
-    * @author      Gaël Lejeune
-    */
-=======
 	 * Override of the toString java method
 	 * @return      String containing the playlist's informations
 	 * @author      Gaël Lejeune
 	 */
->>>>>>> 981c0ab93f7f5e8e8d852a16d863093d4589381f:Code/server/src/main/java/musichub/business/Playlist.java
 	public String toString() {
 		String str;
 		str = "Playlist " + this.name;

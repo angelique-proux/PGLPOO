@@ -52,7 +52,7 @@ public enum Category {
     /**
      * Category constructor
      *
-     * @param       category
+     * @param       category //TODO
      *
      * @author      Gaël Lejeune
      */
