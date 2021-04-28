@@ -9,9 +9,9 @@
  *
  * Copyright    : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
  */
-package util;
+package musichub.util;
 
-import business.*;
+import musichub.business.*;
 import java.io.*;
 import java.net.*;
 import javax.sound.sampled.*;

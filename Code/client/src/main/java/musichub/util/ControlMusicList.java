@@ -10,9 +10,9 @@
  * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
  */
 
-package util;
+package musichub.util;
 
-import business.*;
+import musichub.business.*;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.io.*;

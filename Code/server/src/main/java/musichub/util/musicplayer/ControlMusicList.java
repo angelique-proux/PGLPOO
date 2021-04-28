@@ -12,7 +12,7 @@
 
 package musichub.util.musicplayer;
 
-import business.*;
+import musichub.business.*;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.io.*;
