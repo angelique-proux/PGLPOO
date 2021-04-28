@@ -9,7 +9,7 @@
  *
  * Copyright        : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
  */
-package util.musicplayer;
+package util;
 
 import business.*;
 import java.util.LinkedList;
@@ -21,13 +21,6 @@ import java.util.LinkedList;
  * @author  Angélique Proux
  */
 public interface ControlMusic {
-  public void addAudio(Audio audio);
-
-  public void addAudios(LinkedList<Audio> audios);
-
-  public void addSongs(LinkedList<Song> songs);
-
-  public void addAudioBooks(LinkedList<AudioBook> audioBooks);
 
   public void playMusicList();
 
@@ -38,4 +31,10 @@ public interface ControlMusic {
   public void reset();
 
   public boolean isFinished();
+
+  public void pauseMusic();
+
+  public void restartMusic();
+
+  public void stopMusic();
 }

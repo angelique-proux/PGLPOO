@@ -45,6 +45,11 @@ public class SingletonMusic {
   private static AudioServerThread music;
 
   /**
+   * Singleton Instance
+   */
+  private static boolean isFinished = false;
+
+  /**
    * Constructor of SingletonMusic
    *
    * @author	Steve Chauvreau-Manat
@@ -57,11 +62,12 @@ public class SingletonMusic {
    * @return    SingletonMusic
    * @author    Steve Chauvreau-Manat
    */
-  public static synchronized SingletonMusic getInstance(String audio, int port, Socket socket) {
+  public static synchronized SingletonMusic getInstance(String audio, int port) {
     if(uniqueInstance==null) {
       uniqueInstance = new SingletonMusic();
-      music = new AudioServerThread(audio,port,socket);
+      music = new AudioServerThread(audio,port);
       music.start();
+      isFinished = false;
     }
     return uniqueInstance;
   }
@@ -77,5 +83,15 @@ public class SingletonMusic {
       music = null;
       uniqueInstance = null;
     }
+    isFinished = true;
+  }
+
+  /**
+   * Gives the status of the music playback thread
+   * @see       AudioServerThread
+   * @author    Steve Chauvreau-Manat
+   */
+  public boolean finished() {
+    return this.isFinished;
   }
 }
