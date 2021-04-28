@@ -110,8 +110,7 @@ public class ControlMusicList implements ControlMusic {
      */
     public void nextMusic() {
       if(numberAudio<this.audioList.size()) {
-        numberAudio++;
-        this.singletonMusic.stopMusic();
+        this.singletonMusic.changeMusic(this.audioList.get(numberAudio++).getContent());
       }
     }
 
@@ -124,8 +123,7 @@ public class ControlMusicList implements ControlMusic {
      */
     public void previousMusic() {
       if(numberAudio>0) {
-        numberAudio--;
-        this.singletonMusic.stopMusic();
+        this.singletonMusic.changeMusic(this.audioList.get(numberAudio--).getContent());
       }
     }
 

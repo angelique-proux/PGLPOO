@@ -49,6 +49,11 @@ public class MusicThread extends Thread {
   private InputStream in;
 
   /**
+   * TODO
+   */
+  private AudioInputStream ais;
+
+  /**
    * MusicThread constructor
    *
    * @param     ip server's ip
@@ -71,7 +76,7 @@ public class MusicThread extends Thread {
     try (Socket socket = new Socket(this.ip,this.port)) {
       if (socket.isConnected()) {
         this.in = new BufferedInputStream(socket.getInputStream());
-        AudioInputStream ais = AudioSystem.getAudioInputStream(in);
+        this.ais = AudioSystem.getAudioInputStream(in);
         this.clip = AudioSystem.getClip();
         Thread.sleep(100);
         this.clip.open(ais);
@@ -124,5 +129,15 @@ public class MusicThread extends Thread {
       ioe.printStackTrace();
     }
     Thread.currentThread().interrupt();
+  }
+
+  public void changeMusic() {
+    this.clip.stop();
+    this.clip.drain();
+    this.clip.close();
+    this.clip = AudioSystem.getClip();
+    Thread.sleep(100);
+    this.clip.open(ais);
+    this.clip.start();
   }
 }

@@ -43,6 +43,16 @@ public class AudioServerThread extends Thread {
   private OutputStream out;
 
   /**
+   * TODO
+   */
+  private FileInputStream in;
+
+  /**
+   * TODO
+   */
+  private byte buffer[] = new byte[2048];
+
+  /**
    * AudioServerThread constructor
    *
    * @param       content Audio file path
@@ -62,14 +72,13 @@ public class AudioServerThread extends Thread {
    */
   public void run() {
     try(ServerSocket serverSocker = new ServerSocket(this.port);
-    FileInputStream in = new FileInputStream(new File(this.content))) {
+    this.in = new FileInputStream(new File(this.content))) {
       if(serverSocker.isBound()) {
         Socket socket = serverSocker.accept();
         this.out = socket.getOutputStream();
-        byte buffer[] = new byte[2048];
         int count;
         while(((count = in.read(buffer))!=-1)&&!(Thread.currentThread().isInterrupted())) {
-          out.write(buffer, 0, count);
+          this.out.write(buffer, 0, count);
         }
       }
     } catch(IOException ex) {
@@ -88,5 +97,18 @@ public class AudioServerThread extends Thread {
       ioe.printStackTrace();
     }
     Thread.currentThread().interrupt();
+  }
+
+  /**
+   * TODO
+   * @author      Steve Chauvreau-Manat
+   */
+  public void changeMusic(String content) {
+    this.buffer = new byte[2048];
+    try {
+      this.in = new FileInputStream(new File(content));
+    } catch(IOException ex) {
+      ex.printStackTrace();
+    }
   }
 }
