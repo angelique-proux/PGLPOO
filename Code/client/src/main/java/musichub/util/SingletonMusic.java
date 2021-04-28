@@ -14,7 +14,7 @@ package musichub.util;
 
 import java.io.*;
 import java.net.*;
-import jmusichub.business.*;
+import musichub.business.*;
 import javax.sound.sampled.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;

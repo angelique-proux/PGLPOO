@@ -12,7 +12,7 @@
 
 package musichub.util;
 
-import jmusichub.business.*;
+import musichub.business.*;
 import java.io.*;
 import java.net.*;
 import javax.sound.sampled.*;

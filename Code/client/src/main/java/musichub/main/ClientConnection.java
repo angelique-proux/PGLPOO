@@ -12,7 +12,7 @@
 
 package musichub.main;
 
-import jmusichub.util.*;
+import musichub.util.*;
 
 /**
  * TODO
