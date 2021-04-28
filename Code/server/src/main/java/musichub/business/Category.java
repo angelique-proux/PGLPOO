@@ -7,7 +7,7 @@
  *
  * Date               : 13/04/2021
  *
- * Copyright          : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright          : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
 package musichub.business;
@@ -16,7 +16,9 @@ package musichub.business;
  *
  * Version : 1.0
  *
- * @author  Gaël Lejeune
+ * Date : 30/02/2001
+ *
+ * @author Gaël Lejeune
  */
 public enum Category {
     /**
@@ -52,7 +54,7 @@ public enum Category {
     /**
      * Category constructor
      *
-     * @param       category
+     * @param       category Desired category as a string
      *
      * @author      Gaël Lejeune
      */
@@ -62,9 +64,7 @@ public enum Category {
 
     /**
      * Override of the toString java method
-     *
      * @return      String containing the category
-     *
      * @author      Gaël Lejeune
      */
     public String toString() {

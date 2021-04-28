@@ -7,14 +7,14 @@
  *
  * Date        : 10/04/2021
  *
- * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux
+ * Copyright   : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
-package musichub.util;
+package musichub.util.musicplayer;
 
 import java.io.*;
 import java.net.*;
-import jmusichub.business.*;
+import musichub.business.*;
 import javax.sound.sampled.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -39,53 +39,47 @@ public class SingletonMusic {
   private static SingletonMusic uniqueInstance = null;
 
   /**
-   * Class that allows to manage the music
-   * @see MusicThread
+   * Class that allows to manage audio
+   * @see AudioServerThread
    */
-  private static MusicThread music;
+  private static AudioServerThread music;
+
+  /**
+   * Singleton Instance
+   */
+  private static boolean isFinished = false;
 
   /**
    * Constructor of SingletonMusic
    *
    * @author	Steve Chauvreau-Manat
    */
-  private SingletonMusic() {}
+  private SingletonMusic() {
+  }
 
   /**
-   * Create and return an instance of SingletonMusic and start the MusicThread
+   * Create and return an instance of SingletonMusic and start AudioServerThread
+   *
    * @return    SingletonMusic
+   * @param     audio //TODO
+   * @param     port //TODO
+   * @param     socket //TODO
+   *
    * @author    Steve Chauvreau-Manat
    */
-  public static synchronized SingletonMusic getInstance(String ip, int port) {
+  public static synchronized SingletonMusic getInstance(String audio, int port) {
     if(uniqueInstance==null) {
       uniqueInstance = new SingletonMusic();
-      music = new MusicThread(ip,port);
+      music = new AudioServerThread(audio,port);
       music.start();
+      isFinished = false;
     }
     return uniqueInstance;
   }
 
   /**
-   * Pause the music
-   * @see       MusicThread
-   * @author    Steve Chauvreau-Manat
-   */
-  public void pauseMusic() {
-    music.pause();
-  }
-
-  /**
-   * Restarts the music if it has been paused
-   * @see       MusicThread
-   * @author    Steve Chauvreau-Manat
-   */
-  public void restartMusic() {
-    music.restart();
-  }
-
-  /**
    * Stops the thread and music playback and reset SingletonMusic
-   * @see       MusicThread
+   * @see       AudioServerThread
    * @author    Steve Chauvreau-Manat
    */
   public void stopMusic() {
@@ -94,18 +88,15 @@ public class SingletonMusic {
       music = null;
       uniqueInstance = null;
     }
+    isFinished = true;
   }
 
   /**
-   * Check if MusicThread is interrupted
-   * @return    boolean
+   * Gives the status of the music playback thread
+   * @see       AudioServerThread
    * @author    Steve Chauvreau-Manat
    */
-  public boolean isRunning() {
-    if(music==null) {
-      return false;
-    } else {
-      return true;
-    }
+  public boolean finished() {
+    return this.isFinished;
   }
 }

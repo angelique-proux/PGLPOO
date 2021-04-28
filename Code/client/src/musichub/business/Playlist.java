@@ -10,7 +10,7 @@
  * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
  */
 
-package business;
+package musichub.business;
 
 import java.util.LinkedList;
 import java.util.UUID;

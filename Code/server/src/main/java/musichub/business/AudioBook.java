@@ -7,7 +7,7 @@
  *
  * Date        : 13/04/2021
  *
- * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright   : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
 package musichub.business;
@@ -65,9 +65,7 @@ public class AudioBook extends Audio {
 
 	/**
      * Accessor of the author
-	 *
      * @return      String containing the audio book's author
-	 *
      * @author      Gaël Lejeune
      */
     public String getAuthor() {
@@ -76,9 +74,7 @@ public class AudioBook extends Audio {
 
 	/**
      * Accessor of the Language
-	 *
      * @return      language Language of the audio book
-	 *
 	 * @see			Language
      * @author      Gaël Lejeune
      */
@@ -88,9 +84,7 @@ public class AudioBook extends Audio {
 
 	/**
      * Accessor of the Language
-	 *
      * @return      category Category of the audio book
-	 *
 	 * @see			Category
      * @author      Gaël Lejeune
      */
@@ -100,9 +94,7 @@ public class AudioBook extends Audio {
 
 	/**
      * Override of the toString java method
-	 *
      * @return      String containing the audio book's informations
-	 *
      * @author      Gaël Lejeune
      */
 	public String toString() {

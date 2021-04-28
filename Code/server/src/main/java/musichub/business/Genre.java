@@ -7,7 +7,7 @@
  *
  * Date               : 13/04/2021
  *
- * Copyright          : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright          : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
 
 package musichub.business;
@@ -15,6 +15,8 @@ package musichub.business;
 /** Genre Enumeration of the different available song genres
  *
  * Version : 1.0
+ *
+ * Date : 30/02/2001
  *
  * @author Gaël Lejeune
  */
@@ -62,7 +64,7 @@ public enum Genre {
     /**
      * Genre constructor
      *
-     * @param       genre
+     * @param       genre Desired genre as a string
      *
      * @author      Gaël Lejeune
      */
@@ -72,9 +74,7 @@ public enum Genre {
 
     /**
      * Override of the toString java method
-     *
      * @return      String containing the genre
-     *
      * @author      Gaël Lejeune
      */
     public String toString() {

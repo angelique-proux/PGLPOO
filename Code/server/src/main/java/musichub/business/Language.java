@@ -7,15 +7,16 @@
  *
  * Date               : 13/04/2021
  *
- * Copyright          : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
+ * Copyright          : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
  */
-
 
 package musichub.business;
 
 /** Language Enumeration of the different available audio book languages
  *
  * Version : 1.0
+ *
+ * Date : 30/02/2001
  *
  * @author Gaël Lejeune
  */
@@ -53,7 +54,7 @@ public enum Language {
     /**
      * Language constructor
      *
-     * @param       language
+     * @param       language Desired language as a string
      *
      * @author      Gaël Lejeune
      */
@@ -63,9 +64,7 @@ public enum Language {
 
     /**
      * Override of the toString java method
-     *
      * @return      String containing the language
-     *
      * @author      Gaël Lejeune
      */
     public String toString() {
