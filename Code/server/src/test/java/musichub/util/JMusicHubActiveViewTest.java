@@ -1,7 +1,7 @@
-package jmusichub.util;
+package musichub.util;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import musichub.main.*;
 import musichub.util.*;
