@@ -32,16 +32,9 @@ public class ServerThread extends Thread {
     private Socket socket;
 
     /**
-    * XML editor allowing to read and write XML files
-    * @see  JMusicHubModel
-    */
-    private Model model;
-
-    /**
-    * Contains all the methods used by the View
-    * @see  JMusicHubController
-    */
-    private Controller controller;
+     * TODO
+     */
+    private int port;
 
     /**
      * ServerThread constructor
@@ -50,8 +43,9 @@ public class ServerThread extends Thread {
      *
      * @author    Félicia Ionascu and Steve Chauvreau-Manat
      */
-    public ServerThread(Socket socket) {
+    public ServerThread(Socket socket, int port) {
         this.socket = socket;
+        this.port = port;
     }
 
     /**
@@ -60,7 +54,7 @@ public class ServerThread extends Thread {
      * @author    Félicia Ionascu and Steve Chauvreau-Manat
      */
     public void run() {
-        this.model = new JMusicHubModel();
-        this.controller = new JMusicHubController(model, socket);
+        Model model = new JMusicHubModel();
+        Controller controller = new JMusicHubController(model,this.socket,this.port);
     }
 }

@@ -12,9 +12,13 @@
 
 package musichub.util.musicplayer;
 
+<<<<<<< HEAD:Code/server/src/musichub/util/musicplayer/ControlMusicList.java
+import business.*;
+=======
 import musichub.business.Audio;
 import musichub.business.Song;
 
+>>>>>>> 981c0ab93f7f5e8e8d852a16d863093d4589381f:Code/server/src/main/java/musichub/util/musicplayer/ControlMusicList.java
 import java.net.Socket;
 import java.util.LinkedList;
 import java.io.*;
@@ -31,17 +35,7 @@ public class ControlMusicList implements ControlMusic {
     /**
      * TODO
      */
-    private LinkedList<Audio> audioList;
-
-    /**
-     * TODO
-     */
-    private boolean nextMusic;
-
-    /**
-     * TODO
-     */
-    private boolean previousMusic;
+    private LinkedList<Audio> audioList = new LinkedList<Audio>();
 
     /**
      * TODO
@@ -51,8 +45,17 @@ public class ControlMusicList implements ControlMusic {
     /**
      * TODO
      */
-    private Socket socket;
+    private static int numberAudio = 0;
 
+    /**
+     * TODO
+     */
+    private SingletonMusic singletonMusic;
+
+    /**
+     * TODO
+     */
+    private boolean finished;
 
     /**
   	 * TODO
@@ -63,13 +66,33 @@ public class ControlMusicList implements ControlMusic {
   	 *
   	 * @author	Angélique Proux
   	 */
-    public ControlMusicList(Audio audio, int port, Socket socket) {
-        this.audioList = new LinkedList<>();
-        this.audioList.add(audio);
+    public ControlMusicList(int port) {
         this.port = port;
-        this.socket = socket;
+        this.finished = false;
     }
 
+<<<<<<< HEAD:Code/server/src/musichub/util/musicplayer/ControlMusicList.java
+    public void addAudio(Audio audio) {
+      this.audioList.add(audio);
+    }
+
+    public void addAudios(LinkedList<Audio> audios) {
+      for(int i=0;i<audios.size();i++) {
+        this.audioList.add(audios.get(i));
+      }
+    }
+
+    public void addSongs(LinkedList<Song> songs) {
+      for(int i=0;i<songs.size();i++) {
+        this.audioList.add(songs.get(i));
+      }
+    }
+
+    public void addAudioBooks(LinkedList<AudioBook> audioBooks) {
+      for(int i=0;i<audioBooks.size();i++) {
+        this.audioList.add(audioBooks.get(i));
+      }
+=======
     /**
      * TODO
      *
@@ -84,6 +107,7 @@ public class ControlMusicList implements ControlMusic {
         this.audioList = audioList;
         this.port = port;
         this.socket = socket;
+>>>>>>> 981c0ab93f7f5e8e8d852a16d863093d4589381f:Code/server/src/main/java/musichub/util/musicplayer/ControlMusicList.java
     }
 
     /**
@@ -92,19 +116,14 @@ public class ControlMusicList implements ControlMusic {
      * @author	Angélique Proux
      */
     public void playMusicList() {
-        for (int i=0 ; i < this.audioList.size(); i++) {
-            SingletonMusic singletonMusic = SingletonMusic.getInstance(this.audioList.get(i).getContent(), this.port, this.socket);
-            if (this.nextMusic) {
-                this.nextMusic = false;
-                continue;
-            }
-            if (this.previousMusic) {
-                if (i!=0) {
-                    i--;
-                }
-                this.previousMusic = false;
-            }
-        }
+      if((numberAudio<this.audioList.size())&&(numberAudio>=0)) {
+        this.singletonMusic = SingletonMusic.getInstance(this.audioList.get(numberAudio).getContent(), this.port);
+      } else if(numberAudio==this.audioList.size()){
+        this.finished = true;
+      }
+      if(this.singletonMusic.finished()) {
+        this.nextMusic();
+      }
     }
 
     /**
@@ -113,7 +132,10 @@ public class ControlMusicList implements ControlMusic {
      * @author	Angélique Proux
      */
     public void nextMusic() {
-            this.nextMusic = true;
+      if(numberAudio<this.audioList.size()) {
+        numberAudio++;
+        this.singletonMusic.stopMusic();
+      }
     }
 
     /**
@@ -123,16 +145,20 @@ public class ControlMusicList implements ControlMusic {
      *
      * @author	Angélique Proux
      */
-    public void previousMusicAskByClient(ObjectInputStream input) {
-        try {
-            if (((String) input.readObject()).equals("previous")) {
-                this.previousMusic = true;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+    public void previousMusic() {
+      if(numberAudio>0) {
+        numberAudio--;
+        this.singletonMusic.stopMusic();
+      }
     }
 
+    public void reset() {
+      this.singletonMusic.stopMusic();
+      this.audioList.clear();
+      numberAudio = 0;
+    }
+
+    public boolean isFinished() {
+      return this.finished;
+    }
 }

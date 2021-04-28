@@ -98,9 +98,9 @@ public class JMusicHubController implements Controller {
     *
     * @author   Gaël Lejeune
     */
-    public JMusicHubController(Model model, Socket socket) {
+    public JMusicHubController(Model model, Socket socket, int port) {
         this.model = model;
-        this.view = new JMusicHubPassiveView(this,socket);
+        this.view = new JMusicHubPassiveView(this,socket,port);
 
         /* Load of all the XML files */
         try {

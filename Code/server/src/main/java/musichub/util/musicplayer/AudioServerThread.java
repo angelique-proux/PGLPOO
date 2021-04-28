@@ -38,11 +38,6 @@ public class AudioServerThread extends Thread {
   private int port;
 
   /**
-   * TODO
-   */
-  private Socket socket;
-
-  /**
    * Stream to send the audio data to the client
    */
   private OutputStream out;
@@ -52,14 +47,12 @@ public class AudioServerThread extends Thread {
    *
    * @param       content Audio file path
    * @param       port Open port
-   * @param       socket TODO
    *
    * @author      Steve Chauvreau-Manat
    */
-  public AudioServerThread(String content, int port, Socket socket) {
+  public AudioServerThread(String content, int port) {
     this.content = content;
     this.port = port;
-    this.socket = socket;
   }
 
   /**
