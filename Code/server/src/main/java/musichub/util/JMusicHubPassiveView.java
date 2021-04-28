@@ -67,9 +67,9 @@ public class JMusicHubPassiveView implements View {
     /**
      * JMusicHubPassiveView constructor
      *
-     * @param     controller
-     * @param     socket TODO
-     * @param     port TODO
+     * @param     controller //TODO
+     * @param     socket //TODO
+     * @param     port //TODO
      *
      * @author      Steve Chauvreau-Manat
      */
@@ -183,7 +183,11 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * Allows you to listen to a list of audio or choose one to either get more information or listen to it
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @param       audios //TODO
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Audio
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -230,7 +234,11 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * Allows you to listen to a list of song or choose one to either get more information or listen to it
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @param       songs //TODO
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Song
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -253,7 +261,11 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * Allows you to listen to a list of audio book or choose one to either get more information or listen to it
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @param       audioBooks //TODO
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         AudioBook
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -276,7 +288,11 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @param       albums //TODO
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Album
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -297,7 +313,11 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @param       playlists //TODO
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Playlist
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -318,7 +338,10 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Audio
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -332,7 +355,10 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Album
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -346,7 +372,10 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Playlist
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -360,7 +389,10 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Album
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -386,7 +418,10 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Playlist
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -412,7 +447,10 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Song
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -430,7 +468,10 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         AudioBook
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -448,7 +489,10 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Album
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -471,7 +515,10 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Song
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -489,7 +536,10 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Song
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -518,7 +568,10 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         AudioBook
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
@@ -547,9 +600,12 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Genre
-      * @send        Song
+      * @see        Song
       * @see         ControlMusicList
       * @author      Steve Chauvreau-Manat
       */
@@ -576,13 +632,16 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-      * @see         Category
-      * @see         AudioBook
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @exception   IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+     * @exception   ClassNotFoundException //TODO
+     *
+     * @see         Category
+     * @see         AudioBook
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void sendAllCategories() throws IOException, ClassNotFoundException { //case 13
         output.writeObject("\t\tAll categories :");
         LinkedList<Category> categories = this.controller.getCategories();
@@ -607,7 +666,10 @@ public class JMusicHubPassiveView implements View {
 
     /**
       * TODO
-      * @exception   Exception thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
+      *
+      * @exception   IOException //TODO
+      * @exception   ClassNotFoundException //TODO
+      *
       * @see         Language
       * @see         AudioBook
       * @see         ControlMusicList

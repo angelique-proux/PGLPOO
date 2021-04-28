@@ -54,9 +54,7 @@ public class ControlMusicList implements ControlMusic {
     /**
   	 * TODO
   	 *
-     * @param   audio Audio we want to hear
   	 * @param	  port Server's open port
-     * @param   socket //TODO
   	 *
   	 * @author	Angélique Proux
   	 */
@@ -118,8 +116,6 @@ public class ControlMusicList implements ControlMusic {
     /**
      * TODO
      *
-     * @param   input //TODO
-     *
      * @author	Angélique Proux
      */
     public void previousMusic() {
@@ -129,12 +125,24 @@ public class ControlMusicList implements ControlMusic {
       }
     }
 
+    /**
+     * TODO
+     *
+     * @author	Angélique Proux
+     */
     public void reset() {
       this.singletonMusic.stopMusic();
       this.audioList.clear();
       numberAudio = 0;
     }
 
+    /**
+     * TODO
+     *
+     * @return  boolean //TODO
+     *
+     * @author	Angélique Proux
+     */
     public boolean isFinished() {
       return this.finished;
     }

@@ -22,19 +22,45 @@ import java.util.LinkedList;
  */
 public interface ControlMusic {
 
+  /**
+   * TODO
+   */
   public void playMusicList();
 
+  /**
+   * TODO
+   */
   public void nextMusic();
 
+  /**
+   * TODO
+   */
   public void previousMusic();
 
+  /**
+   * TODO
+   */
   public void reset();
 
+  /**
+   * TODO
+   *
+   * @return boolean //TODO
+   */
   public boolean isFinished();
 
+  /**
+   * TODO
+   */
   public void pauseMusic();
 
+  /**
+   * TODO
+   */
   public void restartMusic();
 
+  /**
+   * TODO
+   */
   public void stopMusic();
 }

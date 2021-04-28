@@ -22,21 +22,58 @@ import java.util.LinkedList;
  * @author  Angélique Proux
  */
 public interface ControlMusic {
+  /**
+   * TODO
+   *
+   * @param     audio //TODO
+   */
   public void addAudio(Audio audio);
 
+  /**
+   * TODO
+   *
+   * @param     audios //TODO
+   */
   public void addAudios(LinkedList<Audio> audios);
 
+  /**
+   * TODO
+   *
+   * @param     songs //TODO
+   */
   public void addSongs(LinkedList<Song> songs);
 
+  /**
+   * TODO
+   *
+   * @param     audioBooks //TODO
+   */
   public void addAudioBooks(LinkedList<AudioBook> audioBooks);
 
+  /**
+   * TODO
+   */
   public void playMusicList();
 
+  /**
+   * TODO
+   */
   public void nextMusic();
 
+  /**
+   * TODO
+   */
   public void previousMusic();
 
+  /**
+   * TODO
+   */
   public void reset();
 
+  /**
+   * TODO
+   *
+   * @return     boolean //TODO
+   */
   public boolean isFinished();
 }

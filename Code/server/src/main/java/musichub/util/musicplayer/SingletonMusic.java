@@ -60,10 +60,9 @@ public class SingletonMusic {
   /**
    * Create and return an instance of SingletonMusic and start AudioServerThread
    *
-   * @return    SingletonMusic
    * @param     audio //TODO
    * @param     port //TODO
-   * @param     socket //TODO
+   * @return    SingletonMusic
    *
    * @author    Steve Chauvreau-Manat
    */
@@ -93,6 +92,9 @@ public class SingletonMusic {
 
   /**
    * Gives the status of the music playback thread
+   *
+   * @return    boolean //TODO
+   *
    * @see       AudioServerThread
    * @author    Steve Chauvreau-Manat
    */

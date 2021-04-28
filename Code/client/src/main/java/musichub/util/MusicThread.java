@@ -53,7 +53,6 @@ public class MusicThread extends Thread {
    *
    * @param     ip server's ip
    * @param     port open port for the connection
-   * @param     socket TODO
    *
    * @author    Steve Chauvreau-Manat
    */
@@ -64,6 +63,7 @@ public class MusicThread extends Thread {
 
   /**
   * Audio playback
+  *
   * @see         Thread
   * @author      Steve Chauvreau-Manat and Angélique Proux
   */

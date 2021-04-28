@@ -53,7 +53,11 @@ public class SingletonMusic {
 
   /**
    * Create and return an instance of SingletonMusic and start the MusicThread
+   *
+   * @param     ip //TODO
+   * @param     port //TODO
    * @return    SingletonMusic
+   *
    * @author    Steve Chauvreau-Manat
    */
   public static synchronized SingletonMusic getInstance(String ip, int port) {

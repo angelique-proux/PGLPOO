@@ -43,9 +43,8 @@ public class ControlMusicList implements ControlMusic {
   /**
 	 * TODO
 	 *
-   * @param   audio Audio we want to hear
-	 * @param	port Server's open port
-   * @param   socket
+   * @param   ip //TODO
+	 * @param	  port Server's open port
 	 *
 	 * @author	Angélique Proux
 	 */
@@ -80,8 +79,6 @@ public class ControlMusicList implements ControlMusic {
 
   /**
    * TODO
-   *
-   * @param   input
    *
    * @author	Angélique Proux
    */
