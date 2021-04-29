@@ -44,6 +44,7 @@ public class SingletonMusic {
    */
   private static MusicThread music;
 
+
   /**
    * Constructor of SingletonMusic
    *
@@ -97,7 +98,8 @@ public class SingletonMusic {
     if(!music.isInterrupted()) {
       music = null;
       uniqueInstance = null;
-    }
+    } music = null;
+    uniqueInstance = null;
   }
 
   /**
@@ -111,5 +113,12 @@ public class SingletonMusic {
     } else {
       return true;
     }
+  }
+
+  /**
+   * ESSAI
+   */
+  public boolean isFinished() {
+    return this.music.isFinished();
   }
 }
