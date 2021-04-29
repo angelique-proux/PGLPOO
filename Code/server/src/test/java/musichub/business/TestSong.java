@@ -11,5 +11,9 @@ public class TestSong {
         Song music = new Song("title", "artist", 180, UUID.randomUUID(), "content", Genre.RAP);
 
         assertEquals(music.getArtist(), "artist");
+        assertEquals(music.getTitle(), "title");
+        assertEquals(music.getDuration(), 180);
+        assertEquals(music.getContent(), "content");
+        assertEquals(music.getGenre(), Genre.RAP);
     }
 }
