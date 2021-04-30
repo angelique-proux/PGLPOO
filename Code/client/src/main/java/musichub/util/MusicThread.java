@@ -50,7 +50,6 @@ public class MusicThread extends Thread {
    * Keep the state of the audio playing
    */
   private boolean finished;
-  private AudioInputStream ais;
 
   /**
    * MusicThread constructor
@@ -74,7 +73,7 @@ public class MusicThread extends Thread {
     try (Socket socket = new Socket(this.ip,this.port)) {
       if (socket.isConnected()) {
         this.in = new BufferedInputStream(socket.getInputStream());
-        this.ais = AudioSystem.getAudioInputStream(in);
+        AudioInputStream ais = AudioSystem.getAudioInputStream(in);
         this.clip = AudioSystem.getClip();
         this.clip.open(ais);
         this.clip.start();
@@ -82,7 +81,6 @@ public class MusicThread extends Thread {
           Thread.sleep(100);
           if(this.clip.getMicrosecondPosition()>=this.clip.getMicrosecondLength()) {
             stopThread();
-            //System.out.println("MusicThread a fini !");
           }
         }
       }
@@ -132,20 +130,11 @@ public class MusicThread extends Thread {
     Thread.currentThread().interrupt();
   }
 
-  public void changeMusic() {
-    this.clip.stop();
-    this.clip.drain();
-    this.clip.close();
-    this.clip = AudioSystem.getClip();
-    Thread.sleep(100);
-    this.clip.open(ais);
-    this.clip.start();
-  }
-
   /**
    * Returns if the audio is finished or not
    * @author      Angélique Proux
    */
   public boolean isFinished(){
     return this.finished;
+  }
 }

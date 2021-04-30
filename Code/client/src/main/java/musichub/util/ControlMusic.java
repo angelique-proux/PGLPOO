@@ -30,16 +30,6 @@ public interface ControlMusic {
   /**
    * TODO
    */
-  public void nextMusic();
-
-  /**
-   * TODO
-   */
-  public void previousMusic();
-
-  /**
-   * TODO
-   */
   public void reset();
 
   /**

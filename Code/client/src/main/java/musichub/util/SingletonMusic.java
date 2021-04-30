@@ -95,10 +95,7 @@ public class SingletonMusic {
    */
   public void stopMusic() {
     music.stopThread();
-    if(!music.isInterrupted()) {
-      music = null;
-      uniqueInstance = null;
-    } music = null;
+    music = null;
     uniqueInstance = null;
   }
 
@@ -110,15 +107,12 @@ public class SingletonMusic {
   public boolean isRunning() {
     if(music==null) {
       return false;
+    } else if (music.isFinished() == true) {
+      music = null;
+      return false;
     } else {
       return true;
     }
   }
 
-  /**
-   * ESSAI
-   */
-  public boolean isFinished() {
-    return this.music.isFinished();
-  }
 }

@@ -82,6 +82,7 @@ public class JMusicHubClientView {
 			int choice;
 
 			while(true) {
+			    System.out.println((String) input.readObject());
 				String command = this.scan.nextLine();
 				output.writeObject(command);
 				switch(command) {
@@ -182,52 +183,111 @@ public class JMusicHubClientView {
     */
   private void audioPlayingOrInformation(LinkedList<Audio> audios) throws IOException, ClassNotFoundException {
     System.out.println((String) input.readObject());
-    int choice = Integer.parseInt(this.scan.nextLine());
-    output.writeObject(choice);
-    if(choice<audios.size()&&(choice>=0)) {
-      Audio oneAudio = audios.get(choice);
-      output.writeObject(choice);
-      System.out.println(input.readObject());
-      output.writeObject(this.scan.nextLine());
-      if(((boolean) input.readObject())) {
-        contMus.playMusicList();
-        do {
-          System.out.println("Enter a command : (play/pause/stop/next/previous)");
-          switch(this.scan.nextLine()) {
-            case "pause":
-              contMus.pauseMusic();
-              break;
-            case "play":
-              contMus.restartMusic();
-              break;
-            case "stop":
-              output.writeObject(0);
-              contMus.stopMusic();
-              break;
-            case "next":
-              output.writeObject(1);
-              contMus.nextMusic();
-              break;
-            case "previous":
-              output.writeObject(2);
-              break;
-            default:
-              System.out.println("This is not a command");
-              break;
-          }
-        } while(contMus.isFinished());
-      } else {
-        if(oneAudio instanceof Song) {
-          System.out.println((Song) oneAudio);
-        } else if(oneAudio instanceof AudioBook) {
-          System.out.println((AudioBook) oneAudio);
+    try {
+        int choice = Integer.parseInt(this.scan.nextLine());
+        output.writeObject(choice);
+        if(choice<audios.size()&&(choice>=0)) {
+            Audio oneAudio = audios.get(choice);
+            System.out.println(input.readObject());
+            output.writeObject(this.scan.nextLine());
+            if(((boolean) input.readObject())) {
+                System.out.println("You are listening to : " + audios.get(choice).getTitle());
+                contMus.playMusicList();
+                while(!contMus.isFinished()) {
+                    System.out.println("Enter a command : (play/pause/stop)");
+                    switch(this.scan.nextLine()) {
+                        case "pause":
+                            contMus.pauseMusic();
+                            break;
+                        case "play":
+                            contMus.restartMusic();
+                            break;
+                        case "stop":
+                            contMus.stopMusic();
+                            break;
+                        default:
+                            System.out.println("This is not a command");
+                            break;
+                    }
+                }
+                output.writeObject(0);
+            } else {
+                if(oneAudio instanceof Song) {
+                    System.out.println((Song) oneAudio);
+                } else if(oneAudio instanceof AudioBook) {
+                    System.out.println((AudioBook) oneAudio);
+                } else {
+                    System.out.println(oneAudio);
+                }
+            }
+        } else if (choice==-1) {
+            System.out.println("You will listen to all the audios.");
+            try {
+                System.out.println((String) input.readObject());
+                int size = (int) input.readObject();
+                int i=0;
+                while (i<size) {
+                    if((boolean) input.readObject()){
+                        String choix;
+                        System.out.println("Que voulez-vous faire ?\n (previous/listen/next/end)");
+                        contMus.playMusicList();
+                        String next = scan.nextLine();
+                        output.writeObject(next);
+                        choix = (String) input.readObject();
+                        switch (choix) {
+                            case "next":
+                                contMus.stopMusic();
+                                System.out.println("nouvelle musique");
+                                i++;
+                                break;
+                            case "previous":
+                                i--;
+                                contMus.stopMusic();
+                                System.out.println("musique précédente");
+                                break;
+                            case "end":
+                                contMus.stopMusic();
+                                System.out.println("Fin de l'écoute.");
+                                i=size;
+                                break;
+                            case "listen":
+                                while (!contMus.isFinished()){
+                                    System.out.println("Enter a command : (play/pause/stop)");
+                                    switch(scan.nextLine()) {
+                                        case "pause":
+                                            contMus.pauseMusic();
+                                            break;
+                                        case "play":
+                                            contMus.restartMusic();
+                                            break;
+                                        case "stop":
+                                            contMus.stopMusic();
+                                            break;
+                                        default:
+                                            System.out.println("This is not a command");
+                                            break;
+                                    }
+                                }
+                                i++;
+                                System.out.println("Ici la musique finit.");
+                                output.writeObject("Fin de la lecture sur le client.");
+                                break;
+                        }
+
+                    }
+                }
+                System.out.println("Fin de la liste.");
+            } catch(IOException ioe) {
+                ioe.printStackTrace();
+            } catch(ClassNotFoundException cnfe) {
+                cnfe.printStackTrace();
+            }
         } else {
-          System.out.println(oneAudio);
+            System.out.println("Wrong number, you go back to the menu.");
         }
-      }
-    } else if (choice==-1) {
-        System.out.println("là");
-        ((ControlMusicList) contMus).playMusicList2(this.scan, this.input, this.output);
+    } catch (NumberFormatException ne) {
+        System.out.println("Wrong expression, you go back to the menu.");
+        output.writeObject(audios.size());
     }
   }
 
@@ -253,7 +313,7 @@ public class JMusicHubClientView {
       if(((boolean) input.readObject())) {
         do {
             contMus.playMusicList();
-          System.out.println("Enter a command : (play/pause/stop\nnext/previous)");
+          System.out.println("Enter a command : (play/pause/stop\n)");
           switch(this.scan.nextLine()) {
             case "pause":
               contMus.pauseMusic();
@@ -264,13 +324,6 @@ public class JMusicHubClientView {
             case "stop":
               output.writeObject(0);
               contMus.stopMusic();
-              break;
-            case "next":
-              output.writeObject(1);
-              contMus.nextMusic();
-              break;
-            case "previous":
-              output.writeObject(2);
               break;
             default:
               System.out.println("This is not a command");
@@ -306,7 +359,7 @@ public class JMusicHubClientView {
       if(((boolean) input.readObject())) {
         do {
           contMus.playMusicList();
-          System.out.println("Enter a command : (play/pause/stop\nnext/previous)");
+          System.out.println("Enter a command : (play/pause/stop\n)");
           switch(this.scan.nextLine()) {
             case "pause":
               contMus.pauseMusic();
@@ -317,13 +370,6 @@ public class JMusicHubClientView {
             case "stop":
               output.writeObject(0);
               contMus.stopMusic();
-              break;
-            case "next":
-              output.writeObject(1);
-              contMus.nextMusic();
-              break;
-            case "previous":
-              output.writeObject(2);
               break;
             default:
               System.out.println("This is not a command");
