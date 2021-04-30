@@ -54,17 +54,7 @@ public interface ControlMusic {
   /**
    * TODO
    */
-  public void playMusicList();
-
-  /**
-   * TODO
-   */
-  public void nextMusic();
-
-  /**
-   * TODO
-   */
-  public void previousMusic();
+  public void playMusicList(int numberAudio);
 
   /**
    * TODO
@@ -73,8 +63,6 @@ public interface ControlMusic {
 
   /**
    * TODO
-   *
-   * @return     boolean //TODO
    */
-  public boolean isFinished();
+  public void stopMusic();
 }

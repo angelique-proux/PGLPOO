@@ -101,8 +101,4 @@ public class SingletonMusic {
   public boolean finished() {
     return this.isFinished;
   }
-
-  public void changeMusic(String content) {
-    this.music.changeMusic(content);
-  }
 }

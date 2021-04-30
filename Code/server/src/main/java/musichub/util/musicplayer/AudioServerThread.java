@@ -33,6 +33,11 @@ public class AudioServerThread extends Thread {
   private String content;
 
   /**
+   * The path to an existing audio file listened when the file given doesn't exist
+   */
+  private String defaultContent = "files/music/Skillet/Victorious (2019)/Legendary.wav";
+
+  /**
    * Server's open port
    */
   private int port;
@@ -41,16 +46,6 @@ public class AudioServerThread extends Thread {
    * Stream to send the audio data to the client
    */
   private OutputStream out;
-
-  /**
-   * TODO
-   */
-  private FileInputStream in;
-
-  /**
-   * TODO
-   */
-  private byte buffer[] = new byte[2048];
 
   /**
    * AudioServerThread constructor
@@ -71,14 +66,21 @@ public class AudioServerThread extends Thread {
    * @author      Steve Chauvreau-Manat and Angélique Proux
    */
   public void run() {
-    try(ServerSocket serverSocker = new ServerSocket(this.port);
-    this.in = new FileInputStream(new File(this.content))) {
+    try(ServerSocket serverSocker = new ServerSocket(this.port)) {
+      //Initialize with a default file to counteract non-existent files
+      FileInputStream in = new FileInputStream(this.defaultContent);
+      try {
+        in = new FileInputStream(new File(this.content));
+      } catch(IOException ex) {
+        System.out.println("The file does not exist, a default music is sent.");
+      }
       if(serverSocker.isBound()) {
         Socket socket = serverSocker.accept();
         this.out = socket.getOutputStream();
+        byte buffer[] = new byte[2048];
         int count;
         while(((count = in.read(buffer))!=-1)&&!(Thread.currentThread().isInterrupted())) {
-          this.out.write(buffer, 0, count);
+          out.write(buffer, 0, count);
         }
       }
     } catch(IOException ex) {
@@ -97,18 +99,5 @@ public class AudioServerThread extends Thread {
       ioe.printStackTrace();
     }
     Thread.currentThread().interrupt();
-  }
-
-  /**
-   * TODO
-   * @author      Steve Chauvreau-Manat
-   */
-  public void changeMusic(String content) {
-    this.buffer = new byte[2048];
-    try {
-      this.in = new FileInputStream(new File(content));
-    } catch(IOException ex) {
-      ex.printStackTrace();
-    }
   }
 }

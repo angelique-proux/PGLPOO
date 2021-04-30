@@ -13,7 +13,6 @@
 package musichub.util.musicplayer;
 
 import musichub.business.*;
-
 import java.util.LinkedList;
 import java.io.*;
 
@@ -88,100 +87,9 @@ public class ControlMusicList implements ControlMusic {
      *
      * @author	Angélique Proux
      */
-    public void playMusicList() {
+    public void playMusicList(int numberAudio) {
         if((numberAudio<this.audioList.size())&&(numberAudio>=0)) {
             this.singletonMusic = SingletonMusic.getInstance(this.audioList.get(numberAudio).getContent(), this.port);
-        } else if(numberAudio==this.audioList.size()){
-            this.finished = true;
-        }
-        if(this.singletonMusic.finished()) {
-            this.nextMusic();
-        }
-    }
-
-
-    /**
-     * ESSAI
-     */
-    //private ObjectInputStream input;
-    //private ObjectOutputStream output;
-
-    public void playMusicList2(ObjectInputStream input, ObjectOutputStream output) {
-        try {
-            System.out.println("-1 réussi !");
-            output.writeObject("Envoi de la musique à écouter");
-            output.writeObject(this.audioList.size());
-            for (int i = 0; i < this.audioList.size(); i++) {
-                output.writeObject(true);
-                this.singletonMusic = SingletonMusic.getInstance(this.audioList.get(i).getContent(), this.port + 1);
-                System.out.println("Musique " + i + " envoyée");
-                String choix = (String) input.readObject();
-                switch (choix) {
-                    case "next":
-                        if (i != (this.audioList.size() - 1)) {
-                            output.writeObject("next");
-                            this.singletonMusic.stopMusic();
-                            System.out.println("suivante");
-                        } else {
-                            output.writeObject("end");
-                        }
-                        break;
-                    case "previous":
-                        output.writeObject("previous");
-                        this.singletonMusic.stopMusic();
-                        if (i >= 1) {
-                            //si il y a une musique avant, l'écouter
-                            i -= 2;
-                        } // sinon, écouter celle d'après
-                        System.out.println("précédente");
-                        break;
-                    case "listen":
-                        output.writeObject("listen");
-                        System.out.println(input.readObject());
-                        break;
-                    case "end":
-                        output.writeObject("end");
-                        i = this.audioList.size() - 1;
-                        break;
-                    default:
-                        output.writeObject("listen");
-                        i = this.audioList.size() - 1;
-                        System.out.println(input.readObject());
-                        break;
-                }
-            }
-            System.out.println("Fin");
-        } catch (IOException ex) {
-            System.out.println("Server exception: " + ex.getMessage());
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Server exception: " + ex.getMessage());
-            ex.printStackTrace();
-        }
-    }
-
-
-    /**
-     * TODO
-     *
-     * @author	Angélique Proux
-     */
-    public void nextMusic() {
-        if(this.numberAudio<this.audioList.size()) {
-            this.numberAudio++;
-            this.singletonMusic.stopMusic();
-        }
-    }
-
-    /**
-     * TODO
-     *
-     * @author	Angélique Proux
-     */
-    public void previousMusic() {
-        if(this.numberAudio>0) {
-            this.numberAudio--;
-            this.singletonMusic.stopMusic();
         }
     }
 
@@ -198,12 +106,8 @@ public class ControlMusicList implements ControlMusic {
 
     /**
      * TODO
-     *
-     * @return  boolean //TODO
-     *
-     * @author	Angélique Proux
      */
-    public boolean isFinished() {
-        return this.finished;
+    public void stopMusic() {
+      this.singletonMusic.stopMusic();
     }
 }

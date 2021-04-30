@@ -92,6 +92,7 @@ public class JMusicHubPassiveView implements View {
             output.writeObject("\nConnected to the server\nType any command to begin using jMusicHub\nType \"h\" for help\n"); //serialize and write the object to the stream
 
             while(true) {
+                output.writeObject("You are in the menu\n");
                 String command = (String) input.readObject();  //read the object received through the stream and deserialize it
                 switch (command) {
                   case "1" :
@@ -151,6 +152,7 @@ public class JMusicHubPassiveView implements View {
 
                   case "q" :// Quit the application
                     output.writeObject("\t\t Thank you for you time, have a nice day!\n\t\t\t\t\tSigned by nope.\n\n\n");
+                    System.out.println("Client disconnected");
                     break;
 
                   case "h" ://Display the help
@@ -196,29 +198,75 @@ public class JMusicHubPassiveView implements View {
       output.writeObject("Which one would you like to hear? (Enter the number)\nEnter '-1' if you want to listen to everything");
       int number = ((int) input.readObject());
       if(number<audios.size()&&(number>=0)) {
-        output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More informtion");
+        output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More information");
         if(((String) input.readObject()).equals("1")) {
           output.writeObject(true);
           this.contMus.addAudio(audios.get(number));
           while(true) {
-            this.contMus.playMusicList();
+            this.contMus.playMusicList(0);
             number = ((int) input.readObject());
-            if((number==0)||(this.contMus.isFinished())) {
-              this.contMus.reset();
-              break;
-            } else if(number==1) {
-              this.contMus.nextMusic();
-            } else if(number==2) {
-              this.contMus.previousMusic();
-            }
+            this.contMus.reset();
+            break;
           }
         } else {
           output.writeObject(false);
         }
       } else if(number==-1) {
-          System.out.println("ici");
           this.contMus.addAudios(audios);
-          ((ControlMusicList) contMus).playMusicList2(this.input, this.output);
+          try {
+              System.out.println("-1 réussi !");
+              output.writeObject("Envoi de la musique à écouter");
+              output.writeObject(audios.size());
+              for (int i = 0; i < audios.size(); i++) {
+                  output.writeObject(true);
+                  contMus.playMusicList(i);
+                  System.out.println("Musique " + i + " envoyée");
+                  String choix = (String) input.readObject();
+                  switch (choix) {
+                      case "next":
+                          if (i != (audios.size() - 1)) {
+                              output.writeObject("next");
+                              contMus.stopMusic();
+                              System.out.println("suivante");
+                          } else {
+                              output.writeObject("end");
+                          }
+                          break;
+                      case "previous":
+                          output.writeObject("previous");
+                          contMus.stopMusic();
+                          if (i >= 1) {
+                              //si il y a une musique avant, l'écouter
+                              i -= 2;
+                          } // sinon, écouter celle d'après
+                          System.out.println("précédente");
+                          break;
+                      case "listen":
+                          output.writeObject("listen");
+                          System.out.println(input.readObject());
+                          contMus.stopMusic();
+                          break;
+                      case "end":
+                          output.writeObject("end");
+                          i = audios.size() - 1;
+                          contMus.reset();
+                          break;
+                      default:
+                          output.writeObject("listen");
+                          i = audios.size() - 1;
+                          System.out.println(input.readObject());
+                          contMus.reset();
+                          break;
+                  }
+              }
+              System.out.println("Fin");
+          } catch (IOException ex) {
+              System.out.println("Server exception: " + ex.getMessage());
+              ex.printStackTrace();
+          } catch (ClassNotFoundException ex) {
+              System.out.println("Server exception: " + ex.getMessage());
+              ex.printStackTrace();
+          }
       }
     }
 
@@ -241,7 +289,7 @@ public class JMusicHubPassiveView implements View {
         if(((String) input.readObject()).equals("1")) {
           output.writeObject(true);
           this.contMus.addAudio(songs.get(number));
-          this.contMus.playMusicList();
+          this.contMus.playMusicList(0);
           while((boolean) input.readObject());
         } else {
           output.writeObject(false);
@@ -268,7 +316,7 @@ public class JMusicHubPassiveView implements View {
         if(((String) input.readObject()).equals("1")) {
           output.writeObject(true);
           this.contMus.addAudio(audioBooks.get(number));
-          this.contMus.playMusicList();
+          this.contMus.playMusicList(0);
           while((boolean) input.readObject());
         } else {
           output.writeObject(false);
