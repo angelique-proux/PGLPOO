@@ -183,6 +183,7 @@ public class JMusicHubClientView {
   private void audioPlayingOrInformation(LinkedList<Audio> audios) throws IOException, ClassNotFoundException {
     System.out.println((String) input.readObject());
     int choice = Integer.parseInt(this.scan.nextLine());
+    output.writeObject(choice);
     if(choice<audios.size()&&(choice>=0)) {
       Audio oneAudio = audios.get(choice);
       output.writeObject(choice);
@@ -224,6 +225,9 @@ public class JMusicHubClientView {
           System.out.println(oneAudio);
         }
       }
+    } else if (choice==-1) {
+        System.out.println("là");
+        ((ControlMusicList) contMus).playMusicList2(this.scan, this.input, this.output);
     }
   }
 
@@ -248,6 +252,7 @@ public class JMusicHubClientView {
       output.writeObject(this.scan.nextLine());
       if(((boolean) input.readObject())) {
         do {
+            contMus.playMusicList();
           System.out.println("Enter a command : (play/pause/stop\nnext/previous)");
           switch(this.scan.nextLine()) {
             case "pause":
@@ -292,6 +297,7 @@ public class JMusicHubClientView {
   private void audioBookPlayingOrInformation(LinkedList<AudioBook> audioBooks) throws IOException, ClassNotFoundException {
     System.out.println((String) input.readObject());
     int choice = Integer.parseInt(this.scan.nextLine());
+    output.writeObject(choice);
     if(choice<audioBooks.size()&&(choice>=0)) {
       AudioBook audioBook = audioBooks.get(choice);
       output.writeObject(choice);
@@ -299,6 +305,7 @@ public class JMusicHubClientView {
       output.writeObject(this.scan.nextLine());
       if(((boolean) input.readObject())) {
         do {
+          contMus.playMusicList();
           System.out.println("Enter a command : (play/pause/stop\nnext/previous)");
           switch(this.scan.nextLine()) {
             case "pause":
@@ -326,6 +333,9 @@ public class JMusicHubClientView {
       } else {
         System.out.println(audioBook);
       }
+    } else if (choice==-1) {
+        System.out.println("là");
+        //((ControlMusicList) contMus).playMusicList2(this.scan);
     }
   }
 
