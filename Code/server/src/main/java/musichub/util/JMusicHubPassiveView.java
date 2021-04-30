@@ -216,19 +216,9 @@ public class JMusicHubPassiveView implements View {
           output.writeObject(false);
         }
       } else if(number==-1) {
-        this.contMus.addAudios(audios);
-        while(true) {
-          this.contMus.playMusicList();
-          number = ((int) input.readObject());
-          if((number==0)||(this.contMus.isFinished())) {
-            this.contMus.reset();
-            break;
-          } else if(number==1) {
-            this.contMus.nextMusic();
-          } else if(number==2) {
-            this.contMus.previousMusic();
-          }
-        }
+          System.out.println("ici");
+          this.contMus.addAudios(audios);
+          ((ControlMusicList) contMus).playMusicList2(this.input, this.output);
       }
     }
 
