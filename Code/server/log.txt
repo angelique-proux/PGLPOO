@@ -1,3 +1,0 @@
-[2021-04-29 15:10:08.163] - WARNING - Ceci est un warning
-[2021-04-29 15:10:08.22] - ERROR - Ceci est une erreurFor input string: "Ceci est une chaine de char"
-[2021-04-29 15:10:08.222] - INFO - Ceci est une info
