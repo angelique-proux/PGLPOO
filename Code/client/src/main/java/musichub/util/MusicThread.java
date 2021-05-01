@@ -23,9 +23,10 @@ import java.net.UnknownHostException;
  * @version 1.0
  *
  * @see Thread
- * @author Steve Chauvreau-Manat
+ * @author Steve Chauvreau-Manat and Angélique Proux
  */
-public class MusicThread extends Thread {
+
+public class MusicThread extends Thread implements IMusicThread {
   /**
    * Server's open port
    */
@@ -54,11 +55,20 @@ public class MusicThread extends Thread {
   /**
    * MusicThread constructor
    *
-   * @param     ip server's ip
-   * @param     port open port for the connection
    * @author    Steve Chauvreau-Manat
    */
-  public MusicThread(String ip,int port) {
+  public MusicThread() {
+  }
+
+  /**
+   * set MusicThread parameters
+   *
+   * @param ip
+   * @param port
+   *
+   * @author    Angélique Proux
+   */
+  public void setMusicThread(String ip, int port) {
     this.ip = ip;
     this.port = port;
   }

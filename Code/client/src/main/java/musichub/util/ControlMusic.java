@@ -13,8 +13,9 @@ package musichub.util;
 
 import musichub.business.*;
 import java.util.LinkedList;
+
 /**
- * TODO
+ * Interface for classes which control the play of the music
  *
  * Version : 1.0
  *
@@ -23,34 +24,39 @@ import java.util.LinkedList;
 public interface ControlMusic {
 
   /**
-   * TODO
+   * Create a singleton to receive an audio and play it
+   *
+   * @author  Angélique Proux
    */
   public void playMusicList();
 
   /**
-   * TODO
-   */
-  public void reset();
-
-  /**
-   * TODO
+   * Return the status of the singleton Instance
    *
-   * @return boolean //TODO
+   * @return boolean
+   *
+   * @author  Angélique Proux
    */
   public boolean isFinished();
 
   /**
-   * TODO
+   * Pause the music
+   *
+   * @author  Angélique Proux
    */
   public void pauseMusic();
 
   /**
-   * TODO
+   * Restart the music
+   *
+   * @author  Angélique Proux
    */
   public void restartMusic();
 
   /**
-   * TODO
+   * Stop the music
+   *
+   * @author  Angélique Proux
    */
   public void stopMusic();
 }
