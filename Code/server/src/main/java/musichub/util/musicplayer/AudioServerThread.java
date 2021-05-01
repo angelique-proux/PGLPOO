@@ -23,7 +23,7 @@ import javax.sound.sampled.*;
  *
  * Version : 1.0
  *
- * @author TODO
+ * @author Steve Chauvreau-Manat and Angélique Proux
  */
 
 public class AudioServerThread extends Thread {
