@@ -26,10 +26,10 @@ public interface AudioList extends Serializable		//must implement Serializable i
 {
 
     /**
-	 * Allow the user to add a given song to the AudioList
+  	 * Allow the user to add a given song to the AudioList
      * @param       audio Audio to add
-	 * @see         Audio
+	   * @see         Audio
      * @author Gaël Lejeune and Steve Chauvreau-Manat
-	 */
+	   */
     abstract void addAudio(Audio audio);
 }

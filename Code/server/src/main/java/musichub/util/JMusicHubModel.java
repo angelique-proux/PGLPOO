@@ -39,23 +39,23 @@ import java.text.Normalizer;
 public class JMusicHubModel implements Model{
 
 	/**
-     * TODO
-     */
+   * TODO
+   */
 	private TransformerFactory transformerFactory;
 
 	/**
-     * TODO
-     */
+   * TODO
+   */
 	private Transformer transformer;
 
 	/**
-     * TODO
-     */
+   * TODO
+   */
 	private DocumentBuilderFactory documentFactory;
 
 	/**
-     * TODO
-     */
+   * TODO
+   */
 	private DocumentBuilder documentBuilder;
 
 	/**

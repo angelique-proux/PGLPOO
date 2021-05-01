@@ -39,9 +39,9 @@ public class Song extends Audio {
      * @param       title Title of the book
      * @param       artist Artist of the song
      * @param       duration Duration of the song
-	 * @param       id Unique id of the song
-	 * @param       content Path of the song's file
-	 * @param       genre Genre of the song
+	   * @param       id Unique id of the song
+	   * @param       content Path of the song's file
+	   * @param       genre Genre of the song
      *
      * @author      Gaël Lejeune
      */

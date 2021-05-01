@@ -38,9 +38,9 @@ import javax.sound.sampled.*;
 public class JMusicHubController implements Controller {
 
     /**
-    * XML editor allowing to read and write XML files
-    * @see  JMusicHubModel
-    */
+     * XML editor allowing to read and write XML files
+     * @see  JMusicHubModel
+     */
     private Model model;
 
     /**
@@ -49,31 +49,31 @@ public class JMusicHubController implements Controller {
     private View view;
 
     /**
-    * List of the registered playlists
-    * @see  Playlist
-    */
+     * List of the registered playlists
+     * @see  Playlist
+     */
     private LinkedList<Playlist> playlists;
 
     /**
-    * List of the registered albums
-    * @see  Album
-    */
+     * List of the registered albums
+     * @see  Album
+     */
     private LinkedList<Album> albums;
 
     /**
-    * List of the registered audio elements
-    * @see  Audio
-    */
+     * List of the registered audio elements
+     * @see  Audio
+     */
     private LinkedList<Audio> elements;
 
     /**
-    * Album constructor
-    * Initialize all the attributes and fill the lists by reading the XML files
-    *
-    * @param    model //TODO
-    *
-    * @author   Gaël Lejeune
-    */
+     * Album constructor
+     * Initialize all the attributes and fill the lists by reading the XML files
+     *
+     * @param    model //TODO
+     *
+     * @author   Gaël Lejeune
+     */
     public JMusicHubController(Model model) {
         this.model = model;
         this.view = new JMusicHubActiveView(this);
@@ -90,15 +90,15 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Album constructor
-    * Initialize all the attributes and fill the lists by reading the XML files
-    *
-    * @param       model //TODO
-    * @param       socket //TODO
-    * @param       port //TODO
-    *
-    * @author   Gaël Lejeune
-    */
+     * Album constructor
+     * Initialize all the attributes and fill the lists by reading the XML files
+     *
+     * @param       model //TODO
+     * @param       socket //TODO
+     * @param       port //TODO
+     *
+     * @author   Gaël Lejeune
+     */
     public JMusicHubController(Model model, Socket socket, int port) {
         this.model = model;
         this.view = new JMusicHubPassiveView(this,socket,port);
@@ -115,50 +115,50 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Displays all the registered audio elements
-    *
-    * @return       LinkedList //TODO
-    *
-    * @see         Album
-    * @author      Gaël Lejeune
-    */
+     * Displays all the registered audio elements
+     *
+     * @return       LinkedList //TODO
+     *
+     * @see         Album
+     * @author      Gaël Lejeune
+     */
     public LinkedList<Audio> getElements() {
         return this.elements;
     }
 
     /**
-    * Displays all the registered albums
-    *
-    * @return       LinkedList //TODO
-    *
-    * @see         Album
-    * @author      Gaël Lejeune
-    */
+     * Displays all the registered albums
+     *
+     * @return       LinkedList //TODO
+     *
+     * @see         Album
+     * @author      Gaël Lejeune
+     */
     public LinkedList<Album> getAlbums() {
         return this.albums;
     }
 
     /**
-    * Displays all the registered playlists
-    *
-    * @return       LinkedList //TODO
-    *
-    * @see         Playlist
-    * @author      Gaël Lejeune
-    */
+     * Displays all the registered playlists
+     *
+     * @return       LinkedList //TODO
+     *
+     * @see         Playlist
+     * @author      Gaël Lejeune
+     */
     public LinkedList<Playlist> getPlaylists() {
         return this.playlists;
     }
 
     /**
-    * Asks and displays an specific registered album
-    *
-    * @param       title //TODO
-    * @return      Album //TODO
-    *
-    * @see         Album
-    * @author      Gaël Lejeune
-    */
+     * Asks and displays an specific registered album
+     *
+     * @param       title //TODO
+     * @return      Album //TODO
+     *
+     * @see         Album
+     * @author      Gaël Lejeune
+     */
     public Album getSpecificAlbum(String title) {
         boolean found = false; /* Album title entered by the user */
         for (int i = 0; i < this.albums.size(); i++) {
@@ -171,14 +171,14 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Asks and displays an specific registered playlist
-    *
-    * @param       name //TODO
-    * @return      Playlist //TODO
-    *
-    * @see         Playlist
-    * @author      Gaël Lejeune
-    */
+     * Asks and displays an specific registered playlist
+     *
+     * @param       name //TODO
+     * @return      Playlist //TODO
+     *
+     * @see         Playlist
+     * @author      Gaël Lejeune
+     */
     public Playlist getSpecificPlaylist(String name) {
         boolean found = false;
         for (int i = 0; i < this.playlists.size(); i++) {
@@ -286,14 +286,14 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Display all audio books ordered by author
-    *
-    * @param		  artist //TODO
-    * @return		  LinkedList //TODO
-    *
-    * @see         AudioBook
-    * @author      Gaël Lejeune and Steve Chauvreau-Manat
-    */
+     * Display all audio books ordered by author
+     *
+     * @param		  artist //TODO
+     * @return		  LinkedList //TODO
+     *
+     * @see         AudioBook
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
+     */
     public LinkedList<Song> getSongsByArtist(String artist) {
         LinkedList<Song> songs = new LinkedList<Song>();
         boolean found = false;
@@ -311,14 +311,14 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Display all audio books ordered by genre
-    *
-    * @param		  genre //TODO
-    * @return		  LinkedList of registered genres
-    *
-    * @see         AudioBook
-    * @author      Gaël Lejeune and Steve Chauvreau-Manat
-    */
+     * Display all audio books ordered by genre
+     *
+     * @param		  genre //TODO
+     * @return		  LinkedList of registered genres
+     *
+     * @see         AudioBook
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
+     */
     public LinkedList<Song> getSongsByGenre(Genre genre) {
         LinkedList<Song> songs = new LinkedList<Song>();
         boolean found = false;
@@ -336,14 +336,14 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Display all audio books ordered by author
-    *
-    * @param		  language //TODO
-    * @return		  LinkedList of registered languages
-    *
-    * @see         AudioBook
-    * @author      Gaël Lejeune and Steve Chauvreau-Manat
-    */
+     * Display all audio books ordered by author
+     *
+     * @param		  language //TODO
+     * @return		  LinkedList of registered languages
+     *
+     * @see         AudioBook
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
+     */
     public LinkedList<AudioBook> getAudioBooksByLanguage(Language language) {
         LinkedList<AudioBook> audioBooks = new LinkedList<AudioBook>();
         boolean found = false;
@@ -361,14 +361,14 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Display all audio books ordered by author
-    *
-    * @param		  category //TODO
-    * @return		  LinkedList of registered categories
-    *
-    * @see         AudioBook
-    * @author      Gaël Lejeune and Steve Chauvreau-Manat
-    */
+     * Display all audio books ordered by author
+     *
+     * @param		  category //TODO
+     * @return		  LinkedList of registered categories
+     *
+     * @see         AudioBook
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
+     */
     public LinkedList<AudioBook> getAudioBooksByCategory(Category category) {
         LinkedList<AudioBook> audioBooks = new LinkedList<AudioBook>();
         boolean found = false;
@@ -386,14 +386,14 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Display all audio books ordered by author
-    *
-    * @param		  author //TODO
-    * @return		  LinkedList //TODO
-    *
-    * @see         AudioBook
-    * @author      Gaël Lejeune and Steve Chauvreau-Manat
-    */
+     * Display all audio books ordered by author
+     *
+     * @param		  author //TODO
+     * @return		  LinkedList //TODO
+     *
+     * @see         AudioBook
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
+     */
     public LinkedList<AudioBook> getAudioBooksByAuthor(String author) {
         LinkedList<AudioBook> audioBooks = new LinkedList<AudioBook>();
         boolean found = false;
@@ -411,15 +411,15 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Display the album list ordered by release date
-    *
-    * @return		  LinkedList //TODO
-    * @throws		  Exception //TODO
-    *
-    * @exception   Exception Thrown the given String cannot be converted to date.
-    * @see         Album
-    * @author      Gaël Lejeune and Steve Chauvreau-Manat
-    */
+     * Display the album list ordered by release date
+     *
+     * @return		  LinkedList //TODO
+     * @throws		  Exception //TODO
+     *
+     * @exception   Exception Thrown the given String cannot be converted to date.
+     * @see         Album
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
+     */
     public LinkedList<Album> getAlbumByReleaseDate() throws Exception {
         LinkedList<Album> albumList = new LinkedList<Album>();
         Date datePrec = new SimpleDateFormat("dd/MM/yyyy").parse("0/00/0000");
@@ -449,15 +449,15 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Display the song list of an asked album, ordered by genre
-    *
-    * @param		  title //TODO
-    * @return		  LinkedList //TODO
-    *
-    * @see         Album
-    * @see         Song
-    * @author      Gaël Lejeune and Steve Chauvreau-Manat
-    */
+     * Display the song list of an asked album, ordered by genre
+     *
+     * @param		  title //TODO
+     * @return		  LinkedList //TODO
+     *
+     * @see         Album
+     * @see         Song
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
+     */
     public LinkedList<Song> getSongByGenre(String title) {
         boolean found = false;
         Album album = this.albums.get(0); /* Album title entered by the user */
@@ -489,12 +489,12 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Displays information and help about various commands
-    *
-    * @return String //TODO
-    *
-    * @author Steve Chauvreau-Manat
-    */
+     * Displays information and help about various commands
+     *
+     * @return String //TODO
+     *
+     * @author Steve Chauvreau-Manat
+     */
     public String helpPassive() {
         return "\n- 1 : display all registered elements"
         +"\n- 2 : display all registered albums"
@@ -515,12 +515,12 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Displays information and help about various commands
-    *
-    * @return String //TODO
-    *
-    * @author Steve Chauvreau-Manat
-    */
+     * Displays information and help about various commands
+     *
+     * @return String //TODO
+     *
+     * @author Steve Chauvreau-Manat
+     */
     public String helpActive() {
         return "\n- 1 : display all registered elements"
         +"\n- 2 : display all registered albums"
@@ -542,10 +542,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Asks the information about a song to add it to the audio elements
-    * @see         Song
-    * @author      Gaël Lejeune and Steve Chauvreau-Manat
-    */
+     * Asks the information about a song to add it to the audio elements
+     * @see         Song
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
+     */
     public void addSong() {
         Scanner scan = new Scanner(System.in);
         System.out.println("\nTitle :");
@@ -591,10 +591,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Asks the information about an audio book to add it to the audio elements
-    * @see         AudioBook
-    * @author      Gaël Lejeune and Steve Chauvreau-Manat
-    */
+     * Asks the information about an audio book to add it to the audio elements
+     * @see         AudioBook
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
+     */
     public void addAudioBook() {
         Scanner scan = new Scanner(System.in);
         System.out.println("\nTitle :");
@@ -650,10 +650,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Asks the information about an album to add it to the audio elements
-    * @see         Album
-    * @author      Gaël Lejeune and Steve Chauvreau-Manat
-    */
+     * Asks the information about an album to add it to the audio elements
+     * @see         Album
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
+     */
     public void addAlbum() {
         Scanner scan = new Scanner(System.in);
         LinkedList<Song> songs = new LinkedList<Song>();
@@ -691,11 +691,11 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Asks and add an existing song to a chosen album
-    * @see         Album
-    * @see         Song
-    * @author      Gaël Lejeune
-    */
+     * Asks and add an existing song to a chosen album
+     * @see         Album
+     * @see         Song
+     * @author      Gaël Lejeune
+     */
     public void addSongToAlbum() {
         Scanner scanner = new Scanner (System.in);
         System.out.println("\nEnter the name of an album :");
@@ -733,11 +733,11 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Asks and add an existing audio to a chosen playlist
-    * @see         Playlist
-    * @see         Audio
-    * @author      Gaël Lejeune
-    */
+     * Asks and add an existing audio to a chosen playlist
+     * @see         Playlist
+     * @see         Audio
+     * @author      Gaël Lejeune
+     */
     public void addSongToPlaylist() {
         Scanner scanner = new Scanner (System.in);
         System.out.println("\nEnter the name of a playlist :");
@@ -773,10 +773,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Asks the informations and the audios to create and register a playlist
-    * @see         Playlist
-    * @author      Gaël Lejeune
-    */
+     * Asks the informations and the audios to create and register a playlist
+     * @see         Playlist
+     * @author      Gaël Lejeune
+     */
     public void createPlaylistFromExisting() {
         Scanner scanner = new Scanner (System.in);
 
@@ -832,10 +832,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Asks and delete the chosen playlist
-    * @see         Playlist
-    * @author      Gaël Lejeune
-    */
+     * Asks and delete the chosen playlist
+     * @see         Playlist
+     * @author      Gaël Lejeune
+     */
     public void deletePlaylist() {
         System.out.println("\nPlaylists :");
         LinkedList<Playlist> playlists = this.playlists;
@@ -849,10 +849,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-    * Create XML files containing the registered playlists, elements, and albums using the class XML editor
-    * @see         JMusicHubModel
-    * @author      Gaël Lejeune
-    */
+     * Create XML files containing the registered playlists, elements, and albums using the class XML editor
+     * @see         JMusicHubModel
+     * @author      Gaël Lejeune
+     */
     public void save() {
         this.model.writeElementXML("files/elements.xml", this.elements);
         this.model.writeAlbumXML("files/albums.xml", this.albums);

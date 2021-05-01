@@ -16,11 +16,11 @@ import java.util.UUID;
 import java.io.Serializable;
 
 /** Audio Abstract class representing an audio file
-  *
-  * @version 1.0
-  *
-  * @author Gaël Lejeune
-  */
+ *
+ * @version 1.0
+ *
+ * @author Gaël Lejeune
+ */
 public abstract class Audio implements Serializable		//must implement Serializable in order to be sent over a Socket
 {
 

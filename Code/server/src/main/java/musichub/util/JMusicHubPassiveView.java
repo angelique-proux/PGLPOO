@@ -238,16 +238,16 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * Send all data to listen to an audio list or choose one to either get more information or listen to it
-      *
-      * @param       audios audio list
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Audio
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * Send all data to listen to an audio list or choose one to either get more information or listen to it
+     *
+     * @param       audios audio list
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Audio
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void audioPlayingOrInformation(LinkedList<Audio> audios) throws IOException, ClassNotFoundException {
         output.writeObject("Which one would you like to hear? (Enter the number)\nEnter '-1' if you want to listen to everything");
         int number = ((int) input.readObject());
@@ -267,16 +267,16 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * Send all data to listen to a song list or choose one to either get more information or listen to it
-      *
-      * @param       songs song list
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Song
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * Send all data to listen to a song list or choose one to either get more information or listen to it
+     *
+     * @param       songs song list
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Song
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void musicPlayingOrInformation(LinkedList<Song> songs) throws IOException, ClassNotFoundException {
         output.writeObject("Which one would you like to hear? (Enter the number)\nEnter '-1' if you want to listen to everything");
         int number = ((int) input.readObject());
@@ -294,16 +294,16 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * Send all data to listen to an audio book list or choose one to either get more information or listen to it
-      *
-      * @param       audioBooks audio book list
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         AudioBook
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * Send all data to listen to an audio book list or choose one to either get more information or listen to it
+     *
+     * @param       audioBooks audio book list
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         AudioBook
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void audioBookPlayingOrInformation(LinkedList<AudioBook> audioBooks) throws IOException, ClassNotFoundException {
         output.writeObject("Which one would you like to hear? (Enter the number)\nEnter '-1' if you want to listen to everything");
         int number = ((int) input.readObject());
@@ -321,16 +321,16 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @param       albums album list
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Album
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @param       albums album list
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Album
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void albumPlayingOrInformation(LinkedList<Album> albums) throws IOException, ClassNotFoundException {
         output.writeObject("Which one would you like to hear? (Enter the number)");
         int number = ((int) input.readObject());
@@ -346,16 +346,16 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @param       playlists playlist list
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Playlist
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @param       playlists playlist list
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Playlist
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void playlistPlayingOrInformation(LinkedList<Playlist> playlists) throws IOException, ClassNotFoundException {
         output.writeObject("Which one would you like to hear? (Enter the number)");
         int number = ((int) input.readObject());
@@ -371,15 +371,15 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Audio
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Audio
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void sendAllElements() throws IOException, ClassNotFoundException { //case 1
         output.writeObject("\t\tSongs and AudioBooks sorted by alphabetical order:\n");
         LinkedList<Audio> audios = this.controller.getElements();
@@ -388,15 +388,15 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Album
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Album
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void sendAllAlbums() throws IOException, ClassNotFoundException { //case 2
         output.writeObject("\t\tAlbums sorted by alphabetical order:\n");
         LinkedList<Album> albums = this.controller.getAlbums();
@@ -405,15 +405,15 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Playlist
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Playlist
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void sendAllPlaylists() throws IOException, ClassNotFoundException { //case 3
         output.writeObject("\t\t Playlist names sorted by alphabetical order:\nExisting playlists :\n\n");
         LinkedList<Playlist> playlists = this.controller.getPlaylists();
@@ -422,15 +422,15 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Album
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Album
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void sendSelectedAlbum() throws IOException, ClassNotFoundException { //case 4
         output.writeObject("\nName of the album to display :\n");
         String albumTitle = (String) input.readObject();  /* Album title entered by the user */
@@ -451,15 +451,15 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Playlist
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Playlist
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void sendSelectedPlaylist() throws IOException, ClassNotFoundException { //case 5
         output.writeObject("\nName of the playlist :\n");
         String name = (String) input.readObject();
@@ -480,15 +480,15 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Song
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Song
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void sendAllSelectedArtistSongs() throws IOException, ClassNotFoundException { //case 6
         output.writeObject("\t\tArtist's song names sorted by alphabetical order:\nArtist's name :\n\n");
         LinkedList<Song> artistSongs = this.controller.getSongsByArtist((String) input.readObject());
@@ -501,15 +501,15 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         AudioBook
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         AudioBook
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void sendAllSelectedAuthorAudioBooks() throws IOException, ClassNotFoundException { //case 7
         output.writeObject("\t\t AudioBook titles sorted by them author:\nAuthor's name :\n\n");
         LinkedList<AudioBook> authorAudioBooks = this.controller.getAudioBooksByAuthor((String) input.readObject());
@@ -522,15 +522,15 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Album
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Album
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void sendAllAlbumsReleaseByDate() throws IOException, ClassNotFoundException { //case 8
         try {
             output.writeObject("\t\tAlbum titles sorted by them date:\nAlbums ordered by release date :\n\n");
@@ -548,15 +548,15 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Song
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Song
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void sendAllSongsSortedByGenre() throws IOException, ClassNotFoundException { //case 9
         output.writeObject("\t\t Song titles sorted by them genre:\nName of the album to display :");
         LinkedList<Song> songs = this.controller.getSongByGenre((String) input.readObject()); //Album title entered by the user
@@ -569,15 +569,15 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Song
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Song
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void sendAllArtists() throws IOException, ClassNotFoundException { //case 10
         output.writeObject("\t\tAll artists' name :");
         LinkedList<String> artistsName = this.controller.getArtists();
@@ -601,15 +601,15 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         AudioBook
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         AudioBook
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void sendAllAuthors() throws IOException, ClassNotFoundException { //case 11
         output.writeObject("\t\tAll author's name :");
         LinkedList<String> authorsName = this.controller.getAuthors();
@@ -633,16 +633,16 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Genre
-      * @see        Song
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Genre
+     * @see        Song
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void sendAllGenres() throws IOException, ClassNotFoundException { //case 12
         output.writeObject("\t\tAll genres :");
         LinkedList<Genre> genres = this.controller.getGenres();
@@ -699,16 +699,16 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * TODO
-      *
-      * @exception   IOException IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Language
-      * @see         AudioBook
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * TODO
+     *
+     * @exception   IOException IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Language
+     * @see         AudioBook
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
   private void sendAllLanguages() throws IOException, ClassNotFoundException { //case 14
     output.writeObject("\t\tAll languages :");
     LinkedList<Language> languages = this.controller.getLanguages();
