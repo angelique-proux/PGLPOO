@@ -26,33 +26,35 @@ public interface ControlMusic {
   /**
    * TODO
    *
-   * @param     audio //TODO
+   * @param     audio one audio
    */
   public void addAudio(Audio audio);
 
   /**
    * TODO
    *
-   * @param     audios //TODO
+   * @param     audios audio list
    */
   public void addAudios(LinkedList<Audio> audios);
 
   /**
    * TODO
    *
-   * @param     songs //TODO
+   * @param     songs song list
    */
   public void addSongs(LinkedList<Song> songs);
 
   /**
    * TODO
    *
-   * @param     audioBooks //TODO
+   * @param     audioBooks audio book list
    */
   public void addAudioBooks(LinkedList<AudioBook> audioBooks);
 
   /**
    * TODO
+   *
+   * @param     numberAudio number of audio to listen to
    */
   public void playMusicList(int numberAudio);
 

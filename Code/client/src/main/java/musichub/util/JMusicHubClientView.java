@@ -19,7 +19,7 @@ import java.util.Scanner;
 import java.util.LinkedList;
 
 /**
- * JMusicHubPassiveView is the client view
+ * Execution of the JMusicHub program and interaction with the server
  *
  * Version : 1.0
  *
@@ -44,12 +44,12 @@ public class JMusicHubClientView {
     private Scanner scan = new Scanner(System.in);
 
     /**
-     * Stream to send data to the server
+     * Network interface to send data over the network
      */
     private ObjectOutputStream output;
 
     /**
-     * Stream to read data sent by the server
+     * Network interface to retrieve network's data
      */
     private ObjectInputStream input;
 
@@ -174,19 +174,25 @@ public class JMusicHubClientView {
     }
 
     /**
-     *
+     * Listen to an audio list
+		 *
+		 * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+		 *
+		 * @see					ControlMusicList
      * @author      Angélique Proux
      */
     private void listenToSomeMusic() throws IOException, ClassNotFoundException {
-        System.out.println((String) input.readObject());
+				String choix;
+				String next;
+				System.out.println((String) input.readObject());
         int size = (int) input.readObject();
         int i=0;
         while (i<size) {
             if((boolean) input.readObject()){
-                String choix;
                 System.out.println("Que voulez-vous faire ?\n (previous/listen/next/end)");
                 contMus.playMusicList();
-                String next = scan.nextLine();
+                next = scan.nextLine();
                 output.writeObject(next);
                 choix = (String) input.readObject();
                 switch (choix) {
@@ -255,7 +261,7 @@ public class JMusicHubClientView {
                 System.out.println(input.readObject());
                 output.writeObject(this.scan.nextLine());
                 if(((boolean) input.readObject())) {
-                    System.out.println("You are listening to : " + audios.get(choice).getTitle());
+                    System.out.println("You are listening to : "+oneAudio.getTitle());
                     listenToSomeMusic();
                 } else {
                     if(oneAudio instanceof Song) {
@@ -263,16 +269,16 @@ public class JMusicHubClientView {
                     } else if(oneAudio instanceof AudioBook) {
                         System.out.println((AudioBook) oneAudio);
                     } else {
-                        System.out.println(oneAudio);
+                        System.out.println(oneAudio+"\n");
                     }
                 }
-            } else if (choice==-1) {
+            } else if(choice==-1) {
                 System.out.println("You will listen to all the audios.");
                 listenToSomeMusic();
             } else {
                 System.out.println("Wrong number, you go back to the menu.");
             }
-        } catch (NumberFormatException ne) {
+        } catch(NumberFormatException nfe) {
             System.out.println("Wrong expression, you go back to the menu.");
             output.writeObject(audios.size());
         }
@@ -290,37 +296,30 @@ public class JMusicHubClientView {
 	    * @author      Steve Chauvreau-Manat
 	    */
     private void musicPlayingOrInformation(LinkedList<Song> songs) throws IOException, ClassNotFoundException {
-        System.out.println((String) input.readObject());
-        int choice = Integer.parseInt(this.scan.nextLine());
-        if(choice<songs.size()&&(choice>=0)) {
-            Song song = songs.get(choice);
-            output.writeObject(choice);
-            System.out.println(input.readObject());
-            output.writeObject(this.scan.nextLine());
-            if(((boolean) input.readObject())) {
-                do {
-                    contMus.playMusicList();
-                    System.out.println("Enter a command : (play/pause/stop\n)");
-                    switch(this.scan.nextLine()) {
-                        case "pause":
-                            contMus.pauseMusic();
-                            break;
-                        case "play":
-                            contMus.restartMusic();
-                            break;
-                        case "stop":
-                            output.writeObject(0);
-                            contMus.stopMusic();
-                            break;
-                        default:
-                            System.out.println("This is not a command");
-                            break;
-                    }
-                } while(contMus.isFinished());
-            } else {
-                System.out.println(song+"\n");
-            }
-        }
+      System.out.println((String) input.readObject());
+			try {
+	      int choice = Integer.parseInt(this.scan.nextLine());
+	      if(choice<songs.size()&&(choice>=0)) {
+	      	Song song = songs.get(choice);
+	        output.writeObject(choice);
+	        System.out.println(input.readObject());
+	        output.writeObject(this.scan.nextLine());
+	        if(((boolean) input.readObject())) {
+						System.out.println("You are listening to : "+song.getTitle());
+	          listenToSomeMusic();
+	        } else {
+	          System.out.println(song+"\n");
+	        }
+	      } else if(choice==-1) {
+						System.out.println("You will listen to all the audios.");
+						listenToSomeMusic();
+				} else {
+						System.out.println("Wrong number, you go back to the menu.");
+				}
+			} catch(NumberFormatException nfe) {
+          System.out.println("Wrong expression, you go back to the menu.");
+          output.writeObject(audios.size());
+      }
     }
 
 		/**
@@ -335,45 +334,35 @@ public class JMusicHubClientView {
 	    * @author      Steve Chauvreau-Manat
 	    */
     private void audioBookPlayingOrInformation(LinkedList<AudioBook> audioBooks) throws IOException, ClassNotFoundException {
-        System.out.println((String) input.readObject());
+      System.out.println((String) input.readObject());
+			try {
         int choice = Integer.parseInt(this.scan.nextLine());
         output.writeObject(choice);
         if(choice<audioBooks.size()&&(choice>=0)) {
-            AudioBook audioBook = audioBooks.get(choice);
-            output.writeObject(choice);
-            System.out.println(input.readObject());
-            output.writeObject(this.scan.nextLine());
-            if(((boolean) input.readObject())) {
-                do {
-                    contMus.playMusicList();
-                    System.out.println("Enter a command : (play/pause/stop\n)");
-                    switch(this.scan.nextLine()) {
-                        case "pause":
-                            contMus.pauseMusic();
-                            break;
-                        case "play":
-                            contMus.restartMusic();
-                            break;
-                        case "stop":
-                            output.writeObject(0);
-                            contMus.stopMusic();
-                            break;
-                        default:
-                            System.out.println("This is not a command");
-                            break;
-                    }
-                } while(contMus.isFinished());
-            } else {
-                System.out.println(audioBook);
-            }
-        } else if (choice==-1) {
-            System.out.println("là");
-            //((ControlMusicList) contMus).playMusicList2(this.scan);
-        }
+          AudioBook audioBook = audioBooks.get(choice);
+          output.writeObject(choice);
+          System.out.println(input.readObject());
+          output.writeObject(this.scan.nextLine());
+          if(((boolean) input.readObject())) {
+						System.out.println("You are listening to : " + audioBook.getTitle());
+						listenToSomeMusic();
+          } else {
+            System.out.println(audioBook+"\n");
+          }
+        } else if(choice==-1) {
+						System.out.println("You will listen to all the audios.");
+						listenToSomeMusic();
+				} else {
+						System.out.println("Wrong number, you go back to the menu.");
+				}
+			} catch(NumberFormatException nfe) {
+          System.out.println("Wrong expression, you go back to the menu.");
+          output.writeObject(audios.size());
+      }
     }
 
     /**
-     * TODO
+     * Allows you to choose then listen to an album or choose one to either get more information or choose one album's song to listen to it
      *
      * @param 				albums album list
      * @exception   	IOException thrown if there is an error on the input and/or output streams
@@ -399,7 +388,7 @@ public class JMusicHubClientView {
     }
 
     /**
-     * TODO
+     * Allows you to choose then listen to a playlist or choose one to either get more information or choose one playlist's song to listen to it
      *
      * @param 				playlists playlist list
      * @exception   	IOException thrown if there is an error on the input and/or output streams
@@ -425,7 +414,7 @@ public class JMusicHubClientView {
     }
 
     /**
-     * TODO
+     * Receive and show all elements then use the audioPlayingOrInformation method
      *
      * @exception   	IOException thrown if there is an error on the input and/or output streams
      * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
@@ -445,7 +434,7 @@ public class JMusicHubClientView {
     }
 
     /**
-     * TODO
+     * Receive and show all albums then use the albumPlayingOrInformation method
      *
      * @exception   	IOException thrown if there is an error on the input and/or output streams
      * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
@@ -465,7 +454,7 @@ public class JMusicHubClientView {
     }
 
     /**
-     * TODO
+     * Receive and s all playlists then use the playlistPlayingOrInformation method
      *
      * @exception   	IOException thrown if there is an error on the input and/or output streams
      * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
@@ -485,7 +474,7 @@ public class JMusicHubClientView {
     }
 
     /**
-     * TODO
+     * Receive and show an album selected by name, then choose between listening to it or getting more information about it
      *
      * @exception   	IOException thrown if there is an error on the input and/or output streams
      * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
@@ -505,8 +494,7 @@ public class JMusicHubClientView {
             System.out.println(input.readObject());
             output.writeObject(this.scan.nextLine());
             if(((boolean) input.readObject())) {
-                LinkedList<Song> song = album.getSongs();
-                //TODO
+                listenToSomeMusic();
             } else {
                 System.out.println(album);
             }
@@ -514,7 +502,7 @@ public class JMusicHubClientView {
     }
 
     /**
-     * TODO
+     * Receive and show a playlist selected by name, then choose between listening to it or getting more information about it
      *
      * @exception   	IOException thrown if there is an error on the input and/or output streams
      * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
@@ -534,8 +522,7 @@ public class JMusicHubClientView {
             System.out.println(input.readObject());
             output.writeObject(this.scan.nextLine());
             if(((boolean) input.readObject())) {
-                LinkedList<Audio> audio = playlist.getAudios();
-                //TODO
+                listenToSomeMusic();
             } else {
                 System.out.println(playlist);
             }
@@ -562,7 +549,7 @@ public class JMusicHubClientView {
             for(int i=0;i<artistSongs.size();i++) {
                 System.out.println(i+"- "+artistSongs.get(i)+"\n");
             }
-            System.out.println("\n"+artistSongs.size()+"- None\n");
+            System.out.println(artistSongs.size()+"- None\n");
             musicPlayingOrInformation(artistSongs);
         }
     }
@@ -587,7 +574,7 @@ public class JMusicHubClientView {
             for(int i=0;i<authorAudioBooks.size();i++) {
                 System.out.println(i+"- "+authorAudioBooks.get(i)+"\n");
             }
-            System.out.println("\n"+authorAudioBooks.size()+"- None\n");
+            System.out.println(authorAudioBooks.size()+"- None\n");
             audioBookPlayingOrInformation(authorAudioBooks);
         }
     }
@@ -611,7 +598,7 @@ public class JMusicHubClientView {
             for (int i = 0; i < albumsByDate.size(); i++) {
                 System.out.println(i+"- "+albumsByDate.get(i) + "\n");
             }
-            System.out.println("\n"+albumsByDate.size()+"- None\n");
+            System.out.println(albumsByDate.size()+"- None\n");
             albumPlayingOrInformation(albumsByDate);
         }
     }
