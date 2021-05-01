@@ -53,7 +53,7 @@ public enum Language {
     /**
      * Language constructor
      *
-     * @param       language //TODO
+     * @param       language Desired language as a string
      *
      * @author      Gaël Lejeune
      */

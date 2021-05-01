@@ -62,7 +62,7 @@ public enum Genre {
     /**
      * Genre constructor
      *
-     * @param       genre //TODO
+     * @param       genre Desired genre as a string
      *
      * @author      Gaël Lejeune
      */
