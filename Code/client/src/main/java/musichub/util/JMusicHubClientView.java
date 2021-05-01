@@ -19,25 +19,27 @@ import java.util.Scanner;
 import java.util.LinkedList;
 
 /**
- * TODO
+ * JMusicHubPassiveView is the client view
  *
  * Version : 1.0
  *
- * @author  TODO
+ * @see View
+ * @author  Steve Chauvreau-Manat
  */
 public class JMusicHubClientView {
   /**
-	 * TODO
+	 * Contains all the methods used to play an audio
+	 * @see ControlMusicList
 	 */
 	private ControlMusic contMus;
 
   /**
-	 * TODO
+	 * Class to establish a connection with the server
 	 */
 	private Socket socket;
 
   /**
-	 * TODO
+	 * Scan the keyboard to receive informtion from the user
 	 */
 	private Scanner scan = new Scanner(System.in);
 
@@ -66,9 +68,10 @@ public class JMusicHubClientView {
   }
 
   /**
-   * TODO
+   * Displays the result of all commands
    *
-   * @author	Angélique Proux
+	 * @see			JMusicHubController
+   * @author	Steve Chauvreau-Manat
    */
   public void display() {
     try {
@@ -171,11 +174,11 @@ public class JMusicHubClientView {
   }
 
   /**
-    * TODO
+    * Allows you to listen to an audio list or choose one to either get more information or listen to it
 		*
-		* @param 				audios //TODO
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+		* @param 				audios audio list
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see         Audio
     * @see         ControlMusicList
@@ -292,11 +295,11 @@ public class JMusicHubClientView {
   }
 
   /**
-    * TODO
+    * Allows you to listen to a song list or choose one to either get more information or listen to it
 		*
-		* @param 				songs //TODO
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+		* @param 				songs song list
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see         Audio
     * @see         ControlMusicList
@@ -337,11 +340,11 @@ public class JMusicHubClientView {
   }
 
   /**
-    * TODO
+    * Allows you to listen to an audio book list or choose one to either get more information or listen to it
 		*
-		* @param 				audioBooks //TODO
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+		* @param 				audioBooks audio book list
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see         Audio
     * @see         ControlMusicList
@@ -388,9 +391,9 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-		* @param 				albums //TODO
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+		* @param 				albums album list
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see					Album
     * @see        	ControlMusicList
@@ -414,9 +417,9 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-		* @param 				playlists //TODO
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+		* @param 				playlists playlist list
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see					Playlist
     * @see        	ControlMusicList
@@ -440,8 +443,8 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see					Audio
     * @see        	ControlMusicList
@@ -460,8 +463,8 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see					Album
     * @see        	ControlMusicList
@@ -480,8 +483,8 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see					Playlist
     * @see        	ControlMusicList
@@ -500,8 +503,8 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see					Album
     * @see					Song
@@ -529,8 +532,8 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see					Playlist
     * @see					Audio
@@ -558,8 +561,8 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see					Song
     * @see        	ControlMusicList
@@ -583,8 +586,8 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see					AudioBook
     * @see        	ControlMusicList
@@ -608,8 +611,8 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see					Album
     * @see        	ControlMusicList
@@ -632,8 +635,8 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see					Song
     * @see        	ControlMusicList
@@ -660,8 +663,8 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
  	  *
     * @see					Song
     * @see        	ControlMusicList
@@ -698,8 +701,8 @@ public class JMusicHubClientView {
   /**
    * TODO
 	 *
-   * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-   * @exception   	ClassNotFoundException //TODO
+   * @exception   	IOException thrown if there is an error on the input and/or output streams
+   * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
 	 *
    * @see					AudioBook
    * @see        	ControlMusicList
@@ -736,8 +739,8 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
 		*
     * @see         	Genre
     * @see					Song
@@ -775,8 +778,8 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
 		*
     * @see         	Category
     * @see					AudioBook
@@ -814,8 +817,8 @@ public class JMusicHubClientView {
   /**
     * TODO
 		*
-    * @exception   	IOException thrown if there is an error on the input and/or output streams or if the class of the received stream is not known
-    * @exception   	ClassNotFoundException //TODO
+    * @exception   	IOException thrown if there is an error on the input and/or output streams
+    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
 		*
     * @see         	Language
     * @see					AudioBook
