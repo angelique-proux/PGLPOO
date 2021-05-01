@@ -57,6 +57,7 @@ public class SingletonMusic {
    *
    * @param     ip Client's name
    * @param     port Server's open port
+   * @param     musicThread TODO
    * @return    SingletonMusic
    *
    * @author    Steve Chauvreau-Manat and Angélique Proux

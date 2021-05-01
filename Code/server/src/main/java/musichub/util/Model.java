@@ -68,7 +68,7 @@ public interface Model {
 	 *
 	 * @param       element Element to turn into song
 	 * @return			Song Read song
-	 * @throws			NotAGenreException //TODO
+	 * @throws			NotAGenreException thrown when the entered genre does not exists
 	 *
 	 * @see         Song
 	 * @author      Gaël Lejeune
@@ -80,8 +80,8 @@ public interface Model {
 	 *
 	 * @param       element Element to turn into audio book
 	 * @return			Read audio book
-	 * @throws			NotALanguageException //TODO
-	 * @throws			NotACategoryException //TODO
+	 * @throws			NotALanguageException Thrown when the given language does not exists
+	 * @throws			NotACategoryException Thrown when the given category does not exists
 	 *
 	 * @see         AudioBook
 	 * @author      Gaël Lejeune

@@ -14,8 +14,8 @@ public interface IMusicThread {
     /**
      * set MusicThread parameters
      *
-     * @param ip
-     * @param port
+     * @param ip TODO
+     * @param port TODO
      *
      * @author    Angélique Proux
      */
@@ -53,6 +53,7 @@ public interface IMusicThread {
 
     /**
      * Returns if the audio is finished or not
+     * @return      boolean TODO
      * @author      Angélique Proux
      */
     public boolean isFinished();

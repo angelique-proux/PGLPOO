@@ -32,7 +32,7 @@ public class TestSingleton {
         line = scanner1.nextLine();
       }
       System.out.println(line);
-      Pattern pattern = Pattern.compile("\\[[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}\\] - WARNING - Ceci est un warning");
+      Pattern pattern = Pattern.compile("\\[[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]*\\] - WARNING - Ceci est un warning");
       assertTrue(pattern.matcher(line).matches());
       scanner1.close();
 
@@ -49,7 +49,7 @@ public class TestSingleton {
         line = scanner2.nextLine();
       }
       System.out.println(line);
-      pattern = Pattern.compile("\\[[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}\\] - ERROR - Ceci est une erreur :.*");
+      pattern = Pattern.compile("\\[[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]*\\] - ERROR - Ceci est une erreur :.*");
       assertTrue(pattern.matcher(line).matches());
       scanner2.close();
 
@@ -61,7 +61,7 @@ public class TestSingleton {
         line = scanner3.nextLine();
       }
       System.out.println(line);
-      pattern = Pattern.compile("\\[[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}\\] - INFO - Ceci est une info");
+      pattern = Pattern.compile("\\[[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]*\\] - INFO - Ceci est une info");
       assertTrue(pattern.matcher(line).matches());
       scanner3.close();
     } catch (FileNotFoundException e) {

@@ -1,1 +1,1 @@
-java -classpath bin main.ServerConnection
+java -classpath bin musichub.main.ServerConnection

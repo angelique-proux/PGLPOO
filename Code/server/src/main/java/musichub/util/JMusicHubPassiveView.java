@@ -718,24 +718,25 @@ public class JMusicHubPassiveView implements View {
       * @see         JMusicHubController
       * @author      Steve Chauvreau-Manat
       */
-  private void sendAllLanguages() throws IOException, ClassNotFoundException { //case 14
-    output.writeObject("\t\tAll languages :");
-    LinkedList<Language> languages = this.controller.getLanguages();
-    if(languages==null) {
-      output.writeObject("\nNo languages found.\n");
-    } else {
-    output.writeObject(languages);
-    output.writeObject("\n\nEnter a language number :");
-    int numberLanguage = (int) input.readObject();
-    if(numberLanguage==languages.size()) {
-      output.writeObject("\nReturn to the main menu\n");
-    } else if((numberLanguage<languages.size())&&(numberLanguage>=0)) {
-      output.writeObject("\n\t\tAll the "+languages.get(numberLanguage)+"\'s songs :\n\n");
-      LinkedList<AudioBook> audioBooksToDisplayLanguage = this.controller.getAudioBooksByLanguage(languages.get(numberLanguage));
-      output.writeObject(audioBooksToDisplayLanguage);
-      audioBookPlayingOrInformation(audioBooksToDisplayLanguage);
-    } else {
-      output.writeObject("\nInvalid number");
+    private void sendAllLanguages() throws IOException, ClassNotFoundException { //case 14
+      output.writeObject("\t\tAll languages :");
+      LinkedList<Language> languages = this.controller.getLanguages();
+      if(languages==null) {
+        output.writeObject("\nNo languages found.\n");
+      } else {
+      output.writeObject(languages);
+      output.writeObject("\n\nEnter a language number :");
+      int numberLanguage = (int) input.readObject();
+      if(numberLanguage==languages.size()) {
+        output.writeObject("\nReturn to the main menu\n");
+      } else if((numberLanguage<languages.size())&&(numberLanguage>=0)) {
+        output.writeObject("\n\t\tAll the "+languages.get(numberLanguage)+"\'s songs :\n\n");
+        LinkedList<AudioBook> audioBooksToDisplayLanguage = this.controller.getAudioBooksByLanguage(languages.get(numberLanguage));
+        output.writeObject(audioBooksToDisplayLanguage);
+        audioBookPlayingOrInformation(audioBooksToDisplayLanguage);
+      } else {
+        output.writeObject("\nInvalid number");
+      }
     }
   }
 }

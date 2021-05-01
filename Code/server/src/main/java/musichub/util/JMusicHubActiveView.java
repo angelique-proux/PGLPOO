@@ -225,8 +225,8 @@ public class JMusicHubActiveView implements View {
      * @see         JMusicHubController
      * @author      Steve CHAUVREAU-MANAT
      */
-    private void showAllPlaylists(String command,int numberObjectByPage) {
-      int numberPlaylists = Integer.parseInt(command);
+    private void showAllPlaylists(String command, int numberObjectByPage) {
+      int numberPlaylists;
       LinkedList<Playlist> playlists = this.controller.getPlaylists();
       if(playlists.size()>numberObjectByPage) {
         if(command==null) {

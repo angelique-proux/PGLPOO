@@ -23,7 +23,6 @@ import java.util.LinkedList;
  *
  * Version : 1.0
  *
- * @see View
  * @author  Steve Chauvreau-Manat
  */
 public class JMusicHubClientView {
@@ -70,7 +69,6 @@ public class JMusicHubClientView {
 		/**
 	   * Displays the result of all commands
 	   *
-		 * @see			JMusicHubController
 	   * @author	Steve Chauvreau-Manat
 	   */
     public void display() {
@@ -318,7 +316,7 @@ public class JMusicHubClientView {
 				}
 			} catch(NumberFormatException nfe) {
           System.out.println("Wrong expression, you go back to the menu.");
-          output.writeObject(audios.size());
+          output.writeObject(songs.size());
       }
     }
 
@@ -357,7 +355,7 @@ public class JMusicHubClientView {
 				}
 			} catch(NumberFormatException nfe) {
           System.out.println("Wrong expression, you go back to the menu.");
-          output.writeObject(audios.size());
+          output.writeObject(audioBooks.size());
       }
     }
 
