@@ -20,7 +20,7 @@ import java.util.Scanner;
 
 
 /**
- * TODO
+ * Classe which control the play of the music
  *
  * Version : 1.0
  *
@@ -28,24 +28,24 @@ import java.util.Scanner;
  */
 public class ControlMusicList implements ControlMusic {
   /**
-   * TODO
+   * Server's open port
    */
   private int port;
 
   /**
-   * TODO
+   * Client's name
    */
   private String ip;
 
   /**
-   * TODO
+   * SingletonMusic Instance
    */
   private SingletonMusic singletonMusic;
 
   /**
-   * TODO
+   * Constructor of ControlMusicList
    *
-   * @param   ip //TODO
+   * @param   ip Client's name
    * @param	  port Server's open port
    *
    * @author	Angélique Proux
@@ -56,54 +56,47 @@ public class ControlMusicList implements ControlMusic {
   }
 
   /**
-   * TODO
+   * Create a singleton to receive an audio and play it
    *
-   * @author	Angélique Proux
+   * @author  Angélique Proux
    */
   public void playMusicList() {
-    this.singletonMusic = SingletonMusic.getInstance(this.ip,this.port);
+    this.singletonMusic = SingletonMusic.getInstance(this.ip,this.port, new MusicThread());
   }
 
   /**
-   * TODO
+   * Pause the music
    *
-   * @author	Angélique Proux
-   */
-  public void reset() {
-    this.singletonMusic.stopMusic();
-  }
-
-  /**
-   * TODO
-   *
-   * @author	Angélique Proux
+   * @author  Angélique Proux
    */
   public void pauseMusic() {
     singletonMusic.pauseMusic();
   }
 
   /**
-   * TODO
+   * Restart the music
    *
-   * @author	Angélique Proux
+   * @author  Angélique Proux
    */
   public void restartMusic() {
     singletonMusic.restartMusic();
   }
 
   /**
-   * TODO
+   * Stop the music
    *
-   * @author	Angélique Proux
+   * @author  Angélique Proux
    */
   public void stopMusic() {
     singletonMusic.stopMusic();
   }
 
   /**
-   * TODO
+   * Return the status of the singleton Instance
    *
-   * @author	Angélique Proux
+   * @return boolean
+   *
+   * @author  Angélique Proux
    */
   public boolean isFinished() {
     if (singletonMusic==null) {

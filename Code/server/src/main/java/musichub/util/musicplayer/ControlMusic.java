@@ -23,48 +23,63 @@ import java.util.LinkedList;
  * @author  Angélique Proux
  */
 public interface ControlMusic {
+
   /**
-   * TODO
+   * Add an audio to the list
    *
-   * @param     audio one audio
+   * @param     audio to add
+   *
+   * @author  Angélique Proux
    */
   public void addAudio(Audio audio);
 
   /**
-   * TODO
+   * Add audios to the list
    *
-   * @param     audios audio list
+   * @param     audios to add
+   *
+   * @author  Angélique Proux
    */
   public void addAudios(LinkedList<Audio> audios);
 
   /**
-   * TODO
+   * Add songs to the list
    *
-   * @param     songs song list
+   * @param     songs to add
+   *
+   * @author  Angélique Proux
    */
   public void addSongs(LinkedList<Song> songs);
 
   /**
-   * TODO
+   * Add audiobooks to the list
    *
-   * @param     audioBooks audio book list
+   * @param     audioBooks to
+   *
+   * @author  Angélique Proux
    */
   public void addAudioBooks(LinkedList<AudioBook> audioBooks);
 
   /**
-   * TODO
+   * play the current list of audios
    *
-   * @param     numberAudio number of audio to listen to
+   * @param numberAudio of the playlist added and wanted to listen to
+   *
+   * @author  Angélique Proux
    */
   public void playMusicList(int numberAudio);
 
   /**
-   * TODO
+   * clear the list
+   *
+   * @author  Angélique Proux
    */
   public void reset();
 
   /**
-   * TODO
+   * stop the listened music
+   *
+   * @author  Angélique Proux
    */
   public void stopMusic();
 }

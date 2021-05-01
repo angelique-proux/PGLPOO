@@ -50,17 +50,17 @@ public interface Model {
 	 *
 	 * @return the created document
 	 *
-  	 * @author Felicia Ionascu
+   * @author Felicia Ionascu
  	 */
 	public Document createXMLDocument();
 
 	/**
-	* Return a NodeList based on the XML elements of the file
-	*
-	* @param filePath Path of the file to read and parse
-	*
-	* @return List of the read nodes
-	*/
+	 * Return a NodeList based on the XML elements of the file
+	 *
+	 * @param filePath Path of the file to read and parse
+	 *
+	 * @return List of the read nodes
+	 */
 	public NodeList parseXMLFile (String filePath);
 
 	/**

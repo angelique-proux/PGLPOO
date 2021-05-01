@@ -24,11 +24,11 @@ import java.lang.Exception;
 public class NotAGenreException extends Exception{
 
 	/**
-     * NotAGenreException constructor
-     * @param	titleSong name of the song with a wrong genre
-     *
-     * @author	Angelique Proux
-     */
+   * NotAGenreException constructor
+   * @param	titleSong name of the song with a wrong genre
+   *
+   * @author	Angelique Proux
+   */
 	public NotAGenreException(String titleSong) {
 		System.out.println("False genre in xml. Please change the genre of " + titleSong + ".");
 	}

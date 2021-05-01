@@ -26,32 +26,28 @@ import java.io.*;
 public class ControlMusicList implements ControlMusic {
 
     /**
-     * TODO
+     * list of audio to listen to
      */
     private LinkedList<Audio> audioList = new LinkedList<Audio>();
 
     /**
-     * TODO
+     * port needed in AudioServerThread to open the socket
      */
     private int port;
 
     /**
-     * TODO
+     * number of the current audio listened
      */
     private static int numberAudio = 0;
 
     /**
-     * TODO
+     * Singleton used to open an unique MusicThread
      */
     private SingletonMusic singletonMusic;
 
-    /**
-     * TODO
-     */
-    private boolean finished;
 
     /**
-     * TODO
+     * initialization of ControlMusicList
      *
      * @param	  port Server's open port
      *
@@ -59,43 +55,36 @@ public class ControlMusicList implements ControlMusic {
      */
     public ControlMusicList(int port) {
         this.port = port;
-        this.finished = false;
     }
 
-
     /**
-     * TODO
+     * Add an audio to the list
      *
-     * @param   audio one audio
+     * @param     audio to add
      *
-     * @see     Audio
-     * @author	Angélique Proux
+     * @author  Angélique Proux
      */
     public void addAudio(Audio audio) {
         this.audioList.add(audio);
     }
 
-
     /**
-     * TODO
+     * Add audios to the list
      *
-     * @param   audios audio list
+     * @param     audios to add
      *
-     * @see     Audio
-     * @author	Angélique Proux
+     * @author  Angélique Proux
      */
     public void addAudios(LinkedList<Audio> audios) {
         this.audioList.addAll(audios);
     }
 
-
     /**
-     * TODO
+     * Add songs to the list
      *
-     * @param   songs song list
+     * @param     songs to add
      *
-     * @see     Song
-     * @author	Angélique Proux
+     * @author  Angélique Proux
      */
     public void addSongs(LinkedList<Song> songs) {
         for(int i=0;i<songs.size();i++) {
@@ -104,12 +93,11 @@ public class ControlMusicList implements ControlMusic {
     }
 
     /**
-     * TODO
+     * Add audiobooks to the list
      *
-     * @param   audioBooks TODO
+     * @param     audioBooks to add
      *
-     * @see     AudioBook
-     * @author	Angélique Proux
+     * @author  Angélique Proux
      */
     public void addAudioBooks(LinkedList<AudioBook> audioBooks) {
         for(int i=0;i<audioBooks.size();i++) {
@@ -118,7 +106,7 @@ public class ControlMusicList implements ControlMusic {
     }
 
     /**
-     * TODO
+     * play the current list of audios
      *
      * @param   numberAudio TODO
      *
@@ -133,7 +121,7 @@ public class ControlMusicList implements ControlMusic {
     }
 
     /**
-     * TODO
+     * clear the list
      *
      * @see     Audio
      * @see     SingletonMusic
@@ -146,10 +134,9 @@ public class ControlMusicList implements ControlMusic {
     }
 
     /**
-     * TODO
+     * stop the listened music
      *
-     * @see     SingletonMusic
-     * @author	Angélique Proux
+     * @author  Angélique Proux
      */
     public void stopMusic() {
       this.singletonMusic.stopMusic();

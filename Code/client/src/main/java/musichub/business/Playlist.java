@@ -24,30 +24,30 @@ import java.util.UUID;
 public class Playlist implements AudioList {
 
 	/**
-     * Name of the playlist
-     */
+   * Name of the playlist
+   */
 	private String name;
 
 	/**
-     * Unique ID identifying the playlist
-     */
+   * Unique ID identifying the playlist
+   */
 	private UUID id;
 
 	/**
-     * Audio list of the playlist
-     * @see Audio
-     */
+   * Audio list of the playlist
+   * @see Audio
+   */
 	private LinkedList<Audio> audios = new LinkedList<Audio>();
 
 	/**
-     * Playlist constructor
-     *
-     * @param       name Name of the album
-     * @param       id Unique id of the album
-     * @param       audios List of the album audios
-     *
-     * @author      Gaël Lejeune
-     */
+   * Playlist constructor
+   *
+   * @param       name Name of the album
+   * @param       id Unique id of the album
+   * @param       audios List of the album audios
+   *
+   * @author      Gaël Lejeune
+   */
 	public Playlist(String name, UUID id, LinkedList<Audio> audios) {
 		this.name = name;
 		this.id = id;
@@ -55,45 +55,45 @@ public class Playlist implements AudioList {
 	}
 
 	/**
-     * Accessor of the name
+   * Accessor of the name
 	 *
-     * @return      String containing the playlist's name
+   * @return      String containing the playlist's name
 	 *
-     * @author      Gaël Lejeune
-     */
+   * @author      Gaël Lejeune
+   */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-     * Accessor of the audio list
+   * Accessor of the audio list
 	 *
-     * @return      LinkedList containing the playlist's audio list
+   * @return      LinkedList containing the playlist's audio list
 	 *
-     * @author      Gaël Lejeune
-     */
+   * @author      Gaël Lejeune
+   */
 	public LinkedList<Audio> getAudios() {
 		return this.audios;
 	}
 
 	/**
-     * Accessor of the unique id
+   * Accessor of the unique id
 	 *
-     * @return      UUID containing the playlist's unique id
+   * @return      UUID containing the playlist's unique id
 	 *
-     * @author      Gaël Lejeune
-     */
+   * @author      Gaël Lejeune
+   */
 	public UUID getID() {
     	return this.id;
     }
 
 	/**
-     * Override of the toString java method
+   * Override of the toString java method
 	 *
-     * @return      String containing the playlist's informations
+   * @return      String containing the playlist's informations
 	 *
-     * @author      Gaël Lejeune
-     */
+   * @author      Gaël Lejeune
+   */
 	public String toString() {
 		String str;
 		str = "Playlist " + this.name;

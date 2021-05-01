@@ -243,16 +243,16 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * Send all data to listen to an audio list or choose one to either get more information or listen to it
-      *
-      * @param       audios audio list
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Audio
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * Send all data to listen to an audio list or choose one to either get more information or listen to it
+     *
+     * @param       audios audio list
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Audio
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void audioPlayingOrInformation(LinkedList<Audio> audios) throws IOException, ClassNotFoundException {
         output.writeObject("Which one would you like to hear? (Enter the number)\nEnter '-1' if you want to listen to everything");
         int number = ((int) input.readObject());
@@ -272,16 +272,16 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * Send all data to listen to a song list or choose one to either get more information or listen to it
-      *
-      * @param       songs song list
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         Song
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * Send all data to listen to a song list or choose one to either get more information or listen to it
+     *
+     * @param       songs song list
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         Song
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void musicPlayingOrInformation(LinkedList<Song> songs) throws IOException, ClassNotFoundException {
         output.writeObject("Which one would you like to hear? (Enter the number)\nEnter '-1' if you want to listen to everything");
         int number = ((int) input.readObject());
@@ -301,16 +301,16 @@ public class JMusicHubPassiveView implements View {
     }
 
     /**
-      * Send all data to listen to an audio book list or choose one to either get more information or listen to it
-      *
-      * @param       audioBooks audio book list
-      * @exception   IOException thrown if there is an error on the input and/or output streams
-      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
-      *
-      * @see         AudioBook
-      * @see         ControlMusicList
-      * @author      Steve Chauvreau-Manat
-      */
+     * Send all data to listen to an audio book list or choose one to either get more information or listen to it
+     *
+     * @param       audioBooks audio book list
+     * @exception   IOException thrown if there is an error on the input and/or output streams
+     * @exception   ClassNotFoundException thrown if the class of the received stream is not known
+     *
+     * @see         AudioBook
+     * @see         ControlMusicList
+     * @author      Steve Chauvreau-Manat
+     */
     private void audioBookPlayingOrInformation(LinkedList<AudioBook> audioBooks) throws IOException, ClassNotFoundException {
       output.writeObject("Which one would you like to hear? (Enter the number)\nEnter '-1' if you want to listen to everything");
       int number = ((int) input.readObject());

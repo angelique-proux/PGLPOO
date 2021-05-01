@@ -23,18 +23,18 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 /**
-  * View Interface is the interface representing a base view
-  *
-  * Version : 1.0
-  *
-  * @author Gaël Lejeune
-  */
+ * View Interface is the interface representing a base view
+ *
+ * Version : 1.0
+ *
+ * @author Gaël Lejeune
+ */
 public interface View {
 
     /**
-      * Execution of the JMusicHub program and interaction with the user using a terminal
-      *
-      * @author       Gaël Lejeune and Steve Chauvreau-Manat
-      */
+     * Execution of the JMusicHub program and interaction with the user using a terminal
+     *
+     * @author       Gaël Lejeune and Steve Chauvreau-Manat
+     */
     public void display();
 }

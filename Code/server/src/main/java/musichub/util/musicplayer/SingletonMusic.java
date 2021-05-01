@@ -29,7 +29,7 @@ import javax.swing.SwingUtilities;
  *
  * @version 1.0
  *
- * @author Steve Chauvreau-Manat
+ * @author Steve Chauvreau-Manat and Angélique Proux
  */
 public class SingletonMusic {
 
@@ -45,7 +45,7 @@ public class SingletonMusic {
   private static AudioServerThread music;
 
   /**
-   * Singleton Instance
+   * variable that indicates if the music is sent
    */
   private static boolean isFinished = false;
 
@@ -60,8 +60,8 @@ public class SingletonMusic {
   /**
    * Create and return an instance of SingletonMusic and start AudioServerThread
    *
-   * @param     audio //TODO
-   * @param     port //TODO
+   * @param     audio to send
+   * @param     port where send audio
    * @return    SingletonMusic
    *
    * @author    Steve Chauvreau-Manat
@@ -93,7 +93,7 @@ public class SingletonMusic {
   /**
    * Gives the status of the music playback thread
    *
-   * @return    boolean //TODO
+   * @return    boolean
    *
    * @see       AudioServerThread
    * @author    Steve Chauvreau-Manat

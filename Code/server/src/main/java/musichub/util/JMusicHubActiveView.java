@@ -48,10 +48,10 @@ public class JMusicHubActiveView implements View {
     }
 
     /**
-    * Execution of the JMusicHub program and interaction with the user using a terminal
-    *
-    * @author       Gaël Lejeune and Steve Chauvreau-Manat
-    */
+     * Execution of the JMusicHub program and interaction with the user using a terminal
+     *
+     * @author       Gaël Lejeune and Steve Chauvreau-Manat
+     */
     public void display() {
         System.out.println("\n\nWelcome in JMusicHub,");
         System.out.println("Reading library...\n\n");

@@ -29,7 +29,7 @@ import javax.swing.SwingUtilities;
  *
  * @version 1.0
  *
- * @author Steve Chauvreau-Manat
+ * @author Steve Chauvreau-Manat and Angélique Proux
  */
 public class SingletonMusic {
 
@@ -42,7 +42,7 @@ public class SingletonMusic {
    * Class that allows to manage the music
    * @see MusicThread
    */
-  private static MusicThread music;
+  private static IMusicThread music;
 
 
   /**
@@ -55,16 +55,17 @@ public class SingletonMusic {
   /**
    * Create and return an instance of SingletonMusic and start the MusicThread
    *
-   * @param     ip //TODO
-   * @param     port //TODO
+   * @param     ip Client's name
+   * @param     port Server's open port
    * @return    SingletonMusic
    *
-   * @author    Steve Chauvreau-Manat
+   * @author    Steve Chauvreau-Manat and Angélique Proux
    */
-  public static synchronized SingletonMusic getInstance(String ip, int port) {
+  public static synchronized SingletonMusic getInstance(String ip, int port, IMusicThread musicThread) {
     if(uniqueInstance==null) {
       uniqueInstance = new SingletonMusic();
-      music = new MusicThread(ip,port);
+      music = musicThread;
+      music.setMusicThread(ip, port);
       music.start();
     }
     return uniqueInstance;
@@ -73,36 +74,43 @@ public class SingletonMusic {
   /**
    * Pause the music
    * @see       MusicThread
-   * @author    Steve Chauvreau-Manat
+   * @author    Steve Chauvreau-Manat and Angélique Proux
    */
   public void pauseMusic() {
-    music.pause();
+    if (music!=null){
+      music.pause();
+    }
   }
 
   /**
    * Restarts the music if it has been paused
    * @see       MusicThread
-   * @author    Steve Chauvreau-Manat
+   * @author    Steve Chauvreau-Manat and Angélique Proux
    */
   public void restartMusic() {
-    music.restart();
+    if (music!=null){
+      music.restart();
+    }
   }
 
   /**
    * Stops the thread and music playback and reset SingletonMusic
    * @see       MusicThread
-   * @author    Steve Chauvreau-Manat
+   * @author    Steve Chauvreau-Manat and Angélique Proux
    */
   public void stopMusic() {
-    music.stopThread();
-    music = null;
+    if (music!=null) {
+      music.stopThread();
+    } else {
+      music = null;
+    }
     uniqueInstance = null;
   }
 
   /**
-   * Check if MusicThread is interrupted
+   * Check if MusicThread is interrupted or null
    * @return    boolean
-   * @author    Steve Chauvreau-Manat
+   * @author    Steve Chauvreau-Manat and Angélique Proux
    */
   public boolean isRunning() {
     if(music==null) {

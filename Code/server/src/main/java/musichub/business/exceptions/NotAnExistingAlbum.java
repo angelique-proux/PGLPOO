@@ -24,10 +24,10 @@ import java.lang.Exception;
 public class NotAnExistingAlbum extends Exception{
 
 	/**
-     * NotAnExistingAlbum constructor
-     *
-     * @author	Angelique Proux
-     */
+   * NotAnExistingAlbum constructor
+   *
+   * @author	Angelique Proux
+   */
 	public NotAnExistingAlbum() {
 		System.out.printf("\n\nPlease, chose an existing album.\n");
 	}
