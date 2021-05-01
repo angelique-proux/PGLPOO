@@ -68,4 +68,10 @@ public class TestSingleton {
       System.out.println(e.getMessage());
     }
   }
+  
+  @Test
+  void testGetInstance(){
+    //Check for the case where an instance already exists
+    ILogger sfl = SingletonFileLogger.getInstance();
+  }
 }
