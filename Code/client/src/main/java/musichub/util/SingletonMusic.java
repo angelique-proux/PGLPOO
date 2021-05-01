@@ -57,7 +57,7 @@ public class SingletonMusic {
    *
    * @param     ip Client's name
    * @param     port Server's open port
-   * @param     musicThread TODO
+   * @param     musicThread classe used to listen to music
    * @return    SingletonMusic
    *
    * @author    Steve Chauvreau-Manat and Angélique Proux
@@ -102,7 +102,6 @@ public class SingletonMusic {
   public void stopMusic() {
     if (music!=null) {
       music.stopThread();
-    } else {
       music = null;
     }
     uniqueInstance = null;
