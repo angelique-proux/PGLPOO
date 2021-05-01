@@ -235,16 +235,16 @@ public class JMusicHubClientView {
     }
 
 		/**
-	    * Allows you to listen to an audio list or choose one to either get more information or listen to it
-			*
-			* @param 				audios audio list
-	    * @exception   	IOException thrown if there is an error on the input and/or output streams
-	    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
-	 	  *
-	    * @see         Audio
-	    * @see         ControlMusicList
-	    * @author      Steve Chauvreau-Manat
-	    */
+	   * Allows you to listen to an audio list or choose one to either get more information or listen to it
+	   *
+	   * @param 				audios audio list
+	   * @exception   	IOException thrown if there is an error on the input and/or output streams
+	   * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
+	 	 *
+	   * @see         Audio
+	   * @see         ControlMusicList
+	   * @author      Steve Chauvreau-Manat
+	   */
     private void audioPlayingOrInformation(LinkedList<Audio> audios) throws IOException, ClassNotFoundException {
         System.out.println((String) input.readObject());
         try {
@@ -279,16 +279,16 @@ public class JMusicHubClientView {
     }
 
 		/**
-	    * Allows you to listen to a song list or choose one to either get more information or listen to it
-			*
-			* @param 				songs song list
-	    * @exception   	IOException thrown if there is an error on the input and/or output streams
-	    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
-	 	  *
-	    * @see         Audio
-	    * @see         ControlMusicList
-	    * @author      Steve Chauvreau-Manat
-	    */
+	   * Allows you to listen to a song list or choose one to either get more information or listen to it
+		 *
+		 * @param 				songs song list
+	   * @exception   	IOException thrown if there is an error on the input and/or output streams
+	   * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
+	 	 *
+	   * @see         Audio
+	   * @see         ControlMusicList
+	   * @author      Steve Chauvreau-Manat
+	   */
     private void musicPlayingOrInformation(LinkedList<Song> songs) throws IOException, ClassNotFoundException {
         System.out.println((String) input.readObject());
         int choice = Integer.parseInt(this.scan.nextLine());
@@ -324,16 +324,16 @@ public class JMusicHubClientView {
     }
 
 		/**
-	    * Allows you to listen to an audio book list or choose one to either get more information or listen to it
-			*
-			* @param 				audioBooks audio book list
-	    * @exception   	IOException thrown if there is an error on the input and/or output streams
-	    * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
-	 	  *
-	    * @see         Audio
-	    * @see         ControlMusicList
-	    * @author      Steve Chauvreau-Manat
-	    */
+	   * Allows you to listen to an audio book list or choose one to either get more information or listen to it
+		 *
+		 * @param 				audioBooks audio book list
+	   * @exception   	IOException thrown if there is an error on the input and/or output streams
+	   * @exception   	ClassNotFoundException thrown if the class of the received stream is not known
+	 	 *
+	   * @see         Audio
+	   * @see         ControlMusicList
+	   * @author      Steve Chauvreau-Manat
+	   */
     private void audioBookPlayingOrInformation(LinkedList<AudioBook> audioBooks) throws IOException, ClassNotFoundException {
         System.out.println((String) input.readObject());
         int choice = Integer.parseInt(this.scan.nextLine());

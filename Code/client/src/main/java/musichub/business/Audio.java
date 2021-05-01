@@ -25,65 +25,65 @@ public abstract class Audio implements Serializable		//must implement Serializab
 {
 
 	/**
-     * Title of the audio file
-     */
+   * Title of the audio file
+   */
 	protected String title;
 
 	/**
-     * Duration of the audio file
-     */
+   * Duration of the audio file
+   */
     protected int duration;
 
 	/**
-     * Unique ID representing the audio file
-     */
+   * Unique ID representing the audio file
+   */
     protected UUID id;
 
 	/**
-     * Path of the audio file
-     */
+   * Path of the audio file
+   */
 	protected String content;
 
 	/**
-     * Accessor of the title
+   * Accessor of the title
 
-     * @return      String containing the audio file's title
+   * @return      String containing the audio file's title
 
-     * @author      Gaël Lejeune
-     */
+   * @author      Gaël Lejeune
+   */
     public String getTitle() {
     	return this.title;
     }
 
 	/**
-     * Accessor of the duration
+   * Accessor of the duration
 	 *
-     * @return      Int containing the audio file's duration
+   * @return      Int containing the audio file's duration
 	 *
-     * @author      Gaël Lejeune
-     */
+   * @author      Gaël Lejeune
+   */
     public int getDuration() {
     	return this.duration;
     }
 
 	/**
-     * Accessor of the unique ID
+   * Accessor of the unique ID
 	 *
-     * @return      UUID containing the audio file's unique ID
+   * @return      UUID containing the audio file's unique ID
 	 *
-     * @author      Gaël Lejeune
-     */
+   * @author      Gaël Lejeune
+   */
     public UUID getID() {
     	return this.id;
     }
 
 	/**
-     * Accessor of the content
+   * Accessor of the content
 	 *
-     * @return      String containing the path of the audio file
+   * @return      String containing the path of the audio file
 	 *
-     * @author      Gaël Lejeune
-     */
+   * @author      Gaël Lejeune
+   */
     public String getContent() {
     	return this.content;
     }
