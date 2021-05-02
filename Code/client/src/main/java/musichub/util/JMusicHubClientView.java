@@ -7,7 +7,7 @@
  *
  * Date         : 13/04/2021
  *
- * Copyright    : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
+ * Copyright    : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
  */
 package musichub.util;
 
@@ -182,14 +182,13 @@ public class JMusicHubClientView implements View {
      * @author      Angélique Proux
      */
     private void listenToSomeMusic() throws IOException, ClassNotFoundException {
-				String choix;
-				String next;
-				System.out.println((String) input.readObject());
+		String choix;
+		String next;
         int size = (int) input.readObject();
         int i=0;
         while (i<size) {
             if((boolean) input.readObject()){
-                System.out.println("Que voulez-vous faire ?\n (previous/listen/next/end)");
+                System.out.println("What do you want to do ?\n (previous/listen/next/end)");
                 contMus.playMusicList();
                 next = scan.nextLine();
                 output.writeObject(next);
@@ -197,17 +196,17 @@ public class JMusicHubClientView implements View {
                 switch (choix) {
                     case "next":
                         contMus.stopMusic();
-                        System.out.println("nouvelle musique");
+                        System.out.println("Next audio");
                         i++;
                         break;
                     case "previous":
                         i--;
                         contMus.stopMusic();
-                        System.out.println("musique précédente");
+                        System.out.println("Previous audio");
                         break;
                     case "end":
                         contMus.stopMusic();
-                        System.out.println("Fin de l'écoute.");
+                        System.out.println("End of listening");
                         i=size;
                         break;
                     case "listen":
@@ -229,14 +228,13 @@ public class JMusicHubClientView implements View {
                             }
                         }
                         i++;
-                        System.out.println("Ici la musique finit.");
-                        output.writeObject("Fin de la lecture sur le client.");
+                        System.out.println("End of audio");
+                        output.writeObject("End of listening in client part");
                         break;
                 }
 
             }
         }
-        System.out.println("Fin de la liste.");
     }
 
 		/**

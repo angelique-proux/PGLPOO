@@ -7,7 +7,7 @@
  *
  * Date        : 13/04/2021
  *
- * Copyright   : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
+ * Copyright   : Steve Chauvreau-Manat & Gaël Lejeune & Angélique Proux & Antonin Morcrette
  */
 
 package musichub.business;
@@ -106,7 +106,10 @@ public class AudioBook extends Audio {
    * @author      Gaël Lejeune
    */
 	public String toString() {
-		return this.title + " written by " + this.author + " : " + this.duration;
+		return this.title + " written by " + this.author
+				+ "\nDuration : " + this.duration
+				+ "\nLanguage : " + this.language
+				+ "\nCategory : " + this.category;
 	}
 
 }
