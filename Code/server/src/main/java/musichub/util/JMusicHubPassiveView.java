@@ -214,6 +214,7 @@ public class JMusicHubPassiveView implements View {
                         System.out.println("suivante");
                     } else {
                         output.writeObject("end");
+                        contMus.stopMusic();
                     }
                     break;
                 case "previous":
