@@ -37,25 +37,9 @@ import java.text.Normalizer;
  * @author Gaël Lejeune (Based on the work of Felicia Ionascu)
  */
 public class JMusicHubModel implements Model{
-
-	/**
-   * TODO
-   */
 	private TransformerFactory transformerFactory;
-
-	/**
-   * TODO
-   */
 	private Transformer transformer;
-
-	/**
-   * TODO
-   */
 	private DocumentBuilderFactory documentFactory;
-
-	/**
-   * TODO
-   */
 	private DocumentBuilder documentBuilder;
 
 	/**

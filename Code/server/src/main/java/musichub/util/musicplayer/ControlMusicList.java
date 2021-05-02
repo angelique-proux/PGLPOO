@@ -1,7 +1,7 @@
 /*
  * Class' name : ControlMusicList
  *
- * Description : TODO
+ * Description : Class that controls the playback of one audio at a time
  *
  * Version     : 1.0
  *
@@ -17,7 +17,7 @@ import java.util.LinkedList;
 import java.io.*;
 
 /**
- * TODO
+ * Class that controls the playback of one audio at a time
  *
  * Version : 1.0
  *
@@ -108,7 +108,7 @@ public class ControlMusicList implements ControlMusic {
     /**
      * play the current list of audios
      *
-     * @param   numberAudio TODO
+     * @param   numberAudio Number of the audio file to read
      *
      * @see     Audio
      * @see     SingletonMusic

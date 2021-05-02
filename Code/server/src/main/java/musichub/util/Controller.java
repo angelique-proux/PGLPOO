@@ -191,7 +191,7 @@ import java.util.regex.Matcher;
       * Returns all albums ordered by release date
       *
       * @return      LinkedList list of the ordered albums
-      * @throws      Exception //TODO
+      * @throws      Exception Thrown when the date is not a real one
       *
       * @see         Album
       * @author      Gaël Lejeune and Steve Chauvreau-Manat

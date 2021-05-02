@@ -99,6 +99,6 @@ public class TestPlaylist {
         list.addAudio(book1);
 
         //check to result of toString() method
-        assertEquals(list.toString(), "Playlist list1\ntitle written by author : 120");
+        assertEquals(list.toString(), "Playlist list1\ntitle written by author\nDuration : 120\nLanguage : Francais\nCategory : Jeunesse");
     }
 }

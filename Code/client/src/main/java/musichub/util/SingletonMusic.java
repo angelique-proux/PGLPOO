@@ -55,7 +55,7 @@ public class SingletonMusic {
   /**
    * Create and return an instance of SingletonMusic and start the MusicThread
    *
-   * @param     ip Client's name
+   * @param     ip Server's IP
    * @param     port Server's open port
    * @param     musicThread classe used to listen to music
    * @return    SingletonMusic

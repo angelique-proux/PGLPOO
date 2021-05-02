@@ -44,7 +44,7 @@ public class JMusicHubController implements Controller {
     private Model model;
 
     /**
-     * TODO
+     * View of the application
      */
     private View view;
 
@@ -93,9 +93,9 @@ public class JMusicHubController implements Controller {
      * Album constructor
      * Initialize all the attributes and fill the lists by reading the XML files
      *
-     * @param       model //TODO
-     * @param       socket //TODO
-     * @param       port //TODO
+     * @param       model Required database editing model file
+     * @param       socket Connection socket between client and server
+     * @param       port Server's listening port
      *
      * @author   Gaël Lejeune
      */
@@ -413,8 +413,8 @@ public class JMusicHubController implements Controller {
     /**
      * Display the album list ordered by release date
      *
-     * @return		  LinkedList //TODO
-     * @throws		  Exception //TODO
+     * @return		  LinkedList List of the albums, ordered by release date
+     * @throws		  Exception Thrown when the date is not a real one
      *
      * @exception   Exception Thrown the given String cannot be converted to date.
      * @see         Album
@@ -451,8 +451,8 @@ public class JMusicHubController implements Controller {
     /**
      * Display the song list of an asked album, ordered by genre
      *
-     * @param		  title //TODO
-     * @return		  LinkedList //TODO
+     * @param		    title Requested album's title
+     * @return		  LinkedList List of the album songs ordered by genre
      *
      * @see         Album
      * @see         Song

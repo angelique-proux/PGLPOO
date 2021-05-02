@@ -1,7 +1,7 @@
 /*
  * Class' name : AbstractServer
  *
- * Description : TODO
+ * Description : Abstract definition of a server
  *
  * Version     : 1.0
  *
@@ -13,7 +13,7 @@
 package musichub.util.server;
 
 /**
- * AbstractServer TODO
+ * Abstract definition of a server
  *
  * Version : 1.0
  *
@@ -22,7 +22,7 @@ package musichub.util.server;
 public abstract class AbstractServer
 {
 	/**
-	 * TODO
+	 * Start port listening, waiting for a client connection
 	 *
 	 * @param     ip Server's ip
 	 *

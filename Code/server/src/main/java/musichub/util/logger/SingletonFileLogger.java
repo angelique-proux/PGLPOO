@@ -34,7 +34,7 @@ public class SingletonFileLogger implements ILogger
     /**
      * log file path
      */
-    private final String LOGS_FILE_PATH = DIR + "\\log.txt";
+    private final String LOGS_FILE_PATH = "log.txt";
 
     /**
      * unique SingletonFileLogger

@@ -45,7 +45,7 @@ public class ControlMusicList implements ControlMusic {
   /**
    * Constructor of ControlMusicList
    *
-   * @param   ip Client's name
+   * @param   ip Server's IP
    * @param	  port Server's open port
    *
    * @author	Angélique Proux
