@@ -1,7 +1,7 @@
 /*
  * Class' name : ServerConnection
  *
- * Description : TODO
+ * Description : Start the application JMusicHub for the server
  *
  * Version     : 1.0
  *
@@ -20,7 +20,7 @@ import java.net.*;
 import java.util.Scanner;
 
 /**
- * ServerConnection Class TODO
+ * ServerConnection Class Start the application JMusicHub for the server
  *
  * Version : 1.0
  *
@@ -31,7 +31,7 @@ public class ServerConnection
 	/**
 	 * Main of the JMusicHub server
 	 *
-	 * @param 	args arguments of the exec command 
+	 * @param 	args arguments of the exec command
 	 *
 	 * @author	Félicia Ionascu and Steve Chauvreau-Manat and Gaël Lejeune
 	 */

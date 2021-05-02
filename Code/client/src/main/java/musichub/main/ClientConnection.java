@@ -1,7 +1,7 @@
 /*
  * Class' name : ClientConnection
  *
- * Description : TODO
+ * Description : Start the application JMusicHub
  *
  * Version     : 1.0
  *
@@ -15,7 +15,7 @@ package musichub.main;
 import musichub.util.*;
 
 /**
- * TODO
+ * Start the application JMusicHub
  *
  * @version 1.0
  *
@@ -26,7 +26,7 @@ public class ClientConnection {
 	/**
  	 * Main function of the JMusicHub Client Program
  	 *
- 	 * @param 		args //TODO
+ 	 * @param 		args arguments of the exec command
  	 *
  	 * @author		Félicia Ionascu
  	 */

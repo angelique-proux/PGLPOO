@@ -68,9 +68,9 @@ public class JMusicHubPassiveView implements View {
     /**
      * JMusicHubPassiveView constructor
      *
-     * @param     controller //TODO
-     * @param     socket //TODO
-     * @param     port //TODO
+     * @param     controller TODO
+     * @param     socket TODO
+     * @param     port TODO
      *
      * @author      Steve Chauvreau-Manat
      */
@@ -99,72 +99,73 @@ public class JMusicHubPassiveView implements View {
                 String command = (String) input.readObject();
                 switch (command) {
                     case "1" :
-                        sendAllElements();
-                        break;
+                      sendAllElements();
+                      break;
 
                     case "2" :
-                        sendAllAlbums();
-                        break;
+                      sendAllAlbums();
+                      break;
 
                     case "3" :
-                        sendAllPlaylists();
-                        break;
+                      sendAllPlaylists();
+                      break;
 
                     case "4" :
-                        sendSelectedAlbum();
-                        break;
+                      sendSelectedAlbum();
+                      break;
 
                     case "5" :
-                        sendSelectedPlaylist();
-                        break;
+                      sendSelectedPlaylist();
+                      break;
 
                     case "6" :
-                        sendAllSelectedArtistSongs();
-                        break;
+                      sendAllSelectedArtistSongs();
+                      break;
 
                     case "7" :
-                        sendAllSelectedAuthorAudioBooks();
-                        break;
+                      sendAllSelectedAuthorAudioBooks();
+                      break;
 
                     case "8" :
-                        sendAllAlbumsReleaseByDate();
-                        break;
+                      sendAllAlbumsReleaseByDate();
+                      break;
 
                     case "9" :
-                        sendAllSongsSortedByGenre();
-                        break;
+                      sendAllSongsSortedByGenre();
+                      break;
 
                     case "10":
-                        sendAllArtists();
-                        break;
+                      sendAllArtists();
+                      break;
 
                     case "11":
-                        sendAllAuthors();
-                        break;
+                      sendAllAuthors();
+                      break;
 
                     case "12":
-                        sendAllGenres();
-                        break;
+                      sendAllGenres();
+                      break;
 
                     case "13":
-                        sendAllCategories();
-                        break;
+                      sendAllCategories();
+                      break;
 
                     case "14":
-                        break;
+                      sendAllLanguages();
+                      break;
 
                     case "q" :// Quit the application
-                        output.writeObject("\t\t Thank you for you time, have a nice day!\n\t\t\t\t\tSigned by nope.\n\n\n");
-                        System.out.println("Client disconnected");
-                        break;
+                      output.writeObject("\t\t Thank you for you time, have a nice day!\n\t\t\t\t\tSigned by Gael LEJEUNE, Angelique PROUX,\n\t\t\t\t\tAntonin MORCRETTE et Steve CHAUVREAU-MANAT.\n\n\n");
+                      System.out.println("Client disconnected");
+                      break;
 
                     case "h" ://Display the help
-                        output.writeObject(this.controller.helpPassive());
-                        break;
+                      output.writeObject(this.controller.helpPassive());
+                      break;
 
                     default:
-                        output.writeObject("\nWrong command, press \"h\" for help.");
-                        break;
+                      output.writeObject("\nWrong command, press \"h\" for help.");
+                      break;
                 }
                 if(command.equals("q")) {
                     break;
@@ -390,8 +391,14 @@ public class JMusicHubPassiveView implements View {
     private void sendAllElements() throws IOException, ClassNotFoundException { //case 1
         output.writeObject("\t\tSongs and AudioBooks sorted by alphabetical order:\n");
         LinkedList<Audio> audios = this.controller.getElements();
-        output.writeObject(audios);
-        audioPlayingOrInformation(audios);
+        if(audios!=null) {
+          output.writeObject(true);
+          output.writeObject(audios);
+          audioPlayingOrInformation(audios);
+        } else {
+          output.writeObject(false);
+          output.writeObject("\nNo elements in the database");
+        }
     }
 
     /**
@@ -407,8 +414,14 @@ public class JMusicHubPassiveView implements View {
     private void sendAllAlbums() throws IOException, ClassNotFoundException { //case 2
         output.writeObject("\t\tAlbums sorted by alphabetical order:\n");
         LinkedList<Album> albums = this.controller.getAlbums();
-        output.writeObject(albums);
-        albumPlayingOrInformation(albums);
+        if(albums!=null) {
+          output.writeObject(true);
+          output.writeObject(albums);
+          albumPlayingOrInformation(albums);
+        } else {
+          output.writeObject(false);
+          output.writeObject("\nNo albums in the database");
+        }
     }
 
     /**
@@ -424,12 +437,18 @@ public class JMusicHubPassiveView implements View {
     private void sendAllPlaylists() throws IOException, ClassNotFoundException { //case 3
         output.writeObject("\t\t Playlist names sorted by alphabetical order:\nExisting playlists :\n\n");
         LinkedList<Playlist> playlists = this.controller.getPlaylists();
-        output.writeObject(playlists);
-        playlistPlayingOrInformation(playlists);
+        if(playlists!=null) {
+          output.writeObject(true);
+          output.writeObject(playlists);
+          playlistPlayingOrInformation(playlists);
+        } else {
+          output.writeObject(false);
+          output.writeObject("\nNo playlist in te database");
+        }
     }
 
     /**
-      * Send an album selected by name, then choose between listening to it or getting more information about it
+      * Send an album selected by name, then use the listenToSomeMusic method
       *
       * @exception   IOException thrown if there is an error on the input and/or output streams
       * @exception   ClassNotFoundException thrown if the class of the received stream is not known
@@ -440,26 +459,28 @@ public class JMusicHubPassiveView implements View {
       * @author      Steve Chauvreau-Manat
       */
     private void sendSelectedAlbum() throws IOException, ClassNotFoundException { //case 4
-        output.writeObject("\nName of the album to display :\n");
-        String albumTitle = (String) input.readObject();  /* Album title entered by the user */
-        Album album = this.controller.getSpecificAlbum(albumTitle);
-        if(album==null) {
-            output.writeObject("No album found.\n");
+      output.writeObject("\nName of the album to display :\n");
+      String albumTitle = (String) input.readObject();  /* Album title entered by the user */
+      Album album = this.controller.getSpecificAlbum(albumTitle);
+      if(album==null) {
+        output.writeObject(true);
+        output.writeObject("No album found.\n");
+      } else {
+        output.writeObject(false);
+        output.writeObject(album);
+        output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
+        if(((String) input.readObject()).equals("1")) {
+          output.writeObject(true);
+          this.contMus.addSongs(album.getSongs());
+          listenToSomeMusic(album.getSongs().size());
         } else {
-            output.writeObject(album);
-            output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
-            if(((String) input.readObject()).equals("1")) {
-                output.writeObject(true);
-                this.contMus.addSongs(album.getSongs());
-                listenToSomeMusic(album.getSongs().size());
-            } else {
-                output.writeObject(false);
-            }
+          output.writeObject(false);
         }
+      }
     }
 
     /**
-      * Send a playlist selected by name, then choose between listening to it or getting more information about it
+      * Send a playlist selected by name, then use the listenToSomeMusic method
       *
       * @exception   IOException thrown if there is an error on the input and/or output streams
       * @exception   ClassNotFoundException thrown if the class of the received stream is not known
@@ -470,26 +491,28 @@ public class JMusicHubPassiveView implements View {
       * @author      Steve Chauvreau-Manat
       */
     private void sendSelectedPlaylist() throws IOException, ClassNotFoundException { //case 5
-        output.writeObject("\nName of the playlist :\n");
-        String name = (String) input.readObject();
-        Playlist playlist = this.controller.getSpecificPlaylist(name);
-        if (playlist==null) {
-            output.writeObject("No playlist found.\n");
+      output.writeObject("\nName of the playlist :\n");
+      String name = (String) input.readObject();
+      Playlist playlist = this.controller.getSpecificPlaylist(name);
+      if (playlist==null) {
+        output.writeObject(true);
+        output.writeObject("No playlist found.\n");
+      } else {
+        output.writeObject(false);
+        output.writeObject(playlist);
+        output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
+        if(((String) input.readObject()).equals("1")) {
+          output.writeObject(true);
+          this.contMus.addAudios(playlist.getAudios());
+          listenToSomeMusic(playlist.getAudios().size());
         } else {
-            output.writeObject(playlist);
-            output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
-            if(((String) input.readObject()).equals("1")) {
-                output.writeObject(true);
-                this.contMus.addAudios(playlist.getAudios());
-                listenToSomeMusic(playlist.getAudios().size());
-            } else {
-                output.writeObject(false);
-            }
+          output.writeObject(false);
         }
+      }
     }
 
     /**
-      * Send all songs of a selected artist
+      * Send all songs of a selected artist then use the musicPlayingOrInformation method
       *
       * @exception   IOException thrown if there is an error on the input and/or output streams
       * @exception   ClassNotFoundException thrown if the class of the received stream is not known
@@ -499,18 +522,20 @@ public class JMusicHubPassiveView implements View {
       * @author      Steve Chauvreau-Manat
       */
     private void sendAllSelectedArtistSongs() throws IOException, ClassNotFoundException { //case 6
-        output.writeObject("\t\tArtist's song names sorted by alphabetical order:\nArtist's name :\n\n");
-        LinkedList<Song> artistSongs = this.controller.getSongsByArtist((String) input.readObject());
-        if(artistSongs==null) {
-            output.writeObject("No artist with this name or no artist's song found.\n");
-        } else {
-            output.writeObject(artistSongs);
-            musicPlayingOrInformation(artistSongs);
-        }
+      output.writeObject("\t\tArtist's song names sorted by alphabetical order:\nArtist's name :\n\n");
+      LinkedList<Song> artistSongs = this.controller.getSongsByArtist((String) input.readObject());
+      if(artistSongs==null) {
+        output.writeObject(true);
+        output.writeObject("No artist with this name or no artist's song found.\n");
+      } else {
+        output.writeObject(false);
+        output.writeObject(artistSongs);
+        musicPlayingOrInformation(artistSongs);
+      }
     }
 
     /**
-      * Send all songs of a selected author
+      * Send all songs of a selected author then use the audioBookPlayingOrInformation method
       *
       * @exception   IOException thrown if there is an error on the input and/or output streams
       * @exception   ClassNotFoundException thrown if the class of the received stream is not known
@@ -520,18 +545,20 @@ public class JMusicHubPassiveView implements View {
       * @author      Steve Chauvreau-Manat
       */
     private void sendAllSelectedAuthorAudioBooks() throws IOException, ClassNotFoundException { //case 7
-        output.writeObject("\t\t AudioBook titles sorted by them author:\nAuthor's name :\n\n");
-        LinkedList<AudioBook> authorAudioBooks = this.controller.getAudioBooksByAuthor((String) input.readObject());
-        if(authorAudioBooks==null) {
-            output.writeObject("No author with this name or no author's audio book found.\n");
-        } else {
-            output.writeObject(authorAudioBooks);
-            audioBookPlayingOrInformation(authorAudioBooks);
-        }
+      output.writeObject("\t\t AudioBook titles sorted by them author:\nAuthor's name :\n\n");
+      LinkedList<AudioBook> authorAudioBooks = this.controller.getAudioBooksByAuthor((String) input.readObject());
+      if(authorAudioBooks==null) {
+        output.writeObject(true);
+        output.writeObject("No author with this name or no author's audio book found.\n");
+      } else {
+        output.writeObject(false);
+        output.writeObject(authorAudioBooks);
+        audioBookPlayingOrInformation(authorAudioBooks);
+      }
     }
 
     /**
-      * Send all albums release by date
+      * Send all albums release by date then use the albumPlayingOrInformation method
       *
       * @exception   IOException thrown if there is an error on the input and/or output streams
       * @exception   ClassNotFoundException thrown if the class of the received stream is not known
@@ -541,23 +568,25 @@ public class JMusicHubPassiveView implements View {
       * @author      Steve Chauvreau-Manat
       */
     private void sendAllAlbumsReleaseByDate() throws IOException, ClassNotFoundException { //case 8
-        try {
-            output.writeObject("\t\tAlbum titles sorted by them date:\nAlbums ordered by release date :\n\n");
-            //TODO (Exception handling)
-            LinkedList<Album> albumsRealeaseByDate = this.controller.getAlbumByReleaseDate();
-            if(albumsRealeaseByDate==null) {
-                output.writeObject("No album in the database or not found");
-            } else {
-                output.writeObject(albumsRealeaseByDate);
-                albumPlayingOrInformation(albumsRealeaseByDate);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+      try {
+        output.writeObject("\t\tAlbum titles sorted by them date:\nAlbums ordered by release date :\n\n");
+        //TODO (Exception handling)
+        LinkedList<Album> albumsRealeaseByDate = this.controller.getAlbumByReleaseDate();
+        if(albumsRealeaseByDate==null) {
+          output.writeObject(true);
+          output.writeObject("No album in the database or not found");
+        } else {
+          output.writeObject(false);
+          output.writeObject(albumsRealeaseByDate);
+          albumPlayingOrInformation(albumsRealeaseByDate);
         }
+      } catch(Exception e) {
+        e.printStackTrace();
+      }
     }
 
     /**
-      * Send all songs sorted by genre
+      * Send all songs sorted by genre then use the musicPlayingOrInformation method
       *
       * @exception   IOException thrown if there is an error on the input and/or output streams
       * @exception   ClassNotFoundException thrown if the class of the received stream is not known
@@ -567,18 +596,20 @@ public class JMusicHubPassiveView implements View {
       * @author      Steve Chauvreau-Manat
       */
     private void sendAllSongsSortedByGenre() throws IOException, ClassNotFoundException { //case 9
-        output.writeObject("\t\t Song titles sorted by them genre:\nName of the album to display :");
-        LinkedList<Song> songs = this.controller.getSongByGenre((String) input.readObject()); //Album title entered by the user
-        if(songs==null) {
-            output.writeObject("\nNo album found.\n");
-        } else {
-            output.writeObject(songs);
-            musicPlayingOrInformation(songs);
-        }
+      output.writeObject("\t\t Song titles sorted by them genre:\nName of the album to display :");
+      LinkedList<Song> songs = this.controller.getSongByGenre((String) input.readObject()); //Album title entered by the user
+      if(songs==null) {
+        output.writeObject(true);
+        output.writeObject("\nNo album found.\n");
+      } else {
+        output.writeObject(false);
+        output.writeObject(songs);
+        musicPlayingOrInformation(songs);
+      }
     }
 
     /**
-      * Send all existing artists
+      * Send all existing artists then use the musicPlayingOrInformation method
       *
       * @exception   IOException thrown if there is an error on the input and/or output streams
       * @exception   ClassNotFoundException thrown if the class of the received stream is not known
@@ -588,29 +619,31 @@ public class JMusicHubPassiveView implements View {
       * @author      Steve Chauvreau-Manat
       */
     private void sendAllArtists() throws IOException, ClassNotFoundException { //case 10
-        output.writeObject("\t\tAll artists' name :");
-        LinkedList<String> artistsName = this.controller.getArtists();
-        if(artistsName==null) {
-            output.writeObject("\nNo artist found.\n");
+      output.writeObject("\t\tAll artists' name :");
+      LinkedList<String> artistsName = this.controller.getArtists();
+      if(artistsName==null) {
+        output.writeObject(true);
+        output.writeObject("\nNo artist found.\n");
+      } else {
+        output.writeObject(false);
+        output.writeObject(artistsName);
+        output.writeObject("\n\nEnter a name's-artist number :");
+        int numberArtistName = (int) input.readObject();
+        if(numberArtistName==artistsName.size()) {
+          output.writeObject("Return to the main menu");
+        } else if((numberArtistName<artistsName.size())&&(numberArtistName>=0)) {
+          output.writeObject("\n\t\tAll the "+artistsName.get(numberArtistName)+"\'s songs :\n\n");
+          LinkedList<Song> artistSongs = this.controller.getSongsByArtist(artistsName.get(numberArtistName));
+          output.writeObject(artistSongs);
+          musicPlayingOrInformation(artistSongs);
         } else {
-            output.writeObject(artistsName);
-            output.writeObject("\n\nEnter a name's-artist number :");
-            int numberArtistName = (int) input.readObject();
-            if(numberArtistName==artistsName.size()) {
-                output.writeObject("Return to the main menu");
-            } else if((numberArtistName<artistsName.size())&&(numberArtistName>=0)) {
-                output.writeObject("\n\t\tAll the "+artistsName.get(numberArtistName)+"\'s songs :\n\n");
-                LinkedList<Song> artistSongs = this.controller.getSongsByArtist(artistsName.get(numberArtistName));
-                output.writeObject(artistSongs);
-                musicPlayingOrInformation(artistSongs);
-            } else {
-                output.writeObject("\nInvalid number");
-            }
+          output.writeObject("\nInvalid number");
         }
+      }
     }
 
     /**
-      * Send all existing authors
+      * Send all existing authors then use the audioBookPlayingOrInformation method
       *
       * @exception   IOException thrown if there is an error on the input and/or output streams
       * @exception   ClassNotFoundException thrown if the class of the received stream is not known
@@ -620,29 +653,31 @@ public class JMusicHubPassiveView implements View {
       * @author      Steve Chauvreau-Manat
       */
     private void sendAllAuthors() throws IOException, ClassNotFoundException { //case 11
-        output.writeObject("\t\tAll author's name :");
-        LinkedList<String> authorsName = this.controller.getAuthors();
-        if(authorsName==null) {
-            output.writeObject("\nNo authors found.\n");
+      output.writeObject("\t\tAll author's name :");
+      LinkedList<String> authorsName = this.controller.getAuthors();
+      if(authorsName==null) {
+        output.writeObject(true);
+        output.writeObject("\nNo authors found.\n");
+      } else {
+        output.writeObject(false);
+        output.writeObject(authorsName);
+        output.writeObject("\n\nEnter a name's-author number :");
+        int numberAuthorName = (int) input.readObject();
+        if(numberAuthorName==authorsName.size()) {
+          output.writeObject("Return to the main menu");
+        } else if((numberAuthorName<authorsName.size())&&(numberAuthorName>=0)) {
+          output.writeObject("\n\t\tAll the "+authorsName.get(numberAuthorName)+"\'s audio books :\n\n");
+          LinkedList<AudioBook> artistAudioBooks = this.controller.getAudioBooksByAuthor(authorsName.get(numberAuthorName));
+          output.writeObject(artistAudioBooks);
+          audioBookPlayingOrInformation(artistAudioBooks);
         } else {
-            output.writeObject(authorsName);
-            output.writeObject("\n\nEnter a name's-artist number :");
-            int numberAuthorName = (int) input.readObject();
-            if(numberAuthorName==authorsName.size()) {
-                output.writeObject("Return to the main menu");
-            } else if((numberAuthorName<authorsName.size())&&(numberAuthorName>=0)) {
-                output.writeObject("\n\t\tAll the "+authorsName.get(numberAuthorName)+"\'s songs :\n\n");
-                LinkedList<AudioBook> artistAudioBooks = this.controller.getAudioBooksByAuthor(authorsName.get(numberAuthorName));
-                output.writeObject(artistAudioBooks);
-                audioBookPlayingOrInformation(artistAudioBooks);
-            } else {
-                output.writeObject("\nInvalid number");
-            }
+          output.writeObject("\nInvalid number");
         }
+      }
     }
 
     /**
-      * Send all existing genres
+      * Send all existing genres then use the musicPlayingOrInformation method
       *
       * @exception   IOException thrown if there is an error on the input and/or output streams
       * @exception   ClassNotFoundException thrown if the class of the received stream is not known
@@ -653,29 +688,31 @@ public class JMusicHubPassiveView implements View {
       * @author      Steve Chauvreau-Manat
       */
     private void sendAllGenres() throws IOException, ClassNotFoundException { //case 12
-        output.writeObject("\t\tAll genres :");
-        LinkedList<Genre> genres = this.controller.getGenres();
-        if(genres==null) {
-            output.writeObject("\nNo genres found.\n");
+      output.writeObject("\t\tAll genres :");
+      LinkedList<Genre> genres = this.controller.getGenres();
+      if(genres==null) {
+        output.writeObject(true);
+        output.writeObject("\nNo genres found.\n");
+      } else {
+        output.writeObject(false);
+        output.writeObject(genres);
+        output.writeObject("\n\nEnter a genre number :");
+        int numberGenre = (int) input.readObject();
+        if(numberGenre==genres.size()) {
+          output.writeObject("\nReturn to the main menu\n");
+        } else if((numberGenre<genres.size())&&(numberGenre>=0)) {
+          output.writeObject("\n\t\tAll the "+genres.get(numberGenre)+"\'s songs :\n\n");
+          LinkedList<Song> songsToDisplayGenre = this.controller.getSongsByGenre(genres.get(numberGenre));
+          output.writeObject(songsToDisplayGenre);
+          musicPlayingOrInformation(songsToDisplayGenre);
         } else {
-            output.writeObject(genres);
-            output.writeObject("\n\nEnter a genre number :");
-            int numberGenre = (int) input.readObject();
-            if(numberGenre==genres.size()) {
-                output.writeObject("\nReturn to the main menu\n");
-            } else if((numberGenre<genres.size())&&(numberGenre>=0)) {
-                output.writeObject("\n\t\tAll the "+genres.get(numberGenre)+"\'s songs :\n\n");
-                LinkedList<Song> songsToDisplayGenre = this.controller.getSongsByGenre(genres.get(numberGenre));
-                output.writeObject(songsToDisplayGenre);
-                musicPlayingOrInformation(songsToDisplayGenre);
-            } else {
-                output.writeObject("\nInvalid number");
-            }
+          output.writeObject("\nInvalid number");
         }
+      }
     }
 
     /**
-     * Send all existing categories
+     * Send all existing categories then use the audioBookPlayingOrInformation method
      *
      * @exception   IOException thrown if there is an error on the input and/or output streams
      * @exception   ClassNotFoundException thrown if the class of the received stream is not known
@@ -686,29 +723,31 @@ public class JMusicHubPassiveView implements View {
      * @author      Steve Chauvreau-Manat
      */
     private void sendAllCategories() throws IOException, ClassNotFoundException { //case 13
-        output.writeObject("\t\tAll categories :");
-        LinkedList<Category> categories = this.controller.getCategories();
-        if(categories==null) {
-            output.writeObject("\nNo categories found.\n");
+      output.writeObject("\t\tAll categories :");
+      LinkedList<Category> categories = this.controller.getCategories();
+      if(categories==null) {
+        output.writeObject(true);
+        output.writeObject("\nNo categories found.\n");
+      } else {
+        output.writeObject(false);
+        output.writeObject(categories);
+        output.writeObject("\n\nEnter a category number :");
+        int numberCategory = (int) input.readObject();
+        if(numberCategory==categories.size()) {
+          output.writeObject("\nReturn to the main menu\n");
+        } else if((numberCategory<categories.size())&&(numberCategory>=0)) {
+          output.writeObject("\n\t\tAll the "+categories.get(numberCategory)+"\'s audio books :\n\n");
+          LinkedList<AudioBook> audioBooksToDisplayCategory = this.controller.getAudioBooksByCategory(categories.get(numberCategory));
+          output.writeObject(audioBooksToDisplayCategory);
+          audioBookPlayingOrInformation(audioBooksToDisplayCategory);
         } else {
-            output.writeObject(categories);
-            output.writeObject("\n\nEnter a category number :");
-            int numberCategory = (int) input.readObject();
-            if(numberCategory==categories.size()) {
-                output.writeObject("\nReturn to the main menu\n");
-            } else if((numberCategory<categories.size())&&(numberCategory>=0)) {
-                output.writeObject("\n\t\tAll the "+categories.get(numberCategory)+"\'s songs :\n\n");
-                LinkedList<AudioBook> audioBooksToDisplayCategory = this.controller.getAudioBooksByCategory(categories.get(numberCategory));
-                output.writeObject(audioBooksToDisplayCategory);
-                audioBookPlayingOrInformation(audioBooksToDisplayCategory);
-            } else {
-                output.writeObject("\nInvalid number");
-            }
+          output.writeObject("\nInvalid number");
         }
+      }
     }
 
     /**
-      * Send all existing languages
+      * Send all existing languages then use the audioBookPlayingOrInformation method
       *
       * @exception   IOException IOException thrown if there is an error on the input and/or output streams
       * @exception   ClassNotFoundException thrown if the class of the received stream is not known
@@ -722,21 +761,23 @@ public class JMusicHubPassiveView implements View {
       output.writeObject("\t\tAll languages :");
       LinkedList<Language> languages = this.controller.getLanguages();
       if(languages==null) {
+        output.writeObject(true);
         output.writeObject("\nNo languages found.\n");
       } else {
-      output.writeObject(languages);
-      output.writeObject("\n\nEnter a language number :");
-      int numberLanguage = (int) input.readObject();
-      if(numberLanguage==languages.size()) {
-        output.writeObject("\nReturn to the main menu\n");
-      } else if((numberLanguage<languages.size())&&(numberLanguage>=0)) {
-        output.writeObject("\n\t\tAll the "+languages.get(numberLanguage)+"\'s songs :\n\n");
-        LinkedList<AudioBook> audioBooksToDisplayLanguage = this.controller.getAudioBooksByLanguage(languages.get(numberLanguage));
-        output.writeObject(audioBooksToDisplayLanguage);
-        audioBookPlayingOrInformation(audioBooksToDisplayLanguage);
-      } else {
-        output.writeObject("\nInvalid number");
+        output.writeObject(false);
+        output.writeObject(languages);
+        output.writeObject("\n\nEnter a language number :");
+        int numberLanguage = (int) input.readObject();
+        if(numberLanguage==languages.size()) {
+          output.writeObject("\nReturn to the main menu\n");
+        } else if((numberLanguage<languages.size())&&(numberLanguage>=0)) {
+          output.writeObject("\n\t\tAll the "+languages.get(numberLanguage)+"\'s audio books :\n\n");
+          LinkedList<AudioBook> audioBooksToDisplayLanguage = this.controller.getAudioBooksByLanguage(languages.get(numberLanguage));
+          output.writeObject(audioBooksToDisplayLanguage);
+          audioBookPlayingOrInformation(audioBooksToDisplayLanguage);
+        } else {
+          output.writeObject("\nInvalid number");
+        }
       }
     }
-  }
 }

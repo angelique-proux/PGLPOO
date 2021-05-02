@@ -44,7 +44,7 @@ public class Client {
 			int port = 6666;
 			//create the socket; it is defined by an remote IP address (the address of the server) and a port number
 			this.socket = new Socket(ip, port);
-			JMusicHubClientView clientView = new JMusicHubClientView(this.socket,ip,port);
+			View clientView = new JMusicHubClientView(this.socket,ip,port);
 			clientView.display();
 		} catch(UnknownHostException uhe) {
 			uhe.printStackTrace();
