@@ -70,7 +70,7 @@ public class JMusicHubController implements Controller {
      * Album constructor
      * Initialize all the attributes and fill the lists by reading the XML files
      *
-     * @param    model //TODO
+     * @param    model Model interfacing with the controller
      *
      * @author   Gaël Lejeune
      */
@@ -115,9 +115,9 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Displays all the registered audio elements
+     * Returnss all the registered audio elements
      *
-     * @return       LinkedList //TODO
+     * @return       LinkedList List of all the audio elements
      *
      * @see         Album
      * @author      Gaël Lejeune
@@ -127,9 +127,9 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Displays all the registered albums
+     * Returnss all the registered albums
      *
-     * @return       LinkedList //TODO
+     * @return       LinkedList List of all the registered albums
      *
      * @see         Album
      * @author      Gaël Lejeune
@@ -139,9 +139,9 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Displays all the registered playlists
+     * Returnss all the registered playlists
      *
-     * @return       LinkedList //TODO
+     * @return       LinkedList List of all the playlists
      *
      * @see         Playlist
      * @author      Gaël Lejeune
@@ -153,8 +153,8 @@ public class JMusicHubController implements Controller {
     /**
      * Asks and displays an specific registered album
      *
-     * @param       title //TODO
-     * @return      Album //TODO
+     * @param       title Title of the desired album
+     * @return      Album Desired album
      *
      * @see         Album
      * @author      Gaël Lejeune
@@ -173,8 +173,8 @@ public class JMusicHubController implements Controller {
     /**
      * Asks and displays an specific registered playlist
      *
-     * @param       name //TODO
-     * @return      Playlist //TODO
+     * @param       name Name of the desired playlist
+     * @return      Playlist Desired playlist
      *
      * @see         Playlist
      * @author      Gaël Lejeune
@@ -286,10 +286,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Display all audio books ordered by author
+     * Returns all audio books ordered by author
      *
-     * @param		  artist //TODO
-     * @return		  LinkedList //TODO
+     * @param		    artist Desired artist
+     * @return		  LinkedList List of the artist's songs
      *
      * @see         AudioBook
      * @author      Gaël Lejeune and Steve Chauvreau-Manat
@@ -311,10 +311,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Display all audio books ordered by genre
+     * Returns all audio books ordered by genre
      *
-     * @param		  genre //TODO
-     * @return		  LinkedList of registered genres
+     * @param		    genre Desired genre
+     * @return		  LinkedList List of the songs with the corresponding genre
      *
      * @see         AudioBook
      * @author      Gaël Lejeune and Steve Chauvreau-Manat
@@ -336,10 +336,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Display all audio books ordered by author
+     * Returns all audio books ordered with a certain language
      *
-     * @param		  language //TODO
-     * @return		  LinkedList of registered languages
+     * @param		    language Desired language
+     * @return		  LinkedList List of the elements with corresponding language
      *
      * @see         AudioBook
      * @author      Gaël Lejeune and Steve Chauvreau-Manat
@@ -361,10 +361,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Display all audio books ordered by author
+     * Returns all audio books ordered with a certain category
      *
-     * @param		  category //TODO
-     * @return		  LinkedList of registered categories
+     * @param		    category Desired category
+     * @return		  LinkedList List of audiobooks with corresponding category
      *
      * @see         AudioBook
      * @author      Gaël Lejeune and Steve Chauvreau-Manat
@@ -386,10 +386,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Display all audio books ordered by author
+     * Returns all audio books ordered by author
      *
-     * @param		  author //TODO
-     * @return		  LinkedList //TODO
+     * @param		    author Desired author
+     * @return		  LinkedList List of all audiobooks from the specified author
      *
      * @see         AudioBook
      * @author      Gaël Lejeune and Steve Chauvreau-Manat
@@ -411,7 +411,7 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Display the album list ordered by release date
+     * Returns the album list ordered by release date
      *
      * @return		  LinkedList List of the albums, ordered by release date
      * @throws		  Exception Thrown when the date is not a real one
@@ -449,7 +449,7 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Display the song list of an asked album, ordered by genre
+     * Returns the song list of an asked album, ordered by genre
      *
      * @param		    title Requested album's title
      * @return		  LinkedList List of the album songs ordered by genre
@@ -489,9 +489,9 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Displays information and help about various commands
+     * Returns information and help about various commands
      *
-     * @return String //TODO
+     * @return String Help about various commands in passive mod
      *
      * @author Steve Chauvreau-Manat
      */
@@ -515,9 +515,9 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Displays information and help about various commands
+     * Returns information and help about various commands
      *
-     * @return String //TODO
+     * @return String Help about various commands in active mod
      *
      * @author Steve Chauvreau-Manat
      */
