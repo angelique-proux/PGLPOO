@@ -115,6 +115,8 @@ public class Playlist implements AudioList {
 	 */
 	@Override
 	public void addAudio(Audio audio) {
-		this.audios.add(audio);
+		if (this.audios.indexOf(audio)==-1) {
+			this.audios.add(audio);
+		}
 	}
 }

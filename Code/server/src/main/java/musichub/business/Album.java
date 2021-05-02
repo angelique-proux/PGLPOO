@@ -152,7 +152,9 @@ public class Album implements AudioList {
      */
     @Override
     public void addAudio(Audio audio) {
-        this.songs.add((Song)audio);
+        if (this.songs.indexOf(audio)==-1) {
+            this.songs.add((Song)audio);
+        }
     }
 
 }
