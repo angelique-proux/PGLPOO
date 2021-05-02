@@ -27,11 +27,6 @@ import java.sql.Timestamp;
 public class SingletonFileLogger implements ILogger
 {
     /**
-     * Execution path of the program
-     */
-    private final String DIR = System.getProperty("user.dir");
-
-    /**
      * log file path
      */
     private final String LOGS_FILE_PATH = "log.txt";
