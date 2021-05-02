@@ -63,8 +63,8 @@ public class MusicThread extends Thread implements IMusicThread {
   /**
    * set MusicThread parameters
    *
-   * @param ip TODO
-   * @param port TODO
+   * @param ip Server's ip
+   * @param port Server's open port
    *
    * @author    Angélique Proux
    */

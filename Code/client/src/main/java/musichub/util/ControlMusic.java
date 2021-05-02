@@ -1,7 +1,7 @@
 /*
  * Interface's name : ControlMusic
  *
- * Description      : TODO
+ * Description      : Interface for classes that control the playback of one audio at a time
  *
  * Version          : 1.0
  *

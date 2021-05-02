@@ -1,7 +1,7 @@
 /*
  * Class' name : ControlMusicList
  *
- * Description : TODO
+ * Description : Class that controls the playback of one audio at a time
  *
  * Version     : 1.0
  *
