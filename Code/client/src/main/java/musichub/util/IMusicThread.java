@@ -1,3 +1,15 @@
+/*
+ * Interface's names : IMusicThread
+ *
+ * Description 	: TODO
+ *
+ * Version      : 1.0
+ *
+ * Date         : 13/04/2021
+ *
+ * Copyright    : Steve Chauvreau-Manat and Gaël Lejeune and Angélique Proux and Antonin Morcrette
+ */
+
 package musichub.util;
 
 /**
@@ -8,7 +20,6 @@ package musichub.util;
  * @see Thread
  * @author Angélique Proux
  */
-
 public interface IMusicThread {
 
     /**

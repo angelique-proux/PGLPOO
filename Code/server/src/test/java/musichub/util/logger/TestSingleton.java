@@ -18,10 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestSingleton {
 
   @Test
-  void TestSingleton() {
+  void TestFileLogging() {
     ILogger sfl = SingletonFileLogger.getInstance();
-
-
 
     try {
       Scanner scanner1 = new Scanner(new File("log.txt"));
@@ -68,10 +66,9 @@ public class TestSingleton {
       System.out.println(e.getMessage());
     }
   }
-  
+
   @Test
   void testGetInstance(){
-    //Check for the case where an instance already exists
     ILogger sfl = SingletonFileLogger.getInstance();
   }
 }

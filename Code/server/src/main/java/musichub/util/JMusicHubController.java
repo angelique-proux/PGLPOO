@@ -70,7 +70,7 @@ public class JMusicHubController implements Controller {
      * Album constructor
      * Initialize all the attributes and fill the lists by reading the XML files
      *
-     * @param    model //TODO
+     * @param    model Required database editing model file
      *
      * @author   Gaël Lejeune
      */
@@ -93,7 +93,7 @@ public class JMusicHubController implements Controller {
      * Album constructor
      * Initialize all the attributes and fill the lists by reading the XML files
      *
-     * @param       model //TODO
+     * @param       model Required database editing model file
      * @param       socket //TODO
      * @param       port //TODO
      *
@@ -117,7 +117,7 @@ public class JMusicHubController implements Controller {
     /**
      * Displays all the registered audio elements
      *
-     * @return       LinkedList //TODO
+     * @return       LinkedList List containing all the registered elements
      *
      * @see         Album
      * @author      Gaël Lejeune
@@ -129,7 +129,7 @@ public class JMusicHubController implements Controller {
     /**
      * Displays all the registered albums
      *
-     * @return       LinkedList //TODO
+     * @return       LinkedList List containing all the registered albums
      *
      * @see         Album
      * @author      Gaël Lejeune
@@ -141,7 +141,7 @@ public class JMusicHubController implements Controller {
     /**
      * Displays all the registered playlists
      *
-     * @return       LinkedList //TODO
+     * @return       LinkedList List containing all the registered playlists
      *
      * @see         Playlist
      * @author      Gaël Lejeune
@@ -153,8 +153,8 @@ public class JMusicHubController implements Controller {
     /**
      * Asks and displays an specific registered album
      *
-     * @param       title //TODO
-     * @return      Album //TODO
+     * @param       title Desired album title
+     * @return      Album Desired album
      *
      * @see         Album
      * @author      Gaël Lejeune
@@ -173,8 +173,8 @@ public class JMusicHubController implements Controller {
     /**
      * Asks and displays an specific registered playlist
      *
-     * @param       name //TODO
-     * @return      Playlist //TODO
+     * @param       name Desired playlist name
+     * @return      Playlist Desired playlist
      *
      * @see         Playlist
      * @author      Gaël Lejeune
@@ -288,8 +288,8 @@ public class JMusicHubController implements Controller {
     /**
      * Display all audio books ordered by author
      *
-     * @param		  artist //TODO
-     * @return		  LinkedList //TODO
+     * @param		    artist Desired author
+     * @return		  LinkedList List containing all the audiobooks from specified author
      *
      * @see         AudioBook
      * @author      Gaël Lejeune and Steve Chauvreau-Manat
@@ -311,10 +311,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Display all audio books ordered by genre
+     * Display all audio books with a specific genre
      *
-     * @param		  genre //TODO
-     * @return		  LinkedList of registered genres
+     * @param		    genre Desired genre
+     * @return		  LinkedList List of all audiobooks with corresponding genre
      *
      * @see         AudioBook
      * @author      Gaël Lejeune and Steve Chauvreau-Manat
@@ -336,10 +336,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Display all audio books ordered by author
+     * Display all audio books with a specific language
      *
-     * @param		  language //TODO
-     * @return		  LinkedList of registered languages
+     * @param		    language Desired language
+     * @return		  LinkedList List of all audiobooks with corresponding language
      *
      * @see         AudioBook
      * @author      Gaël Lejeune and Steve Chauvreau-Manat
@@ -361,10 +361,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Display all audio books ordered by author
+     * Display all audio books with a specific category
      *
-     * @param		  category //TODO
-     * @return		  LinkedList of registered categories
+     * @param		    category Desired category
+     * @return		  LinkedList List of all audiobooks with corresponding category
      *
      * @see         AudioBook
      * @author      Gaël Lejeune and Steve Chauvreau-Manat
@@ -386,10 +386,10 @@ public class JMusicHubController implements Controller {
     }
 
     /**
-     * Display all audio books ordered by author
+     * Display all audio books from a specified author
      *
-     * @param		  author //TODO
-     * @return		  LinkedList //TODO
+     * @param		    author Desired author
+     * @return		  LinkedList List of all the audiobooks from the specified author
      *
      * @see         AudioBook
      * @author      Gaël Lejeune and Steve Chauvreau-Manat
@@ -413,7 +413,7 @@ public class JMusicHubController implements Controller {
     /**
      * Display the album list ordered by release date
      *
-     * @return		  LinkedList //TODO
+     * @return		  LinkedList List of the albums, ordered by release date
      * @throws		  Exception //TODO
      *
      * @exception   Exception Thrown the given String cannot be converted to date.
@@ -451,7 +451,7 @@ public class JMusicHubController implements Controller {
     /**
      * Display the song list of an asked album, ordered by genre
      *
-     * @param		  title //TODO
+     * @param		    title //TODO
      * @return		  LinkedList //TODO
      *
      * @see         Album
@@ -491,7 +491,7 @@ public class JMusicHubController implements Controller {
     /**
      * Displays information and help about various commands
      *
-     * @return String //TODO
+     * @return String Text detailing the program's commands
      *
      * @author Steve Chauvreau-Manat
      */
@@ -517,7 +517,7 @@ public class JMusicHubController implements Controller {
     /**
      * Displays information and help about various commands
      *
-     * @return String //TODO
+     * @return String Text detailing the program's commands
      *
      * @author Steve Chauvreau-Manat
      */
