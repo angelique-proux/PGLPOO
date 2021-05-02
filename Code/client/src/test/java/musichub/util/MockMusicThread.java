@@ -48,6 +48,14 @@ public class MockMusicThread extends Thread implements IMusicThread {
     public MockMusicThread() {
     }
 
+    /**
+     * set MusicThread parameters
+     *
+     * @param   ip      Server's open port
+     * @param   port    Server's ip
+     *
+     * @author    Angélique Proux
+     */
     public void setMusicThread(String ip, int port) {
         this.ip = ip;
         this.port = port;
@@ -90,7 +98,8 @@ public class MockMusicThread extends Thread implements IMusicThread {
      * Pause the music
      * @author      Steve Chauvreau-Manat
      */
-    public void pause() {}
+    public void pause() {
+    }
 
     /**
      * Restarts the music if it has been paused
@@ -114,4 +123,5 @@ public class MockMusicThread extends Thread implements IMusicThread {
     public boolean isFinished(){
         return this.finished;
     }
+
 }
