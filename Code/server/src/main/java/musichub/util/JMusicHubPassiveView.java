@@ -15,6 +15,10 @@ package musichub.util;
 import musichub.business.*;
 import musichub.business.exceptions.*;
 import musichub.business.*;
+import musichub.util.logger.ILogger;
+import musichub.util.logger.Level;
+import musichub.util.logger.SingletonConsoleLogger;
+import musichub.util.logger.SingletonFileLogger;
 import musichub.util.musicplayer.*;
 import java.util.Date;
 import java.util.LinkedList;
@@ -156,7 +160,6 @@ public class JMusicHubPassiveView implements View {
 
                     case "q" :// Quit the application
                       output.writeObject("\t\t Thank you for you time, have a nice day!\n\t\t\t\t\tSigned by Gael LEJEUNE, Angelique PROUX,\n\t\t\t\t\tAntonin MORCRETTE et Steve CHAUVREAU-MANAT.\n\n\n");
-                      System.out.println("Client disconnected");
                       break;
 
                     case "h" ://Display the help
@@ -168,11 +171,18 @@ public class JMusicHubPassiveView implements View {
                       break;
                 }
                 if(command.equals("q")) {
+                    ILogger flogger = SingletonFileLogger.getInstance();
+                    ILogger clogger = SingletonConsoleLogger.getInstance();
+                    flogger.write(Level.INFO, "Client disconnected");
+                    clogger.write(Level.INFO, "Client disconnected");
                     break;
                 }
             }
         } catch (IOException ex) {
-            System.out.println("Server exception: " + ex.getMessage());
+            ILogger flogger = SingletonFileLogger.getInstance();
+            ILogger clogger = SingletonConsoleLogger.getInstance();
+            flogger.write(Level.ERROR, "Client disconnected ; error occured");
+            clogger.write(Level.ERROR, "Client disconnected ; error : ");
             ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
             System.out.println("Server exception: " + ex.getMessage());
@@ -199,19 +209,16 @@ public class JMusicHubPassiveView implements View {
      * @author      Angelique Proux
      */
     private void listenToSomeMusic(int listSize) throws IOException, ClassNotFoundException {
-        output.writeObject("Envoi de la musique à écouter");
         output.writeObject(listSize);
         for (int i = 0; i < listSize; i++) {
             output.writeObject(true);
             contMus.playMusicList(i);
-            System.out.println("Musique " + i + " envoyée");
             String choix = (String) input.readObject();
             switch (choix) {
                 case "next":
                     if (i != (listSize - 1)) {
                         output.writeObject("next");
                         contMus.stopMusic();
-                        System.out.println("suivante");
                     } else {
                         output.writeObject("end");
                         contMus.stopMusic();
@@ -227,7 +234,6 @@ public class JMusicHubPassiveView implements View {
                         // sinon, écouter celle d'après
                         output.writeObject("next");
                     }
-                    System.out.println("précédente");
                     break;
                 case "listen":
                     output.writeObject("listen");
@@ -241,7 +247,6 @@ public class JMusicHubPassiveView implements View {
                     break;
             }
         }
-        System.out.println("Fin");
     }
 
     /**
@@ -288,7 +293,7 @@ public class JMusicHubPassiveView implements View {
         output.writeObject("Which one would you like to hear? (Enter the number)\nEnter '-1' if you want to listen to everything");
         int number = ((int) input.readObject());
         if(number<songs.size()&&(number>=0)) {
-            output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More informtion");
+            output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More information");
             if(((String) input.readObject()).equals("1")) {
                 output.writeObject(true);
                 this.contMus.addAudio(songs.get(number));
@@ -317,7 +322,7 @@ public class JMusicHubPassiveView implements View {
       output.writeObject("Which one would you like to hear? (Enter the number)\nEnter '-1' if you want to listen to everything");
       int number = ((int) input.readObject());
       if(number<audioBooks.size()&&(number>=0)) {
-        output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More informtion");
+        output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More information");
         if(((String) input.readObject()).equals("1")) {
           output.writeObject(true);
           this.contMus.addAudio(audioBooks.get(number));
@@ -345,7 +350,7 @@ public class JMusicHubPassiveView implements View {
       output.writeObject("Which one would you like to hear? (Enter the number)");
       int number = ((int) input.readObject());
       if(number<albums.size()&&(number>=0)) {
-        output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More informtion");
+        output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More information");
         if(((String) input.readObject()).equals("1")) {
           output.writeObject(true);
           musicPlayingOrInformation(albums.get(number).getSongs());
@@ -369,7 +374,7 @@ public class JMusicHubPassiveView implements View {
       output.writeObject("Which one would you like to hear? (Enter the number)");
       int number = ((int) input.readObject());
       if(number<playlists.size()&&(number>=0)) {
-        output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More informtion");
+        output.writeObject("What do you want? (Enter the number)\n1- Listen the song\n2- More information");
         if(((String) input.readObject()).equals("1")) {
           output.writeObject(true);
           audioPlayingOrInformation(playlists.get(number).getAudios());
@@ -469,7 +474,7 @@ public class JMusicHubPassiveView implements View {
       } else {
         output.writeObject(false);
         output.writeObject(album);
-        output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
+        output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More information");
         if(((String) input.readObject()).equals("1")) {
           output.writeObject(true);
           this.contMus.addSongs(album.getSongs());
@@ -501,7 +506,7 @@ public class JMusicHubPassiveView implements View {
       } else {
         output.writeObject(false);
         output.writeObject(playlist);
-        output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More informtion");
+        output.writeObject("What do you want? (Enter the number)\n1- Listen the album\n2- More information");
         if(((String) input.readObject()).equals("1")) {
           output.writeObject(true);
           this.contMus.addAudios(playlist.getAudios());

@@ -15,6 +15,10 @@ package musichub.util.server;
 import java.net.*;
 import musichub.util.*;
 import musichub.business.*;
+import musichub.util.logger.ILogger;
+import musichub.util.logger.Level;
+import musichub.util.logger.SingletonConsoleLogger;
+import musichub.util.logger.SingletonFileLogger;
 
 /**
  * ServerThread This thread is responsible to handle client connection.
@@ -57,5 +61,7 @@ public class ServerThread extends Thread {
     public void run() {
         Model model = new JMusicHubModel();
         Controller controller = new JMusicHubController(model,this.socket,this.port);
+
+        System.out.println("\n\nListening");
     }
 }
