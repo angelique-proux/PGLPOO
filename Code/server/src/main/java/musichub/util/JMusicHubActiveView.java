@@ -754,7 +754,7 @@ public class JMusicHubActiveView implements View {
     /**
      * Asks the information about a song to add it to the audio elements
      *
-     * @param       scanner scan a specific input to receive information from the user
+     * @param       scan Scans a specific input to receive information from the user
      *
      * @see         JMusicHubController
      * @see         Song
@@ -806,7 +806,7 @@ public class JMusicHubActiveView implements View {
     /**
      * Asks the information about an audio book to add it to the audio elements
      *
-     * @param       scanner scan a specific input to receive information from the user
+     * @param       scan Scans a specific input to receive information from the user
      *
      * @see         JMusicHubController
      * @see         AudioBook
@@ -869,7 +869,7 @@ public class JMusicHubActiveView implements View {
     /**
      * Asks the information about an album to add it to the audio elements
      *
-     * @param       scanner scan a specific input to receive information from the user
+     * @param       scan Scans a specific input to receive information from the user
      *
      * @see         JMusicHubController
      * @see         Song

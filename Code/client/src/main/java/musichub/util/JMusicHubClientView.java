@@ -29,7 +29,7 @@ import java.util.LinkedList;
 public class JMusicHubClientView implements View {
 		/**
 		 * Contains all the methods used to play an audio
-		 * @see ControlMusicList
+		 * @see ControlMusic
 		 */
     private ControlMusic contMus;
 

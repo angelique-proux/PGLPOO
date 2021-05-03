@@ -632,7 +632,7 @@ public class JMusicHubController implements Controller {
     /**
      * Find a playlist thanks to its name
      *
-     * @param       title the playlist's title
+     * @param       name the playlist's title
      * @return      Playlist
      *
      * @see         Playlist
@@ -689,7 +689,7 @@ public class JMusicHubController implements Controller {
     /**
      * Delete the chosen audio from a chosen playlist
      *
-     * @param       playlisttitle the name of the playlist where you want to delete a music
+     * @param       playlistTitle the name of the playlist where you want to delete a music
      * @param       audioTitle the name of the audio tou want to remove from the playlist
      * @return      boolean
      *
@@ -715,7 +715,7 @@ public class JMusicHubController implements Controller {
     /**
      * Asks and delete the chosen playlist
      *
-     * @param       title the playlist's name we want to delete
+     * @param       name the playlist's name we want to delete
      * @return      boolean
      *
      * @see         Playlist

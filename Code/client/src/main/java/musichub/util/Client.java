@@ -20,7 +20,7 @@ import java.util.Scanner;
 import java.util.LinkedList;
 
 /**
- * This thread is responsible for managing the connection with the server.
+ * Class to establish a connection with the client
  *
  * @version 1.0
  *
@@ -28,12 +28,12 @@ import java.util.LinkedList;
  */
 public class Client {
 	/**
-	 * Class to establish a connection with the client
+	 * Connection socket between the server and the client.
 	 */
 	private Socket socket;
 
 	/**
-	 * description de la méthode.
+	 * Connects the client to the server and initialize the console view
 	 *
 	 * @param	ip Server's ip
 	 *
