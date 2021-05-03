@@ -911,7 +911,47 @@ public class JMusicHubActiveView implements View {
         }
         int numberMusic = Integer.parseInt(numberSong);
         for(int i=0; i < numberMusic; i++) {
-            this.addSong(scan);
+          System.out.println("\nTitle :");
+          String titleSong = scan.nextLine();
+
+          System.out.println("\nArtist :");
+          String artistSong = scan.nextLine();
+
+          System.out.println("\nDuration (in seconds):");
+          String durationSong = scan.nextLine();
+          Pattern pattern = Pattern.compile(".*[^0-9].*");
+          while((pattern.matcher(durationSong).matches())) {
+              System.out.println("\nPlease enter a valid duration :");
+              durationSong = scan.nextLine();
+          }
+          int durationIntSong = Integer.parseInt(durationSong);
+
+          UUID uuidSong = UUID.randomUUID();
+
+          System.out.println("\nPath :");
+          String content = scan.nextLine();
+          File file = new File(content);
+          while(!file.exists()) {
+              System.out.println("\nNo such file path, try again.\nPath : ");
+              content = scan.nextLine();
+              file = new File(content);
+          }
+          System.out.println("\nGenre : (JAZZ/CLASSIQUE/HipHop/ROCK/POP/RAP/METAL)");
+          String genre = scan.nextLine().toUpperCase();
+          while(!genre.equals("JAZZ") && !genre.equals("CLASSIQUE") && !genre.equals("HIPHOP") && !genre.equals("ROCK") && !genre.equals("POP") && !genre.equals("RAP") && !genre.equals("METAL")) {
+              System.out.println("\nWrong genre, try again.\nGenre : ");
+              genre = scan.nextLine();
+              file = new File(content);
+          }
+          Genre musicGenre = Genre.valueOf(genre);
+          Song songToAdd = new Song(titleSong, artistSong, durationIntSong, uuidSong, content, musicGenre);
+          System.out.println("\nPress \"y\" to add the following song, press anything else to abort : \n" + songToAdd);
+          String answer = scan.nextLine();
+          if(answer.equals("y")) {
+              this.controller.addAudioToDataBase(songToAdd);
+              songs.add(songToAdd);
+              System.out.println("\nSong registered and added to the album.\n");
+          }
         }
         Album albumToAdd = new Album(title,artist,durationInt,date,uuid,songs);
         System.out.println("\nPress \"y\" to add the following album, press anything else to abort : \n" + albumToAdd);
@@ -972,8 +1012,8 @@ public class JMusicHubActiveView implements View {
           songname = scanner.nextLine();
           if(!songname.equals("")) {
             Audio addedAudio = this.controller.addAudioToPlaylist(playlist,songname);
-            if(addedAudio!=null) {
-              System.out.println("\nNo song found.");
+            if(addedAudio==null) {
+              System.out.println("\nNo audio found.");
             } else {
               System.out.println("\n"+addedAudio.getTitle()+" is added to the playlist "+playlist.getName());
             }
@@ -1008,8 +1048,8 @@ public class JMusicHubActiveView implements View {
         songname = scanner.nextLine();
         if(!songname.equals("")) {
           Audio addedAudio = this.controller.getAudioByTitle(songname);
-          if((addedAudio!=null)) {
-            System.out.println("\nNo song found.");
+          if((addedAudio==null)) {
+            System.out.println("\nNo audio found.");
           } else {
             System.out.println("\n"+addedAudio.getTitle()+" is added to the playlist");
             audios.add(addedAudio);

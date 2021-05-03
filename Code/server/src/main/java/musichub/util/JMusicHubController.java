@@ -543,8 +543,9 @@ public class JMusicHubController implements Controller {
         +"\nc : add a song\t\t\t|\tl : add an audiobook"
         +"\na : add an album\t\t|\tp : create a new playlist"
         +"\n+ : add a song to an album\t|\t- : delete a playlist"
-        +"\n-- : remove a song from a playlist\t|\ts : save all modifications"
-        +"\nDon't forget to save all your modifications.";
+        +"\n-- : remove an audio from a playlist\t|\ts : save all modifications"
+        +"\nDon't forget to save all your modifications."
+        +"\n----------------------------------------------------------------";
     }
 
     /**
