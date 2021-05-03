@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class TestSong {
     @Test
-    void testConstructor() {
+    void testGetters() {
         UUID musicUUID = UUID.randomUUID();
         Song music = new Song("title", "artist", 180, musicUUID, "content", Genre.RAP);
 

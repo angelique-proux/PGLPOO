@@ -348,11 +348,4 @@ import java.util.regex.Matcher;
       * @author      Gaël Lejeune
       */
      public void save();
-
-     /**
-      * Shows the different options to edit the database
-      * @see         JMusicHubModel
-      * @author      Gaël Lejeune
-      */
-     //public void editDatabase();
  }

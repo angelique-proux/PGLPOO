@@ -62,6 +62,18 @@ public class TestSingleton {
       pattern = Pattern.compile("\\[[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]*\\] - INFO - Ceci est une info");
       assertTrue(pattern.matcher(line).matches());
       scanner3.close();
+
+
+      Scanner scanner4 = new Scanner(new File("log.txt"));
+      line = null;
+      sfl.write(Level.INFO, "!;:$/s5");
+      while (scanner4.hasNextLine()) {
+        line = scanner4.nextLine();
+      }
+      System.out.println(line);
+      pattern = Pattern.compile("\\[[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]*\\] - INFO - !;:\\$/s5");
+      assertTrue(pattern.matcher(line).matches());
+      scanner4.close();
     } catch (FileNotFoundException e) {
       System.out.println(e.getMessage());
     }
@@ -70,5 +82,6 @@ public class TestSingleton {
   @Test
   void testGetInstance(){
     ILogger sfl = SingletonFileLogger.getInstance();
+    assertNotEquals(sfl, null);
   }
 }
