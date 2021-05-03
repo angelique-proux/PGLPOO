@@ -13,6 +13,7 @@
 package musichub.util;
 
 import musichub.business.*;
+import java.io.File;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -20,6 +21,8 @@ import java.util.UUID;
 import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import musichub.util.logger.*;
+
 
 /**
  * JMusicHubActiveView is the view used when the server is in active mod
@@ -61,6 +64,7 @@ public class JMusicHubActiveView implements View {
         String[] command = new String[2];
         String input;
         while(true) {
+            System.out.println("Menu JMusicHub");
             input = scanner.nextLine();
             if(input.contains(" ")) {
               command = input.split(" ");
@@ -69,63 +73,91 @@ public class JMusicHubActiveView implements View {
             }
             switch(command[0]) {
                 case "1" : //Show all Elements
-                  showAllElements(command[1],numberObjectByPage);
+                  this.showAllElements(command[1],numberObjectByPage);
                   break;
 
                 case "2" : //Show all Albums
-                  showAllAlbums(command[1],numberObjectByPage);
+                  this.showAllAlbums(command[1],numberObjectByPage);
                   break;
 
                 case "3" : // Show all playlists
-                  showAllPlaylists(command[1],numberObjectByPage);
+                  this.showAllPlaylists(command[1],numberObjectByPage);
                   break;
 
                 case "4" : // Select and show an album
-                  selectShowAlbum(scanner);
+                  this.selectShowAlbum(scanner);
                   break;
 
                 case "5" : // Select and show a playlist
-                  selectShowPlaylist(scanner);
+                  this.selectShowPlaylist(scanner);
                   break;
 
                 case "6" : // Select and show all selected artist's songs
-                  selectShowArtistSongs(scanner,command[1],numberObjectByPage);
+                  this.selectShowArtistSongs(scanner,command[1],numberObjectByPage);
                   break;
 
                 case "7" : // Select all author's audiobooks
-                  selectAuthorAudiobooks(scanner,command[1],numberObjectByPage);
+                  this.selectAuthorAudiobooks(scanner,command[1],numberObjectByPage);
                   break;
 
                 case "8" : // Show all albums release by date
-                  showAllAlbumsReleaseByDate(command[1],numberObjectByPage);
+                  this.showAllAlbumsReleaseByDate(command[1],numberObjectByPage);
                   break;
 
                 case "9" : // Show all songs sorted by genre
-                  showAllSongsSortedByGenre(scanner);
+                  this.showAllSongsSortedByGenre(scanner);
                   break;
 
                 case "10": //Show all Artists
-                  showAllArtists(scanner);
+                  this.showAllArtists(scanner);
                   break;
 
                 case "11": //Show all Authors
-                  showAllAuthors(scanner);
+                  this.showAllAuthors(scanner);
                   break;
 
                 case "12": //Show all Genres
-                  showAllGenres(scanner);
+                  this.showAllGenres(scanner);
                   break;
 
                 case "13": //Show all Categories
-                  showAllCategories(scanner);
+                  this.showAllCategories(scanner);
                   break;
 
                 case "14": //Show all Languages
-                  showAllLanguages(scanner);
+                  this.showAllLanguages(scanner);
                   break;
 
-                case "edit" : // Change the content of the application
-                  this.controller.editDatabase();
+                case "c": //add a song
+                  this.addSong(scanner);
+                  break;
+
+                case "a": //add an album
+                  this.addAlbum(scanner);
+                  break;
+
+                case "+": //add an existing song to an existing album
+                  this.addSongToAlbum(scanner);
+                  break;
+
+                case "l": //add an audio book
+                  this.addAudioBook(scanner);
+                  break;
+
+                case "p":
+                  this.createPlaylistFromExisting(scanner);
+                  break;
+
+                case "-":
+                  this.deletePlaylist(scanner);
+                  break;
+
+                case "--":
+                  this.removeSongFromPlaylist(scanner);
+                  break;
+
+                case "s":
+                  this.save();
                   break;
 
                 case "q" :// Quit the application
@@ -155,16 +187,16 @@ public class JMusicHubActiveView implements View {
      */
     private void showAllElements(String command,int numberObjectByPage) {
       int numberElements;
+      System.out.println(command);
       LinkedList<Audio> audios = this.controller.getElements();
       if(audios!=null) {
         if(audios.size()>numberObjectByPage) {
           if(command==null) {
             numberElements = numberObjectByPage;
           } else {
-            Pattern pattern = Pattern.compile(".*[^0-9].*");
-            if(pattern.matcher(command).matches()) {
+            try {
               numberElements = Integer.parseInt(command)*numberObjectByPage;
-            } else {
+            } catch(NumberFormatException nfe) {
               System.out.println("The second parameter isn't a number, please the next time enter a number");
               numberElements = numberObjectByPage;
             }
@@ -207,10 +239,9 @@ public class JMusicHubActiveView implements View {
           if(command==null) {
             numberAlbums = numberObjectByPage;
           } else {
-            Pattern pattern = Pattern.compile(".*[^0-9].*");
-            if(pattern.matcher(command).matches()) {
+            try {
               numberAlbums = Integer.parseInt(command)*numberObjectByPage;
-            } else {
+            } catch(NumberFormatException nfe) {
               System.out.println("The second parameter isn't a number, please the next time enter a number");
               numberAlbums = numberObjectByPage;
             }
@@ -253,10 +284,9 @@ public class JMusicHubActiveView implements View {
           if(command==null) {
             numberPlaylists = numberObjectByPage;
           } else {
-            Pattern pattern = Pattern.compile(".*[^0-9].*");
-            if(pattern.matcher(command).matches()) {
+            try {
               numberPlaylists = Integer.parseInt(command)*numberObjectByPage;
-            } else {
+            } catch(NumberFormatException nfe) {
               System.out.println("The second parameter isn't a number, please the next time enter a number");
               numberPlaylists = numberObjectByPage;
             }
@@ -344,10 +374,9 @@ public class JMusicHubActiveView implements View {
           if(command==null) {
             numberSongs = numberObjectByPage;
           } else {
-            Pattern pattern = Pattern.compile(".*[^0-9].*");
-            if(pattern.matcher(command).matches()) {
+            try {
               numberSongs = Integer.parseInt(command)*numberObjectByPage;
-            } else {
+            } catch(NumberFormatException nfe) {
               System.out.println("The second parameter isn't a number, please the next time enter a number");
               numberSongs = numberObjectByPage;
             }
@@ -393,10 +422,9 @@ public class JMusicHubActiveView implements View {
           if(command==null) {
             numberAudioBooks = numberObjectByPage;
           } else {
-            Pattern pattern = Pattern.compile(".*[^0-9].*");
-            if(pattern.matcher(command).matches()) {
+            try {
               numberAudioBooks = Integer.parseInt(command)*numberObjectByPage;
-            } else {
+            } catch(NumberFormatException nfe) {
               System.out.println("The second parameter isn't a number, please the next time enter a number");
               numberAudioBooks = numberObjectByPage;
             }
@@ -440,10 +468,9 @@ public class JMusicHubActiveView implements View {
             if(command==null) {
               numberAlbums = numberObjectByPage;
             } else {
-              Pattern pattern = Pattern.compile(".*[^0-9].*");
-              if(pattern.matcher(command).matches()) {
+              try {
                 numberAlbums = Integer.parseInt(command)*numberObjectByPage;
-              } else {
+              } catch(NumberFormatException nfe) {
                 System.out.println("The second parameter isn't a number, please the next time enter a number");
                 numberAlbums = numberObjectByPage;
               }
@@ -519,8 +546,7 @@ public class JMusicHubActiveView implements View {
         System.out.println("\n"+artistsName.size()+"- None");
         System.out.println("\n\nEnter a name's-artist number :");
         String number = scanner.nextLine();
-        Pattern pattern = Pattern.compile(".*[^0-9].*");
-        if(pattern.matcher(number).matches()) {
+        try {
             int numberArtistName = Integer.parseInt(number);
             if(numberArtistName==artistsName.size()) {
             System.out.println("Return to the main menu");
@@ -537,9 +563,9 @@ public class JMusicHubActiveView implements View {
               } else {
                   System.out.println("\nInvalid number");
               }
-          } else {
+          } catch(NumberFormatException nfe) {
             System.out.println("This is not a number.");
-        }
+          }
 
       } else {
         System.out.println("\nNo artist with this name found in the database");
@@ -564,21 +590,26 @@ public class JMusicHubActiveView implements View {
         }
         System.out.println("\n"+authorsName.size()+"- None");
         System.out.println("\n\nEnter a name's-author number :");
-        int numberAuthorName = Integer.parseInt(scanner.nextLine());
-        if(numberAuthorName==authorsName.size()) {
-          System.out.println("Return to the main menu");
-        } else if((numberAuthorName<authorsName.size())&&(numberAuthorName>=0)) {
-          LinkedList<AudioBook> booksToDisplayAuthor = this.controller.getAudioBooksByAuthor(authorsName.get(numberAuthorName));
-          if(booksToDisplayAuthor!=null) {
-            System.out.println("\n\t\tAll the "+authorsName.get(numberAuthorName)+"\'s audio books :\n\n");
-            for (int i = 0; i < booksToDisplayAuthor.size(); i++) {
-              System.out.println("\n" + booksToDisplayAuthor.get(i));
+        String number = scanner.nextLine();
+        try {
+          int numberAuthorName = Integer.parseInt(number);
+          if(numberAuthorName==authorsName.size()) {
+            System.out.println("Return to the main menu");
+          } else if((numberAuthorName<authorsName.size())&&(numberAuthorName>=0)) {
+            LinkedList<AudioBook> booksToDisplayAuthor = this.controller.getAudioBooksByAuthor(authorsName.get(numberAuthorName));
+            if(booksToDisplayAuthor!=null) {
+              System.out.println("\n\t\tAll the "+authorsName.get(numberAuthorName)+"\'s audio books :\n\n");
+              for (int i = 0; i < booksToDisplayAuthor.size(); i++) {
+                System.out.println("\n" + booksToDisplayAuthor.get(i));
+              }
+            } else {
+              System.out.println("\nNo audio book from this author in the database");
             }
           } else {
-            System.out.println("\nNo audio book from this author in the database");
+            System.out.println("\nInvalid number");
           }
-        } else {
-          System.out.println("\nInvalid number");
+        } catch(NumberFormatException nfe) {
+          System.out.println("This is not a number.");
         }
       } else {
         System.out.println("\nNo author with this name found in the database");
@@ -604,21 +635,26 @@ public class JMusicHubActiveView implements View {
         }
         System.out.println("\n"+genres.size()+"- None");
         System.out.println("\n\nEnter a genre's number :");
-        int numberGenre = Integer.parseInt(scanner.nextLine());
-        if(numberGenre==genres.size()) {
-          System.out.println("Return to the main menu");
-        } else if((numberGenre<genres.size())&&(numberGenre>=0)) {
-          LinkedList<Song> songsToDisplayGenre = this.controller.getSongsByGenre(genres.get(numberGenre));
-          if(songsToDisplayGenre!=null) {
-            System.out.println("\n\t\tAll the "+genres.get(numberGenre)+"\'s songs :\n\n");
-            for (int i = 0; i < songsToDisplayGenre.size(); i++) {
-              System.out.println("\n" + songsToDisplayGenre.get(i));
+        String number = scanner.nextLine();
+        try {
+          int numberGenre = Integer.parseInt(number);
+          if(numberGenre==genres.size()) {
+            System.out.println("Return to the main menu");
+          } else if((numberGenre<genres.size())&&(numberGenre>=0)) {
+            LinkedList<Song> songsToDisplayGenre = this.controller.getSongsByGenre(genres.get(numberGenre));
+            if(songsToDisplayGenre!=null) {
+              System.out.println("\n\t\tAll the "+genres.get(numberGenre)+"\'s songs :\n\n");
+              for (int i = 0; i < songsToDisplayGenre.size(); i++) {
+                System.out.println("\n" + songsToDisplayGenre.get(i));
+              }
+            } else {
+              System.out.println("\nNo song with this genre found in the database");
             }
           } else {
-            System.out.println("\nNo song with this genre found in the database");
+            System.out.println("\nInvalid number");
           }
-        } else {
-          System.out.println("\nInvalid number");
+        } catch(NumberFormatException nfe) {
+          System.out.println("This is not a number.");
         }
       } else {
         System.out.println("\nNo genre find in the database");
@@ -644,21 +680,26 @@ public class JMusicHubActiveView implements View {
         }
         System.out.println("\n"+categories.size()+"- None");
         System.out.println("\n\nEnter a catagory's number :");
-        int numberCategory = Integer.parseInt(scanner.nextLine());
-        if(numberCategory==categories.size()) {
-          System.out.println("Return to the main menu");
-        } else if((numberCategory<categories.size())&&(numberCategory>=0)) {
-          LinkedList<AudioBook> audioBooksToDisplayCategory = this.controller.getAudioBooksByCategory(categories.get(numberCategory));
-          if(audioBooksToDisplayCategory!=null) {
-            System.out.println("\n\t\tAll the "+categories.get(numberCategory)+"\'s audio books :\n\n");
-            for (int i = 0; i < audioBooksToDisplayCategory.size(); i++) {
-                System.out.println("\n" + audioBooksToDisplayCategory.get(i));
+        String number = scanner.nextLine();
+        try {
+          int numberCategory = Integer.parseInt(number);
+          if(numberCategory==categories.size()) {
+            System.out.println("Return to the main menu");
+          } else if((numberCategory<categories.size())&&(numberCategory>=0)) {
+            LinkedList<AudioBook> audioBooksToDisplayCategory = this.controller.getAudioBooksByCategory(categories.get(numberCategory));
+            if(audioBooksToDisplayCategory!=null) {
+              System.out.println("\n\t\tAll the "+categories.get(numberCategory)+"\'s audio books :\n\n");
+              for (int i = 0; i < audioBooksToDisplayCategory.size(); i++) {
+                  System.out.println("\n" + audioBooksToDisplayCategory.get(i));
+              }
+            } else {
+              System.out.println("\nNo audio book with this category found in the database");
             }
           } else {
-            System.out.println("\nNo audio book with this category found in the database");
+            System.out.println("\nInvalid number");
           }
-        } else {
-          System.out.println("\nInvalid number");
+        } catch(NumberFormatException nfe) {
+          System.out.println("This is not a number.");
         }
       } else {
         System.out.println("\nNo category found in the database");
@@ -684,24 +725,375 @@ public class JMusicHubActiveView implements View {
         }
         System.out.println("\n"+languages.size()+"- None");
         System.out.println("\n\nEnter a language's number :");
-        int numberLanguage = Integer.parseInt(scanner.nextLine());
-        if(numberLanguage==languages.size()) {
-          System.out.println("Return to the main menu");
-        } else if((numberLanguage<languages.size())&&(numberLanguage>=0)) {
-          LinkedList<AudioBook> audioBooksToDisplayLanguage = this.controller.getAudioBooksByLanguage(languages.get(numberLanguage));
-          if(audioBooksToDisplayLanguage!=null) {
-            System.out.println("\n\t\tAll the "+languages.get(numberLanguage)+"\'s audio books :\n\n");
-            for (int i = 0; i < audioBooksToDisplayLanguage.size(); i++) {
-                System.out.println("\n" + audioBooksToDisplayLanguage.get(i));
+        String number = scanner.nextLine();
+        try {
+          int numberLanguage = Integer.parseInt(number);
+          if(numberLanguage==languages.size()) {
+            System.out.println("Return to the main menu");
+          } else if((numberLanguage<languages.size())&&(numberLanguage>=0)) {
+            LinkedList<AudioBook> audioBooksToDisplayLanguage = this.controller.getAudioBooksByLanguage(languages.get(numberLanguage));
+            if(audioBooksToDisplayLanguage!=null) {
+              System.out.println("\n\t\tAll the "+languages.get(numberLanguage)+"\'s audio books :\n\n");
+              for (int i = 0; i < audioBooksToDisplayLanguage.size(); i++) {
+                  System.out.println("\n" + audioBooksToDisplayLanguage.get(i));
+              }
+            } else {
+              System.out.println("\nNo audio book with this language found in the database");
             }
           } else {
-            System.out.println("\nNo audio book with this language found in the database");
+            System.out.println("\nInvalid number");
           }
-        } else {
-          System.out.println("\nInvalid number");
+        } catch(NumberFormatException nfe) {
+          System.out.println("This is not a number.");
         }
       } else {
         System.out.println("\nNo language found in the database");
       }
+    }
+
+    /**
+     * Asks the information about a song to add it to the audio elements
+     *
+     * @param       scanner scan a specific input to receive information from the user
+     *
+     * @see         JMusicHubController
+     * @see         Song
+     * @author      Steve Chauvreau-Manat
+     */
+    private void addSong(Scanner scan) {
+        System.out.println("\nTitle :");
+        String title = scan.nextLine();
+
+        System.out.println("\nArtist :");
+        String artist = scan.nextLine();
+
+        System.out.println("\nDuration (in seconds):");
+        String duration = scan.nextLine();
+        Pattern pattern = Pattern.compile(".*[^0-9].*");
+        while((pattern.matcher(duration).matches())) {
+            System.out.println("\nPlease enter a valid duration :");
+            duration = scan.nextLine();
+        }
+        int durationInt = Integer.parseInt(duration);
+
+        UUID uuid = UUID.randomUUID();
+
+        System.out.println("\nPath :");
+        String content = scan.nextLine();
+        File file = new File(content);
+        while(!file.exists()) {
+            System.out.println("\nNo such file path, try again.\nPath : ");
+            content = scan.nextLine();
+            file = new File(content);
+        }
+        System.out.println("\nGenre : (JAZZ/CLASSIQUE/HipHop/ROCK/POP/RAP/METAL)");
+        String genre = scan.nextLine().toUpperCase();
+        while(!genre.equals("JAZZ") && !genre.equals("CLASSIQUE") && !genre.equals("HIPHOP") && !genre.equals("ROCK") && !genre.equals("POP") && !genre.equals("RAP") && !genre.equals("METAL")) {
+            System.out.println("\nWrong genre, try again.\nGenre : ");
+            genre = scan.nextLine();
+            file = new File(content);
+        }
+        Genre musicGenre = Genre.valueOf(genre);
+        Song songToAdd = new Song(title, artist, durationInt, uuid, content, musicGenre);
+        System.out.println("\nPress \"y\" to add the following song, press anything else to abort : \n" + songToAdd);
+        String answer = scan.nextLine();
+        if(answer.equals("y")) {
+            this.controller.addAudioToDataBase(songToAdd);
+            System.out.println("\nSong registered.\n");
+        }
+    }
+
+    /**
+     * Asks the information about an audio book to add it to the audio elements
+     *
+     * @param       scanner scan a specific input to receive information from the user
+     *
+     * @see         JMusicHubController
+     * @see         AudioBook
+     * @author      Steve Chauvreau-Manat
+     */
+    private void addAudioBook(Scanner scan) {
+        System.out.println("\nTitle :");
+        String title = scan.nextLine();
+
+        System.out.println("\nAuthor :");
+        String author = scan.nextLine();
+
+        System.out.println("\nDuration (in seconds):");
+        String duration = scan.nextLine();
+        Pattern pattern = Pattern.compile(".*[^0-9].*");
+        while (pattern.matcher(duration).matches()) {
+            System.out.println("\nPlease enter a valid duration :");
+            duration = scan.nextLine();
+        }
+        int durationInt = Integer.parseInt(duration);
+
+        UUID uuid = UUID.randomUUID();
+
+        System.out.println("\nPath :");
+        String content = scan.nextLine();
+        File file = new File(content);
+        while(!file.exists()) {
+            System.out.println("\nNo such file path, try again.\nPath : ");
+            content = scan.nextLine();
+            file = new File(content);
+        }
+
+        System.out.println("\nLanguage : (FRANCAIS/ANGLAIS/ITALIEN/ESPAGNOL/ALLEMAND)");
+        String language = scan.nextLine().toUpperCase();
+        while(!language.equals("FRANCAIS") && !language.equals("ANGLAIS") && !language.equals("ITALIEN") && !language.equals("ESPAGNOL") && !language.equals("ALLEMAND")) {
+            System.out.println("\nWrong language, try again.\nLanguage : ");
+            language = scan.nextLine();
+            file = new File(content);
+        }
+        Language audioBookLanguage = Language.valueOf(language);
+
+        System.out.println("\nCategory : (JEUNESSE/ROMAN/THEATRE/DISCOURS/DOCUMENTAIRE)");
+        String category = scan.nextLine().toUpperCase();
+        while(!category.equals("JEUNESSE") && !category.equals("ROMAN") && !category.equals("THEATRE") && !category.equals("DISCOURS") && !category.equals("DOCUMENTAIRE")) {
+            System.out.println("\nWrong category, try again.\nCategory : ");
+            category = scan.nextLine();
+            file = new File(content);
+        }
+        Category audioBookCategory = Category.valueOf(category);
+
+        AudioBook audioBookToAdd = new AudioBook(title, author, durationInt, uuid, content, audioBookLanguage, audioBookCategory);
+        System.out.println("\nPress \"y\" to add the following audio book, press anything else to abort : \n" + audioBookToAdd);
+        String answer = scan.nextLine();
+        if(answer.equals("y")) {
+            this.controller.addAudioToDataBase(audioBookToAdd);
+            System.out.println("\nAudio book registered.");
+        }
+    }
+
+    /**
+     * Asks the information about an album to add it to the audio elements
+     *
+     * @param       scanner scan a specific input to receive information from the user
+     *
+     * @see         JMusicHubController
+     * @see         Song
+     * @see         Album
+     * @author      Steve Chauvreau-Manat
+     */
+    private void addAlbum(Scanner scan) {
+        LinkedList<Song> songs = new LinkedList<Song>();
+        System.out.println("\nAdding an album :\nTitle :");
+        String title = scan.nextLine();
+
+        System.out.println("\nArtist :");
+        String artist = scan.nextLine();
+
+        System.out.println("\nDuration (in seconds):");
+        String duration = scan.nextLine();
+        Pattern numberPattern = Pattern.compile(".*[^0-9].*");
+        while (numberPattern.matcher(duration).matches()) {
+            System.out.println("\nPlease enter a valid duration :");
+            duration = scan.nextLine();
+        }
+        int durationInt = Integer.parseInt(duration);
+
+        UUID uuid = UUID.randomUUID();
+
+        System.out.println("\nDate (DD/MM/YYYY):");
+        String date = scan.nextLine();
+        Pattern datePattern = Pattern.compile("([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}");
+        while (!datePattern.matcher(date).matches()) {
+            System.out.println("\nPlease enter a valid date :");
+            date = scan.nextLine();
+        }
+
+        System.out.println("\nHow many music is there in this album :");
+        String numberSong = scan.nextLine();
+        while (numberPattern.matcher(numberSong).matches()) {
+            System.out.println("\nPlease enter a valid duration :");
+            numberSong = scan.nextLine();
+        }
+        int numberMusic = Integer.parseInt(numberSong);
+        for(int i=0; i < numberMusic; i++) {
+            this.addSong(scan);
+        }
+        Album albumToAdd = new Album(title,artist,durationInt,date,uuid,songs);
+        System.out.println("\nPress \"y\" to add the following album, press anything else to abort : \n" + albumToAdd);
+        String answer = scan.nextLine();
+        if(answer.equals("y")) {
+            this.controller.addAlbumToDataBase(albumToAdd);
+            System.out.println("\nAlbum registered.");
+        }
+    }
+
+    /**
+     * Asks and add an existing song to a chosen album
+     *
+     * @param       scanner scan a specific input to receive information from the user
+     *
+     * @see         JMusicHubController
+     * @author      Steve Chauvreau-Manat
+     */
+    private void addSongToAlbum(Scanner scanner) {
+      System.out.println("\nEnter the name of an album :");
+      String title = scanner.nextLine();
+      Album album = this.controller.getAlbumByTitle(title);
+      if(album!=null) {
+        String songname = "1";
+        while (!songname.equals("")) {
+          System.out.println("\nEnter the name of the songs you wish to add or press enter to finish : ");
+          songname = scanner.nextLine();
+          if (!songname.equals("")) {
+            Audio addedAudio = this.controller.addSongToAlbum(album,songname);
+            if(addedAudio==null) {
+              System.out.println("\nNo song found.");
+            } else {
+              System.out.println("\n"+addedAudio.getTitle()+" is added to the album "+album.getTitle());
+            }
+          }
+        }
+      } else {
+        System.out.println("\nNo album found.");
+      }
+    }
+
+    /**
+     * Asks and add an existing audio to a chosen playlist
+     *
+     * @param       scanner scan a specific input to receive information from the user
+     *
+     * @see         JMusicHubController
+     * @author      Steve Chauvreau-Manat
+     */
+    private void addAudioToPlaylist(Scanner scanner) {
+      System.out.println("\nEnter the name of a playlist :");
+      String name = scanner.nextLine();
+      Playlist playlist = this.controller.getPlaylistByName(name);
+      if(playlist!=null) {
+        String songname = "1";
+        while(!songname.equals("")) {
+          System.out.println("\nEnter the name of the songs you wish to add or press enter to finish : ");
+          songname = scanner.nextLine();
+          if(!songname.equals("")) {
+            Audio addedAudio = this.controller.addAudioToPlaylist(playlist,songname);
+            if(addedAudio!=null) {
+              System.out.println("\nNo song found.");
+            } else {
+              System.out.println("\n"+addedAudio.getTitle()+" is added to the playlist "+playlist.getName());
+            }
+          }
+        }
+      } else {
+        System.out.println("\nNo playlist found.");
+      }
+    }
+
+    /**
+     * Asks the informations and the audios to create and register a playlist
+     *
+     * @param       scanner scan a specific input to receive information from the user
+     *
+     * @see         JMusicHubController
+     * @see         Audio
+     * @see         Playlist
+     * @author      Steve Chauvreau-Manat
+     */
+    private void createPlaylistFromExisting(Scanner scanner) {
+      System.out.println("\nName of your new playlist :");
+      String name = scanner.nextLine();
+
+      System.out.println("\nGenerating UUID");
+      UUID uuid = UUID.randomUUID();
+
+      LinkedList<Audio> audios = new LinkedList<Audio>();
+      String songname = "1";
+      while (!songname.equals("")) {
+        System.out.println("\nEnter the name of the songs you wish to add or press enter to finish : ");
+        songname = scanner.nextLine();
+        if(!songname.equals("")) {
+          Audio addedAudio = this.controller.getAudioByTitle(songname);
+          if((addedAudio!=null)) {
+            System.out.println("\nNo song found.");
+          } else {
+            System.out.println("\n"+addedAudio.getTitle()+" is added to the playlist");
+            audios.add(addedAudio);
+          }
+        }
+      }
+      if (audios.size() == 0) {
+        System.out.println("\nEmpty playlist, abort creation.");
+        return;
+      }
+      Playlist playlistToAdd = new Playlist(name, uuid, audios);
+      System.out.println("\nPress \"y\" to add the following playlist, press anything else to abort : \n" + playlistToAdd);
+      String answer = scanner.nextLine();
+      if(answer.equals("y")) {
+          this.controller.addPlaylistToDataBase(playlistToAdd);
+          System.out.println("\nPlaylist registered.");
+      }
+    }
+
+    /**
+     * Asks and delete the chosen song from a specific playlist
+     *
+     * @param       scanner scan a specific input to receive information from the user
+     *
+     * @see         JMusicHubController
+     * @see         Audio
+     * @see         Playlist
+     * @author      Steve Chauvreau-Manat
+     */
+    private void removeSongFromPlaylist(Scanner scanner) {
+        System.out.println("\nEnter the name of a playlist :");
+        String name = scanner.nextLine();
+        Playlist playlist = this.controller.getPlaylistByName(name);
+        if(playlist!=null) {
+          for(int i=0;i<playlist.getAudios().size();i++) {
+            System.out.println("\n- "+i+" "+playlist.getAudios().get(i));
+          }
+          String songname = "1";
+          while(!songname.equals("")) {
+            System.out.println("\nEnter the audio's name you wish to remove or press enter to finish : ");
+            songname = scanner.nextLine();
+            if(!songname.equals("")) {
+              if(this.controller.removeAudioFromPlaylist(playlist.getName(),songname)) {
+                System.out.println("\nSuccessfully removed audio from playlist "+playlist.getName());
+              } else {
+                System.out.println("\nNo song found.");
+              }
+            }
+          }
+        } else {
+          System.out.println("\nNo playlist found.");
+        }
+    }
+
+    /**
+     * Asks and delete the chosen playlist
+     *
+     * @param       scanner scan a specific input to receive information from the user
+     *
+     * @see         JMusicHubController
+     * @see         Playlist
+     * @author      Steve Chauvreau-Manat
+     */
+    private void deletePlaylist(Scanner scanner) {
+      System.out.println("\nName of the playlist you want to delete :");
+      if(this.controller.deletePlaylist(scanner.nextLine())) {
+        System.out.println("The playlist has been deleted");
+      } else {
+        System.out.println("There is no playlist with this name");
+      }
+    }
+
+    /**
+     * Use the controller method save to save all the new data
+     *
+     * @see         JMusicHubController
+     * @author      Steve Chauvreau-Manat
+     */
+    private void save() {
+      this.controller.save();
+      ILogger flogger = SingletonFileLogger.getInstance();
+      ILogger clogger = SingletonConsoleLogger.getInstance();
+      flogger.write(Level.INFO, "Library edited and saved succesfully");
+      clogger.write(Level.INFO, "Library edited and saved succesfully");
+
     }
 }

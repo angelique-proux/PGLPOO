@@ -228,62 +228,119 @@ import java.util.regex.Matcher;
      public String helpActive();
 
      /**
-      * Asks the information about a song to add it to the audio elements
+      * Add to the database an audio
+      *
+      * @param       audio the audio to be added to the database
+      *
+      * @see         Audio
       * @see         Song
-      * @author      Gaël Lejeune and Steve Chauvreau-Manat
-      */
-     public void addSong();
-
-     /**
-      * Asks the information about an audio book to add it to the audio elements
       * @see         AudioBook
       * @author      Gaël Lejeune and Steve Chauvreau-Manat
       */
-     public void addAudioBook();
+     public void addAudioToDataBase(Audio audio);
 
      /**
-      * Asks the information about an album to add it to the audio elements
+      * Add to the database an audio
+      *
+      * @param       album the album to be added to the database
+      *
       * @see         Album
       * @author      Gaël Lejeune and Steve Chauvreau-Manat
       */
-     public void addAlbum();
+     public void addAlbumToDataBase(Album album);
 
      /**
-      * Asks and add an existing song to a chosen album
+      * Add to the database an audio
+      *
+      * @param       playlist the playlist to be added to the database
+      *
+      * @see         Playlist
+      * @author      Gaël Lejeune and Steve Chauvreau-Manat
+      */
+     public void addPlaylistToDataBase(Playlist playlist);
+
+     /**
+      * Find an album thanks to its name
+      *
+      * @param       title the album's title
+      * @return      Album
+      *
+      * @see         Album
+      * @author      Gaël Lejeune and Steve Chauvreau-Manat
+      */
+     public Album getAlbumByTitle(String title);
+
+     /**
+      * Add an existing song to a chosen album
+      *
+      * @param       album the album in which you want to add music
+      * @param       songname the song's name we want to add to the album
+      * @return      Audio
+      *
       * @see         Album
       * @see         Song
       * @author      Gaël Lejeune
       */
-     public void addSongToAlbum();
+     public Audio addSongToAlbum(Album album, String songname);
 
      /**
-      * Asks and add an existing audio to a chosen playlist
+      * Find a playlist thanks to its name
+      *
+      * @param       title the playlist's title
+      * @return      Playlist
+      *
+      * @see         Playlist
+      * @author      Gaël Lejeune and Steve Chauvreau-Manat
+      */
+     public Playlist getPlaylistByName(String name);
+
+     /**
+      * Find an audio thanks to its name
+      *
+      * @param       title the audio's title
+      * @return      Audio
+      *
+      * @see         Audio
+      * @author      Gaël Lejeune and Steve Chauvreau-Manat
+      */
+     public Audio getAudioByTitle(String title);
+
+     /**
+      * Add an existing audio to a chosen playlist
+      *
+      * @param       playlist the playlist in which you want to add music
+      * @param       songname the song's name we want to add to the playlist
+      * @return      Audio
+      *
       * @see         Playlist
       * @see         Audio
       * @author      Gaël Lejeune
       */
-     public void addSongToPlaylist();
+     public Audio addAudioToPlaylist(Playlist playlist, String songname);
 
      /**
-      * Asks the informations and the audios to create and register a playlist
+      * Delete the chosen audio from a chosen playlist
+      *
+      * @param       playlisttitle the name of the playlist where you want to delete a music
+      * @param       audioTitle the name of the audio tou want to remove from the playlist
+      * @return      boolean
+      *
       * @see         Playlist
+      * @see         Audio
       * @author      Gaël Lejeune
       */
-     public void createPlaylistFromExisting();
-
-     /**
-      * Asks the informations and the audios to remove a song from a playlist
-      * @see         Playlist
-      * @author      Gaël Lejeune
-      */
-     public void removeSongFromPlaylist();
+     public boolean removeAudioFromPlaylist(String playlistTitle, String audioTitle);
 
      /**
       * Asks and delete the chosen playlist
+      *
+      * @param       title the playlist's name we want to delete
+      * @return      boolean
+      *
       * @see         Playlist
       * @author      Gaël Lejeune
       */
-     public void deletePlaylist();
+     public boolean deletePlaylist(String name);
 
      /**
       * Create XML files containing the registered playlists, elements, and albums using the class XML editor
@@ -297,5 +354,5 @@ import java.util.regex.Matcher;
       * @see         JMusicHubModel
       * @author      Gaël Lejeune
       */
-     public void editDatabase();
+     //public void editDatabase();
  }

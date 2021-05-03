@@ -41,8 +41,8 @@ public class ServerConnection
 			System.out.println("Which mod do you want ? (active/passive/stop)");
 			String command = scanner.nextLine();
 			if(command.equals("active")) {
-				JMusicHubModel model = new JMusicHubModel();
-				JMusicHubController controller = new JMusicHubController(model);
+				Model model = new JMusicHubModel();
+				Controller controller = new JMusicHubController(model);
 			} else if(command.equals("passive")) {
 				AbstractServer as = new Server();
 				String ip = "localhost";

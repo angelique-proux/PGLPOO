@@ -83,7 +83,7 @@ public class JMusicHubModel implements Model{
 		} catch (TransformerException tfe) {
 			tfe.printStackTrace();
 		}
-		System.out.println("Done creating XML File");
+		// System.out.println("Done creating XML File");
 	}
 
 	/**

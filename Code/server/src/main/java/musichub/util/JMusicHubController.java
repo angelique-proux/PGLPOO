@@ -538,314 +538,197 @@ public class JMusicHubController implements Controller {
         +"\n- 14 : diplay all registered languages"
         +"\n- edit : edit the database"
         +"\n- q : exit the jMusicHub"
-        +"\n- h : help with details of previous commands";
+        +"\n- h : help with details of previous commands"
+        +"\n----------------------------------------------------------------"
+        +"\nHere are the commands you can use to make changes:"
+        +"\nc : add a song\t\t\t|\tl : add an audiobook"
+        +"\na : add an album\t\t|\tp : create a new playlist"
+        +"\n+ : add a song to an album\t|\t- : delete a playlist"
+        +"\n-- : remove a song from a playlist\t|\ts : save all modifications"
+        +"\nDon't forget to save all your modifications.";
     }
 
     /**
-     * Asks the information about a song to add it to the audio elements
+     * Add to the database an audio
+     *
+     * @param       audio the audio to be added to the database
+     *
+     * @see         Audio
      * @see         Song
-     * @author      Gaël Lejeune and Steve Chauvreau-Manat
-     */
-    public void addSong() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("\nTitle :");
-        String title = scan.nextLine();
-
-        System.out.println("\nArtist :");
-        String artist = scan.nextLine();
-
-        System.out.println("\nDuration (in seconds):");
-        String duration = scan.nextLine();
-        Pattern pattern = Pattern.compile(".*[^0-9].*");
-        while (pattern.matcher(duration).matches()) {
-            System.out.println("\nPlease enter a valid duration :");
-            duration = scan.nextLine();
-        }
-        int durationInt = Integer.parseInt(duration);
-
-        UUID uuid = UUID.randomUUID();
-
-        System.out.println("\nPath :");
-        String content = scan.nextLine();
-        File file = new File(content);
-        while(!file.exists()) {
-            System.out.println("\nNo such file path, try again.\nPath : ");
-            content = scan.nextLine();
-            file = new File(content);
-        }
-        System.out.println("\nGenre : (JAZZ/CLASSIQUE/HipHop/ROCK/POP/RAP/METAL)");
-        String genre = scan.nextLine().toUpperCase();
-        while(!genre.equals("JAZZ") && !genre.equals("CLASSIQUE") && !genre.equals("HIPHOP") && !genre.equals("ROCK") && !genre.equals("POP") && !genre.equals("RAP") && !genre.equals("METAL")) {
-            System.out.println("\nWrong genre, try again.\nGenre : ");
-            genre = scan.nextLine();
-            file = new File(content);
-        }
-        Genre musicGenre = Genre.valueOf(genre);
-        Song songToAdd = new Song(title, artist, durationInt, uuid, content, musicGenre);
-        System.out.println("\nPress \"y\" to add the following song, press anything else to abort : \n" + songToAdd);
-        String answer = scan.nextLine();
-        if(answer.equals("y")) {
-            this.elements.add(songToAdd);
-            System.out.println("\nSong registered.\n");
-        }
-    }
-
-    /**
-     * Asks the information about an audio book to add it to the audio elements
      * @see         AudioBook
      * @author      Gaël Lejeune and Steve Chauvreau-Manat
      */
-    public void addAudioBook() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("\nTitle :");
-        String title = scan.nextLine();
-
-        System.out.println("\nAuthor :");
-        String author = scan.nextLine();
-
-        System.out.println("\nDuration (in seconds):");
-        String duration = scan.nextLine();
-        Pattern pattern = Pattern.compile(".*[^0-9].*");
-        while (pattern.matcher(duration).matches()) {
-            System.out.println("\nPlease enter a valid duration :");
-            duration = scan.nextLine();
-        }
-        int durationInt = Integer.parseInt(duration);
-
-        UUID uuid = UUID.randomUUID();
-
-        System.out.println("\nPath :");
-        String content = scan.nextLine();
-        File file = new File(content);
-        while(!file.exists()) {
-            System.out.println("\nNo such file path, try again.\nPath : ");
-            content = scan.nextLine();
-            file = new File(content);
-        }
-
-        System.out.println("\nLanguage : (FRANCAIS/ANGLAIS/ITALIEN/ESPAGNOL/ALLEMAND)");
-        String language = scan.nextLine().toUpperCase();
-        while(!language.equals("FRANCAIS") && !language.equals("ANGLAIS") && !language.equals("ITALIEN") && !language.equals("ESPAGNOL") && !language.equals("ALLEMAND")) {
-            System.out.println("\nWrong language, try again.\nLanguage : ");
-            language = scan.nextLine();
-            file = new File(content);
-        }
-        Language audioBookLanguage = Language.valueOf(language);
-
-        System.out.println("\nCategory : (JEUNESSE/ROMAN/THEATRE/DISCOURS/DOCUMENTAIRE)");
-        String category = scan.nextLine().toUpperCase();
-        while(!category.equals("JEUNESSE") && !category.equals("ROMAN") && !category.equals("THEATRE") && !category.equals("DISCOURS") && !category.equals("DOCUMENTAIRE")) {
-            System.out.println("\nWrong category, try again.\nCategory : ");
-            category = scan.nextLine();
-            file = new File(content);
-        }
-        Category audioBookCategory = Category.valueOf(category);
-
-        AudioBook audioBookToAdd = new AudioBook(title, author, durationInt, uuid, content, audioBookLanguage, audioBookCategory);
-        System.out.println("\nPress \"y\" to add the following audio book, press anything else to abort : \n" + audioBookToAdd);
-        String answer = scan.nextLine();
-        if(answer.equals("y")) {
-            System.out.println("\nAudio book registered.");
-        }
+    public void addAudioToDataBase(Audio audio) {
+      if(audio instanceof Song) {
+        this.elements.add((Song) audio);
+      } else if(audio instanceof AudioBook) {
+        this.elements.add((AudioBook) audio);
+      }
     }
 
     /**
-     * Asks the information about an album to add it to the audio elements
+     * Add to the database an audio
+     *
+     * @param       album the album to be added to the database
+     *
      * @see         Album
      * @author      Gaël Lejeune and Steve Chauvreau-Manat
      */
-    public void addAlbum() {
-        Scanner scan = new Scanner(System.in);
-        LinkedList<Song> songs = new LinkedList<Song>();
-        System.out.println("\nAdding an album :\nTitle :");
-        String title = scan.nextLine();
-
-        System.out.println("\nArtist :");
-        String artist = scan.nextLine();
-
-        System.out.println("\nDuration (in seconds):");
-        String duration = scan.nextLine();
-        Pattern durationPattern = Pattern.compile(".*[^0-9].*");
-        while (durationPattern.matcher(duration).matches()) {
-            System.out.println("\nPlease enter a valid duration :");
-            duration = scan.nextLine();
-        }
-        int durationInt = Integer.parseInt(duration);
-
-        UUID uuid = UUID.randomUUID();
-
-        System.out.println("\nDate (DD/MM/YYYY):");
-        String date = scan.nextLine();
-        Pattern datePattern = Pattern.compile("([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}");
-        while (!datePattern.matcher(date).matches()) {
-            System.out.println("\nPlease enter a valid date :");
-            date = scan.nextLine();
-        }
-
-        System.out.println("\nHow many music is there in this album :");
-        int numberMusic = Integer.parseInt(scan.nextLine());
-        for(int i=0; i < numberMusic; i++) {
-            this.addSong();
-        }
-        this.albums.add(new Album(title,artist,durationInt,date,uuid,songs));
+    public void addAlbumToDataBase(Album album) {
+        this.albums.add(album);
     }
 
     /**
-     * Asks and add an existing song to a chosen album
+     * Add to the database an audio
+     *
+     * @param       playlist the playlist to be added to the database
+     *
+     * @see         Playlist
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
+     */
+    public void addPlaylistToDataBase(Playlist playlist) {
+        this.playlists.add(playlist);
+    }
+
+    /**
+     * Find an album thanks to its name
+     *
+     * @param       title the album's title
+     * @return      Album
+     *
+     * @see         Album
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
+     */
+    public Album getAlbumByTitle(String title) {
+      for (int i = 0; i < this.albums.size(); i++) {
+        if (this.albums.get(i).getTitle().equals(title)) {
+          return this.albums.get(i);
+        }
+      }
+      return null;
+    }
+
+    /**
+     * Add an existing song to a chosen album
+     *
+     * @param       album the album in which you want to add music
+     * @param       songname the song's name we want to add to the album
+     * @return      Audio
+     *
      * @see         Album
      * @see         Song
      * @author      Gaël Lejeune
      */
-    public void addSongToAlbum() {
-        Scanner scanner = new Scanner (System.in);
-        System.out.println("\nEnter the name of an album :");
-        boolean found = false;
-        String title = scanner.nextLine();
-        int albumIndex = 0;
-        for (int i = 0; i < this.albums.size(); i++) {
-            if (this.albums.get(i).getTitle().equals(title)) {
-                albumIndex = i;
-                found = true;
-            }
+    public Audio addSongToAlbum(Album album, String songname) {
+      for (int i = 0; i < this.elements.size(); i++) {
+        if (this.elements.get(i).getTitle().equals(songname)) {
+          album.addAudio(this.elements.get(i));
+          return this.elements.get(i);
         }
-        if (found) {
-            System.out.println("\nEnter the name of the songs you wish to add or press enter to finish : ");
-            String songname = "1";
-            while (!songname.equals("")) {
-                songname = scanner.nextLine();
-                boolean songFound = false;
-                if (!songname.equals("")) {
-                    for (int i = 0; i < this.elements.size(); i++) {
-                        if (this.elements.get(i).getTitle().equals(songname)) {
-                            this.albums.get(albumIndex).addAudio(this.elements.get(i));
-                            System.out.println("\nAdded song : " + this.elements.get(i));
-                            songFound = true;
-                        }
-                    }
-                    if (!songFound) {
-                        System.out.println("\nNo song found.");
-                    }
-                }
-            }
-        } else {
-            System.out.println("\nNo album found.");
-        }
+      }
+      return null;
     }
 
     /**
-     * Asks and add an existing audio to a chosen playlist
+     * Find a playlist thanks to its name
+     *
+     * @param       title the playlist's title
+     * @return      Playlist
+     *
+     * @see         Playlist
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
+     */
+    public Playlist getPlaylistByName(String name) {
+      for (int i = 0; i < this.playlists.size(); i++) {
+        if (this.playlists.get(i).getName().equals(name)) {
+          return this.playlists.get(i);
+        }
+      }
+      return null;
+    }
+
+    /**
+     * Find an audio thanks to its name
+     *
+     * @param       title the audio's title
+     * @return      Audio
+     *
+     * @see         Audio
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
+     */
+    public Audio getAudioByTitle(String title) {
+      for (int i = 0; i < this.elements.size(); i++) {
+        if (this.elements.get(i).getTitle().equals(title)) {
+          return this.elements.get(i);
+        }
+      }
+      return null;
+    }
+
+    /**
+     * Add an existing audio to a chosen playlist
+     *
+     * @param       playlist the playlist in which you want to add music
+     * @param       songname the song's name we want to add to the playlist
+     * @return      Song
+     *
      * @see         Playlist
      * @see         Audio
      * @author      Gaël Lejeune
      */
-    public void addSongToPlaylist() {
-        Scanner scanner = new Scanner (System.in);
-        System.out.println("\nEnter the name of a playlist :");
-        boolean found = false;
-        String name = scanner.nextLine();
-        int playlistIndex = 0;
-        for (int i = 0; i < this.playlists.size(); i++) {
-            if (this.playlists.get(i).getName().equals(name)) {
-                playlistIndex = i;
-                found = true;
-            }
+    public Audio addAudioToPlaylist(Playlist playlist, String songname) {
+      for (int i = 0; i < this.elements.size(); i++) {
+        if (this.elements.get(i).getTitle().equals(songname)) {
+          playlist.addAudio(this.elements.get(i));
+          return this.elements.get(i);
         }
-        if (found) {
-            System.out.println("\nEnter the name of the songs you wish to add or press enter to finish : ");
-            String songname = "1";
-            while (!songname.equals("")) {
-                songname = scanner.nextLine();
-                boolean songFound = false;
-                for (int i = 0; i < this.elements.size(); i++) {
-                    if (this.elements.get(i).getTitle().equals(songname)) {
-                        this.playlists.get(playlistIndex).addAudio(this.elements.get(i));
-                        System.out.println("\nAdded song : " + this.elements.get(i));
-                        songFound = true;
-                    }
-                }
-                if (!songFound) {
-                    System.out.println("\nNo song found.");
-                }
-            }
-        } else {
-            System.out.println("\nNo playlist found.");
-        }
+      }
+      return null;
     }
 
     /**
-     * Asks the informations and the audios to create and register a playlist
+     * Delete the chosen audio from a chosen playlist
+     *
+     * @param       playlisttitle the name of the playlist where you want to delete a music
+     * @param       audioTitle the name of the audio tou want to remove from the playlist
+     * @return      boolean
+     *
      * @see         Playlist
+     * @see         Audio
      * @author      Gaël Lejeune
      */
-    public void createPlaylistFromExisting() {
-        Scanner scanner = new Scanner (System.in);
-
-        System.out.println("\nName of your new playlist :");
-        String name = scanner.nextLine();
-
-        System.out.println("\nGenerating UUID");
-        UUID uuid = UUID.randomUUID();
-
-        LinkedList<Audio> audios = new LinkedList<Audio>();
-        System.out.println("\nEnter the name of the songs you wish to add or press enter to finish : ");
-        String songname = "1";
-        while (!songname.equals("")) {
-            songname = scanner.nextLine();
-            boolean found = false;
-            for (int i = 0; i < this.elements.size(); i++) {
-                if (this.elements.get(i).getTitle().equals(songname)) {
-                    audios.add(this.elements.get(i));
-                    System.out.println("\nAdded song : " + this.elements.get(i));
-                    found = true;
-                }
+    public boolean removeAudioFromPlaylist(String playlistTitle, String audioTitle) {
+      for (int i = 0; i < this.playlists.size(); i++) {
+        if (this.playlists.get(i).getName().equals(playlistTitle)) {
+          LinkedList<Audio> audioList = this.playlists.get(i).getAudios();
+          for(int j=0;j<audioList.size();j++) {
+            if(audioList.get(j).getTitle().equals(audioTitle)) {
+              this.playlists.get(i).removeAudio(audioList.get(j));
+              return true;
             }
-            if (!found) {
-                System.out.println("\nNo song found.");
-            }
+          }
         }
-        if (audios.size() == 0) {
-            System.out.println("\nEmpty playlist, abort creation.");
-            return;
-        }
-        this.playlists.add(new Playlist(name, uuid, audios));
-        System.out.println("\nPlaylist created");
-    }
-
-    public void removeSongFromPlaylist() {
-        System.out.println("\nPlaylists :");
-        LinkedList<Playlist> playlists = this.playlists;
-        for (int i = 0; i < playlists.size(); i++) {
-            System.out.println("\n"+i+"- "+playlists.get(i).getName()+"\n");
-        }
-        System.out.println("\nNumber of playlist to edit :");
-        Scanner scanner = new Scanner (System.in);
-        String playlistNumber = scanner.nextLine();
-        System.out.println("\nAudios of the playlist :");
-        LinkedList<Audio> audios = this.getPlaylists().get(Integer.parseInt(playlistNumber)).getAudios();
-        for (int i = 0; i < audios.size(); i++) {
-            System.out.println("\n"+i+"- "+audios.get(i).getTitle()+"\n");
-        }
-        System.out.println("\nNumber of the audio to remove from he playlist :");
-        String audioNumber = scanner.nextLine();
-        this.playlists.get(Integer.parseInt(playlistNumber)).removeAudio(this.playlists.get(Integer.parseInt(playlistNumber)).getAudios().get(Integer.parseInt(audioNumber)));
-        System.out.println("\nSuccessfully removed audio from playlist");
+      }
+      return false;
     }
 
     /**
      * Asks and delete the chosen playlist
+     *
+     * @param       title the playlist's name we want to delete
+     * @return      boolean
+     *
      * @see         Playlist
      * @author      Gaël Lejeune
      */
-    public void deletePlaylist() {
-        System.out.println("\nPlaylists :");
-        LinkedList<Playlist> playlists = this.playlists;
-        for (int i = 0; i < playlists.size(); i++) {
-            System.out.println("\n"+i+"- "+playlists.get(i).getName()+"\n");
+    public boolean deletePlaylist(String name) {
+      for (int i = 0; i < this.playlists.size(); i++) {
+        if (this.playlists.get(i).getName().equals(name)) {
+          this.playlists.remove(i);
+          return true;
         }
-        System.out.println("\nNumber of playlist to delete :");
-        Scanner scanner = new Scanner (System.in);
-        String playlistNumber = scanner.nextLine();
-        this.playlists.remove(Integer.parseInt(playlistNumber));
+      }
+      return false;
     }
 
     /**
@@ -857,64 +740,5 @@ public class JMusicHubController implements Controller {
         this.model.writeElementXML("files/elements.xml", this.elements);
         this.model.writeAlbumXML("files/albums.xml", this.albums);
         this.model.writePlaylistXML("files/playlists.xml", this.playlists);
-    }
-
-    public void editDatabase() {
-        Scanner scanner = new Scanner (System.in);
-        System.out.println(" What you want to do ? Hit a button to make changes.");
-        System.out.println("h : show the help\t\t|\tm : return to the menu");
-        System.out.println("Don't forget to save all your modifications.");
-        while(true) {
-            System.out.println("JMusicHub - edit>");
-            String editCommand = scanner.nextLine();
-            switch(editCommand) {
-                case "h":
-                System.out.println("Here are the commands you can use to make changes:");
-                System.out.println("c : add a song\t\t\t|\tl : add an audiobook");
-                System.out.println("a : add an album\t\t|\tp : create a new playlist");
-                System.out.println("+ : add a song to an album\t|\t- : delete a playlist");
-                System.out.println("-- : remove a song from a playlist\t|\ts : save all modifications");
-                break;
-
-                case "c":// ajouter une chanson
-                this.addSong();
-                break;
-
-                case "a":// ajouter un album
-                this.addAlbum();
-                break;
-
-                case "+"://ajout d'une chanson existante à un album existant
-                this.addSongToAlbum();
-                break;
-
-                case "l":// ajouter un livre audio
-                this.addAudioBook();
-                break;
-
-                case "p":
-                this.createPlaylistFromExisting();
-                break;
-
-                case "-":
-                this.deletePlaylist();
-                break;
-
-                case "--":
-                this.removeSongFromPlaylist();
-                break;
-
-                case "s":
-                this.save();
-                break;
-
-                default:
-                break;
-            }
-            if(editCommand.equals("m")) {
-                break;
-            }
-            System.out.println("\n");
-        }
     }
 }
